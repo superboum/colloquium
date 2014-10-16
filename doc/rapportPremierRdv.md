@@ -38,14 +38,17 @@ Les différents champs suivants devront etre renseignés :
 Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouveau venant. 
 Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme de document excel, par exemple. Elle devra 
 lui permettre de savoir précisement qui fait quoi et quand.       
+
 Personnalisation : 
 -------
 L'administrateur devra pouvoir créer un onglet sur le site. Ceci devra être accessible à un utilisateur non informaticien. Il peut y avoir le besoin de recourir à un logiciel tiers.    
 Il devra également lui etre possible d'ajouter des champs d'inscription, d'ajouter ou modifier des deadlines.    
+
 Soumission de résumés :    
 ------
 La soumission de résumé sera faite en ligne. On pourra utiliser l'outil ConfTool pour creer cette partie.    
 Les résumés devront pouvoir etre lus par plusieurs utilisateurs, choisis par l'administrateur.    
+
 Langues
 ----------
 Le site sera entièrement en anglais.    
