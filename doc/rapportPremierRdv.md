@@ -24,5 +24,7 @@ L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cepe
 
 Langues
 ----------
-Le site sera entièrement en anglais. Une traduction en allemand sera éventuellement proposée, partielle  (uniquement sur certaines pages, définies par l'administrateur) 
-ou complète (Chaque modification du site devra ainsi être faite pour les deux langues. Si la traduction allemande n'est pas spécifié, la partie apparaitra en anglais).
+Le site sera entièrement en anglais.    
+Une traduction en allemand sera éventuellement proposée, selon la difficulté et le temps restant. Elle sera : 
+* partielle  : uniquement sur certaines pages, définies par l'administrateur
+* complète : Chaque modification du site devra ainsi être faite pour les deux langues. Si la traduction allemande n'est pas spécifié, la partie apparaitra en anglais.
