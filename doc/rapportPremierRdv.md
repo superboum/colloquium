@@ -21,7 +21,21 @@ La partie publique comportera plusieurs onglets, correspondant à plusieurs fonc
 L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cependant, il devra également pouvoir : 
 *  Acceder aux statistiques ( nb inscrits, rapport remis,... )
 *  Pouvoir creer de nouveaux onglets et des nouvelles pages.    
-
+Inscription : 
+-----
+L'inscription sera entièrement gérée par le site, et donc automatique.    
+Les différents champs suivants devront etre renseignés : 
+* Nom et prénom
+* Etablissement d'origine
+* Durée du séjour
+* Nombre de repas
+* Inscription aux animations proposées pendant la relache. 
+* contrainte nourriture ( végétarien, religion, ... )
+Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouveau venant. 
+Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme de document excel, par exemple. Elle devra 
+lui permettre de savoir précisement qui fait quoi et quand.    
+Ajout de nouvelles fonctionnalitées au site : 
+-------
 Langues
 ----------
 Le site sera entièrement en anglais.    
