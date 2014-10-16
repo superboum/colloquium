@@ -1,5 +1,4 @@
-etude-pratique
+ude-pratique
 ==============
 
 Etude pratique
-blbalba LOLO i am LORDE
