@@ -24,7 +24,7 @@ L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cepe
 *  Acceder aux statistiques ( nb inscrits, rapport remis,... )
 *  Pouvoir creer de nouveaux onglets et des nouvelles pages.       
 Inscription :
--------------   
+------------- 
 L'inscription sera entièrement gérée par le site, et donc automatique.    
 Les différents champs suivants devront etre renseignés : 
 * Nom et prénom
