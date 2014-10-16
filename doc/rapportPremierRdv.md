@@ -17,7 +17,9 @@ La partie publique comportera plusieurs onglets, correspondant à plusieurs fonc
     * connaitre l'état de traitement du résumé ( en cours, accepté, rejeté)
     * demander un soutien financier  
 * Des renseignements pratique (comment venir à Rennes, logement, ... ) 
-* Contact
-	
-Le site devra permettre de récuperer des données statistiques.     
+* Contact   
+L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cependant, il devra également pouvoir : 
+*  Acceder aux statistiques ( nb inscrits, rapport remis,... )
+*  Pouvoir creer de nouveaux onglets et des nouvelles pages.    
+Le site      
 Le site sera entièrement en anglais. Une traduction en allemand sera éventuellement proposée, partielle ou complète.
