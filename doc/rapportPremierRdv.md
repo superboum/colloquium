@@ -8,6 +8,7 @@ Besoin de création d'un site web, à mettre en ligne en juin 2015 affin d'organ
 les participants et l'organisation.       
 Spécification
 -------------
+Le nom de la conférence, **IWSM** devra être visible. 
 Le site devra présenter une partie publique, et une partie administrative.    
 La partie publique comportera plusieurs onglets, correspondant à plusieurs fonctions.
 	* Une partie administrative, pour la gestion des membres. On pourra :
