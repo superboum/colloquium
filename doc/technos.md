@@ -16,11 +16,11 @@ Serveur
 Client
 ------
 
-­* Bootstrap (bower) : adaptatif (en fonction taille écran) 
-­* Angular : applications web monopages 
-­* Backbonejs : applications web monopages 
-­* Foundation : adaptatif 
-­* Meteorjs : coté client ET serveur 
+- Bootstrap (bower) : adaptatif (en fonction taille écran) 
+­- Angular : applications web monopages 
+­- Backbonejs : applications web monopages 
+- ­Foundation : adaptatif 
+­- Meteorjs : coté client ET serveur 
   
  
 BD
