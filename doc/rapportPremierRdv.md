@@ -36,6 +36,7 @@ Toutes les inscriptions seront enregistrées dans une base de données, restitua
 lui permettre de savoir précisement qui fait quoi et quand.    
 Ajout de nouvelles fonctionnalitées au site : 
 -------
+L'administrateur devra pouvoir créer un onglet sur le site. Ceci devra être accessible à un utilisateur non informaticien. Il peut y avoir le besoin de recourir à un logiciel tiers. 
 Langues
 ----------
 Le site sera entièrement en anglais.    
