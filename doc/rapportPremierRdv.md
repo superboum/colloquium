@@ -46,6 +46,7 @@ Un administrateur du site pourra personnaliser le site. Il pourra :
 * modifier le contenu des pages ( titre, article, deadline, ... )
 * modifier les formulaires d'inscription 
 Ces modification devront être faisable par une personne non experimentée en informatique.    
+
 Résumés :    
 ------
 La soumission de résumé sera faite en ligne. On pourra utiliser l'outil ConfTool pour creer cette partie.    
