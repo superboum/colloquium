@@ -19,8 +19,8 @@ La partie publique comportera plusieurs onglets, correspondant à plusieurs fonc
 * Contact   
 * Sponsors
 L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cependant, il devra également pouvoir : 
-*  Acceder aux statistiques ( nb inscrits, rapport remis,... )
-*  Pouvoir creer de nouveaux onglets et des nouvelles pages.     
+*  Acceder aux statistiques ( nb inscrits, rapport ,... )
+*  Le site devra être personnalisable*.     
   
 Inscription :
 -------------
@@ -28,24 +28,34 @@ Inscription :
 L'inscription sera entièrement gérée par le site, et donc automatique.    
 Les différents champs suivants devront etre renseignés : 
 * Nom et prénom
+* Adresse mail
 * Etablissement d'origine
 * Durée du séjour
 * Nombre de repas
 * Inscription aux animations proposées pendant la relache. 
-* contrainte nourriture ( végétarien, religion, ... )
-Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouveau venant. 
-Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme de document excel, par exemple. Elle devra 
-lui permettre de savoir précisement qui fait quoi et quand.       
+* contrainte nourriture (végétarien, religion, ... )
+Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouvel inscrit.   
+De même, un prix sera automatiquement calculé, suivant les informations qui auront étes données ci dessus. Le paiement en ligne est une possibilité envisageable. Il sera également envisagé un paiement par bon de commande ou par chèque.    
+Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme d'un fichier excel, par exemple. Celui ci constituera un récapitulatif complet de chaque inscrit.       
 
 Personnalisation : 
--------
-L'administrateur devra pouvoir créer un onglet sur le site. Ceci devra être accessible à un utilisateur non informaticien. Il peut y avoir le besoin de recourir à un logiciel tiers.    
-Il devra également lui etre possible d'ajouter des champs d'inscription, d'ajouter ou modifier des deadlines.    
-
-Soumission de résumés :    
+------- 
+Un administrateur du site pourra personnaliser le site. Il pourra : 
+* créer des onglets
+* modifier le contenu des pages ( titre, article, deadline, ... )
+* modifier les formulaires d'inscription 
+Ces modification devront être faisable par une personne non experimentée en informatique.    
+Résumés :    
 ------
 La soumission de résumé sera faite en ligne. On pourra utiliser l'outil ConfTool pour creer cette partie.    
-Les résumés devront pouvoir etre lus par plusieurs utilisateurs, choisis par l'administrateur.     
+Un résumé est un document envoyé à la suite de la conférence par un inscrit. Celui doit etre relu par un ou plusieurs membres. Par conséquent, il devra donc être possible de :
+* soummetre un résumé, pour un membre ayant assisté aux conférence
+* Gerer la relecture des résumés: 
+    * L'administrateur désigne un ou des relecteurs.
+    * Les relecteurs doivent pouvoir etre avertis facilement par mail.
+    * les resumés sont téléchargeable via le site web, pour les personnes autorisées.
+    * Le relecteur doit pouvoir spécifier si le résumé est accepté, à modifier ou rejeté. Un commentaire peut accompagner l'avis. 
+    * L'auteur du résumé est prévenu par mail de la modification de l'état du résumé. 
 
 Langues
 ----------
