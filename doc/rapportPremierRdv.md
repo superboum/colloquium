@@ -34,6 +34,7 @@ Les différents champs suivants devront etre renseignés :
 * Nombre de repas
 * Inscription aux animations proposées pendant la relache. 
 * contrainte nourriture (végétarien, religion, ... )   
+
 Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouvel inscrit.   
 De même, un prix sera automatiquement calculé, suivant les informations qui auront étes données ci dessus. Le paiement en ligne est une possibilité envisageable. Il sera également envisagé un paiement par bon de commande ou par chèque.    
 Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme d'un fichier excel, par exemple. Celui ci constituera un récapitulatif complet de chaque inscrit.       
