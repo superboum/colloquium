@@ -47,7 +47,7 @@ Il devra également lui etre possible d'ajouter des champs d'inscription, d'ajou
 Soumission de résumés :    
 ------
 La soumission de résumé sera faite en ligne. On pourra utiliser l'outil ConfTool pour creer cette partie.    
-Les résumés devront pouvoir etre lus par plusieurs utilisateurs, choisis par l'administrateur.    
+Les résumés devront pouvoir etre lus par plusieurs utilisateurs, choisis par l'administrateur.     
 
 Langues
 ----------
@@ -55,3 +55,7 @@ Le site sera entièrement en anglais.
 Une traduction en allemand sera éventuellement proposée, selon la difficulté et le temps restant. Elle sera : 
 * partielle  : uniquement sur certaines pages, définies par l'administrateur
 * complète : Chaque modification du site devra ainsi être faite pour les deux langues. Si la traduction allemande n'est pas spécifié, la partie apparaitra en anglais.
+
+Design
+--------
+Le site devra être ergonomique. 
