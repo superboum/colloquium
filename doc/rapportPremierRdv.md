@@ -38,7 +38,7 @@ Les différents champs suivants devront être renseignés :
 
 Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouvel inscrit.   
 De même, un prix sera automatiquement calculé, suivant les informations qui auront étés données ci dessus. Le paiement en ligne est une possibilité envisageable. Il sera également envisagé un paiement par bon de commande ou par chèque.    
-Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme d'un fichier Excel, par exemple. Celui ci constituera un récapitulatif complet de chaque inscrit.       
+Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme d'un fichier Excel par exemple. Celui ci constituera un récapitulatif complet de chaque inscrit.       
 
 Résumés :    
 ------
