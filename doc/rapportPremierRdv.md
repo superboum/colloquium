@@ -49,7 +49,7 @@ Un résumé est un document envoyé à la suite de la conférence par un inscrit
 * soummetre un résumé final
 * Gérer la relecture des résumés: 
     * L'administrateur désigne un ou des relecteurs.
-    * Les relecteurs doivent pouvoir être avertis facilement par mail.
+    * Les relecteurs doivent pouvoir être averti facilement par mail.
     * les résumes sont téléchargeable via le site web, pour les personnes autorisées.
     * Le relecteur doit pouvoir spécifier si le résumé est accepté, à modifier ou rejeté. Un commentaire peut accompagner l'avis. 
     * L'auteur du résumé est prévenu par mail de la modification de l'état du résumé (notification). 
@@ -59,7 +59,7 @@ Personnalisation :
 Un administrateur du site pourra personnaliser le site. Il pourra : 
 * créer des onglets
 * modifier le contenu des pages ( titre, article, deadline, ajouter sponsors avec photo ... )
-* modifier les formulaires d'inscription 
+* modifier les formulaires d'inscription   
 Ces modification devront être faisable par une personne non expérimentée en informatique.    
 
 
