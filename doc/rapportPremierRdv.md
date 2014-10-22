@@ -66,9 +66,7 @@ Ces modification devront être faisable par une personne non expérimentée en i
 Langues
 ----------
 Le site sera entièrement en anglais.    
-Une traduction en allemand sera éventuellement proposée, selon la difficulté et le temps restant. Elle sera : 
-* partielle  : uniquement sur certaines pages, définies par l'administrateur
-* complète : Chaque modification du site devra ainsi être faite pour les deux langues. Si la traduction allemande n'est pas spécifié, la partie apparaîtra en anglais.
+Une traduction en allemand sera éventuellement proposée, selon la difficulté et le temps restant. Elle sera soit partielle ( uniquement sur certaines pages, définies par l'administrateur ) soit  complète ( Chaque modification du site devra ainsi être faite pour les deux langues. Si la traduction allemande n'est pas spécifié, la partie apparaîtra en anglais).
 
 Design
 --------
