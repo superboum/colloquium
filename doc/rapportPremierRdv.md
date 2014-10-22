@@ -60,6 +60,7 @@ Un administrateur du site pourra personnaliser le site. Il pourra :
 * créer des onglets
 * modifier le contenu des pages ( titre, article, deadline, ajouter sponsors avec photo ... )
 * modifier les formulaires d'inscription   
+
 Ces modification devront être faisable par une personne non expérimentée en informatique.    
 
 
