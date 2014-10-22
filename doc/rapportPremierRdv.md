@@ -21,7 +21,8 @@ La partie publique comportera plusieurs onglets, correspondant à plusieurs fonc
 L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cependant, il devra également pouvoir : 
 *  Accéder aux statistiques ( nombre inscrits, rapport ,... )
 *  Le site devra être personnalisable*.     
-  
+     
+Les mentions suivies d'une étoile seront décrite plus amplemant par la suite. 
 Inscription :
 -------------
 
