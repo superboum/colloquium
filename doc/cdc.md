@@ -2,11 +2,11 @@ Cahier des Charges:
 =============
 Contexte
 ----------
-Le centre de mathématique de l'INSA de Rennes organise une conférence de mathématique en juillet 2016, qui durera une semaine. 
+Le Centre de Mathématiques de l'INSA de Rennes organise une conférence de Mathématiques en juillet 2016, qui durera une semaine. 
 150 participants sont attendus.    
 Il est donc nécessaire de créer un site web, à mettre en ligne en juin 2015 afin de promouvoir et d'organiser la conférence.    
-Spécification
--------------
+Spécifications
+--------------
 Le nom de la conférence, **IWSM** devra être visible.    
 Le site devra présenter une partie publique, et une partie réservée à l'administration, non accessible par le grand public.    
 La partie publique comportera plusieurs onglets, correspondant à plusieurs fonctions. Celles ci sont listées ci dessous :    
@@ -18,11 +18,11 @@ La partie publique comportera plusieurs onglets, correspondant à plusieurs fonc
 * Des renseignements pratique (comment venir à Rennes, logement, ... ) 
 * Contact   
 * Sponsors
-L'administrateur doit avoir accès à toutes les parties citées ci dessus. Cependant, il devra également pouvoir : 
-*  Accéder aux statistiques ( nombre inscrits, rapport ,... )
+L'administrateur doit avoir accès à toutes les parties citées ci-dessus. Cependant, il devra également pouvoir : 
+*  Accéder aux statistiques ( nombre d'inscrits, rapport ,... )
 *  Le site devra être personnalisable*.     
      
-Les mentions suivies d'une étoile seront décrite plus amplemant par la suite. 
+Les mentions suivies d'une étoile seront décrite plus amplement par la suite. 
 Inscription :
 -------------
 
@@ -34,7 +34,7 @@ Les différents champs suivants devront être renseignés :
 * Durée du séjour
 * Nombre de repas
 * Inscription aux excursions proposées pendant la relâche. 
-* contrainte nourriture (végétarien, religion, ... )   
+* contraintes nourriture (végétarien, religion, ... )   
 
 Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouvel inscrit.   
 De même, un prix sera automatiquement calculé, suivant les informations qui auront étés données ci dessus. Le paiement en ligne est une possibilité envisageable. Il sera également envisagé un paiement par bon de commande ou par chèque.    
