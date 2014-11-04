@@ -37,7 +37,7 @@ Les différents champs suivants devront être renseignés :
 * contraintes nourriture (végétarien, religion, ... )   
 
 Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouvel inscrit.   
-De même, un prix sera automatiquement calculé, suivant les informations qui auront étés données ci dessus. 
+De même, un prix sera automatiquement calculé, suivant les informations qui auront étés données ci dessus.    
 1. Le site générera une facture qui  sera payable via bon de commande. Un administrateur pourra alors attester de la bonne réception du cheque ou bon de commande et valider le paiement.
 2. En seconde partie il pourra être envisagé un paiement en ligne.   
 Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme d'un fichier Excel par exemple. Celui ci constituera un récapitulatif complet de chaque inscrit.       
