@@ -8,6 +8,14 @@ Il devra entre autre être utilisé pour la 30th Internation Workshop on Statist
 Installation
 ------------
 
+Installer ruby & ses dépendances
+
+Pour RHEL/Fedora :
+
+```bash
+sudo yum install -y ruby
+```
+
 Installer bundler, le gestionnaire de dépendances
 
 ```bash

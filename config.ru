@@ -1,2 +1,2 @@
 require './app'
-run KaigiApp
+run Sinatra::Application

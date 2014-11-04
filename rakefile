@@ -1,0 +1,6 @@
+task default: %w[test_app]
+
+task :test_app do
+    ruby "test/app_test.rb"
+end
+
