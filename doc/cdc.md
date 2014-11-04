@@ -37,7 +37,9 @@ Les différents champs suivants devront être renseignés :
 * contraintes nourriture (végétarien, religion, ... )   
 
 Toute inscription générera l'impression d'une carte de visite personnalisée au nom du nouvel inscrit.   
-De même, un prix sera automatiquement calculé, suivant les informations qui auront étés données ci dessus. Le paiement en ligne est une possibilité envisageable. Il sera également envisagé un paiement par bon de commande ou par chèque.    
+De même, un prix sera automatiquement calculé, suivant les informations qui auront étés données ci dessus. 
+1. Le site générera une facture qui  sera payable via bon de commande. Un administrateur pourra alors attester de la bonne réception du cheque ou bon de commande et valider le paiement.
+2. En seconde partie il pourra être envisagé un paiement en ligne.   
 Toutes les inscriptions seront enregistrées dans une base de données, restituable à l'administrateur sous forme d'un fichier Excel par exemple. Celui ci constituera un récapitulatif complet de chaque inscrit.       
 
 Résumés :    
@@ -57,9 +59,9 @@ Un résumé est un document envoyé à la suite de la conférence par un inscrit
 Personnalisation : 
 ------- 
 Un administrateur du site pourra personnaliser le site. Il pourra : 
-* créer des onglets
-* modifier le contenu des pages ( titre, article, deadline, ajouter sponsors avec photo ... )
-* modifier les formulaires d'inscription   
+* Ecrire des articles, qui seront référencés dans un "blog"
+* Créer ou modifier une page
+* Créer des événements
 
 Ces modification devront être faisable par une personne non expérimentée en informatique.    
 
