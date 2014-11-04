@@ -36,3 +36,12 @@ Lance le programme selon le fichier config.ru
 ```bash
 rackup
 ```
+
+Tests
+-----
+
+Lancer les tests
+
+```bash
+rake
+```
