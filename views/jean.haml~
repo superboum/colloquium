@@ -20,7 +20,7 @@
 
     %div{:class="container"}
       %section{:class="row"}
-	%nav{:class="col-lg-2 col-md-12"}</br>Navigation</br></br>
+        %nav{:class="col-lg-2 col-md-12"}</br>Navigation</br></br>
 
         %div{:class="col-lg-5 col-md-6 col-sm-6"}Section 1 :</br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum augue fermentum vestibulum. Etiam ut augue libero. Integer vestibulum leo lorem, at hendrerit est finibus id. Donec leo nisl, pretium non facilisis eget, dignissim non velit. Suspendisse varius augue ac libero eleifend varius. Cras quis ipsum ante. Donec vitae tellus id elit pellentesque tempus. Cras in est rhoncus, viverra enim id, viverra enim. Aenean a massa lectus. Nam consectetur at nisi in lacinia.
 
