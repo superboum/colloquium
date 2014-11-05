@@ -8,7 +8,3 @@ end
 get '/admin' do
     haml :admin
 end
-
-get '/jean' do
-    haml :jean
-end
