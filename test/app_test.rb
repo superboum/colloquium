@@ -8,9 +8,9 @@ class AppTest < MiniTest::Unit::TestCase
         Sinatra::Application
     end
 
-    def test_hello_world
+    def test_home
         get '/'
         assert last_response.ok?
-        assert_equal "Hello world!", last_response.body
+        assert last_response.body.include?('<h1>ScienceConf</h1>')
     end
 end
