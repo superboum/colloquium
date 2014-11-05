@@ -1,0 +1,46 @@
+!!!
+%html{:lang => "fr", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title ScienceConf
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css",  :rel => "stylesheet", :type => "text/css"}
+    %link{:rel => "stylesheet", :href => "style.css"}
+      
+  %body
+    .container
+      %h1 ScienceConf
+      = yield
+    
+      %div.footer
+        ScienceConf
+      
+
+
+
+  %body
+
+    %div.header{:class => "row"}
+      %div{:class="col-lg-12 visible-md visible-lg"}
+        Entete Ordi
+      %div{:class="col-lg-12 visible-sm"}
+        Entete Tablette
+      %div{:class="col-lg-12 visible-xs"}
+        Entete smartphone
+
+
+    %div{:class="container"}
+      %section{:class="row"}
+	%nav{:class="col-lg-2 col-md-12"}</br>Navigation</br></br>
+
+	%div{:class="col-lg-5 col-md-6 col-sm-6"}Section 1 :</br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum augue fermentum vestibulum. Etiam ut augue libero. Integer vestibulum leo lorem, at hendrerit est finibus id. Donec leo nisl, pretium non facilisis eget, dignissim non velit. Suspendisse varius augue ac libero eleifend varius. Cras quis ipsum ante. Donec vitae tellus id elit pellentesque tempus. Cras in est rhoncus, viverra enim id, viverra enim. Aenean a massa lectus. Nam consectetur at nisi in lacinia.
+
+	%div{:class="col-lg-5 col-md-6 col-sm-6"}Section 2 :</br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis condimentum augue fermentum vestibulum. Etiam ut augue libero. Integer vestibulum leo lorem, at hendrerit est finibus id. Donec leo nisl, pretium non facilisis eget, dignissim non velit. Suspendisse varius augue ac libero eleifend varius. Cras quis ipsum ante. Donec vitae tellus id elit pellentesque tempus. Cras in est rhoncus, viverra enim id, viverra enim. Aenean a massa lectus. Nam consectetur at nisi in lacinia. 
+
+
+    %footer{:class="row"}
+      %div{:class="col-lg-12"}
+        Pied de page
+
+	
+
+    %script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
