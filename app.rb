@@ -12,3 +12,7 @@ end
 get '/jean' do
     haml :jean
 end
+
+get '/navigation' do
+    haml :navigation
+end

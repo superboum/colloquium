@@ -1,20 +1,22 @@
 body {
-    background-color: #1abc9c;
+    background-color: white;
     padding-top: 10px;
 } 
 
 
 
 [class*="col-"], footer {
-    background-color: white;
-    border: 2px solid black;
+    background-color: #5F5F61;
+    border: 2px solid #E32518;
     border-radius: 6px;
     line-height: 40px;
     text-align: center;
     padding: 5px,5px,5px,5px; 
+    color: white;
 }
 
 img {
     margin: 5px,5px,5px,5px;
     border: 2px solid blue;
+    bottom: 20px;
 }
