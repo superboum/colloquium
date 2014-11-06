@@ -11,6 +11,6 @@ class AppTest < MiniTest::Unit::TestCase
     def test_home
         get '/'
         assert last_response.ok?
-        assert last_response.body.include?('<h1>ScienceConf</h1>')
+        assert last_response.body.include?('IWSM')
     end
 end
