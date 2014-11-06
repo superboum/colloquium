@@ -10,7 +10,18 @@
   %body
     .container
       %h1 ScienceConf
+      %div.header{:class => "row"}
+        %div{:class => "col-lg-12 col-md-12 visible-md visible-lg"}
+          Entete Grand écran
+        %div{:class => "col-sm-12 visible-sm"}
+          Entete Tablette
+        %div{:class => "col-xs-12 visible-xs"}
+          Entete smartphone
       = yield
+    
+      %footer{:class => "row"}
+        %div{:class => "col-lg-12"}
+          Pied de Page
     
       %div.footer
         ScienceConf
