@@ -11,35 +11,34 @@
     %nav.navbar.navbar-default{:role => "navigation"}
       .container
         .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => "#main-menu", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+
           %a.navbar-brand{:href => "/"}
             %img.pull-left{:alt => "Colloquium", :src => "/img/logo.png", :height => "20"}
             .pull-left.text 
               Colloquium
 
+        #main-menu.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li.active
+              %a{:href => "/"} Home
+            %li
+              %a{:href => "/laurent"} Laurent
+            %li
+              %a{:href => "/jean"} Jean
+               
     .container
       %div.header{:class => "row"}
-        %div{:class => "col-lg-12 col-md-12 visible-md visible-lg"}
-          %ul.nav.nav-pills{ :role => "tablist"}
-            %li.active{ :role => "presentation"}
-              %a{ :href => "/"} Home
-            %li{ :role => "presentation"}
-              %a{ :href => "/laurent"} Laurent
-            %li{ :role => "presentation"}
-              %a{ :href => "/jean"} Jean
-        %div{:class => "col-sm-12 visible-sm"}
-          Entete Tablette
-        %div{:class => "col-xs-12 visible-xs"}
-          %ul.nav.nav-pills{ :role => "tablist"}
-            %li.active{ :role => "presentation"}
-              %a{ :href => "/"} Home
-            %li.active{ :role => "presentation"}
-              %a{ :href => "/laurent"} Laurent
-            %li.active{ :role => "presentation"}
-              %a{ :href => "/jean"} Jean
+
       = yield
     
       %footer{:class => "row"}
         %div{:class => "col-lg-12"}
           Colloquium
       
-    %script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")
+    %script(src="/js/jquery.min.js")
+    %script(src="/js/bootstrap.min.js")
