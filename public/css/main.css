@@ -6,8 +6,8 @@ body {
 
 
 [class*="col-"], footer {
-    background-color: #5F5F61;
-    border: 2px solid #E32518;
+    background-color: #E32518;
+    border: 2px solid #5F5F61;
     border-radius: 6px;
     line-height: 40px;
     text-align: center;
