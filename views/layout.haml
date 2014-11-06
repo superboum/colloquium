@@ -12,7 +12,13 @@
       %h1 ScienceConf
       %div.header{:class => "row"}
         %div{:class => "col-lg-12 col-md-12 visible-md visible-lg"}
-          Entete Grand écran
+          %ul.nav.nav-pills{ :role => "tablist"}
+            %li.active{ :role => "presentation"}
+              %a{ :href => "/"} Home
+            %li.active{ :role => "presentation"}
+              %a{ :href => "/laurent"} Laurent
+            %li.active{ :role => "presentation"}
+              %a{ :href => "/jean"} Jean
         %div{:class => "col-sm-12 visible-sm"}
           Entete Tablette
         %div{:class => "col-xs-12 visible-xs"}
