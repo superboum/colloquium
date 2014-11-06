@@ -2,14 +2,21 @@
 %html{:lang => "fr", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
   %head
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
-    %title ScienceConf
+    %title Colloquium
     %link{:href => "/css/bootstrap.min.css",  :rel => "stylesheet", :type => "text/css"}
     %link{:href => "/css/main.css",  :rel => "stylesheet", :type => "text/css"}
     %meta{:name => "viewport",  :content => "width=device-width, initial-scale=1"} 
      
   %body
+    %nav.navbar.navbar-default{:role => "navigation"}
+      .container
+        .navbar-header
+          %a.navbar-brand{:href => "/"}
+            %img.pull-left{:alt => "Colloquium", :src => "/img/logo.png", :height => "20"}
+            .pull-left.text 
+              Colloquium
+
     .container
-      %h1 ScienceConf
       %div.header{:class => "row"}
         %div{:class => "col-lg-12 col-md-12 visible-md visible-lg"}
           %ul.nav.nav-pills{ :role => "tablist"}
@@ -33,9 +40,6 @@
     
       %footer{:class => "row"}
         %div{:class => "col-lg-12"}
-          Pied de Page
-    
-      %div.footer
-        ScienceConf
+          Colloquium
       
     %script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js")

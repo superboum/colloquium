@@ -1,22 +1,18 @@
-body {
-    background-color: white;
-    padding-top: 10px;
-} 
+/***********************/
+/*                     */
+/*   MAIN CSS THEME    */
+/*                     */
+/***********************/
 
+/* HTML ELEMENT PROPERTIES */
 
-
-[class*="col-"], footer {
-    background-color: #E32518;
-    border: 2px solid #5F5F61;
-    border-radius: 6px;
-    line-height: 40px;
-    text-align: center;
-    padding: 5px,5px,5px,5px; 
-    color: white;
+/* HEADER */
+.navbar-brand > .text {
+    margin-left: 8px;
 }
 
-img {
-    margin: 5px,5px,5px,5px;
-    border: 2px solid blue;
-    bottom: 20px;
-}
+/* GENERAL BODY */
+
+/* FOOTER */
+
+/* HOME PAGE */
