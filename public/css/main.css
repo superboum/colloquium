@@ -1,5 +1,5 @@
 body {
-    background-color: white;
+    background-color: #F7FBFB;
     padding-top: 10px;
 } 
 
@@ -19,4 +19,9 @@ img {
     margin: 5px,5px,5px,5px;
     border: 2px solid blue;
     bottom: 20px;
+}
+
+.btn-navbar {
+    font-size: 20px;
+    font-weight: bold;
 }

@@ -11,14 +11,15 @@
     .container
       %h1 ScienceConf
       %div.header{:class => "row"}
-        %div{:class => "col-lg-12 col-md-12 visible-md visible-lg"}
-          %ul.nav.nav-pills{ :role => "tablist"}
-            %li.active{ :role => "presentation"}
-              %a{ :href => "/"} Home
-            %li{ :role => "presentation"}
-              %a{ :href => "/laurent"} Laurent
-            %li{ :role => "presentation"}
-              %a{ :href => "/jean"} Jean
+        %a{:href => "/"}
+          %div{:class => "col-lg-4 col-md-4 visible-md visible-lg btn-navbar"}
+            Home
+        %a{:href => "/laurent"}
+          %div{:class => "col-lg-4 col-md-4 visible-md visible-lg btn-navbar"} 
+            Laurent
+        %a{:href => "/jean"}
+          %div{:class => "col-lg-4 col-md-4 visible-md visible-lg btn-navbar"} 
+            Jean
         %div{:class => "col-sm-12 visible-sm"}
           Entete Tablette
         %div{:class => "col-xs-12 visible-xs"}
