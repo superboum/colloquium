@@ -16,3 +16,7 @@ end
 get '/navigation' do
     haml :navigation
 end
+
+get '/laurent' do
+	haml :laurent
+end
