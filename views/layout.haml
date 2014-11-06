@@ -20,17 +20,16 @@
           %a.navbar-brand{:href => "/"}
             %img.pull-left{:alt => "Colloquium", :src => "/img/logo.png", :height => "20"}
             .pull-left.text 
-              Colloquium
+              IWSM
 
         #main-menu.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
+            %li
               %a{:href => "/"} Home
             %li
-              %a{:href => "/laurent"} Laurent
+              %a{:href => "/jean"} Page 1
             %li
-              %a{:href => "/jean"} Jean
-               
+              %a{:href => "/laurent"} Page 2
 
     = yield
 
@@ -47,7 +46,10 @@
               ,
               %a{:href => ""} Thomas
               and
-              %a{:href => "http://quentin.dufour.tk"} Quentin
+              %a{:href => "http://quentin.dufour.tk"} Quentin.
+              Go to
+              %a{:href => "/admin"} Administration
+
       
     %script(src="/js/jquery.min.js")
     %script(src="/js/bootstrap.min.js")
