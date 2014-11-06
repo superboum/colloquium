@@ -15,14 +15,20 @@
           %ul.nav.nav-pills{ :role => "tablist"}
             %li.active{ :role => "presentation"}
               %a{ :href => "/"} Home
-            %li.active{ :role => "presentation"}
+            %li{ :role => "presentation"}
               %a{ :href => "/laurent"} Laurent
-            %li.active{ :role => "presentation"}
+            %li{ :role => "presentation"}
               %a{ :href => "/jean"} Jean
         %div{:class => "col-sm-12 visible-sm"}
           Entete Tablette
         %div{:class => "col-xs-12 visible-xs"}
-          Entete smartphone
+          %ul.nav.nav-pills{ :role => "tablist"}
+            %li.active{ :role => "presentation"}
+              %a{ :href => "/"} Home
+            %li.active{ :role => "presentation"}
+              %a{ :href => "/laurent"} Laurent
+            %li.active{ :role => "presentation"}
+              %a{ :href => "/jean"} Jean
       = yield
     
       %footer{:class => "row"}
