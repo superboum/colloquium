@@ -20,3 +20,4 @@ end
 get '/laurent' do
 	haml :laurent
 end
+
