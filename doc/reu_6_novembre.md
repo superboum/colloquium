@@ -46,7 +46,7 @@ Attendre retour de JFD sur le CDC, au Sénégal et reviens vendredi 14 nov
 
 JFD vois à l'hébergement du CRI
 
-Commencer les transparents de la présentation et à envoyer à JFD ( avant le 8 dec )
+Commencer les transparents de la présentation et à envoyer à JFD ( avant le 8 dec ) :
 	* Rapport à encoyer à JFD au mardi 2 décembre
 	* Soutenance le mardi 16 décembre à 8h30 in englich
 	* Répet jeudi 11 décembre 16h
