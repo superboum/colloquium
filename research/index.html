@@ -7,6 +7,14 @@
         <link rel="stylesheet" href="../stuff/css/theme/default.css" id="theme">
         <link rel="stylesheet" href="../stuff/fonts/fonts.css">
         <!--<link rel="stylesheet" href="css/style.css">-->
+        <!-- Include the appropriate print stylesheet -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../stuff/css/print/pdf.css' : ''; // no doubt, this is a dirty hack.
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
     </head>
     <body>
         <div class="reveal">
@@ -59,7 +67,7 @@
                             One week of conferences, presentations and activities
                         </li>
                     </ul>
-			<img src="img/iwsm.jpg" width="250">
+                    <img src="img/iwsm.jpg" width="250">
                 </section>
 
                 <section>
@@ -200,7 +208,7 @@
                         Responsive and eye candy design
                     </p>
                 </section>
-                
+
                 <section>
                     <h2>Part 4</h2>
                     <h1>Technological choices</h1>
@@ -209,7 +217,7 @@
                     <h2> UI/UX </h2>
                     <h3>User Interface/User Experience</h3>
                     <ul>
-                        
+
                         <li class="fragment" data-fragment-index="1">
                             <strong>Web App</strong>
                             <br><small>HTML5, CSS3</small>
@@ -239,16 +247,16 @@
                         <li class="fragment" data-fragment-index="2">
                             <strong>Web Framework : Sinatra</strong>
                             <br><small>Light, Flexible, DSL</small>
-                         </li>
-                         <li class="fragment" data-fragment-index="3">
+                        </li>
+                        <li class="fragment" data-fragment-index="3">
                             <strong>Assets handler : Gulp, Bower</strong>
                             <br><small>Handle html, css, js dependencies et compress them in one file</small>
                         </li>
                     </ul>
-                    </section>
-                    
-                    <section>
-                        <h2> Version, Tests, CI, Code quality </h2>
+                </section>
+
+                <section>
+                    <h2> Version, Tests, CI, Code quality </h2>
                     <ul>
                         <li class="fragment" data-fragment-index="1">
                             <strong>Version control : Git</strong>
