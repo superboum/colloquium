@@ -29,6 +29,9 @@ get '/jean3' do
     haml :jean3
 end
 
+get '/thomas' do 
+    haml :thomas
+end
 
 get '/navigation' do
     haml :navigation
