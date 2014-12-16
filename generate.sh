@@ -18,6 +18,7 @@ push_js bower_components/jquery/dist/jquery.min.js
 push_js bower_components/angular/angular.min.js
 push_js bower_components/angular-resource/angular-resource.min.js
 push_js bower_components/bootstrap/dist/js/bootstrap.min.js
+push_js assets/js/app-factory.js
 push_js assets/js/app-controller.js
 
 #MAP FILES

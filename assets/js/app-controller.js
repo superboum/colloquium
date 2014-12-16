@@ -1,4 +1,5 @@
-angular.module('colloquiumApp', ['ngResource'])
-.controller('HomeCtrl', function($scope, $resource) {
-      console.log("hello");
+app.controller('HomeCtrl', function($scope, $resource, Article) {
+    $scope.articles = Article.query(function() {
+        console.log('hey');
+    });
 });
