@@ -1,6 +1,11 @@
+require "sinatra/activerecord/rake"
+
 task default: %w[test_app]
 
-task :test_app do
-    ruby "test/app_test.rb"
+namespace :test do
+    desc "Unit tests"
+    task :test_app do
+        ruby "test/app_test.rb"
+    end
 end
 

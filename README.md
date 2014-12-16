@@ -45,6 +45,13 @@ Lance le programme selon le fichier config.ru
 ./generate.sh && rackup
 ```
 
+Rake
+----
+
+```bash
+rake -T
+```
+
 Tests
 -----
 
