@@ -10,12 +10,12 @@ Il devra entre autre être utilisé pour la 30th Internation Workshop on Statist
 Installation
 ------------
 
-Installer ruby & ses dépendances
+Installer ruby & ses dépendances ainsi que npm
 
 Pour RHEL/Fedora :
 
 ```bash
-sudo yum install -y ruby
+sudo yum install -y ruby npm
 ```
 
 Installer bundler, le gestionnaire de dépendances
@@ -30,13 +30,19 @@ Installer les dépendances du projet listez dans le fichier Gemfile
 bundle install
 ```
 
+Installer les dépendances client
+
+```bash
+sudo npm install -g bower && bower install
+```
+
 Lancement
 ---------
 
 Lance le programme selon le fichier config.ru
 
 ```bash
-rackup
+./generate.sh && rackup
 ```
 
 Tests
