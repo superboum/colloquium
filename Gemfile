@@ -1,8 +1,15 @@
 source "https://rubygems.org"
 
+#SINATRA
 gem "sinatra"
+gem "sinatra-activerecord"
 gem "haml"
-gem "rake"
+gem "sqlite3"
+
+#WEBSERVER
 gem "rack"
-gem "minitest"
 gem "rack-test"
+
+#TOOLS
+gem "rake"
+gem "minitest"

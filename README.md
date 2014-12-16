@@ -15,7 +15,7 @@ Installer ruby & ses dépendances ainsi que npm
 Pour RHEL/Fedora :
 
 ```bash
-sudo yum install -y ruby npm
+sudo yum install -y ruby sqlite-devel npm
 ```
 
 Installer bundler, le gestionnaire de dépendances
