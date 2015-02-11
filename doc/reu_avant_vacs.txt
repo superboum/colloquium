@@ -1,0 +1,29 @@
+NOTES pre vac février
+
+trucs à apprendre	:	javascript/angular (pour plus tard mais le plus rapidement possible
+				sinatra (absolument)
+				boobstrap(pour le designer)
+
+trucs à la con		:	tout coder les trucs dans assets
+				pages haml sur views
+
+design pattern : MVC pour model vue controller
+
+page type : article avec titre X et contenu Y écrites en haml (hipster powa ) et css
+
+Les classes Ruby communiquent avec la base de données, Sinatra prend en charge.
+
+
+
+A faire pendant les vacs :
+	Create Read Update Delete pour nos objets 
+
+Objets : articles, pages, users(spéciaux géré par module externe), soumission (résumé), conférence	
+	faire l'uml avec ces trucs
+
+Les Articles : structuré comme un truc du genre /article/:id
+	contiennent les composants comme le texte, le titre, des photos (?)...
+
+
+
+
