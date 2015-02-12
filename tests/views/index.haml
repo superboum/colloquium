@@ -1,0 +1,16 @@
+%h2 My Tasks
+%ul.tasks
+  %li Get Milk
+
+%form{:action =>"/", :method=>"POST"}
+  %input{:type=>"text",:name=>"task"}
+  %input.button{:type=>"submit",:value=>"New Task >>"}
+
+%h2 My Tasks
+
+%form.new{:action=>"/new/list",:method=>"POST"}
+  %input{:type=>"text",:name=>"list[name]"}
+  %input{:type=>"submit",:value=>"+ List"}
+%ul.lists
+  - @lists.each do |list|
+    = haml :list,:locals=>{ :list => list }

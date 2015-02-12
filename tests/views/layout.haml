@@ -1,0 +1,24 @@
+!!!
+%html{:lang => "fr", "xml:lang" => "fr", "ng-app" => "colloquiumApp" }
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title Banana
+    %link{:href => "/style.css",  :rel => "stylesheet", :type => "text/css"}
+    %meta{:name => "viewport",  :content => "width=device-width, initial-scale=1"} 
+     
+  %body
+    %header
+      %h1 Banana
+
+    = yield
+
+    .container
+      %footer{:class => "row"}
+        %div{:class => "col-lg-12"}
+          %hr
+          %p
+            %small 
+              banana, a testing website developped by 
+              %a{:href => ""} Thomas
+
+
