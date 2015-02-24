@@ -31,6 +31,19 @@ namespace :assets do
     end
 end
 
+namespace :server do
+  desc "Install server dependencies"
+  task :install do
+    `sudo gem install bundler`
+    `bundler install`
+  end
+
+  desc "Launch web server"
+  task :run do
+    `rackup`
+  end
+end
+
 namespace :test do
     desc "Unit tests"
     task :test_app do

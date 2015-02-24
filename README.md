@@ -15,37 +15,38 @@ Installer ruby & ses dépendances ainsi que npm
 Pour RHEL/Fedora :
 
 ```bash
-sudo yum install -y ruby sqlite-devel npm
+sudo yum install -y ruby sqlite-devel
 ```
 
-Installer bundler, le gestionnaire de dépendances
+Installer Ruby Make (rake).
 
 ```bash
-gem install bundler
+sudo gem install rake
 ```
 
-Installer les dépendances du projet listez dans le fichier Gemfile
+Installer les dépendances
 
 ```bash
-bundle install
-```
-
-Installer les dépendances client
-
-```bash
-sudo npm install -g bower && bower install
+rake server:install
+rake assets:download
 ```
 
 Lancement
 ---------
 
-Lance le programme selon le fichier config.ru
+Générer les fichiers CSS et JS (à chaque modification du CSS ou du JS)
 
 ```bash
-./generate.sh && rackup
+rake assets:generate
 ```
 
-Rake
+Lancer le serveur
+
+```bash
+rake server:run
+```
+
+Aide
 ----
 
 ```bash
