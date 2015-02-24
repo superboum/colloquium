@@ -1,12 +1,12 @@
 language: ruby
 before_script:
-  - rake assets:download
-  - rake assets:generate
-  - rake server:install
-  - rake db:migrate
+  - bundle exec rake assets:download
+  - bundle exec rake assets:generate
+  - bundle exec rake server:install
+  - bundle exec rake db:migrate
   - sqlite3 app.db ".dump"
 
-script: rake
+script: bundle exec rake
 
 rvm:
     - 2.0.0
