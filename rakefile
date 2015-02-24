@@ -3,6 +3,34 @@ require "./app"
 
 task default: %w[test:test_app]
 
+namespace :assets do
+    desc "download assets"
+    task :download do
+        `rm -rf assets/tmp`
+        `mkdir -p assets/tmp`
+        
+        #JS
+        `wget -O assets/tmp/100_jquery.js https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js`
+        `wget -O assets/tmp/200_bootstrap.js https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.js`
+        
+        #CSS
+        `wget -O assets/tmp/100_bootstrap.css https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css`
+    end
+
+    desc "generate assets"
+    task :generate do
+        `rm -rf public`
+        `mkdir -p public`
+        
+        `cat assets/tmp/*.css > public/theme.css`
+        `cat assets/tmp/*.js > public/script.js`
+
+        `cat assets/css/*.css >> public/theme.css`
+        `cat assets/js/*.js >> public/script.js`
+        `cp -r assets/img public/`
+    end
+end
+
 namespace :test do
     desc "Unit tests"
     task :test_app do
