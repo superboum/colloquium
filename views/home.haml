@@ -6,5 +6,11 @@
 .container
   .row
     .col-md-12
-      %h1 Welcome
+      - articles.each do |a|
+        %h1
+          = a.title
+          %small= a.category
+        %p= a.short_text
+        %small= a.created_at
+        %hr
 

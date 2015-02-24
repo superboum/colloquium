@@ -9,21 +9,12 @@ class ColloquiumApp < Sinatra::Base
     set :database, {adapter: "sqlite3", database: "app.db"}
 
     get '/' do
-        haml :home
+        articles = Article.all
+        haml :home, :locals => { :articles => articles }
     end
 
     get '/admin' do
         haml :admin
-    end
-
-    get '/api/article' do
-         content_type :json
-         articles = Article.all
-         if articles
-             articles.to_json
-         else
-             halt 404
-         end
     end
 
     post '/api/article' do
