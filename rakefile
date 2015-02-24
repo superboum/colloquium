@@ -47,7 +47,6 @@ end
 namespace :test do
     desc "Unit tests"
     task :test_app do
-        `rake db:migrate`
         ruby "test/app_test.rb"
     end
 end

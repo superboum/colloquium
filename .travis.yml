@@ -1,4 +1,7 @@
 language: ruby
+before_script:
+  - rake db:migrate
+  - sqlite3 app.db ".dump"
 rvm:
     - 2.0.0
     - 1.9.3
