@@ -61,9 +61,9 @@ class ColloquiumApp < Sinatra::Base
 # Pages management
 
     get '/page/:id' do
-      @pages = Page.all(:order => [:id])
+      pages = Page.all
       @thisone = Page.find_by_id(params[:id])
-      haml :page
+      haml :page, :locals => {:pages => pages  }
     end
 
     get '/admin/page' do
