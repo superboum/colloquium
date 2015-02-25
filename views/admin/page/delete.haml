@@ -1,18 +1,8 @@
-.container
-  .row1
-    .col-lg-12
-      %h2.strong Are you sure you want to delete this page ?
+%h2 Delete page "#{page.title}"
 
-      %form{:method => "POST"}
-        .form-group
-          %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Delete"}
+.alert.alert-danger Do you really want to delete this page ?
 
-      %h2= thisone.title
-      %br
+%form{:method => "POST"}
+  %input.btn.btn-danger.pull-right{:type => "submit", :value => "Delete", :style => "margin-left: 5px"} 
+  %a.btn.btn-default.pull-right{:href => "/admin/page"} Cancel 
 
-      %h4 Author :
-      %h4= thisone.author
-      %br
-
-      %h6 Contents :
-      %p= thisone.long_text

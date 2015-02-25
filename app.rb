@@ -100,7 +100,7 @@ class ColloquiumApp < Sinatra::Base
 
     get '/admin/page/new' do
       haml :'admin/layout', :layout => :'layout' do
-        haml :'admin/page/new'
+        haml :'admin/page/newedit', :locals => { :page => Page.new, :edit => false }
       end
     end
 
@@ -117,8 +117,10 @@ class ColloquiumApp < Sinatra::Base
 
 
     get '/admin/page/edit/:id' do
-        thisone = Page.find_by_id(params[:id])
-        haml :'admin/page/edit', :locals => { :thisone => thisone }
+        page = Page.find(params[:id])
+        haml :'admin/layout', :layout => :'layout' do
+          haml :'admin/page/newedit', :locals => { :page => page, :edit => true }
+        end
     end
 
     post '/admin/page/edit/:id' do
@@ -133,8 +135,10 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page/delete/:id' do
-        thisone = Page.find_by_id(params[:id])
-        haml :'admin/page/delete', :locals => { :thisone => thisone }
+        page = Page.find(params[:id])
+        haml :'admin/layout', :layout => :'layout' do
+          haml :'admin/page/delete', :locals => { :page => page }
+        end
     end
 
     post '/admin/page/delete/:id' do

@@ -22,9 +22,10 @@
       %td= a.created_at
       %td= a.updated_at
       %td 
-        %a.pull-right{:href => "/admin/page/edit/#{a.id}", :class => "btn btn btn-primary"} 
-          Edit
-      %td 
-        %a.pull-right{:href => "/admin/page/delete/#{a.id}", :class => "btn btn btn-primary"} 
-          Delete
+        %a.btn.btn-default.btn-xs{:href => "/admin/page/edit/#{a.id}"} 
+          Edit 
+        %a.btn.btn-danger.btn-xs{:href => "/admin/page/delete/#{a.id}"} 
+          Delete 
 
+%a.pull-right{:href => "/admin/page/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new page
