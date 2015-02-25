@@ -7,11 +7,18 @@ class ColloquiumApp < Sinatra::Base
     register Sinatra::ActiveRecordExtension
 
     set :database, {adapter: "sqlite3", database: "app.db"}
+    
+    def self.loadPages
+      set :pages, Page.all
+    end
+
+    configure do
+      loadPages()
+    end
 
     get '/' do
         articles = Article.all
-        pages = Page.all
-        haml :home, :locals => { :articles => articles, :pages => pages  }
+        haml :home, :locals => { :articles => articles }
     end
     
     get '/article/:id' do
@@ -21,16 +28,14 @@ class ColloquiumApp < Sinatra::Base
 
     get '/admin' do
         articles = Article.all
-	pages = Page.all
-        haml :'admin/layout', :layout => :'layout',:locals => { :articles => articles, :pages => pages  } do
-          haml :'admin/home', :locals => { :articles => articles, :pages => pages  }
+        haml :'admin/layout', :layout => :'layout' do
+          haml :'admin/home', :locals => { :articles => articles  }
         end
     end
 
     get '/admin/article' do
         articles = Article.all
-        pages = Page.all
-        haml :'admin/layout', :layout => :'layout', :locals => { :articles => articles, :pages => pages  }  do
+        haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/article/home', :locals => { :articles => articles }
       end
     end
@@ -42,7 +47,6 @@ class ColloquiumApp < Sinatra::Base
     end
 
     post '/admin/article/new' do
-	pages = Page.all
         article = Article.new
         article.title = params['title']
         article.category = params['category']
@@ -86,7 +90,6 @@ class ColloquiumApp < Sinatra::Base
 # Pages management
 
     get '/page/:id' do
-      pages = Page.all
       @thisone = Page.find_by_id(params[:id])
       haml :page, :locals => {:pages => pages  }
     end
@@ -99,8 +102,7 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page/new' do
-      pages = Page.all
-      haml :'admin/layout', :layout => :'layout', :locals => { :pages => pages } do
+      haml :'admin/layout', :layout => :'layout' do
         haml :'admin/page/new'
       end
     end
@@ -117,13 +119,11 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page/edit' do
-	pages = Page.all
-        haml :'admin/page/edit', :locals => { :pages => pages }
+        haml :'admin/page/edit'
     end
 
     get '/admin/article/delete' do
-	pages = Page.all
-        haml :'admin/page/delete', :locals => { :pages => pages }
+        haml :'admin/page/delete'
     end
 
 end
