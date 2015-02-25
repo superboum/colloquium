@@ -118,12 +118,33 @@ class ColloquiumApp < Sinatra::Base
         redirect "/admin/page", 303
     end
 
-    get '/admin/page/edit' do
-        haml :'admin/page/edit'
+
+    get '/admin/page/edit/:id' do
+	pages = Page.all
+        thisone = Page.find_by_id(params[:id])
+        haml :'admin/page/edit', :locals => { :pages => pages, :thisone => thisone }
     end
 
-    get '/admin/article/delete' do
-        haml :'admin/page/delete'
+    post '/admin/page/edit/:id' do
+        page = Page.find_by_id(params[:id])
+        page.title = params['title']
+        page.category = params['category']
+        page.author = params['author']
+        page.long_text = params['long_text']
+        page.priority = params['priority']
+        page.save
+        redirect "/admin/page", 303
+    end
+
+    get '/admin/page/delete/:id' do
+	pages = Page.all
+        thisone = Page.find_by_id(params[:id])
+        haml :'admin/page/delete', :locals => { :pages => pages, :thisone => thisone }
+    end
+
+    post '/admin/page/delete/:id' do
+        Page.destroy(params[:id])
+        redirect "/admin/page", 303
     end
 
 end

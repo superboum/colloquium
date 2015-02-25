@@ -21,5 +21,10 @@
       %td= a.priority
       %td= a.created_at
       %td= a.updated_at
-
+      %td 
+        %a.pull-right{:href => "/admin/page/edit/#{a.id}", :class => "btn btn btn-primary"} 
+          Edit
+      %td 
+        %a.pull-right{:href => "/admin/page/delete/#{a.id}", :class => "btn btn btn-primary"} 
+          Delete
 

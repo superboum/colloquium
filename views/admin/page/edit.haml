@@ -1,0 +1,29 @@
+.container
+  .row1
+    .col-lg-12
+      %h2 Edit :
+      %h2= thisone.title
+
+      %form{:method => "POST"}
+        .form-group
+          %label{:for => "title"} Title
+          %input{:type => "text", :class => "form-control", :id => "title", :placeholder => "#{thisone.title}", :name => "title"}
+      
+        .form-group
+          %label{:for => "category"} Category
+          %input{:type => "text", :class => "form-control", :id => "category", :placeholder => "#{thisone.category}", :name => "category"}
+
+        .form-group
+          %label{:for => "author"} Author
+          %input{:type => "text", :class => "form-control", :id => "author", :placeholder => "#{thisone.author}", :name => "author"}
+
+        .form-group
+          %label{:for => "priority"} Priority
+          %input{:type => "text", :class => "form-control", :id => "priority", :placeholder => "#{thisone.priority}", :name => "priority"}
+      
+        .form-group
+          %label{:for => "long_text"} Body (Markdown Syntax is allowed)
+          %textarea{:rows => "15", :class => "form-control", :id => "long_text", :placeholder => "#{thisone.long_text}", :name => "long_text"}
+
+        .form-group
+          %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Edit"}
