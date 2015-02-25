@@ -91,17 +91,19 @@ class ColloquiumApp < Sinatra::Base
 
     get '/page/:id' do
       @thisone = Page.find_by_id(params[:id])
-      haml :page, :locals => {:pages => pages  }
+      haml :page
     end
 
     get '/admin/page' do
+      #loadPages()
       pages = Page.all
-      haml :'admin/layout', :layout => :'layout', :locals => { :pages => pages  }  do
-        haml :'admin/page/home', :locals => { :pages => pages }
+      haml :'admin/layout', :layout => :'layout' do
+        haml :'admin/page/home'
       end
     end
 
     get '/admin/page/new' do
+      #loadPages()
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/page/new'
       end
@@ -120,9 +122,9 @@ class ColloquiumApp < Sinatra::Base
 
 
     get '/admin/page/edit/:id' do
-	pages = Page.all
+        #loadPages()
         thisone = Page.find_by_id(params[:id])
-        haml :'admin/page/edit', :locals => { :pages => pages, :thisone => thisone }
+        haml :'admin/page/edit', :locals => { :thisone => thisone }
     end
 
     post '/admin/page/edit/:id' do
@@ -137,9 +139,9 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page/delete/:id' do
-	pages = Page.all
+        #loadPages()
         thisone = Page.find_by_id(params[:id])
-        haml :'admin/page/delete', :locals => { :pages => pages, :thisone => thisone }
+        haml :'admin/page/delete', :locals => { :thisone => thisone }
     end
 
     post '/admin/page/delete/:id' do
