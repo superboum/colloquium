@@ -1,0 +1,8 @@
+%h2 Delete article "#{article.title}"
+
+.alert.alert-danger Do you really want to delete this article ?
+
+%form{:method => "POST"}
+  %input.btn.btn-danger.pull-right{:type => "submit", :value => "Delete", :style => "margin-left: 5px"} 
+  %a.btn.btn-default.pull-right{:href => "/admin/article"} Cancel 
+

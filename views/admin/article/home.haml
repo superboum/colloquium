@@ -17,7 +17,9 @@
       %td= a.category
       %td= a.created_at
       %td= a.updated_at
-      %td lol
+      %td
+        %a.btn.btn-xs.btn-default{:href => "/admin/article/edit/#{a.id}"} Edit
+        %a.btn.btn-xs.btn-danger{:href => "/admin/article/delete/#{a.id}"} Delete
 
 %a.pull-right{:href => "/admin/article/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
   Add a new article

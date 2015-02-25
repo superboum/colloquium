@@ -35,7 +35,7 @@ class ColloquiumApp < Sinatra::Base
 
     get '/admin/article/new' do
       haml :'admin/layout', :layout => :'layout' do
-        haml :'admin/article/new'
+        haml :'admin/article/newedit', :locals => { :article => Article.new, :edit => false }
       end
     end
 
@@ -49,12 +49,34 @@ class ColloquiumApp < Sinatra::Base
         redirect "/admin/article", 303
     end
 
-    get '/admin/article/edit' do
-        haml :'admin/article/edit'
+    get '/admin/article/edit/:id' do
+        article = Article.find(params[:id])
+        haml :'admin/layout', :layout => :'layout' do
+          haml :'admin/article/newedit', :locals => { :article => article, :edit => true }
+        end
+
+    end
+    
+    post '/admin/article/edit/:id' do
+        article = Article.find(params[:id])
+        article.title = params['title']
+        article.category = params['category']
+        article.short_text = params['short_text']
+        article.long_text = params['long_text']
+        article.save
+        redirect "/admin/article", 303
     end
 
-    get '/admin/article/delete' do
-        haml :'admin/article/delete'
+    get '/admin/article/delete/:id' do
+        article = Article.find(params[:id])
+        haml :'admin/layout', :layout => :'layout' do
+          haml :'admin/article/delete', :locals => { :article => article }
+        end
+    end
+    
+    post '/admin/article/delete/:id' do
+        Article.destroy(params[:id])
+        redirect "/admin/article", 303
     end
 
 
