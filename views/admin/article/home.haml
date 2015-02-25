@@ -1,0 +1,23 @@
+%h2.pull-left List of articles
+
+%a.pull-right{:href => "/admin/article/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new article
+
+%table.table.table-stripped
+  %tr
+    %th Title
+    %th Category
+    %th Created at
+    %th Updated at
+    %th Action
+
+  - articles.each do |a|
+    %tr
+      %td= a.title
+      %td= a.category
+      %td= a.created_at
+      %td= a.updated_at
+      %td lol
+
+%a.pull-right{:href => "/admin/article/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new article

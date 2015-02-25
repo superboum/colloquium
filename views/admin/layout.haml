@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-md-12
+      %h1.pull-left Administration
+      %a.pull-right{:style => 'margin-top: 20px', :class => 'btn btn-danger btn-lg', :href => '/'} Disconnect
+      %br{:style => "clear:both"}
+      %br
+      
+    .col-md-4
+      .list-group
+        %a.list-group-item{:href => "/admin"}
+          %h4.list-group-item-heading Dashboard
+          %p.list-group-item-text Information and statistics about this website.
+        %a.list-group-item{:href => "/admin/article"} 
+          %h4.list-group-item-heading Articles
+          %p.list-group-item-text Your conference's news.
+        %a.list-group-item{:href => "/admin/page"}
+          %h4.list-group-item-heading Pages 
+          %p.list-group-item-text Statical information about your conference
+        %a.list-group-item{:href => "/admin/event"}
+          %h4.list-group-item-heading Event
+          %p.list-group-item-text Events organized during the conference
+        %a.list-group-item{:href => "/admin/review"}
+          %h4.list-group-item-heading Reviews
+          %p.list-group-item-text Validate and assign submitted reviews
+        %a.list-group-item{:href => "/admin/settings"} 
+          %h4.list-group-item-heading Settings
+          %p.list-group-item-text Website's parameters
+
+    .col-md-8
+      = yield

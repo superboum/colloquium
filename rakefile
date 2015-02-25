@@ -34,8 +34,8 @@ end
 namespace :server do
   desc "Install server dependencies"
   task :install do
-    `sudo gem install bundler`
-    `bundler install`
+    `gem install bundler`
+    `bundle install --jobs=3 --retry=3 --deployment`
   end
 
   desc "Launch web server"

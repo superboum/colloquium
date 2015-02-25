@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-md-12
+      %h1=article.title
+
+      %h4
+        = article.short_text
+
+      %p
+        = article.long_text
+
+      %small
+        Category : 
+        = article.category
+        \- Last update :
+        = article.updated_at
+
+
