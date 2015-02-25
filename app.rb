@@ -21,14 +21,16 @@ class ColloquiumApp < Sinatra::Base
 
     get '/admin' do
         articles = Article.all
-        haml :'admin/layout', :layout => :'layout' do
-          haml :'admin/home', :locals => { :articles => articles }
+	pages = Page.all
+        haml :'admin/layout', :layout => :'layout',:locals => { :articles => articles, :pages => pages  } do
+          haml :'admin/home', :locals => { :articles => articles, :pages => pages  }
         end
     end
 
     get '/admin/article' do
-      articles = Article.all
-      haml :'admin/layout', :layout => :'layout' do
+        articles = Article.all
+        pages = Page.all
+        haml :'admin/layout', :layout => :'layout', :locals => { :articles => articles, :pages => pages  }  do
         haml :'admin/article/home', :locals => { :articles => articles }
       end
     end
@@ -40,6 +42,7 @@ class ColloquiumApp < Sinatra::Base
     end
 
     post '/admin/article/new' do
+	pages = Page.all
         article = Article.new
         article.title = params['title']
         article.category = params['category']
@@ -90,13 +93,14 @@ class ColloquiumApp < Sinatra::Base
 
     get '/admin/page' do
       pages = Page.all
-      haml :'admin/layout', :layout => :'layout' do
+      haml :'admin/layout', :layout => :'layout', :locals => { :pages => pages  }  do
         haml :'admin/page/home', :locals => { :pages => pages }
       end
     end
 
     get '/admin/page/new' do
-      haml :'admin/layout', :layout => :'layout' do
+      pages = Page.all
+      haml :'admin/layout', :layout => :'layout', :locals => { :pages => pages } do
         haml :'admin/page/new'
       end
     end
@@ -113,11 +117,13 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page/edit' do
-        haml :'admin/page/edit'
+	pages = Page.all
+        haml :'admin/page/edit', :locals => { :pages => pages }
     end
 
     get '/admin/article/delete' do
-        haml :'admin/page/delete'
+	pages = Page.all
+        haml :'admin/page/delete', :locals => { :pages => pages }
     end
 
 end
