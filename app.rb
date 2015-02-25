@@ -7,15 +7,13 @@ class ColloquiumApp < Sinatra::Base
     register Sinatra::ActiveRecordExtension
 
     set :database, {adapter: "sqlite3", database: "app.db"}
+   
+    helpers do
+      def getPages()
+        Page.all
+      end
+    end
     
-    def self.loadPages
-      set :pages, Page.all
-    end
-
-    configure do
-      loadPages()
-    end
-
     get '/' do
         articles = Article.all
         haml :home, :locals => { :articles => articles }
@@ -95,15 +93,12 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page' do
-      #loadPages()
-      pages = Page.all
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/page/home'
       end
     end
 
     get '/admin/page/new' do
-      #loadPages()
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/page/new'
       end
@@ -122,7 +117,6 @@ class ColloquiumApp < Sinatra::Base
 
 
     get '/admin/page/edit/:id' do
-        #loadPages()
         thisone = Page.find_by_id(params[:id])
         haml :'admin/page/edit', :locals => { :thisone => thisone }
     end
@@ -139,7 +133,6 @@ class ColloquiumApp < Sinatra::Base
     end
 
     get '/admin/page/delete/:id' do
-        #loadPages()
         thisone = Page.find_by_id(params[:id])
         haml :'admin/page/delete', :locals => { :thisone => thisone }
     end
