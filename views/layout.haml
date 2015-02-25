@@ -25,6 +25,8 @@
           %ul.nav.navbar-nav
             %li
               %a{:href => "/"} Home
+            - @pages.each do |page|
+              = haml :links, :locals=>{:page => page }
     
     = yield
 
