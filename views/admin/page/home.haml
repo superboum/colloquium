@@ -1,0 +1,25 @@
+%h2.pull-left List of pages
+
+%a.pull-right{:href => "/admin/page/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new page
+
+%table.table.table-stripped
+  %tr
+    %th Title
+    %th Category
+    %th Author
+    %th priority
+    %th Created at
+    %th Updated at
+    %th Action
+
+  - pages.each do |a|
+    %tr
+      %td= a.title
+      %td= a.category
+      %td= a.author
+      %td= a.priority
+      %td= a.created_at
+      %td= a.updated_at
+
+
