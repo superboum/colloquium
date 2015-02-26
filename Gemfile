@@ -4,6 +4,7 @@ source "https://rubygems.org"
 gem "sinatra"
 gem "sinatra-activerecord"
 gem "haml"
+gem "redcarpet"
 gem "sqlite3"
 
 #WEBSERVER
