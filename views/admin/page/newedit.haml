@@ -22,7 +22,7 @@
       
   .form-group
     %label{:for => "long_text"} Body (Markdown Syntax is allowed)
-    %textarea{:rows => "15", :class => "form-control", :id => "long_text", :placeholder => "You article content.", :name => "long_text"}
+    %textarea{:rows => "15", :'data-provide' => "markdown", :class => "form-control", :id => "long_text", :placeholder => "You article content.", :name => "long_text"}
       = page.long_text
 
   .form-group
