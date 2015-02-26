@@ -13,7 +13,9 @@ class ColloquiumApp < Sinatra::Base
         Page.all
       end
     end
-    
+   
+    ### FRONTEND ###
+
     get '/' do
         articles = Article.all
         haml :home, :locals => { :articles => articles }
@@ -23,7 +25,14 @@ class ColloquiumApp < Sinatra::Base
         article = Article.find_by_id(params[:id])
         haml :article, :locals => { :article => article }
     end
+    
+    get '/page/:id' do
+      page = Page.find(params[:id])
+      haml :page, :locals => { :page => page } 
+    end
 
+    ### BACKEND ###
+    
     get '/admin' do
         articles = Article.all
         haml :'admin/layout', :layout => :'layout' do
@@ -31,10 +40,11 @@ class ColloquiumApp < Sinatra::Base
         end
     end
 
+    # ARTICLE #
     get '/admin/article' do
         articles = Article.all
         haml :'admin/layout', :layout => :'layout'  do
-        haml :'admin/article/home', :locals => { :articles => articles }
+          haml :'admin/article/home', :locals => { :articles => articles }
       end
     end
 
@@ -85,13 +95,7 @@ class ColloquiumApp < Sinatra::Base
     end
 
 
-# Pages management
-
-    get '/page/:id' do
-      page = Page.find(params[:id])
-      haml :page, :locals => { :page => page } 
-    end
-
+    # PAGE #
     get '/admin/page' do
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/page/home'
@@ -144,6 +148,34 @@ class ColloquiumApp < Sinatra::Base
     post '/admin/page/delete/:id' do
         Page.destroy(params[:id])
         redirect "/admin/page", 303
+    end
+
+    # EVENTS #
+    get '/admin/event' do
+        haml :'admin/layout', :layout => :'layout'  do
+          haml :'admin/event/home'
+        end
+    end
+    
+    # REVIEWS #
+    get '/admin/review' do
+        haml :'admin/layout', :layout => :'layout'  do
+          haml :'admin/review/home'
+        end
+    end
+
+    # USERS #
+    get '/admin/user' do
+        haml :'admin/layout', :layout => :'layout'  do
+          haml :'admin/user/home'
+        end
+    end
+
+    # SETTINGS #
+    get '/admin/settings' do
+        haml :'admin/layout', :layout => :'layout'  do
+          haml :'admin/setting/home'
+      end
     end
 
 end
