@@ -1,6 +1,6 @@
 .container
   .row1
-    .col-lg-12
-      %h2= @thisone.title
-      %p= @thisone.long_text
+    .col-md-8.col-md-offset-2
+      %h1.text-center= page.title
+      %p= markdown(page.long_text)
 

@@ -88,8 +88,8 @@ class ColloquiumApp < Sinatra::Base
 # Pages management
 
     get '/page/:id' do
-      @thisone = Page.find_by_id(params[:id])
-      haml :page
+      page = Page.find(params[:id])
+      haml :page, :locals => { :page => page } 
     end
 
     get '/admin/page' do
