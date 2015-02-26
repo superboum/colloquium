@@ -1,1 +1,23 @@
-%h1 Events are not yet implemented
+%h2.pull-left List of events
+
+%a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new event
+
+%table.table.table-stripped
+  %tr
+    %th Title
+    %th Created at
+    %th Updated at
+    %th Action
+
+  - events.each do |e|
+    %tr
+      %td= e.title
+      %td= e.created_at
+      %td= e.updated_at
+      %td
+        %a.btn.btn-xs.btn-default{:href => "/admin/event/edit/#{e.id}"} Edit
+        %a.btn.btn-xs.btn-danger{:href => "/admin/event/delete/#{e.id}"} Delete
+
+%a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new event

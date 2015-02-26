@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225080834) do
+ActiveRecord::Schema.define(version: 20150226164544) do
 
-  create_table "articles", force: true do |t|
+  create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "category"
     t.string   "short_text"
@@ -22,7 +22,16 @@ ActiveRecord::Schema.define(version: 20150225080834) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", force: true do |t|
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.string   "short_text"
+    t.datetime "begin"
+    t.datetime "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "category"
     t.integer  "priority"
