@@ -26,4 +26,18 @@
             %br.clear 
     .col-md-4
       %h1 Events
+      - events.each do |e|
+        .panel.panel-default
+          .panel-body
+            %h3
+              %span.glyphicon.glyphicon-chevron-right
+              =e.title
+            %p
+              = markdown(e.short_text)
+          .panel-footer
+            .small.pull-left
+              Begin of the events : 
+              = e.begin
+            %a.pull-right.btn.btn-xs.btn-default{:href => "/events/#{e.id}"} Read more     &#8594; 
+            %br.clear 
 

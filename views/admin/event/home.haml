@@ -1,7 +1,7 @@
 %h2.pull-left List of events
 
-%a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
-  Add a new event
+%a.pull-right{:href => "/admin/events/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new events
 
 %table.table.table-stripped
   %tr
@@ -16,8 +16,8 @@
       %td= e.created_at
       %td= e.updated_at
       %td
-        %a.btn.btn-xs.btn-default{:href => "/admin/event/edit/#{e.id}"} Edit
-        %a.btn.btn-xs.btn-danger{:href => "/admin/event/delete/#{e.id}"} Delete
+        %a.btn.btn-xs.btn-default{:href => "/admin/events/edit/#{e.id}"} Edit
+        %a.btn.btn-xs.btn-danger{:href => "/admin/events/delete/#{e.id}"} Delete
 
-%a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
-  Add a new event
+%a.pull-right{:href => "/admin/events/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new events

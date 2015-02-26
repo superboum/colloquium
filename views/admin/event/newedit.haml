@@ -1,29 +1,29 @@
 - if edit
-  %h2 Edit event "#{event.title}"
+  %h2 Edit events "#{events.title}"
 -else
-  %h2 Create a new event
+  %h2 Create a new events
 
 %form{:method => "POST"}
   .form-group
     %label{:for => "title"} Title
-    %input{:type => "text", :class => "form-control", :id => "title", :placeholder => "Conference...", :name => "title", :value => event.title}
+    %input{:type => "text", :class => "form-control", :id => "title", :placeholder => "Conference...", :name => "title", :value => events.title}
   
   
   .form-group
     %label{:for => "short_text"} Summary (max 255 chars)
-    %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you event", :name => "short_text"}
-      = event.short_text
+    %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you events", :name => "short_text"}
+      = events.short_text
      
 
   .form-group
-    %label{:for => "begin"} Begin of your event 
+    %label{:for => "begin"} Begin of your events 
     %textarea{:type => "datetime-local",:class => "form-control", :id => "begin", :name => "begin"}
-      = event.begin
+      = events.begin
       
   .form-group
-    %label{:for => "end"} End of your event 
+    %label{:for => "end"} End of your events 
     %textarea{:type => "datetime-local",:class => "form-control", :id => "end", :name => "end"}
-      = event.end
+      = events.end
       
 
 

@@ -1,8 +1,8 @@
-%h2 Delete event "#{event.title}"
+%h2 Delete events "#{events.title}"
 
-.alert.alert-danger Do you really want to delete this event ?
+.alert.alert-danger Do you really want to delete this events ?
 
 %form{:method => "POST"}
   %input.btn.btn-danger.pull-right{:type => "submit", :value => "Delete", :style => "margin-left: 5px"} 
-  %a.btn.btn-default.pull-right{:href => "/admin/event"} Cancel 
+  %a.btn.btn-default.pull-right{:href => "/admin/events"} Cancel 
 

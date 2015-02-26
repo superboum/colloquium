@@ -18,7 +18,8 @@ class ColloquiumApp < Sinatra::Base
 
     get '/' do
         articles = Article.all
-        haml :home, :locals => { :articles => articles }
+        events = Event.order(:begin)
+        haml :home, :locals => { :articles => articles, :events => events }
     end
     
     get '/article/:id' do
@@ -26,6 +27,11 @@ class ColloquiumApp < Sinatra::Base
         haml :article, :locals => { :article => article }
     end
     
+    get '/events/:id' do
+        event = Event.find_by_id(params[:id])
+        haml :event, :locals => { :event => event }
+    end
+
     get '/page/:id' do
       page = Page.find(params[:id])
       haml :page, :locals => { :page => page } 
