@@ -7,7 +7,9 @@ namespace :assets do
     desc "download assets"
     task :download do
         `rm -rf assets/tmp`
+        `rm -rf assets/fonts`
         `mkdir -p assets/tmp`
+        `mkdir -p assets/fonts`
         
         #JS
         `wget -O assets/tmp/100_jquery.js https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js`
@@ -15,6 +17,14 @@ namespace :assets do
         
         #CSS
         `wget -O assets/tmp/100_bootstrap.css https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css`
+
+        #FONTS
+        `wget -O assets/fonts/glyphicons-halflings-regular.eot https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot`
+        `wget -O assets/fonts/glyphicons-halflings-regular.svg https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.svg`
+        `wget -O assets/fonts/glyphicons-halflings-regular.ttf https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.ttf`
+        `wget -O assets/fonts/glyphicons-halflings-regular.woff https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff`
+        `wget -O assets/fonts/glyphicons-halflings-regular.woff2 https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff2`
+
     end
 
     desc "generate assets"
@@ -28,6 +38,7 @@ namespace :assets do
         `cat assets/css/*.css >> public/theme.css`
         `cat assets/js/*.js >> public/script.js`
         `cp -r assets/img public/`
+        `cp -r assets/fonts public/`
     end
 end
 

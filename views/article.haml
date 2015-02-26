@@ -1,13 +1,14 @@
 .container
   .row
-    .col-md-12
-      %h1=article.title
+    .col-md-8.col-md-offset-2
+      %h1.text-center=article.title
 
-      %h4
-        = article.short_text
+      %h4.lead.text-center
+        = markdown(article.short_text)
+
 
       %p
-        = article.long_text
+        = markdown(article.long_text)
 
       %small
         Category : 

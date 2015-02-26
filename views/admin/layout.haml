@@ -9,22 +9,39 @@
     .col-md-3
       .list-group
         %a.list-group-item{:href => "/admin"}
-          %h4.list-group-item-heading Dashboard
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-dashboard
+            Dashboard
           %p.list-group-item-text Information and statistics about this website.
         %a.list-group-item{:href => "/admin/article"} 
-          %h4.list-group-item-heading Articles
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-comment
+            Articles
           %p.list-group-item-text Your conference's news.
         %a.list-group-item{:href => "/admin/page"}
-          %h4.list-group-item-heading Pages 
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-file
+            Pages 
           %p.list-group-item-text Statical information about your conference
         %a.list-group-item{:href => "/admin/event"}
-          %h4.list-group-item-heading Event
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-glass
+            Events
           %p.list-group-item-text Events organized during the conference
         %a.list-group-item{:href => "/admin/review"}
-          %h4.list-group-item-heading Reviews
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-eye-open
+            Reviews
           %p.list-group-item-text Validate and assign submitted reviews
+        %a.list-group-item{:href => "/admin/user"}
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-user
+            Users
+          %p.list-group-item-text Participants, moderators and adminsitrators
         %a.list-group-item{:href => "/admin/settings"} 
-          %h4.list-group-item-heading Settings
+          %h4.list-group-item-heading 
+            %span.glyphicon.glyphicon-cog
+            Settings
           %p.list-group-item-text Website's parameters
 
     .col-md-9

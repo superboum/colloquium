@@ -9,22 +9,21 @@
       %h1 News
       - articles.each do |a|
         .panel.panel-default
-          .panel-heading
-            %h3.panel-title
-              %a{:href => "/article/#{a.id}"}= a.title
           .panel-body
+            %h3
+              %span.glyphicon.glyphicon-chevron-right
+              =a.title
             %p
               = a.short_text
-
-              %a{:href => "/article/#{a.id}"} Read more
           .panel-footer
-            .small
+            .small.pull-left
               Category : 
               = a.category
               \- Last update : 
               = a.updated_at
               
-    
+            %a.pull-right.btn.btn-xs.btn-default{:href => "/article/#{a.id}"} Read more     &#8594; 
+            %br.clear 
     .col-md-4
       %h1 Events
 
