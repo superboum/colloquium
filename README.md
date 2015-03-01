@@ -16,6 +16,10 @@ Pour RHEL/Fedora :
 
 ```bash
 sudo yum install -y ruby sqlite-devel
+```
+Pour Ubuntu
+
+```bash
 sudo apt-get install libsqlite3-dev
 ```
 
