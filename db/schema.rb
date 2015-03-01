@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150226164544) do
 
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", force: true do |t|
     t.string   "title"
     t.string   "category"
     t.string   "short_text"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150226164544) do
     t.datetime "updated_at"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "events", force: true do |t|
     t.string   "title"
     t.string   "short_text"
     t.datetime "begin"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150226164544) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", force: :cascade do |t|
+  create_table "pages", force: true do |t|
     t.string   "title"
     t.string   "category"
     t.integer  "priority"
