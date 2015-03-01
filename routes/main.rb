@@ -6,6 +6,10 @@ class MainController < BaseController
     haml :'home', :locals => { :articles => articles, :events => events }
   end
 
+  get '/login' do
+    haml :login
+  end
+
   # BACKOFFICE
   get '/admin' do
     articles = Article.all
