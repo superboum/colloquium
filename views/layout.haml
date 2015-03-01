@@ -27,6 +27,10 @@
               %a{:href => "/"} Home
             - getPages().each do |page|
               = haml :links, :locals=>{:page => page }
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a{:href => "/login", :role => "button"} Sign in/up
+
     
     = yield
 

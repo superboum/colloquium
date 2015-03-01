@@ -37,6 +37,10 @@ class ColloquiumApp < Sinatra::Base
       haml :page, :locals => { :page => page } 
     end
 
+	get '/login' do
+	  haml :login
+	end
+
     ### BACKEND ###
     
     get '/admin' do
