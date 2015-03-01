@@ -1,2 +1,2 @@
-require_relative 'app'
+require File.dirname(__FILE__) + "/app.rb"
 run ColloquiumApp.new
