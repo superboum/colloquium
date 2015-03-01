@@ -16,6 +16,7 @@ Pour RHEL/Fedora :
 
 ```bash
 sudo yum install -y ruby sqlite-devel
+sudo apt-get install libsqlite3-dev
 ```
 
 Installer Ruby Make (rake).
