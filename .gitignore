@@ -7,3 +7,24 @@ assets/fonts
 public
 .bundle
 vendor
+
+# LaTeX files
+*.toc
+*.log
+*.pdf
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.dvi
+*.blg
+*.bbl
+*.run.xml
+*.swp
+*.bcf
+*.glo
+*.ist
+*.glsdefs
+*.out
+*.glg
+*.gls
