@@ -1,2 +1,2 @@
-require './app'
-run ColloquiumApp
+require_relative 'app'
+run ColloquiumApp.new
