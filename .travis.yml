@@ -1,5 +1,7 @@
 language: ruby
 before_script:
+  - bundle exec rake --version
+  - bundle exec rake -T
   - bundle exec rake assets:download
   - bundle exec rake assets:generate
   - bundle exec rake server:install
