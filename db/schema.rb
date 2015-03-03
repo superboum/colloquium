@@ -13,16 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20150301162556) do
 
-  create_table "articles", force: true do |t|
+  create_table "articles", force: :cascade do |t|
     t.string   "title"
     t.string   "category"
     t.string   "short_text"
     t.string   "long_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.string   "title"
     t.string   "short_text"
     t.datetime "begin"
@@ -31,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150301162556) do
     t.datetime "updated_at"
   end
 
-  create_table "pages", force: true do |t|
+  create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.string   "category"
     t.integer  "priority"
@@ -41,9 +42,10 @@ ActiveRecord::Schema.define(version: 20150301162556) do
     t.string   "version"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
