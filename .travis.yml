@@ -4,7 +4,6 @@ before_script:
   - bundle exec rake -T
   - bundle exec rake assets:download
   - bundle exec rake assets:generate
-  - bundle exec rake server:install
   - bundle exec rake db:migrate
   - sqlite3 app.db ".dump"
 
