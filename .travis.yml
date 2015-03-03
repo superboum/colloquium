@@ -1,4 +1,6 @@
 language: ruby
+cache: bundler
+sudo: false
 before_script:
   - bundle exec rake --version
   - bundle exec rake -T
