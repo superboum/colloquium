@@ -48,12 +48,6 @@ namespace :assets do
 end
 
 namespace :server do
-  desc "Install server dependencies"
-  task :install do
-    `gem install bundler`
-    `bundle install --jobs=3 --retry=3 --deployment`
-  end
-
   desc "Launch web server"
   task :run do
     `rackup`

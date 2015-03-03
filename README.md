@@ -15,25 +15,26 @@ Installer ruby & ses dépendances ainsi que npm
 Pour RHEL/Fedora :
 
 ```bash
-sudo yum install -y ruby sqlite-devel
+sudo yum install -y ruby sqlite-devel rubygem-bundler
 ```
 Pour Ubuntu
 
 ```bash
-sudo apt-get install libsqlite3-dev
+sudo apt-get install libsqlite3-dev ruby 
 ```
 
-Installer Ruby Make (rake).
+Installer les dépendances serveurs
 
 ```bash
-sudo gem install rake
+bundle install
 ```
 
-Installer les dépendances
+Installer les dépendances clients & la BDD
 
 ```bash
-rake server:install
-rake assets:download
+bundle exec rake assets:download
+bundle exec rake assets:generate
+bundle exec rake db:migrate
 ```
 
 Lancement
@@ -42,20 +43,20 @@ Lancement
 Générer les fichiers CSS et JS (à chaque modification du CSS ou du JS)
 
 ```bash
-rake assets:generate
+bundle exec rake assets:generate
 ```
 
 Lancer le serveur
 
 ```bash
-rake server:run
+bundle exec rake server:run
 ```
 
 Aide
 ----
 
 ```bash
-rake -T
+bundle exec rake -T
 ```
 
 Tests
@@ -64,5 +65,5 @@ Tests
 Lancer les tests
 
 ```bash
-rake
+bundle exec rake
 ```
