@@ -1,12 +1,12 @@
 - if edit
-  %h2 Edit event "#{event.title}"
+  %h2 Edit event "#{event.name}"
 -else
   %h2 Create a new event
 
 %form{:method => "POST"}
   .form-group
-    %label{:for => "title"} Title
-    %input{:type => "text", :class => "form-control", :id => "title", :placeholder => "Conference...", :name => "title", :value => event.title}
+    %label{:for => "name"} Title
+    %input{:type => "text", :class => "form-control", :id => "name", :placeholder => "Conference...", :name => "name", :value => event.name}/
   
   
   .form-group
@@ -16,16 +16,31 @@
      
 
   .form-group
-    %label{:for => "begin"} Begin of your event 
-    %textarea{:type => "datetime-local",:class => "form-control", :id => "begin", :name => "begin"}
-      = event.begin
+    %label{:for => "start_date"} Begin of your event 
+    %input{:type => "datetime-local",:class => "form-control", :id => "start_date", :name => "start_date", :value => event.start_date}/
       
   .form-group
-    %label{:for => "end"} End of your event 
-    %textarea{:type => "datetime-local",:class => "form-control", :id => "end", :name => "end"}
-      = event.end
-      
-
-
+    %label{:for => "end_date"} End of your event 
+    %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
+  .form-groupe
+    %label{:for => "place_number"} Number of place
+    %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.place_number}
   .form-group
+    %label.checkbox-inline{:for => "registration"} 
+      -if event.registration
+        %input{:type => "checkbox", :id => "registration", :name => "registration",:value=> '1',:checked => ""}/
+        Enable registration
+      -else 
+        %input{ :type => "checkbox",  :id => "registration", :name => "registration",:value=> '1'}/ 
+        Enable registration
+    -if edit
+      %label.checkbox-inline{:for=> "edit_form_event"}
+        %input{ :type => "checkbox",  :id => "edit_form_event", :name => "edit_form_event",:value=> '1'}/
+        Edit form event(s)
+    -else
+      %label.checkbox-inline{:for=> "add_form_event"}
+        %input{ :type => "checkbox",  :id => "add_form_event", :name => "add_form_event",:value=> '1'}/
+        Add a form to your event
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
+
+

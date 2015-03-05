@@ -1,17 +1,17 @@
 .container
   .row
     .col-md-8.col-md-offset-2
-      %h1.text-center=event.title
+      %h1.text-center=event.name 
 
       %h4.lead.text-center
         = markdown(event.short_text)
 
       %h4.lead.text-center
         From : 
-        = event.begin
+        = event.start_date
         <br/>
         To :
-        = event.end
+        = event.end_date
       %small
         \- Last update :
         = event.updated_at

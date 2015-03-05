@@ -31,13 +31,13 @@
           .panel-body
             %h3
               %span.glyphicon.glyphicon-chevron-right
-              =e.title
+              =e.name
             %p
               = markdown(e.short_text)
           .panel-footer
             .small.pull-left
               Begin of the events : 
-              = e.begin
+              = e.start_date 
             %a.pull-right.btn.btn-xs.btn-default{:href => "/events/#{e.id}"} Read more     &#8594; 
             %br.clear 
 

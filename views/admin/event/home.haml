@@ -5,14 +5,14 @@
 
 %table.table.table-stripped
   %tr
-    %th Title
+    %th Name
     %th Created at
     %th Updated at
     %th Action
 
   - events.each do |e|
     %tr
-      %td= e.title
+      %td= e.name
       %td= e.created_at
       %td= e.updated_at
       %td

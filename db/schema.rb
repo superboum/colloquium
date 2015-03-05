@@ -11,35 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301162556) do
+ActiveRecord::Schema.define(version: 20150301131142) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.string   "category"
-    t.string   "short_text"
-    t.string   "long_text"
+  create_table "articles", force: true do |t|
+    t.string   "title",      limit: nil
+    t.string   "category",   limit: nil
+    t.string   "short_text", limit: nil
+    t.string   "long_text",  limit: nil
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string   "title"
+  create_table "events", force: true do |t|
+    t.string   "name"
     t.string   "short_text"
-    t.datetime "begin"
-    t.datetime "end"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "registration"
+    t.integer  "place_number"
   end
 
-  create_table "pages", force: :cascade do |t|
-    t.string   "title"
-    t.string   "category"
+  create_table "form_elements", force: true do |t|
+    t.string  "question"
+    t.integer "type"
+    t.text    "data"
+    t.integer "event_id"
+  end
+
+  add_index "form_elements", ["event_id"], name: "index_form_elements_on_event_id"
+
+  create_table "pages", force: true do |t|
+    t.string   "title",      limit: nil
+    t.string   "category",   limit: nil
     t.integer  "priority"
-    t.string   "author"
-    t.string   "short_text"
+    t.string   "author",     limit: nil
+    t.string   "short_text", limit: nil
     t.text     "long_text"
-    t.string   "version"
+    t.string   "version",    limit: nil
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"

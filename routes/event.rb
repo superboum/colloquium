@@ -5,6 +5,7 @@ class EventController < BaseController
     haml :event, :locals => { :event => event }
   end
 
+
   #BACKOFFICE
   get '/admin/event' do
     events = Event.all
@@ -12,21 +13,30 @@ class EventController < BaseController
       haml :'admin/event/home', :locals => { :events => events }
     end
   end
+
+
   get '/admin/event/new' do
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/newedit', :locals => { :event => Event.new, :edit => false }
     end
   end
 
-  post '/admin/event/new' do
+ 
+post '/admin/event/new' do
     event = Event.new
-    event.title = params['title']
+    event.name = params['name']
     event.short_text = params['short_text']
-    event.begin = params['begin']
-    event.end = params['end']
+    event.start_date = params['start_date']
+    event.end_date = params['end_date']
+    event.place_number = params['place_number']
+    event.registration= params['registration']==1
     event.save
+    redirect "/admin/form_element/new/#{event.id}"
+    if(params['add_form_event']='1')
+        
+    end
     redirect "/admin/event", 303
-  end
+end
 
 
   get '/admin/event/edit/:id' do
@@ -38,15 +48,18 @@ class EventController < BaseController
   end
 
 
-  post '/admin/event/edit/:id' do
+post '/admin/event/edit/:id' do
     event = Event.find(params[:id])
-    event.title = params['title']
+    event.name = params['name']
     event.short_text = params['short_text']
-    event.begin = params['begin']
-    event.end = params['end']
+    event.start_date = params['start_date']
+    event.end_date = params['end_date']
+    event.registration= params['registration']==1
+    event.place_number = params['place_number']
     event.save
     redirect "/admin/event", 303
-  end
+end
+
 
   get '/admin/event/delete/:id' do
     event = Event.find(params[:id])
@@ -61,3 +74,5 @@ class EventController < BaseController
   end
 
 end
+
+

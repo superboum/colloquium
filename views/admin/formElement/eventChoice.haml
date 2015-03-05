@@ -1,0 +1,12 @@
+%h2 Create element form
+
+%form{:method => "POST"}
+	.row
+		.col-sm-offset-1.col-sm-7.form-group
+			%label{:for => "event"} Event : 
+			%select{:name => 'event',:name => "id", :id=> "id"}
+				- events.each do |e|
+					%option{:class => "form-control",:value => e.id,} 
+						=e.name
+		.col-sm-4.form-group
+			%input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Continue"}

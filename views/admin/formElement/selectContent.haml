@@ -1,0 +1,9 @@
+%h2 Create the different rows of the choice form : "#{felt.question}"
+
+%form{:method => "POST"}
+  .form-group
+    %label{:for => "data"} Enter different each rows separated by  a \';\'
+    %input{:type => "text", :class => "form-control", :id => "data", :placeholder => "Choice one;Choice two", :title => "data", :value => form_element.data}
+  %input{:type=>"hidden",:id=>"felt",:name=>"felt",:value=>felt.id}
+  .form-group
+    %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}

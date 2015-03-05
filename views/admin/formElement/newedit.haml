@@ -1,0 +1,18 @@
+%h2 Create a new form element for the event "#{event.name}"
+
+%form{:method => "POST"}
+  .form-group
+    %label{:for => "question"} Your question
+    %input{:type => "text", :class => "form-control", :id => "question", :placeholder => "Are you vegetarian...", :title => "question", :value => felt.question}
+  %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
+  .form-group
+    %label{:for => "type"} Type of form
+    %select{:name => "type", :id=> "type"}
+      %option{:class => "form-control",:value => elements["bool"]}
+        Checkbox
+      %option{:class => "form-control",:value =>  elements["choice"]}
+        Selection
+      %option{:class => "form-control",:value => elements["string"]   }
+        Text 
+  .form-group
+    %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}

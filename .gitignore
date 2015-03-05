@@ -8,6 +8,7 @@ public
 .bundle
 vendor
 Gemfile.lock
+db/schema.rb
 
 # LaTeX files
 *.toc
