@@ -34,13 +34,14 @@
         %input{ :type => "checkbox",  :id => "registration", :name => "registration",:value=> '1'}/ 
         Enable registration
     -if edit
-      %label.checkbox-inline{:for=> "edit_form_event"}
-        %input{ :type => "checkbox",  :id => "edit_form_event", :name => "edit_form_event",:value=> '1'}/
-        Edit form event(s)
-    -else
-      %label.checkbox-inline{:for=> "add_form_event"}
-        %input{ :type => "checkbox",  :id => "add_form_event", :name => "add_form_event",:value=> '1'}/
-        Add a form to your event
+      -if !felts.empty?
+        %h3 Edit form element : 
+        -felts.each do |felt|
+          =haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> elements, :edit =>true}
+  
+    %label.checkbox-inline{:for=> "add_form_event"}
+      %input{ :type => "checkbox",  :id => "add_form_event", :name => "add_form_event",:value=> '1'}/
+      Add a form to your event
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
 
 

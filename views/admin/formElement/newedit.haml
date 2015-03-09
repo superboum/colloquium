@@ -1,18 +1,37 @@
-%h2 Create a new form element for the event "#{event.name}"
+- if !edit
+  %h2 Create a new form element for the event "#{event.name}"
+  :plain
+    <form method = "POST">
 
-%form{:method => "POST"}
   .form-group
-    %label{:for => "question"} Your question
-    %input{:type => "text", :class => "form-control", :id => "question", :placeholder => "Are you vegetarian...", :title => "question", :value => felt.question}
+    %label{:for => "question"} Question : 
+    %input{:type => "text", :class => "form-control", :id => "question::#{felt.id}", :placeholder => "Are you vegetarian...", :title => "question::#{felt.id}", :value => felt.question}
   %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
   .form-group
-    %label{:for => "type"} Type of form
-    %select{:name => "type", :id=> "type"}
-      %option{:class => "form-control",:value => elements["bool"]}
-        Checkbox
-      %option{:class => "form-control",:value =>  elements["choice"]}
-        Selection
-      %option{:class => "form-control",:value => elements["string"]   }
-        Text 
+    #accordion.btn-group{"data-toggle"=>"TEST","aria-multiselectable" => "false", :role => "tablist"}
+      .panel
+        %label.btn.btn-primary
+          %input{:type=>"radio",:name => "type::#{felt.id}",:id=>"bool",:autocomplete => "off",:value =>elements["bool"],"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", "data-target" => "#collapseOne"}
+            Checkbox
+        %label.btn.btn-primary
+          %input{:type=>"radio",:name => "type::#{felt.id}",:id=>"select",:autocomplete => "off",:value =>elements["select"],"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", "data-target" => "#collapseTwo"}
+            Selection
+        %label.btn.btn-primary
+          %input{:type=>"radio",:name => "type::#{felt.id}",:id=>"string",:autocomplete => "off",:value =>elements["string"],"aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", "data-target" => "#collapseThree"}
+            Text
+        
+        #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+        #collapseTwo.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+          .panel-body
+            .form-group
+              %label{:for => "data"} Enter each different rows separated by  a ';'
+              %input{:type => "text", :class => "form-control", :id => "dataSelect::#{felt.id}", :placeholder => "Choice one;Choice two", :title => "dataSelect::#{felt.id}", :value => felt.data}
+        #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+
   .form-group
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
+
+
+- if !edit
+  :plain
+    </form>
