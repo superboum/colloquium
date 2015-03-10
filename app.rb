@@ -19,4 +19,5 @@ class ColloquiumApp < Sinatra::Application
   use ReviewController
   use UserController
   use SettingsController
+  use FormElementController 
 end

@@ -31,9 +31,9 @@ post '/admin/event/new' do
     event.place_number = params['place_number']
     event.registration= params['registration']==1
     event.save
-    redirect "/admin/form_element/new/#{event.id}"
     if(params['add_form_event']='1')
         
+    redirect "/admin/form_element/new/#{event.id}"
     end
     redirect "/admin/event", 303
 end
@@ -41,8 +41,15 @@ end
 
   get '/admin/event/edit/:id' do
     event = Event.find(params[:id])
+    begin
+      felts = FormElement.find_all_by! event_id: params[:id]
+    rescue => e
+      felts= []
+    end
+
+
     haml :'admin/layout', :layout => :'layout' do
-      haml :'admin/event/newedit', :locals => { :event => event, :edit => true }
+      haml :'admin/event/newedit', :locals => { :event => event, :felts => felts ,:edit => true }
     end
 
   end

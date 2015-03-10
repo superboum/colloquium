@@ -1,3 +1,5 @@
+class FormElementController < BaseController
+    elements={"bool" => FormElement.TYPE_BOOL,"choice" => FormElement.TYPE_CHOICE,"string" => FormElement.TYPE_STRING}
 
     # ELEMENT FORM #
 
@@ -15,9 +17,8 @@
     
     get '/admin/form_element/new/:id' do
         felt = FormElement.new
-        elements={"bool" => FormElement.TYPE_BOOL,"choice" => FormElement.TYPE_CHOICE,"string" => FormElement.TYPE_STRING}
         haml :'admin/layout', :layout => :'layout' do
-            haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => Event.find(params[:id]),:elements=> elements}
+            haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => Event.find(params[:id]),:elements=> elements, :edit => false}
         end
 
     end
@@ -25,13 +26,14 @@
     post '/admin/form_element/new/:id' do 
         felt = FormElement.new
         felt.question = params["question"]
-        felt.type=params["type"]
+        felt.form_type = params["form_type"]
         if :id != params["event"] then 
-            puts "error"
+            puts "error" #TODO 
         end
+
         felt.event_id = params["event"]
         felt.save
-        if felt.type == FormElement.TYPE_CHOICE then 
+        if felt.form_type == FormElement.TYPE_CHOICE then 
             redirect '/admin/formElement/selectContent/#{felt.id}'
         end
         
@@ -59,3 +61,4 @@
     end     
 
 
+end

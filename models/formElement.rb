@@ -8,5 +8,5 @@ class FormElement < ActiveRecord::Base
 		attr_accessor :TYPE_STRING,:TYPE_CHOICE,:TYPE_BOOL
 	end
 
-	validates_inclusion_of :type, :in => 0..2
+	validates_inclusion_of :form_type, :in => 0..2
 end
