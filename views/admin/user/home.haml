@@ -1,1 +1,25 @@
-%h1 Users are not yet implemented
+%h2.pull-left List of users
+
+%a.pull-right{:href => "/admin/user/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new user
+
+%table.table.table-stripped
+  %tr
+    %th First Name
+    %th Last Name
+    %th Created at
+    %th Updated at
+    %th Action
+
+  - users.each do |u|
+    %tr
+      %td= u.first_name
+      %td= u.last_name
+      %td= u.created_at
+      %td= u.updated_at
+      %td
+        %a.btn.btn-xs.btn-default{:href => "/admin/user/edit/#{u.id}"} Edit
+        %a.btn.btn-xs.btn-danger{:href => "/admin/user/delete/#{u.id}"} Delete
+
+%a.pull-right{:href => "/admin/user/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Add a new user

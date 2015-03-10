@@ -1,0 +1,57 @@
+- if edit
+  %h2 Edit user "#{user.email}"
+- else
+  %h2 Create a new user
+
+%form{:method => "POST"}
+  .form-group
+    %label{:for => "first_name"} First Name
+    %input{:type => "text", :class => "form-control", :id => "first_name", :placeholder => "John", :title => "first_name", :value => user.first_name}
+
+  .form-group
+    %label{:for => "last_name"} Last Name
+    %input{:type => "text", :class => "form-control", :id => "last_name", :placeholder => "Doe", :title => "last_name", :value => user.last_name}
+
+  .form-group
+    %label{:for => "email"} Email
+    %input{:type => "email", :class => "form-control", :id => "email", :placeholder => "john.doe@exemple.com", :title => "email", :value => user.email}
+
+  .form-group
+    %label{:for => "password"} Password
+    %input{:type => "password", :class => "form-control", :id => "password", :placeholder => "Please do not choose 123456", :title => "password", :value => user.password}
+
+  .form-group
+    %label{:for => "phone"} Phone number
+    %input{:type => "text", :class => "form-control", :id => "phone", :placeholder => "+(XX)012345678", :title => "phone", :value => user.phone}
+
+  .form-group
+    %label{:for => "address"} Address
+    %input{:type => "text", :class => "form-control", :id => "address", :placeholder => "10 Oxford Street", :title => "address", :value => user.address}
+
+  .form-group
+    %label{:for => "role"} Role
+    %input{:type => "number", :class => "form-control", :id => "role", :placeholder => "0", :title => "role", :value => user.role}
+
+  .form-group
+    %label{:for => "diet"} Diet
+    %input{:type => "number", :class => "form-control", :id => "diet", :placeholder => "0 for veggies, 1 for normals", :title => "diet", :value => user.diet}
+
+  .form-group
+    %label{:for => "nationality"} Nationality
+    %input{:type => "text", :class => "form-control", :id => "nationality", :placeholder => "English", :title => "nationality", :value => user.nationality}
+
+  .form-group
+    %label{:for => "title"} Title
+    %input{:type => "text", :class => "form-control", :id => "title", :placeholder => "Dr", :title => "title", :value => user.title}
+
+  .form-group
+    %label{:for => "sex"} Sex
+    %input{:type => "number", :class => "form-control", :id => "sex", :placeholder => "0 for F, 1 for M", :title => "sex", :value => user.sex}
+
+  .form-group
+    %label{:for => "has_paid"} Has (s)he paid?
+    %input{:type => "number", :class => "form-control", :id => "has_paid", :placeholder => "0 for yes, 1 for no", :title => "has_paid", :value => user.has_paid}
+
+  .form-group
+    %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
+

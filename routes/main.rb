@@ -14,7 +14,7 @@ class MainController < BaseController
 	email=params['emailSI']
 	rawPassword=params['InputPasswordSI']
 	password=Digest::SHA256.hexdigest("#{rawPassword}")
-	if User.count(email,password) == 1 then
+	if User.where("email=? AND password=?",email,password).count == 1 then
 	redirect to('/'), 303
 	else
 	redirect to('/login'),303
