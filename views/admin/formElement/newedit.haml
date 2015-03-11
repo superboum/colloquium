@@ -8,20 +8,20 @@
 
 .form-group
   %label{:for => "question"} Question : 
-  %input{:type => "text", :class => "form-control", :id => "question#{suf}", :name => "question#{suf}", :placeholder => "Are you vegetarian...", :title => "question#{suf} ", :name => "question#{suf} ", :value => felt.question}
+  %input{:type => "text", :class => "form-control", :id => "question#{suf}", :name => "question#{suf}", :placeholder => "Are you vegetarian...", :title => "question#{suf}", :value => felt.question}
 .form-group
   %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
 .form-group
-  #accordion.btn-group{"data-toggle"=>"TEST","aria-multiselectable" => "false", :role => "tablist"}
+  #types.btn-group{"data-toggle"=>"TEST","aria-multiselectable" => "false", :role => "tablist"}
     .panel
       %label.btn.btn-primary
-        %input{:type=>"radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off",:value =>elements["bool"],"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", "data-target" => "#collapseOne"}
-        Checkbox
+        %input{:type=>"radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off","aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseOne",:value =>elements['bool']}
+        Checkbox 
       %label.btn.btn-primary
-        %input{:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off",:value =>elements["select"],"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", "data-target" => "#collapseTwo"}
+        %input{:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off","aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseTwo",:value =>elements['select']}
         Selection
       %label.btn.btn-primary
-        %input{:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off",:value =>elements["string"],"aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", "data-target" => "#collapseThree"}
+        %input{:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off","aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseThree",:value =>elements['string']}
         Text
       
       #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}

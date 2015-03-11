@@ -11,13 +11,13 @@ class MainController < BaseController
   end
 
   post '/login' do
-	email=params['emailSI']
+	email_in=params['emailSI']
 	rawPassword=params['InputPasswordSI']
-	password=Digest::SHA256.hexdigest("#{rawPassword}")
-	if User.where("email=? AND password=?",email,password).count == 1 then
-	redirect to('/'), 303
+	password_in=Digest::SHA256.hexdigest("#{rawPassword}")
+	if User.where(email:email_in ,password:password_in).count == 1 then
+		redirect to('/'), 303
 	else
-	redirect to('/login'),303
+		redirect to('/login'),303
 	end
   end
 

@@ -1,12 +1,11 @@
 require 'sinatra/activerecord'
 
 class FormElement < ActiveRecord::Base
-	@@TYPE_BOOL = 0
-	@@TYPE_CHOICE = 1
-	@@TYPE_STRING = 2
-	class << self
-		attr_accessor :TYPE_STRING,:TYPE_CHOICE,:TYPE_BOOL
-	end
 
+	@@TYPES={"bool" => 0,"select" => 1,"string" => 2}
+	
+	def self.TYPES
+		@@TYPES
+	end
 	validates_inclusion_of :form_type, :in => 0..2
 end
