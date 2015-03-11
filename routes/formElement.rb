@@ -24,19 +24,17 @@ class FormElementController < BaseController
     end
 
     post '/admin/form_element/new/:id' do 
-        felt = FormElement.new
-        felt.question = params["question"]
-        felt.form_type = params["form_type"]
         if :id != params["event"] then 
             puts "error" #TODO 
         end
 
+
+        felt = FormElement.new
+        felt.question = params["question"]
+        felt.form_type = params["form_type"]
+
         felt.event_id = params["event"]
         felt.save
-        if felt.form_type == FormElement.TYPE_CHOICE then 
-            redirect '/admin/formElement/selectContent/#{felt.id}'
-        end
-        
         redirect "/admin/event", 303
 
     end

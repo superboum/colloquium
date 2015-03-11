@@ -31,9 +31,8 @@ post '/admin/event/new' do
     event.place_number = params['place_number']
     event.registration= params['registration']==1
     event.save
-    if(params['add_form_event']='1')
-        
-    redirect "/admin/form_element/new/#{event.id}"
+    if(params['add_form_element']=='1')   
+      redirect "/admin/form_element/new/#{event.id}"
     end
     redirect "/admin/event", 303
 end

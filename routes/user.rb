@@ -14,11 +14,12 @@ class UserController < BaseController
   end
 
   post '/admin/user/new' do
+    #FIXME : no data recover from post
     user = User.new
     user.first_name = params['first_name']
     user.last_name = params['last_name']
     user.email = params['email']
-	user.password = Digest::SHA256.hexdigest("#{params['password']}")
+    user.password = Digest::SHA256.hexdigest(params['password'])
     user.phone = params['phone']
     user.save
     redirect "/admin/user", 303
