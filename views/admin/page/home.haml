@@ -13,7 +13,7 @@
     %th Updated at
     %th Action
 
-  - pages.each do |a|
+  - pages.order(:priority).each do |a|
     %tr
       %td= a.title
       %td= a.category
