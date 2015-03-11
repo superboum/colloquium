@@ -1,6 +1,5 @@
 class FormElementController < BaseController
-    elements={"bool" => FormElement.TYPE_BOOL,"choice" => FormElement.TYPE_CHOICE,"string" => FormElement.TYPE_STRING}
-
+    
     # ELEMENT FORM #
 
     get '/admin/form_element/new' do
@@ -16,9 +15,11 @@ class FormElementController < BaseController
     end
     
     get '/admin/form_element/new/:id' do
+
+
         felt = FormElement.new
         haml :'admin/layout', :layout => :'layout' do
-            haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => Event.find(params[:id]),:elements=> elements, :edit => false}
+            haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => Event.find(params[:id]),:elements=> FormElement.TYPES, :edit => false}
         end
 
     end
@@ -32,7 +33,6 @@ class FormElementController < BaseController
         felt = FormElement.new
         felt.question = params["question"]
         felt.form_type = params["form_type"]
-
         felt.event_id = params["event"]
         felt.save
         redirect "/admin/event", 303
