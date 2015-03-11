@@ -29,8 +29,38 @@
             - pages().order(:priority).each do |page|
               = haml :links, :locals=>{:page => page }
           %ul.nav.navbar-nav.navbar-right
-            %li
-              %a{:href => "/login", :role => "button"} Sign in/up
+            -if authenticated?
+              %li
+                %a.dropdown-toggle{:href => "#", :role => "button", :'data-toggle' => "dropdown", :'aria-expanded' => "false"}
+                  %span.glyphicon.glyphicon-user
+                  = user.email
+                  %span.caret
+                %ul.dropdown-menu{:role => "menu"}
+                  %li
+                    %a 
+                      %span.glyphicon.glyphicon-file
+                      My Account
+                  %li
+                    %a 
+                      %span.glyphicon.glyphicon-glass
+                      My Events
+                  %li
+                    %a 
+                      %span.glyphicon.glyphicon-eye-open
+                      My Reviews
+                  %li.divider
+                  %li
+                    %a{:href => "/logout"}
+                      %span.glyphicon.glyphicon-off
+                      Disconnect
+            -else
+              %li
+                %a{:href => "/login", :role => "button"} Sign in / Sign up
+          
+          -if admin?
+            %a.btn.btn-danger.navbar-btn.pull-right{:href => "/admin"} admin
+          -elsif moderator?
+            %a.btn.btn-warning.navbar-btn.pull-right{:href => "/moderation"} moderator
 
     
     = yield
@@ -49,8 +79,6 @@
               %a{:href => ""} Thomas
               and
               %a{:href => "http://quentin.dufour.tk"} Quentin.
-              Go to
-              %a{:href => "/admin"} Administration
 
       
     %script(src="/script.js")

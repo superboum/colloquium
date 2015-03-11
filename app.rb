@@ -9,7 +9,9 @@ require_relative 'routes/init'
 
 class ColloquiumApp < Sinatra::Application
   register Sinatra::ActiveRecordExtension
-  
+  enable :sessions
+
+  set :session_secret, 'ThisIsNotSafeAndShouldBeSetInAConfigurationFile...'
   set :database, {adapter: "sqlite3", database: "app.db"}
 
   use MainController

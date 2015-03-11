@@ -1,7 +1,7 @@
 class UserController < BaseController
   # BACKOFFICE
   get '/admin/user/?' do
-	users=User.all
+    users=User.all
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/user/home' ,:locals => { :users => users }
     end
@@ -20,13 +20,13 @@ class UserController < BaseController
     user.email = params['email']
     user.password = Digest::SHA256.hexdigest(params['password'])
     user.phone = params['phone']
-	user.address = params['address']
-	user.role = params['role']
-	user.diet = params['diet']
-	user.nationality = params['nationality']
-	user.title = params['title']
-	user.sex = params['sex']
-	user.has_paid = params['has_paid']
+    user.address = params['address']
+    user.role = params['role']
+    user.diet = params['diet']
+    user.nationality = params['nationality']
+    user.title = params['title']
+    user.sex = params['sex']
+    user.has_paid = params['has_paid']
     user.save
     redirect "/admin/user", 303
   end
@@ -48,7 +48,7 @@ class UserController < BaseController
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/newedit', :locals => { :user => user, :edit => true }
     end
-	end
+  end
 
   post '/admin/user/edit/:id' do
     user = User.find(params[:id])
@@ -57,13 +57,13 @@ class UserController < BaseController
     user.email = params['email']
     user.password = Digest::SHA256.hexdigest(params['password'])
     user.phone = params['phone']
-	user.address = params['address']
-	user.role = params['role']
-	user.diet = params['diet']
-	user.nationality = params['nationality']
-	user.title = params['title']
-	user.sex = params['sex']
-	user.has_paid = params['has_paid']
+    user.address = params['address']
+    user.role = params['role']
+    user.diet = params['diet']
+    user.nationality = params['nationality']
+    user.title = params['title']
+    user.sex = params['sex']
+    user.has_paid = params['has_paid']
     user.save
     redirect "/admin/user", 303
   end
