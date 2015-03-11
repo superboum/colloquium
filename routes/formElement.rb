@@ -34,6 +34,9 @@ class FormElementController < BaseController
         felt.question = params["question"]
         felt.form_type = params["form_type"]
         felt.event_id = params["event"]
+        if felt.form_type == FormElement.TYPES["select"]
+            felt.data=params["dataSelect"]
+        end
         felt.save
         redirect "/admin/event", 303
 
