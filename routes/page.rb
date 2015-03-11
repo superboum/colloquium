@@ -1,7 +1,7 @@
 class PageController < BaseController
   # FRONTOFFICE
-  get '/page/:id' do
-    page = Page.find(params[:id])
+  get '/page/:task' do
+    page = Page.find_by_slug(params[:task])
     haml :page, :locals => { :page => page } 
   end
 
@@ -21,6 +21,7 @@ class PageController < BaseController
   post '/admin/page/new' do
     page = Page.new
     page.title = params['title']
+    page.generateSlug(page)
     page.category = params['category']
     page.author = params['author']
     page.long_text = params['long_text']
@@ -40,6 +41,7 @@ class PageController < BaseController
   post '/admin/page/edit/:id' do
     page = Page.find_by_id(params[:id])
     page.title = params['title']
+    page.generateSlug(page)
     page.category = params['category']
     page.author = params['author']
     page.long_text = params['long_text']
