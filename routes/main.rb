@@ -25,8 +25,9 @@ class MainController < BaseController
   get '/admin' do
     articles = Article.all
     events = Event.all
+	users = User.all
     haml :'admin/layout', :layout => :'layout' do
-      haml :'admin/home', :locals => { :articles => articles, :events => events}
+      haml :'admin/home', :locals => { :articles => articles, :events => events, :users => users}
     end
   end
 end
