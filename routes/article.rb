@@ -7,6 +7,7 @@ class ArticleController < BaseController
 
   # BACKOFFICE
   get '/admin/article/?' do
+    restrictToAdmin!
     articles = Article.all
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/article/home', :locals => { :articles => articles }
@@ -14,12 +15,14 @@ class ArticleController < BaseController
   end
 
   get '/admin/article/new/?' do
+    restrictToAdmin!
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/article/newedit', :locals => { :article => Article.new, :edit => false }
     end
   end
 
   post '/admin/article/new' do
+    restrictToAdmin!
     article = Article.new
     article.title = params['title']
     article.category = params['category']
@@ -30,6 +33,7 @@ class ArticleController < BaseController
   end
 
   get '/admin/article/edit/:id' do
+    restrictToAdmin!
     article = Article.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/article/newedit', :locals => { :article => article, :edit => true }
@@ -38,6 +42,7 @@ class ArticleController < BaseController
   end
 
   post '/admin/article/edit/:id' do
+    restrictToAdmin!
     article = Article.find(params[:id])
     article.title = params['title']
     article.category = params['category']
@@ -48,6 +53,7 @@ class ArticleController < BaseController
   end
 
   get '/admin/article/delete/:id/?' do
+    restrictToAdmin!
     article = Article.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/article/delete', :locals => { :article => article }
@@ -55,10 +61,9 @@ class ArticleController < BaseController
   end
 
   post '/admin/article/delete/:id' do
+    restrictToAdmin!
     Article.destroy(params[:id])
     redirect "/admin/article", 303
   end
-
-
-
 end
+

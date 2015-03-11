@@ -8,6 +8,7 @@ class EventController < BaseController
 
   #BACKOFFICE
   get '/admin/event/?' do
+    restrictToAdmin!
     events = Event.all
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/event/home', :locals => { :events => events }
@@ -16,6 +17,7 @@ class EventController < BaseController
 
 
   get '/admin/event/new/?' do
+    restrictToAdmin!
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/newedit', :locals => { :event => Event.new, :edit => false }
     end
@@ -23,6 +25,7 @@ class EventController < BaseController
 
  
 post '/admin/event/new' do
+    restrictToAdmin!
     event = Event.new
     event.name = params['name']
     event.short_text = params['short_text']
@@ -37,15 +40,14 @@ post '/admin/event/new' do
     redirect "/admin/event", 303
 end
 
-
   get '/admin/event/edit/:id/?' do
+    restrictToAdmin!
     event = Event.find(params[:id])
     begin
       felts = FormElement.find_all_by! event_id: params[:id]
     rescue => e
       felts= []
     end
-
 
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/newedit', :locals => { :event => event, :felts => felts ,:edit => true }
@@ -55,6 +57,7 @@ end
 
 
 post '/admin/event/edit/:id' do
+    restrictToAdmin!
     event = Event.find(params[:id])
     event.name = params['name']
     event.short_text = params['short_text']
@@ -68,6 +71,7 @@ end
 
 
   get '/admin/event/delete/:id/?' do
+    restrictToAdmin!
     event = Event.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/delete', :locals => { :event => event }
@@ -75,6 +79,7 @@ end
   end
 
   post '/admin/event/delete/:id' do
+    restrictToAdmin!
     Event.destroy(params[:id])
     redirect "/admin/event", 303
   end

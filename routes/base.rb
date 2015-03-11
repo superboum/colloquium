@@ -30,11 +30,13 @@ class BaseController < Sinatra::Base
     def admin? ; user != nil and user.role >= 2 ; end
     def moderator? ; user != nil and user.role >= 1 ; end
     def authenticated? ; user != nil and user.role >= 0 ; end
+    def notAuthenticated? ; user == nil ; end
 
     # Used to restrict access
     def restrictToAdmin! ; redirect to('/login'),303 unless admin? ; end
     def restrictToModerator! ; redirect to('/login'),303 unless moderator? ; end
-    def restrictToAuthenticated! ; redirect to('/login'),303 unless normal? ; end
+    def restrictToAuthenticated! ; redirect to('/login'),303 unless authenticated? ; end
+    def restrictToNotAuthenticated! ; redirect to('/account'),303 unless notAuthenticated? ; end
   end
 end
 

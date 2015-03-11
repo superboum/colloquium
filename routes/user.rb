@@ -1,6 +1,7 @@
 class UserController < BaseController
   # BACKOFFICE
   get '/admin/user/?' do
+    restrictToAdmin!
     users=User.all
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/user/home' ,:locals => { :users => users }
@@ -8,12 +9,14 @@ class UserController < BaseController
   end
 
   get '/admin/user/new/?' do
+    restrictToAdmin!
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/newedit', :locals => { :user => User.new, :edit => false }
     end
   end
 
   post '/admin/user/new' do
+    restrictToAdmin!
     user = User.new
     user.first_name = params['first_name']
     user.last_name = params['last_name']
@@ -32,6 +35,7 @@ class UserController < BaseController
   end
 
   get '/admin/user/delete/:id/?' do
+    restrictToAdmin!
     user = User.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/delete', :locals => { :user => user }
@@ -39,11 +43,13 @@ class UserController < BaseController
   end
 
   post '/admin/user/delete/:id' do
+    restrictToAdmin!
     User.destroy(params[:id])
     redirect "/admin/user", 303
   end
 
   get '/admin/user/edit/:id/?' do
+    restrictToAdmin!
     user = User.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/newedit', :locals => { :user => user, :edit => true }
@@ -51,6 +57,7 @@ class UserController < BaseController
   end
 
   post '/admin/user/edit/:id' do
+    restrictToAdmin!
     user = User.find(params[:id])
     user.first_name = params['first_name']
     user.last_name = params['last_name']

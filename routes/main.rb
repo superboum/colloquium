@@ -7,6 +7,7 @@ class MainController < BaseController
   end
 
   get '/login/?' do
+    restrictToNotAuthenticated!
     haml :login
   end
   
@@ -16,6 +17,7 @@ class MainController < BaseController
   end
 
   post '/login' do
+    restrictToNotAuthenticated!
     email_in = params['emailSI']
     rawPassword = params['InputPasswordSI']
     password_in = Digest::SHA256.hexdigest(rawPassword)
