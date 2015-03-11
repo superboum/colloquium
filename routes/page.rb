@@ -41,7 +41,7 @@ class PageController < BaseController
   post '/admin/page/edit/:id' do
     page = Page.find_by_id(params[:id])
     page.title = params['title']
-    page.generateSlug(page)
+    page.generateSlug()
     page.category = params['category']
     page.author = params['author']
     page.long_text = params['long_text']
