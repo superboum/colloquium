@@ -1,12 +1,12 @@
 class MainController < BaseController
   # FRONTOFFICE
-  get '/' do
+  get '/?' do
     articles = Article.all
     events = Event.order(:start_date)
     haml :'home', :locals => { :articles => articles, :events => events }
   end
 
-  get '/login' do
+  get '/login/?' do
     haml :login
   end
 
@@ -22,7 +22,7 @@ class MainController < BaseController
   end
 
   # BACKOFFICE
-  get '/admin' do
+  get '/admin/?' do
     articles = Article.all
     events = Event.all
 	users = User.all

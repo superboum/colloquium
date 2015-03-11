@@ -1,13 +1,13 @@
 class EventController < BaseController
   # FRONTOFFICE
-  get '/event/:id' do
+  get '/event/:id/?' do
     event = Event.find_by_id(params[:id])
     haml :event, :locals => { :event => event }
   end
 
 
   #BACKOFFICE
-  get '/admin/event' do
+  get '/admin/event/?' do
     events = Event.all
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/event/home', :locals => { :events => events }
@@ -15,7 +15,7 @@ class EventController < BaseController
   end
 
 
-  get '/admin/event/new' do
+  get '/admin/event/new/?' do
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/newedit', :locals => { :event => Event.new, :edit => false }
     end
@@ -38,7 +38,7 @@ post '/admin/event/new' do
 end
 
 
-  get '/admin/event/edit/:id' do
+  get '/admin/event/edit/:id/?' do
     event = Event.find(params[:id])
     begin
       felts = FormElement.find_all_by! event_id: params[:id]
@@ -67,7 +67,7 @@ post '/admin/event/edit/:id' do
 end
 
 
-  get '/admin/event/delete/:id' do
+  get '/admin/event/delete/:id/?' do
     event = Event.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/delete', :locals => { :event => event }

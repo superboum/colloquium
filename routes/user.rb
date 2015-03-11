@@ -1,13 +1,13 @@
 class UserController < BaseController
   # BACKOFFICE
-  get '/admin/user' do
+  get '/admin/user/?' do
 	users=User.all
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/user/home' ,:locals => { :users => users }
     end
   end
 
-  get '/admin/user/new' do
+  get '/admin/user/new/?' do
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/newedit', :locals => { :user => User.new, :edit => false }
     end
@@ -31,7 +31,7 @@ class UserController < BaseController
     redirect "/admin/user", 303
   end
 
-  get '/admin/user/delete/:id' do
+  get '/admin/user/delete/:id/?' do
     user = User.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/delete', :locals => { :user => user }
@@ -43,7 +43,7 @@ class UserController < BaseController
     redirect "/admin/user", 303
   end
 
-  get '/admin/user/edit/:id' do
+  get '/admin/user/edit/:id/?' do
     user = User.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/user/newedit', :locals => { :user => user, :edit => true }

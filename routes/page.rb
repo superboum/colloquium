@@ -1,18 +1,18 @@
 class PageController < BaseController
   # FRONTOFFICE
-  get '/page/:task' do
+  get '/page/:task/?' do
     page = Page.find_by_slug(params[:task])
     haml :page, :locals => { :page => page } 
   end
 
   # BACKOFFICE
-  get '/admin/page' do
+  get '/admin/page/?' do
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/page/home'
     end
   end
 
-  get '/admin/page/new' do
+  get '/admin/page/new/?' do
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/page/newedit', :locals => { :page => Page.new, :edit => false }
     end
@@ -31,7 +31,7 @@ class PageController < BaseController
   end
 
 
-  get '/admin/page/edit/:id' do
+  get '/admin/page/edit/:id/?' do
     page = Page.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/page/newedit', :locals => { :page => page, :edit => true }
@@ -50,7 +50,7 @@ class PageController < BaseController
     redirect "/admin/page", 303
   end
 
-  get '/admin/page/delete/:id' do
+  get '/admin/page/delete/:id/?' do
     page = Page.find(params[:id])
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/page/delete', :locals => { :page => page }

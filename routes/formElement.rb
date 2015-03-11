@@ -2,7 +2,7 @@ class FormElementController < BaseController
     
     # ELEMENT FORM #
 
-    get '/admin/form_element/new' do
+    get '/admin/form_element/new/?' do
         events = Event.order(:name)
         haml :'admin/layout', :layout => :'layout' do
             haml :'admin/formElement/eventChoice', :locals => {:events => events}
@@ -14,7 +14,7 @@ class FormElementController < BaseController
         redirect "/admin/form_element/new/#{id}"
     end
     
-    get '/admin/form_element/new/:id' do
+    get '/admin/form_element/new/:id/?' do
 
 
         felt = FormElement.new
@@ -42,7 +42,7 @@ class FormElementController < BaseController
 
     end
 
-    get '/admin/formElement/selectContent/:id' do
+    get '/admin/formElement/selectContent/:id/?' do
         felt= FormElement.find (params[:id])
 
 
