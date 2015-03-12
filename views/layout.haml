@@ -27,7 +27,8 @@
             %li
               %a{:href => "/"} Home
             - pages().order(:priority).each do |page|
-              = haml :links, :locals=>{:page => page }
+              %li
+                %a{:href => "/page/#{page.slug}"}= page.title
           %ul.nav.navbar-nav.navbar-right
             -if authenticated?
               %li
