@@ -1,4 +1,12 @@
 class UserController < BaseController
+  # USERSIDE
+  get '/profile/account/?' do
+    restrictToAuthenticated!
+    haml :'profile/layout', :locals => { :menu => 0 }, :layout => :'layout'  do
+      haml :'profile/account'
+    end
+  end
+
   # BACKOFFICE
   get '/admin/user/?' do
     restrictToAdmin!

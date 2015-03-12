@@ -1,0 +1,35 @@
+.container
+  .row
+    .col-lg-12
+      %br
+
+    -######## 
+    -# MENU #
+    -########
+    .col-lg-12
+      .btn-group.btn-group-justified{"aria-label" => "choice", :role => "group"}
+        %a.btn.btn-lg.btn-default{:href => "/profile/account", :class => ("active" unless menu != 0)} 
+          %span.glyphicon.glyphicon-bookmark
+          Conference registration
+        %a.btn.btn-lg.btn-default{:href => "/profile/event", :class => ("active" unless menu != 1)}
+          %span.glyphicon.glyphicon-glass
+          Participate to side events
+        %a.btn.btn-lg.btn-default{:href => "/profile/review", :class => ("active" unless menu != 2)}
+          %span.glyphicon.glyphicon-inbox
+          Become a lecturer
+
+  %br
+  .row
+    .col-lg-12
+      .alert.alert-danger
+        %strong Registration state : 
+        Not registrated (fill your information)
+      -#.alert.alert-warning
+        -#%strong Registration state : 
+        -#Pending (waiting for your payment)
+      -#.alert.alert-success
+        -#%strong Registration state : 
+        -#Success
+      
+    .col-lg-12
+      = yield
