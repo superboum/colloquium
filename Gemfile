@@ -15,3 +15,4 @@ gem "rack-test"
 #TOOLS
 gem "rake"
 gem "minitest"
+gem "racksh"
