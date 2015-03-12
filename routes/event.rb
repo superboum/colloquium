@@ -5,6 +5,13 @@ class EventController < BaseController
     haml :event, :locals => { :event => event }
   end
 
+  # USERSIDE
+  get '/profile/event/?' do
+    restrictToAuthenticated!
+    haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
+      haml :'profile/event'
+    end
+  end
 
   #BACKOFFICE
   get '/admin/event/?' do

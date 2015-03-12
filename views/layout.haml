@@ -37,17 +37,17 @@
                   %span.caret
                 %ul.dropdown-menu{:role => "menu"}
                   %li
-                    %a 
-                      %span.glyphicon.glyphicon-file
-                      My Account
+                    %a{:href => "/profile/account"} 
+                      %span.glyphicon.glyphicon-bookmark
+                      Conference registration
                   %li
-                    %a 
+                    %a{:href => "/profile/event"} 
                       %span.glyphicon.glyphicon-glass
-                      My Events
+                      Participate to side events
                   %li
-                    %a 
-                      %span.glyphicon.glyphicon-eye-open
-                      My Reviews
+                    %a{:href => "/profile/review"} 
+                      %span.glyphicon.glyphicon-inbox
+                      Become a lecturer
                   %li.divider
                   %li
                     %a{:href => "/logout"}
