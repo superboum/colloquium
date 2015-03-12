@@ -1,5 +1,6 @@
 class MainController < BaseController
   # FRONTOFFICE
+
   get '/?' do
     articles = Article.all
     events = Event.order(:start_date)

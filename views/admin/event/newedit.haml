@@ -2,7 +2,7 @@
   %h2 Edit event "#{event.name}"
 -else
   %h2 Create a new event
-
+  
 %form{:method => "POST"}
   .form-group
     %label{:for => "name"} Title
@@ -37,7 +37,8 @@
       -if !felts.empty?
         %h3 Edit form element : 
         -felts.each do |felt|
-          =haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> elements, :edit =>true}
+          felt.question
+          = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
   
     %label.checkbox-inline{:for=> "add_form_event"}
       %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/

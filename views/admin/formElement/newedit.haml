@@ -32,10 +32,12 @@
             %input{:type => "text", :class => "form-control", :id => "dataSelect#{suf}", :name => "dataSelect#{suf}", :placeholder => "Choice one;Choice two", :title => "dataSelect#{suf}", :value => felt.data}
       #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
 
-.form-group
-  %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
+
 
 
 - if !edit
+  .form-group
+    %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
+
   :plain
     </form>

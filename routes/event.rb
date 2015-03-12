@@ -17,6 +17,9 @@ class EventController < BaseController
   get '/admin/event/?' do
     restrictToAdmin!
     events = Event.all
+
+    puts events
+
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/event/home', :locals => { :events => events }
     end
@@ -51,10 +54,14 @@ end
     restrictToAdmin!
     event = Event.find(params[:id])
     begin
-      felts = FormElement.find_all_by! event_id: params[:id]
+      felts = FormElement.where(event_id: event.id)
+
+      puts felts
     rescue => e
-      felts= []
+      felts= {}
     end
+
+
 
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/newedit', :locals => { :event => event, :felts => felts ,:edit => true }
