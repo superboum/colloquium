@@ -24,7 +24,7 @@ class PageController < BaseController
     restrictToAdmin!
     page = Page.new
     page.title = params['title']
-    page.generateSlug(page)
+    page.generateSlug()
     page.category = params['category']
     page.author = params['author']
     page.long_text = params['long_text']
