@@ -1,1 +1,51 @@
-%h1 Hello world
+.panel.panel-default
+  .panel-body
+    %h3 
+      %span.glyphicon.glyphicon-user
+      Personnal information
+
+    %form.form-horizontal
+      %fieldset
+        %legend Identity
+        .form-group
+          %label.col-md-2.control-label{:for => "firstName"} First name *
+          .col-md-4
+            %input.form-control{:type => "text", :id => "firstName", :name => "firstName", :placeholder => "John"}
+
+          %label.col-md-2.control-label{:for => "lastName"} Last name *
+          .col-md-4
+            %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doe"}
+
+        .form-group
+          %label.col-md-2.control-label{:for => "lastName"} Title
+          .col-md-4
+            %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doctor, Professor..."}
+          
+        .form-group 
+          %label.col-md-2.control-label{:for => "lastName"} Gender
+          .col-md-4
+            %select.form-control
+              %option Male
+              %option Female
+              %option Other
+
+          %label.col-md-2.control-label{:for => "lastName"} Nationality
+          .col-md-4
+            %select.form-control
+              %option French
+
+      %fieldset
+        %legend Contact
+      
+      %fieldset
+        %legend Extra information
+
+
+.panel.panel-default
+  .panel-body
+    %h3
+      %span.glyphicon.glyphicon-shopping-cart
+      Payment
+      %small You must fill your personnal information before
+
+
