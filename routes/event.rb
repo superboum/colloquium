@@ -5,6 +5,8 @@ class EventController < BaseController
     haml :event, :locals => { :event => event }
   end
 
+
+
   # USERSIDE
   get '/profile/event/?' do
     restrictToAuthenticated!
@@ -18,7 +20,6 @@ class EventController < BaseController
     restrictToAdmin!
     events = Event.all
 
-    puts events
 
     haml :'admin/layout', :layout => :'layout'  do
       haml :'admin/event/home', :locals => { :events => events }
@@ -33,8 +34,8 @@ class EventController < BaseController
     end
   end
 
- 
-post '/admin/event/new' do
+
+  post '/admin/event/new' do
     restrictToAdmin!
     event = Event.new
     event.name = params['name']
@@ -48,21 +49,16 @@ post '/admin/event/new' do
       redirect "/admin/form_element/new/#{event.id}"
     end
     redirect "/admin/event", 303
-end
+  end
 
   get '/admin/event/edit/:id/?' do
     restrictToAdmin!
     event = Event.find(params[:id])
     begin
       felts = FormElement.where(event_id: event.id)
-
-      puts felts
     rescue => e
       felts= {}
     end
-
-
-
     haml :'admin/layout', :layout => :'layout' do
       haml :'admin/event/newedit', :locals => { :event => event, :felts => felts ,:edit => true }
     end
@@ -70,7 +66,7 @@ end
   end
 
 
-post '/admin/event/edit/:id' do
+  post '/admin/event/edit/:id' do
     restrictToAdmin!
     event = Event.find(params[:id])
     event.name = params['name']
@@ -80,8 +76,30 @@ post '/admin/event/edit/:id' do
     event.registration= params['registration']==1
     event.place_number = params['place_number']
     event.save
+
+    begin
+      felts = FormElement.where(event_id: event.id)
+    rescue => e
+      felts= {}
+    end
+
+    felts.each do |felt|
+      felt.question= params['question::'+felt.id.to_s]
+      felt.form_type = params["form_type::"+felt.id.to_s]
+      felt.event_id = params["event::"+felt.id.to_s]
+      if felt.form_type == FormElement.TYPES["select"]
+        puts "Data"
+        felt.data=params["dataSelect::"+felt.id.to_s]
+      end
+      felt.save
+
+    end
+
+    if(params['add_form_element']=='1')   
+      redirect "/admin/form_element/new/#{event.id}"
+    end
     redirect "/admin/event", 303
-end
+  end
 
 
   get '/admin/event/delete/:id/?' do

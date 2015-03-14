@@ -2,7 +2,7 @@ class MainController < BaseController
   # FRONTOFFICE
 
   get '/?' do
-    articles = Article.all
+    articles = Article.order(:created_at)
     events = Event.order(:start_date)
     haml :'home', :locals => { :articles => articles, :events => events }
   end
