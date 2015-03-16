@@ -8,18 +8,19 @@ require_relative 'models/init'
 require_relative 'routes/init'
 
 class ColloquiumApp < Sinatra::Application
-  register Sinatra::ActiveRecordExtension
-  enable :sessions
+    register Sinatra::ActiveRecordExtension
+    use Rack::Session::Cookie, :key => 'rack.session',
+        :path => '/',
+        :secret => 'ThisIsNotSafeBecauseThisTokenIsPublic...'
 
-  set :session_secret, 'ThisIsNotSafeAndShouldBeSetInAConfigurationFile...'
-  set :database, {adapter: "sqlite3", database: "app.db"}
+    set :database, {adapter: "sqlite3", database: "app.db"}
 
-  use MainController
-  use ArticleController
-  use PageController
-  use EventController
-  use ReviewController
-  use UserController
-  use SettingsController
-  use FormElementController 
+    use MainController
+    use ArticleController
+    use PageController
+    use EventController
+    use ReviewController
+    use UserController
+    use SettingsController
+    use FormElementController 
 end
