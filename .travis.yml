@@ -2,6 +2,8 @@ language: ruby
 cache: bundler
 sudo: false
 before_script:
+  - cp config/database.sample.yml config/database.yml
+  - cp config/general.sample.yml config/general.yml
   - bundle exec rake --version
   - bundle exec rake -T
   - bundle exec rake assets:download
