@@ -2,6 +2,9 @@
   %h2 Edit event "#{event.name}"
 -else
   %h2 Create a new event
+
+-if unvalid
+  .alert.alert-danger Some of your data you key are uncorrect.
   
 %form{:method => "POST"}
   .form-group
@@ -10,7 +13,11 @@
   
   
   .form-group
+    
     %label{:for => "short_text"} Summary (max 255 chars)
+
+    -if unvalid
+      .alert.alert-danger The size is limited to 255 chars. 
     %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you event", :name => "short_text"}
       = event.short_text
      
@@ -39,10 +46,10 @@
         -felts.each do |felt|
           felt.question
           = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
-  
-    %label.checkbox-inline{:for=> "add_form_event"}
-      %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
-      Add a form to your event
+    .checkbox
+      %label
+        %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
+        Add a form to your event
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
 
 
