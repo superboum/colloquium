@@ -7,13 +7,16 @@ require 'pony'
 
 #Initialisations
 class ColloquiumApp < Sinatra::Application
+  rootFolder = File.dirname(__FILE__)
+
   register Sinatra::ActiveRecordExtension
   register Sinatra::ConfigFile
 
-  config_file './config/general.yml'
+  config_file rootFolder+'/config/general.yml'
+
 
   #Database configuration
-  set :database_file, "config/database.yml"
+  set :database_file, rootFolder+"/config/database.yml"
 
   #Email configuration
   Pony.options = { 

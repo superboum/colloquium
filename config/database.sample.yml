@@ -4,3 +4,10 @@ development:
   host: ~
   username: ~
   password: ~
+
+test:
+  adapter: sqlite3
+  database: app.db
+  host: ~
+  username: ~
+  password: ~
