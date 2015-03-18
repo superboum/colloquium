@@ -3,27 +3,34 @@
     .col-md-6
       %h2 Sign in
       %form{:method => "POST"}
+        
+        %input{:type => "hidden", :name => "action", :value => "login"}
+        
         .form-group
           %label{:for => "emailSI"} Email address
-          %input#emailSI.form-control{:placeholder => "Enter email", :type => "email", :id => "emailSI", :title => "emailSI", :name => "emailSI"}/
+          %input#emailSI.form-control{:placeholder => "Enter email", :type => "email", :id => "emailSI", :title => "email", :name => "email"}/
 
         .form-group
           %label{:for => "InputPasswordSI"} Password
-          %input#InputPasswordSI.form-control{:placeholder => "Password", :type => "password", :id => "InputPasswordSI", :title => "InputPasswordSI", :name => "InputPasswordSI" }/
+          %input#InputPasswordSI.form-control{:placeholder => "Password", :type => "password", :id => "InputPasswordSI", :title => "InputPasswordSI", :name => "password" }/
 
         .form-group
           %input.btn.btn-default{:type => "submit", :value => "Sign in"}/
 
     .col-md-6
       %h2 Sign up
-      .form-group
-        %label{:for => "InputEmailSU"} Email address
-        %input#InputEmailSU.form-control{:placeholder => "Enter email", :type => "email"}/
-      .form-group
-        %label{:for => "InputPasswordSU"} Password
-        %input#InputPasswordSU.form-control{:placeholder => "Password", :type => "password"}/
-      .form-group
-        %label{:for => "ConfPasswordSU"} Confirm password
-        %input#ConfPasswordSU.form-control{:placeholder => "Password", :type => "password"}/
-      .form-group
-        %input.btn.btn-default{:type => "submit", :value => "Sign up"}/
+      %form{:method => "POST"}
+        
+        %input{:type => "hidden", :name => "action", :value => "register"}
+
+        .form-group
+          %label{:for => "InputEmailSU"} Email address
+          %input#InputEmailSU.form-control{:placeholder => "Enter email", :type => "email", :name => "email"}/
+        .form-group
+          %label{:for => "InputPasswordSU"} Password
+          %input#InputPasswordSU.form-control{:placeholder => "Password", :type => "password", :name => "password1"}/
+        .form-group
+          %label{:for => "ConfPasswordSU"} Confirm password
+          %input#ConfPasswordSU.form-control{:placeholder => "Password", :type => "password", :name=> "password2"}/
+        .form-group
+          %input.btn.btn-default{:type => "submit", :value => "Sign up"}/
