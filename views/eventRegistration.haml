@@ -1,0 +1,34 @@
+.container
+  .row
+    %h2.text-center Register to  "#{event.name}"
+
+    %p Please fill this form to register
+
+
+    %form{:method => "POST"}
+      %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
+      -felts.each do |felt|
+        
+        -if felt.form_type == FormElement.TYPES["select"]
+          .form-group
+            %label{:for => "felt::#{felt.id}"} #{felt.question}
+            %select.form-control{:id=>"felt::#{felt.id}",:name=>"felt::#{felt.id}",:title=>"#{felt.question}"}
+              -felt.data.each_line(';') do |s|
+                -str=s.match(/(.*?);?$/)[1]
+                %option{:value=>"#{str}"} #{str}
+
+
+        -else
+
+          -if felt.form_type == FormElement.TYPES["bool"]
+            .checkbox
+              %label
+                %input{:type => "checkbox",:value => "1",:title=>"#{felt.question}"}/
+                #{felt.question}
+          -else 
+            .form-group
+              %label{:for => "felt::#{felt.id}"} #{felt.question}
+              %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:placeholder => "#{felt.data}", :type => "text"}
+      %input.btn.btn-danger.pull-right{:type => "submit", :value => "Register", :style => "margin-left: 5px"} 
+      %a.btn.btn-default.pull-right{:href => "/admin/event"} Cancel 
+
