@@ -1,4 +1,4 @@
-class UserController < BaseController
+class ColloquiumApp < Sinatra::Application
   # USERSIDE
   get '/profile/account/?' do
     restrictToAuthenticated!

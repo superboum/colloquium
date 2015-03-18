@@ -1,4 +1,4 @@
-class MainController < BaseController
+class ColloquiumApp < Sinatra::Application
   # FRONTOFFICE
 
   get '/?' do
@@ -25,7 +25,7 @@ class MainController < BaseController
 
     user = User.find_by email: email_in
 
-    if user.password == password_in then
+    if user != nil and user.password == password_in then
       puts "User " + user.email + " is now logged"
       session[:user] = user.id
       redirect to('/'), 303

@@ -1,0 +1,14 @@
+cookies:
+  key: 'rack.session'
+  path: '/'
+  secret: 's3cr3t'
+
+mail:
+  address: 'smtp.gmail.com'
+  port: 587
+  domain: 'localhost.localdomain'
+  user_name: 'your.account@gmail.com'
+  password: 's3cr3t'
+  authentication: 'plain'
+  starttls: true
+  from: 'your.account@gmail.com'

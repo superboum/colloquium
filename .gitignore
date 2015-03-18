@@ -9,6 +9,8 @@ public
 vendor
 Gemfile.lock
 db/schema.rb
+config/general.yml
+config/database.yml
 
 # LaTeX files
 *.toc

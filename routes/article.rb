@@ -1,4 +1,4 @@
-class ArticleController < BaseController
+class ColloquiumApp < Sinatra::Application
   # FRONTOFFICE
   get '/article/:id/?' do
     article = Article.find_by_id(params[:id])

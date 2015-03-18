@@ -1,4 +1,4 @@
-class FormElementController < BaseController
+class ColloquiumApp < Sinatra::Application
 
   # ELEMENT FORM #
 

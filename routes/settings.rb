@@ -1,4 +1,4 @@
-class SettingsController < BaseController
+class ColloquiumApp < Sinatra::Application
   # BACKOFFICE
   get '/admin/settings/?' do
     restrictToAdmin!

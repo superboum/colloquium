@@ -1,4 +1,4 @@
-class PageController < BaseController
+class ColloquiumApp < Sinatra::Application
   # FRONTOFFICE
   get '/page/:task/?' do
     page = Page.find_by_slug(params[:task])

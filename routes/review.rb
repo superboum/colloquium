@@ -1,4 +1,4 @@
-class ReviewController < BaseController
+class ColloquiumApp < Sinatra::Application
 
   get '/profile/review/?' do
     restrictToAuthenticated!

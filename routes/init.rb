@@ -1,4 +1,3 @@
-require_relative 'base'
 require_relative 'main'
 require_relative 'article'
 require_relative 'page'

@@ -1,4 +1,6 @@
+
 class BaseController < Sinatra::Base
+  require 'pony'
   set :views, Proc.new { File.join(root, "../views") }
   
   register Sinatra::ActiveRecordExtension
@@ -10,6 +12,10 @@ class BaseController < Sinatra::Base
 
     # Used to build template
     def pages ; Page.all ; end
+
+    def mail
+      Pony.mail(:to => 'quentin@dufour.tk', :from => settings.mail['from'], :subject => 'hi', :body => 'Hello there.')
+    end
 
     ###
     # USER RELATED

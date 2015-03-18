@@ -1,4 +1,4 @@
-class EventController < BaseController
+class ColloquiumApp < Sinatra::Application
   # FRONTOFFICE
   get '/event/:id/?' do
     event = Event.find_by_id(params[:id])
