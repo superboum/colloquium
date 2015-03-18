@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(version: 20150318105429) do
     t.date     "birth"
   end
 
-  create_table "users_fanswers", id: false, force: :cascade do |t|
+  create_table "users_form_answers", id: false, force: :cascade do |t|
     t.integer "form_answers_id"
     t.integer "users_id"
   end
 
-  add_index "users_fanswers", ["form_answers_id"], name: "index_users_fanswers_on_form_answers_id"
-  add_index "users_fanswers", ["users_id"], name: "index_users_fanswers_on_users_id"
+  add_index "users_form_answers", ["form_answers_id"], name: "index_users_form_answers_on_form_answers_id"
+  add_index "users_form_answers", ["users_id"], name: "index_users_form_answers_on_users_id"
 
 end

@@ -23,7 +23,7 @@
           -if felt.form_type == FormElement.TYPES["bool"]
             .checkbox
               %label
-                %input{:type => "checkbox",:value => "1",:title=>"#{felt.question}"}/
+                %input{:type => "checkbox",:name=>"felt::#{felt.id}",:id => "felt::#{felt.id}",:value => "1",:title=>"#{felt.question}"}/
                 #{felt.question}
           -else 
             .form-group
