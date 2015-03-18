@@ -2,7 +2,14 @@ class ColloquiumApp < Sinatra::Application
   # FRONTOFFICE
   get '/event/:id/?' do
     event = Event.find_by_id(params[:id])
-    haml :event, :locals => { :event => event, :isAuthenticated => authenticated?}
+    puts authenticated?
+    puts "reg #{event.registration}" 
+    puts !user.registered?(event)
+
+    registration =  authenticated? && event.registration && !user.registered?(event)
+    
+    puts registration
+    haml :event, :locals => { :event => event,:registration => registration,:isAuthenticated => authenticated?}
   end
 
 
@@ -98,7 +105,7 @@ class ColloquiumApp < Sinatra::Application
     event.start_date = params['start_date']
     event.end_date = params['end_date']
     event.place_number = params['place_number']
-    event.registration= params['registration']==1
+    event.registration= params['registration']=="1"
     
     if(event.invalid?) 
     
@@ -137,7 +144,7 @@ class ColloquiumApp < Sinatra::Application
     event.short_text = params['short_text']
     event.start_date = params['start_date']
     event.end_date = params['end_date']
-    event.registration= params['registration']==1
+    event.registration= params['registration']=="1"
     event.place_number = params['place_number']
     event.save
 

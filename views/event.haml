@@ -7,7 +7,7 @@
         = markdown(event.short_text)
 
 
-      -if isAuthenticated
+      -if registration
         %a.pull-right.btn.btn-primary{:href => "/event/register/#{event.id}", :role => "button"} Register
       %h4.lead
         From : 
