@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301162556) do
+ActiveRecord::Schema.define(version: 20150318105429) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20150301162556) do
     t.boolean  "registration"
     t.integer  "place_number"
   end
+
+  create_table "form_answers", force: :cascade do |t|
+    t.string  "answer"
+    t.integer "form_elements_id"
+  end
+
+  add_index "form_answers", ["form_elements_id"], name: "index_form_answers_on_form_elements_id"
 
   create_table "form_elements", force: :cascade do |t|
     t.string  "question"
@@ -73,5 +80,13 @@ ActiveRecord::Schema.define(version: 20150301162556) do
     t.datetime "updated_at"
     t.date     "birth"
   end
+
+  create_table "users_fanswers", id: false, force: :cascade do |t|
+    t.integer "form_answers_id"
+    t.integer "users_id"
+  end
+
+  add_index "users_fanswers", ["form_answers_id"], name: "index_users_fanswers_on_form_answers_id"
+  add_index "users_fanswers", ["users_id"], name: "index_users_fanswers_on_users_id"
 
 end
