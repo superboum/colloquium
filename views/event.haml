@@ -3,16 +3,25 @@
     .col-md-8.col-md-offset-2
       %h1.text-center=event.name 
 
-      %h4.lead.text-center
+      %h4.lead
         = markdown(event.short_text)
 
-      %h4.lead.text-center
+
+      -if isAuthenticated
+        %a.pull-right.btn.btn-primary{:href => "/event/register/#{event.id}", :role => "button"} Register
+      %h4.lead
         From : 
         = event.start_date
         <br/>
         To :
         = event.end_date
+
+      
+      
+
       %small
         \- Last update :
         = event.updated_at
+
+
       
