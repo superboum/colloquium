@@ -25,6 +25,20 @@
         %input{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off","aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseThree",:value =>elements['string']}
         Text
       
+
+
+
+      / .btn-group{"data-toggle" => "buttons"}
+      /   %label.btn.btn-primary.active
+      /     %input#option1{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{}, :type => "radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off"}
+      /       Checkbox
+      /   %label.btn.btn-primary
+      /     %input#option2{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off"}
+      /       Selection
+      /   %label.btn.btn-primary
+      /     %input#option3{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off"}
+      /       Text
+
       #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
       #collapseTwo.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
         .panel-body
@@ -40,5 +54,13 @@
   .form-group
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
 
+
+    
+
+
+   
+
+
   :plain
     </form>
+
