@@ -3,7 +3,6 @@ module MainController
     # FRONTOFFICE
 
     app.get '/?' do
-      mail("quentin@dufour.tk","test tango charlie","zoulou")
       articles = Article.order(:created_at)
       events = Event.order(:start_date)
       haml :'home', :locals => { :articles => articles, :events => events }
