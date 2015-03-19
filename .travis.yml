@@ -13,6 +13,8 @@ before_script:
 
 script: bundle exec rake
 
+env: CODECLIMATE_REPO_TOKEN=a18103c8bb694e4732f0e022d64fde84b59c9f586fa3bc6d3abd72e9bdefcb8d
+
 rvm:
     - 2.0.0
     - 1.9.3

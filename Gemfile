@@ -17,3 +17,4 @@ gem "rack-test"
 gem "rake"
 gem "minitest"
 gem "racksh"
+gem "codeclimate-test-reporter", group: :test, require: nil
