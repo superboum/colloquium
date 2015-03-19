@@ -30,5 +30,5 @@
               %label{:for => "felt::#{felt.id}"} #{felt.question}
               %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:placeholder => "#{felt.data}", :type => "text"}
       %input.btn.btn-danger.pull-right{:type => "submit", :value => "Register", :style => "margin-left: 5px"} 
-      %a.btn.btn-default.pull-right{:href => "/admin/event"} Cancel 
+      %a.btn.btn-default.pull-right{:href => "/event/#{event.id}"} Cancel 
 
