@@ -28,7 +28,17 @@ module MainController
           redirect to('/login'),303
         end
       else
-
+        if params['password1'] != params['password2']
+          redirect to('/login'), 303
+        elsif User.find_by(email: params['email']) != nil
+          redirect to('/login'), 303
+        else
+          u = User.new
+          u.email = params['email']
+          u.raw_password params['password1']
+          u.save
+          haml :'waiting_for_validation', :locals => { }
+        end
       end
     end
 

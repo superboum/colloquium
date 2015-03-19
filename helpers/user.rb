@@ -11,9 +11,8 @@ module UserHelper
     end
 
     def logUser(email,password)
-        password_in = Digest::SHA256.hexdigest(password)
         user = User.find_by email: email
-        ok = user != nil and user.password == password_in
+        ok = user != nil and user.correct_password?(password)
         if ok then
             puts "Successfully logged " + user.email
             session[:user] = user.id

@@ -18,3 +18,4 @@ gem "rake"
 gem "minitest"
 gem "racksh"
 gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'rubocop', require: false
