@@ -5,6 +5,8 @@ require 'sinatra/config_file'
 require 'haml'
 require 'pony'
 
+require_relative 'routes/init'
+
 #Initialisations
 class ColloquiumApp < Sinatra::Application
   rootFolder = File.dirname(__FILE__)
@@ -40,9 +42,14 @@ class ColloquiumApp < Sinatra::Application
     :path => settings.cookies['path'],
     :secret => settings.cookies['secret']
 
+  register MainController
+  register ArticleController
+  register EventController
+  register FormElementController
+  register PageController
+  register ReviewController
+  register SettingsController
 end
 
-#Submodules
-require_relative 'models/init'
 require_relative 'helpers/init'
-require_relative 'routes/init'
+require_relative 'models/init'
