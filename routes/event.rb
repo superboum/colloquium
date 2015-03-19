@@ -6,11 +6,7 @@ module EventController
       puts authenticated?
       puts "reg #{event.registration}" 
       puts !user.registered?(event)
-
-      registration =  authenticated? && event.registration && !user.registered?(event)
-
-      puts registration
-      haml :event, :locals => { :event => event,:registration => registration,:isAuthenticated => authenticated?}
+      haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => user.registered?(event)}
     end
 
 
@@ -67,6 +63,13 @@ module EventController
       end
 
 
+      participant = RegisteredUsersToEvents.new
+      participant.event_id = params[:id]
+      participant.user_id = user.id
+
+      participant.save
+
+
       redirect "/", 303
 
     end
@@ -107,6 +110,7 @@ module EventController
       event.end_date = params['end_date']
       event.place_number = params['place_number']
       event.registration= params['registration']=="1"
+      event.user_id = user.id
 
       if(event.invalid?) 
 
@@ -147,11 +151,13 @@ module EventController
       event.end_date = params['end_date']
       event.registration= params['registration']=="1"
       event.place_number = params['place_number']
+      event.user_id = user.id
+
       event.save
 
       begin
         felts = FormElement.where(event_id: event.id)
-        rescu
+        rescue
         felts= {}
       end
 

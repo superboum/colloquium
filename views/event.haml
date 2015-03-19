@@ -1,14 +1,13 @@
 .container
-  .row
-    .col-md-8.col-md-offset-2
+  .row.vcenter
+    .col-md-6.col-md-offset-2
       %h1.text-center=event.name 
 
       %h4.lead
         = markdown(event.short_text)
 
 
-      -if registration
-        %a.pull-right.btn.btn-primary{:href => "/event/register/#{event.id}", :role => "button"} Register
+      
       %h4.lead
         From : 
         = event.start_date
@@ -22,6 +21,58 @@
       %small
         \- Last update :
         = event.updated_at
+    .col-md-2.col-md-offset-1
+      .panel.panel-default
+        .panel-body
+          -if registration  
+            -if isAuthentificated
+              -if isRegistered
+                %p You have already registered to this event. 
+              -else
+                %p You have not yet registered to this event. 
+
+                %a.btn.btn-primary{:href => "/event/register/#{event.id}", :role => "button"} Register
+            -else
+              %p You need to be authentificated to register
+          -else
+            %p Registration is not allowed for this event.
 
 
-      
+/ .container
+/   .row
+/     .col-md-8
+/       %h1 News
+/       - articles.each do |a|
+/         .panel.panel-default
+/           .panel-body
+/             %h3
+/               %span.glyphicon.glyphicon-chevron-right
+/               =a.title
+/             %p
+/               -#= markdown(a.short_text)
+/           .panel-footer
+/             .small.pull-left
+/               Category : 
+/               = a.category
+/               \- Last update : 
+/               = a.updated_at
+              
+/             %a.pull-right.btn.btn-xs.btn-default{:href => "/article/#{a.id}"} Read more     &#8594; 
+/             %br.clear 
+/     .col-md-4
+/       %h1 Events
+/       - events.each do |e|
+/         .panel.panel-default
+/           .panel-body
+/             %h3
+/               %span.glyphicon.glyphicon-chevron-right
+/               =e.name
+/             %p
+/               = markdown(e.short_text)
+/           .panel-footer
+/             .small.pull-left
+/               Begin of the events : 
+/               = e.start_date 
+/             %a.pull-right.btn.btn-xs.btn-default{:href => "/event/#{e.id}"} Read more     &#8594; 
+/             %br.clear 
+
