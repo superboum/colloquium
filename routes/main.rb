@@ -36,6 +36,8 @@ module MainController
           u = User.new
           u.email = params['email']
           u.raw_password params['password1']
+          #AJOUTE PAR JEAN, SINON --> PB LORS DE L'AUTHENTIFICATION
+          u.role = 0
           u.save
           haml :'waiting_for_validation', :locals => { }
         end
