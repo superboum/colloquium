@@ -13,10 +13,6 @@ class AppTest < MiniTest::Test
       Capybara.use_default_driver
     end
 
-    Capybara.register_driver :rack_test do |app|
-      Capybara::RackTest::Driver.new(app, :headers => { 'HTTP_USER_AGENT' => 'Capybara' })
-    end
-
     
     def app
         ColloquiumApp
@@ -29,11 +25,11 @@ class AppTest < MiniTest::Test
     def admin_login
         #Non-fonctional
         user = User.find_by email: "admin@admin.com"
-        #session[:user] = user.id
         visit '/login'
-        fill_in('emailSIf', :with => "admin@admin.com")
-        fill_in "InputPasswordSI_InputPasswordSI", :with => "admin"
-        click_link "Sign in"
+        fill_in 'emailSI', :with => user.email
+        fill_in "InputPasswordSI", :with => "admin"
+        click_button "Sign in"
+        page.find('.btn-danger')
       #end
     end
 
@@ -62,6 +58,7 @@ class AppTest < MiniTest::Test
 	#Test if buttons and the list are displayed
         admin_login
         get '/admin/article'
+        assert last_response.ok?
         Article.all.each do |article|
            assert last_response.body.include?(article.title)
         end
@@ -72,6 +69,7 @@ class AppTest < MiniTest::Test
         #Fill the form and create a new article
         admin_login
         get '/admin/article/new'
+        assert last_response.ok?
         assert last_response.body.include?('Summary (max 255 chars)')
         #create a new article, verify if it is the same as the one in the database
 	

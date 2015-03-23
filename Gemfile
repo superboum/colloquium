@@ -17,5 +17,6 @@ gem "rack-test"
 gem "rake"
 gem "minitest"
 gem "racksh"
+gem "capybara"
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'rubocop', require: false

@@ -2,17 +2,17 @@
   .row
     .col-md-6
       %h2 Sign in
-      %form{:method => "POST"}
+      %form#Sign_in{:method => "POST"}
         
         %input{:type => "hidden", :name => "action", :value => "login"}
         
         .form-group
           %label{:for => "emailSI"} Email address
-          %input#emailSI.form-control{:placeholder => "Enter email", :type => "email", :id => "emailSI", :title => "email", :name => "email"}/
+          %input#emailSI.form-control{:placeholder => "Enter email", :type => "email", :title => "email", :name => "email"}/
 
         .form-group
           %label{:for => "InputPasswordSI"} Password
-          %input#InputPasswordSI.form-control{:placeholder => "Password", :type => "password", :id => "InputPasswordSI", :title => "InputPasswordSI", :name => "password" }/
+          %input#InputPasswordSI.form-control{:placeholder => "Password", :type => "password", :title => "InputPasswordSI", :name => "password" }/
 
         .form-group
           %input.btn.btn-default{:type => "submit", :value => "Sign in"}/
