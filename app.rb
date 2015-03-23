@@ -46,6 +46,7 @@ class ColloquiumApp < Sinatra::Application
     register FormElementController
     register PageController
     register ReviewController
+    register UserController
     register SettingsController
   end
 end
