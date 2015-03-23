@@ -5,8 +5,12 @@ module EventController
       event = Event.find_by_id(params[:id])
       puts authenticated?
       puts "reg #{event.registration}" 
-      puts !user.registered?(event)
-      haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => user.registered?(event)}
+      if authenticated?
+       isRegistered = !user.registered?(event)
+      else 
+        isRegistered = false
+      end
+      haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => isRegistered}
     end
 
 
