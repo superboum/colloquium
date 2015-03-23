@@ -21,15 +21,20 @@ class AppTest < MiniTest::Test
     def setup
       Capybara.app = ColloquiumApp
     end
+    
+    
 
     def admin_login
-        #Non-fonctional
+        #To connect as admin
         user = User.find_by email: "admin@admin.com"
         visit '/login'
+        #to fill the form where 'id' is emailSI
         fill_in 'emailSI', :with => user.email
         fill_in "InputPasswordSI", :with => "admin"
         click_button "Sign in"
+        #To find CSS content
         page.find('.btn-danger')
+        html.include?('admin@admin.com')
       #end
     end
 
@@ -45,32 +50,32 @@ class AppTest < MiniTest::Test
     def test_admin_home
         #Test if the dashboard is displayed
         admin_login
-        get '/admin'
-        assert last_response.ok?
-        assert last_response.body.include?('Dashboard')
-        assert last_response.body.include?('Type')
-        assert last_response.body.include?(Article.count)
-        assert last_response.body.include?(Page.count)
-        assert last_response.body.include?(User.count)
-    end
+        visit '/admin'
+        page.find('.btn-danger')
+        #To find text in the page
+        html.include?('Dashboard')
+        html.include?('Dashboard')
+        html.include?('Type')
+        html.include?('#{Article.count}')
+        html.include?('#{Page.count')
+        html.include?('#{User.count')
+    end 
 
     def test_admin_article_list
 	#Test if buttons and the list are displayed
         admin_login
-        get '/admin/article'
-        assert last_response.ok?
+        visit '/admin/article'
         Article.all.each do |article|
-           assert last_response.body.include?(article.title)
+            html.include?(article.title)
         end
-        assert last_response.body.include?('Add a new article')
+         html.include?('Add a new article')
     end
 
     def test_admin_article_new
         #Fill the form and create a new article
         admin_login
-        get '/admin/article/new'
-        assert last_response.ok?
-        assert last_response.body.include?('Summary (max 255 chars)')
+        visit '/admin'
+        html.include?('Summary (max 255 chars)')
         #create a new article, verify if it is the same as the one in the database
 	
     end
@@ -80,5 +85,13 @@ class AppTest < MiniTest::Test
         test_admin_article_new
         #get '/article/#{article.id}'
     end
+
+    def test_pages
+        Page.all.each do |page|
+            get '/page/#{page.slug}'
+            assert last_response.ok?
+            assert last_response.body.include?(page.title)
+        end
+    end                
 
 end
