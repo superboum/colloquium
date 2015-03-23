@@ -34,7 +34,7 @@ class AppTest < MiniTest::Test
         click_button "Sign in"
         #To find CSS content
         page.find('.btn-danger')
-        html.include?('admin@admin.com')
+        assert html.include?('admin@admin.com')
       #end
     end
 
@@ -51,14 +51,13 @@ class AppTest < MiniTest::Test
         #Test if the dashboard is displayed
         admin_login
         visit '/admin'
-        page.find('.btn-danger')
+        assert page.find('.btn-danger')
         #To find text in the page
-        html.include?('Dashboard')
-        html.include?('Dashboard')
-        html.include?('Type')
-        html.include?('#{Article.count}')
-        html.include?('#{Page.count')
-        html.include?('#{User.count')
+        assert html.include?('Dashboard')
+        assert html.include?('Type')
+        assert html.include?("#{Article.count}")
+        assert html.include?("#{Page.count}")
+        assert html.include?("#{User.count}")
     end 
 
     def test_admin_article_list
@@ -66,18 +65,31 @@ class AppTest < MiniTest::Test
         admin_login
         visit '/admin/article'
         Article.all.each do |article|
-            html.include?(article.title)
+            assert html.include?(article.title)
         end
          html.include?('Add a new article')
     end
 
     def test_admin_article_new
         #Fill the form and create a new article
+        tmp = Article.new
+        tmp.title = "un titre normal"
+        tmp.category = "Une catégorie"
+        tmp.short_text = "Le petit texte"
+        tmp.long_text = "et le grand"
         admin_login
-        visit '/admin'
+        visit '/admin/article/new'
         html.include?('Summary (max 255 chars)')
-        #create a new article, verify if it is the same as the one in the database
-	
+        fill_in 'title', :with => tmp.title
+        fill_in 'category', :with => tmp.category
+        fill_in 'short_text', :with => tmp.short_text
+        fill_in 'long_text', :with => tmp.long_text
+        click_button "Publish"
+        a = Article.find_by_title(tmp.title)
+        a_id = a.id
+        visit "/article/#{a_id}"
+        assert html.include?(tmp.title)        
+        Article.find_by_title(tmp.title).destroy
     end
 
     def test_article_view
@@ -88,7 +100,7 @@ class AppTest < MiniTest::Test
 
     def test_pages
         Page.all.each do |page|
-            get '/page/#{page.slug}'
+            get "/page/#{page.slug}"
             assert last_response.ok?
             assert last_response.body.include?(page.title)
         end
