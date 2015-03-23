@@ -1,41 +1,42 @@
 .container
-  .row.vcenter
-    .col-md-6.col-md-offset-2
+  .row
+    .col-md-9.col-md-offset-2
       %h1.text-center=event.name 
+      .row.vcenter
+        .col-md-8
+          %h4.lead
+            = markdown(event.short_text)
 
-      %h4.lead
-        = markdown(event.short_text)
 
+          
+          %h4.lead
+            From : 
+            = event.start_date
+            <br/>
+            To :
+            = event.end_date
 
-      
-      %h4.lead
-        From : 
-        = event.start_date
-        <br/>
-        To :
-        = event.end_date
+          
+          
 
-      
-      
+          %small
+            \- Last update :
+            = event.updated_at
+        .col-md-3.col-md-offset-1
+          .panel.panel-default
+            .panel-body
+              -if registration  
+                -if isAuthentificated
+                  -if isRegistered
+                    %p You have already registered to this event. 
+                  -else
+                    %p You have not yet registered to this event. 
 
-      %small
-        \- Last update :
-        = event.updated_at
-    .col-md-2.col-md-offset-1
-      .panel.panel-default
-        .panel-body
-          -if registration  
-            -if isAuthentificated
-              -if isRegistered
-                %p You have already registered to this event. 
+                    %a.btn.btn-primary{:href => "/event/register/#{event.id}", :role => "button"} Register
+                -else
+                  %p You need to be authentificated to register
               -else
-                %p You have not yet registered to this event. 
-
-                %a.btn.btn-primary{:href => "/event/register/#{event.id}", :role => "button"} Register
-            -else
-              %p You need to be authentificated to register
-          -else
-            %p Registration is not allowed for this event.
+                %p Registration is not allowed for this event.
 
 
 / .container
@@ -57,7 +58,7 @@
 /               \- Last update : 
 /               = a.updated_at
               
-/             %a.pull-right.btn.btn-xs.btn-default{:href => "/article/#{a.id}"} Read more     &#8594; 
+/             %a.pull-right.btn.btn-md.btn-default{:href => "/article/#{a.id}"} Read more     &#8594; 
 /             %br.clear 
 /     .col-md-4
 /       %h1 Events
@@ -73,6 +74,6 @@
 /             .small.pull-left
 /               Begin of the events : 
 /               = e.start_date 
-/             %a.pull-right.btn.btn-xs.btn-default{:href => "/event/#{e.id}"} Read more     &#8594; 
+/             %a.pull-right.btn.btn-md.btn-default{:href => "/event/#{e.id}"} Read more     &#8594; 
 /             %br.clear 
 

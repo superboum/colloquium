@@ -2,10 +2,17 @@
   .row
     %h2.text-center Register to  "#{event.name}"
 
-    %p Please fill this form to register
-
-
     %form{:method => "POST"}
+    
+
+    -if !felts.empty?
+      -if felts.length > 1
+        - s = "s"
+      -else 
+        -s=""
+      %p Please fill this form#{s} to register
+
+
       %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
       -felts.each do |felt|
         
@@ -29,6 +36,7 @@
             .form-group
               %label{:for => "felt::#{felt.id}"} #{felt.question}
               %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:placeholder => "#{felt.data}", :type => "text"}
-      %input.btn.btn-primary.pull-right{:type => "submit", :value => "Register", :style => "margin-left: 5px"} 
-      %a.btn.btn-default.pull-right{:href => "/event/#{event.id}"} Cancel 
+    .text-center
+      %input.btn.btn-primary{:type => "submit", :value => "Register", :style => "margin-left: 5px"} 
+      %a.btn.btn-default{:href => "/event/#{event.id}"} Cancel 
 
