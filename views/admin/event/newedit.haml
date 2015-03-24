@@ -6,7 +6,7 @@
 -if unvalid
   .alert.alert-danger Some of your data you key are uncorrect.
   
-%form{:method => "POST"}
+%form.form-horizontal{:method => "POST"}
   .form-group
     %label{:for => "name"} Title
     %input{:type => "text", :class => "form-control", :id => "name", :placeholder => "Conference...", :name => "name", :value => event.name}/
@@ -29,14 +29,33 @@
   .form-group
     %label{:for => "end_date"} End of your event 
     %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
-  .form-groupe
+  .form-group
     %label{:for => "place_number"} Number of place
     %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.place_number}
   -if edit
     -if !felts.empty?
-      %h3 Edit form element : 
+      .row.vcenter.text-left.panel-group
+
+        .col-md-1
+          %br/
+          %p Delete 
+        .col-md-10        
+          %h3 Edit form element : 
+
       -felts.each do |felt|
-        = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
+        .row.vcenter
+          .col-md-1.text-center
+            .checkbox
+              .label
+                %input{:type => "checkbox",:id => "delete::#{felt.id}",:name => "delete::#{felt.id}",:value=> '1',:title => "Check this boxe to delete this form-element"}
+          .col-md-10.panel.panel-default
+            %br
+            = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
+          .col-md-1
+            %a.btn.btn-xs.btn-danger{:href => "/admin/form_element/delete/#{felt.id}"} 
+              Delete
+        
+
   .checkbox
     %label
       %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/

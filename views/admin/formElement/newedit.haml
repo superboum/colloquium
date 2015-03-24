@@ -1,57 +1,58 @@
 - if edit
   -suf="::#{felt.id}"
+  -id="#{felt.id}"
 - else
   - suf = "" #TO MANAGE NEW CASE
   %h2 Create a new form element for the event #{event.name}
   :plain
     <form method = "POST">
 
+.row
 
-.form-group
-  %label{:for => "question"} Question : 
-  %input{:type => "text", :class => "form-control", :id => "question#{suf}", :name => "question#{suf}", :placeholder => "Are you vegetarian...", :title => "question#{suf}", :value => felt.question}
-.form-group
+  .form-group
+    %label.col-sm-2.control-label{:for => "question"} Question : 
+    .col-sm-10
+      %input{:type => "text", :class => "form-control", :id => "question#{suf}", :name => "question#{suf}", :placeholder => "Are you vegetarian...", :title => "question#{suf}", :value => felt.question}
   %input{:type=>"hidden",:id=>"event#{suf}",:name=>"event#{suf}",:value=>event.id}
-.form-group
-  #types.btn-group{"data-toggle"=>"TEST","aria-multiselectable" => "false", :role => "tablist"}
-    .panel
-      %label.btn.btn-primary
-        %input{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{},:type=>"radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off","aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseOne",:value =>elements['bool']}
-        Checkbox 
-      %label.btn.btn-primary
-        %input{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off","aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseTwo",:value =>elements['select']}
-        Selection
-      %label.btn.btn-primary
-        %input{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off","aria-controls" => "collapseThree", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseThree",:value =>elements['string']}
-        Text
-      
+  .form-group
+    .col-sm-10.col-sm-offset-2
+      #types.btn-group{"data-toggle"=>"TEST","aria-multiselectable" => "false", :role => "tablist"}
+        .panel
+          %label.btn.btn-primary
+            %input{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{},:type=>"radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off","aria-controls" => "collapseBool#{id}", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseBool#{id}",:value =>elements['bool']}
+            Checkbox 
+          %label.btn.btn-primary
+            %input{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off","aria-controls" => "collapseSelect#{id}", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseSelect#{id}",:value =>elements['select']}
+            Selection
+          %label.btn.btn-primary
+            %input{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off","aria-controls" => "collapseString#{id}", "aria-expanded" => "true", "data-parent" => "#types", "data-toggle" => "collapse", "data-target" => "#collapseString#{id}",:value =>elements['string']}
+            Text
+ 
 
 
 
-      / .btn-group{"data-toggle" => "buttons"}
-      /   %label.btn.btn-primary.active
-      /     %input#option1{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{}, :type => "radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off"}
-      /       Checkbox
-      /   %label.btn.btn-primary
-      /     %input#option2{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off"}
-      /       Selection
-      /   %label.btn.btn-primary
-      /     %input#option3{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off"}
-      /       Text
-
-      #collapseOne.panel-collapse.collapse.in{"aria-labelledby" => "headingOne", :role => "tabpanel"}
-      #collapseTwo.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
-        .panel-body
-          .form-group
-            %label{:for => "data"} Enter each different rows separated by  a ';'
-            %input{:type => "text", :class => "form-control", :id => "dataSelect#{suf}", :name => "dataSelect#{suf}", :placeholder => "Choice one;Choice two", :title => "dataSelect#{suf}", :value => felt.data}
-      #collapseThree.panel-collapse.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
-
-
+    / .btn-group{"data-toggle" => "buttons"}
+    /   %label.btn.btn-primary.active
+    /     %input#option1{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{}, :type => "radio",:name => "form_type#{suf}",:id=>"bool",:autocomplete => "off"}
+    /       Checkbox
+    /   %label.btn.btn-primary
+    /     %input#option2{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"select",:autocomplete => "off"}
+    /       Selection
+    /   %label.btn.btn-primary
+    /     %input#option3{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""} :{},:type=>"radio",:name => "form_type#{suf}",:id=>"string",:autocomplete => "off"}
+    /       Text
+    
+    .panel-collapse.collapse.in{:id => "collapseBool#{id}","aria-labelledby" => "headingOne", :role => "tabpanel"}
+    .collapse{:id => "collapseSelect#{id}", "aria-labelledby" => "headingTwo", :role => "tabpanel"}
+      .panel-body
+        .form-group.vcenter
+          %label.col-sm-4.control-label{:for => "data"} Enter each different rows separated by  a ';'
+          .col-sm-8
+            %input{:id => "text", :class => "form-control", :id => "dataSelect#{suf}", :name => "dataSelect#{suf}", :placeholder => "Choice one;Choice two", :title => "dataSelect#{suf}", :value => felt.data}
+    .panel-collapse.collapse{:id=>"collapseString#{id}","aria-labelledby" => "headingThree", :role => "tabpanel"}
 
 
 - if !edit
-  
   .checkbox
     %label
       %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
