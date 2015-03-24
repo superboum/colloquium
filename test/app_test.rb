@@ -22,7 +22,34 @@ class AppTest < MiniTest::Test
       Capybara.app = ColloquiumApp
     end
     
+
+    $tmp_article = Article.new
+    $tmp_article.title = "un titre normal"
+    $tmp_article.category = "Une catégorie"
+    $tmp_article.short_text = "Le petit texte"
+    $tmp_article.long_text = "et le grand"
     
+    def new_page
+        p = Page.new
+        p.title = "A title to try"
+        p.generateSlug()
+        p.author = "John Doe"
+        p.long_text = "A lot of content in this page"
+        p.priority = 2
+        p.save
+    end
+    
+    
+    def new_article
+        admin_login
+        visit '/admin/article/new'
+        html.include?('Summary (max 255 chars)')
+        fill_in 'title', :with => $tmp_article.title
+        fill_in 'category', :with => $tmp_article.category
+        fill_in 'short_text', :with => $tmp_article.short_text
+        fill_in 'long_text', :with => $tmp_article.long_text
+        click_button "Publish"
+    end
 
     def admin_login
         #To connect as admin
@@ -33,7 +60,8 @@ class AppTest < MiniTest::Test
         fill_in "InputPasswordSI", :with => "admin"
         click_button "Sign in"
         #To find CSS content
-        page.find('.btn-danger')
+        assert page.find('.btn-danger')
+        #to find text in body
         assert html.include?('admin@admin.com')
       #end
     end
@@ -42,7 +70,11 @@ class AppTest < MiniTest::Test
         get '/'
         assert last_response.ok?
         assert last_response.body.include?('IWSM')
-        Page.all.each do |page|
+        pages = Page.all
+        if pages == nil
+            new_page
+        end
+        pages.each do |page|
            assert last_response.body.include?(page.title)
         end
     end
@@ -61,48 +93,35 @@ class AppTest < MiniTest::Test
     end 
 
     def test_admin_article_list
-	#Test if buttons and the list are displayed
+    #Test if buttons and the list are displayed
         admin_login
+        articles = Article.all
+        if articles == nil
+            new_article
+        end
         visit '/admin/article'
-        Article.all.each do |article|
+        articles.each do |article|
             assert html.include?(article.title)
         end
-         html.include?('Add a new article')
+         assert html.include?('Add a new article')
     end
 
     def test_admin_article_new
         #Fill the form and create a new article
-        tmp = Article.new
-        tmp.title = "un titre normal"
-        tmp.category = "Une catégorie"
-        tmp.short_text = "Le petit texte"
-        tmp.long_text = "et le grand"
-        admin_login
-        visit '/admin/article/new'
-        html.include?('Summary (max 255 chars)')
-        fill_in 'title', :with => tmp.title
-        fill_in 'category', :with => tmp.category
-        fill_in 'short_text', :with => tmp.short_text
-        fill_in 'long_text', :with => tmp.long_text
-        click_button "Publish"
-        a = Article.find_by_title(tmp.title)
-        a_id = a.id
-        visit "/article/#{a_id}"
-        assert html.include?(tmp.title)        
-        Article.find_by_title(tmp.title).destroy
-    end
-
-    def test_article_view
-        #Check that your new article is correctly displayed
-        test_admin_article_new
-        #get '/article/#{article.id}'
+        new_article
+        a = Article.find_by_title($tmp_article.title)
+        visit "/article/#{a.id}"
+        assert html.include?($tmp_article.long_text)        
+        a.destroy
     end
 
     def test_pages
+        
         Page.all.each do |page|
             get "/page/#{page.slug}"
             assert last_response.ok?
             assert last_response.body.include?(page.title)
+            assert last_response.body.include?(page.long_text)
         end
     end                
 
