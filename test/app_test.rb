@@ -55,7 +55,6 @@ class AppTest < MiniTest::Test
         #To connect as admin
         user = User.find_by email: "admin@admin.com"
         visit '/login'
-        #to fill the form where 'id' is emailSI
         fill_in 'emailSI', :with => user.email
         fill_in "InputPasswordSI", :with => "eukfzhgeofiuhzefefzsef"
         click_button "Sign in"
@@ -136,6 +135,8 @@ class AppTest < MiniTest::Test
             assert last_response.body.include?(page.long_text)
         end
         p.destroy
+        p = Page.find_by_title("In test_pages")
+        assert p == nil
     end                
 
 end
