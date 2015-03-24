@@ -74,7 +74,7 @@ module EventController
       participant.save
 
 
-      redirect "/", 303
+      redirect "/event/#{params[:id]}", 303
 
     end
     # USERSIDE
@@ -185,9 +185,9 @@ module EventController
         end
       else
 
-        if(params['add_form_element']=='1')   
-          redirect "/admin/form_element/new/#{event.id}"
-        end
+      if(params['add_form_element']=='1')   
+        redirect "/admin/form_element/new/#{event.id}"
+      end
         redirect "/admin/event", 303
       end
     end
@@ -203,6 +203,7 @@ module EventController
 
     app.post '/admin/event/delete/:id' do
       restrictToAdmin!
+      FormElement.where(event_id: params[:id]).destroy_all
       Event.destroy(params[:id])
       redirect "/admin/event", 303
     end

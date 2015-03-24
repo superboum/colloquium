@@ -51,11 +51,15 @@
 
 
 - if !edit
+  
+  .checkbox
+    %label
+      %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
+      Add a form to your event
+
   .form-group
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
-
-
-    
+  
 
 
    

@@ -32,24 +32,19 @@
   .form-groupe
     %label{:for => "place_number"} Number of place
     %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.place_number}
-  .form-group
-    %label.checkbox-inline{:for => "registration"} 
-      -if event.registration
-        %input{:type => "checkbox", :id => "registration", :name => "registration",:value=> '1',:checked => ""}/
-        Enable registration
-      -else 
-        %input{ :type => "checkbox",  :id => "registration", :name => "registration",:value=> '1'}/ 
-        Enable registration
-    -if edit
-      -if !felts.empty?
-        %h3 Edit form element : 
-        -felts.each do |felt|
-          felt.question
-          = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
-    .checkbox
-      %label
-        %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
-        Add a form to your event
-    %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
+  -if edit
+    -if !felts.empty?
+      %h3 Edit form element : 
+      -felts.each do |felt|
+        = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
+  .checkbox
+    %label
+      %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
+      Add a form to your event
+  .checkbox
+    %label
+      %input{event.registration ? {:checked => ""}:{},:type => "checkbox", :id => "registration", :name => "registration",:value=> '1'}/
+      Enable registration
+  %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}
 
 

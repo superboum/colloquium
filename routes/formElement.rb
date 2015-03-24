@@ -40,6 +40,10 @@ module FormElementController
         felt.data=params["dataSelect"]
       end
       felt.save
+
+      if(params['add_form_element']=='1')   
+        redirect "/admin/form_element/new/#{params["event"]}"
+      end
       redirect "/admin/event", 303
 
     end
