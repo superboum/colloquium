@@ -6,7 +6,8 @@ module EventController
       puts authenticated?
       puts "reg #{event.registration}" 
       if authenticated?
-       isRegistered = !user.registered?(event)
+       isRegistered = user.registered?(event)
+       puts isRegistered
       else 
         isRegistered = false
       end
@@ -41,6 +42,7 @@ module EventController
       felts.each do |felt|
         fa = FormAnswer.new
         fa.form_elements_id = felt.id
+        fa.event_id=felt.event_id
         id="felt::#{felt.id}"
         puts felt.form_type
         case felt.form_type
@@ -166,15 +168,18 @@ module EventController
       end
 
       felts.each do |felt|
-        felt.question= params['question::'+felt.id.to_s]
-        felt.form_type = params["form_type::"+felt.id.to_s]
-        felt.event_id = params["event::"+felt.id.to_s]
-        if felt.form_type == FormElement.TYPES["select"]
-          puts "Data"
-          felt.data=params["dataSelect::"+felt.id.to_s]
+        if(params["delete::"+felt.id.to_s]=='1')
+          FormAnswer.where(form_elements_id: felt.id).destroy_all
+          felt.destroy
+        else  
+          felt.question= params['question::'+felt.id.to_s]
+          felt.form_type = params["form_type::"+felt.id.to_s]
+          felt.event_id = params["event::"+felt.id.to_s]
+          if felt.form_type == FormElement.TYPES["select"]
+            felt.data=params["dataSelect::"+felt.id.to_s]
+          end
+          felt.save
         end
-        felt.save
-
       end
 
       if(event.invalid?) 
@@ -200,9 +205,11 @@ module EventController
         haml :'admin/event/delete', :locals => { :event => event }
       end
     end
-
+    # CRADE ????
     app.post '/admin/event/delete/:id' do
       restrictToAdmin!
+      RegisteredUsersToEvents.where(event_id: params[:id]).destroy_all
+      FormAnswer.where(event_id: params[:id]).destroy_all
       FormElement.where(event_id: params[:id]).destroy_all
       Event.destroy(params[:id])
       redirect "/admin/event", 303

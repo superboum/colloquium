@@ -67,6 +67,22 @@ module FormElementController
       felt= Form.find(params["felt"])
       felt.data=params["data"]
       felt.save
-    end     
+    end
+
+    app.get '/admin/form_element/delete/:id' do
+      restrictToAdmin!
+      felt = FormElement.find(params[:id])
+      haml :'admin/layout', :layout => :'layout' do
+        haml :'admin/formElement/delete', :locals => { :felt => felt }
+      end
+
+    end
+
+
+    app.post '/admin/form_element/delete/:id' do
+      restrictToAdmin!
+      FormElement.destroy(params[:id])
+      redirect "/admin/event", 303
+    end
   end
 end
