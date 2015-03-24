@@ -57,6 +57,12 @@ class AppTest < MiniTest::Test
         visit '/login'
         #to fill the form where 'id' is emailSI
         fill_in 'emailSI', :with => user.email
+        fill_in "InputPasswordSI", :with => "eukfzhgeofiuhzefefzsef"
+        click_button "Sign in"
+        assert not(html.include?('admin@admin.com'))
+        visit '/login'
+        #to fill the form where 'id' is emailSI
+        fill_in 'emailSI', :with => user.email
         fill_in "InputPasswordSI", :with => "admin"
         click_button "Sign in"
         #To find CSS content
@@ -116,13 +122,20 @@ class AppTest < MiniTest::Test
     end
 
     def test_pages
-        
+        admin_login
+        visit '/admin/page/new'
+        html.include?('(Markdown Syntax is allowed)')
+        fill_in 'title', :with => "In test_pages"
+        fill_in 'long_text', :with => "The text of the page"
+        click_button "Publish"
+        p = Page.find_by_title("In test_pages")
         Page.all.each do |page|
             get "/page/#{page.slug}"
             assert last_response.ok?
             assert last_response.body.include?(page.title)
             assert last_response.body.include?(page.long_text)
         end
+        p.destroy
     end                
 
 end
