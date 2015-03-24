@@ -39,9 +39,9 @@
             %p
               = markdown(e.short_text)
           .panel-footer
-            .small.pull-left
-              Begin of the events : 
-              = e.start_date 
+            .small.pull-left 
+              -if !(e.start_date.instance_of?  NilClass)
+                = e.start_date.strftime("Begins the %m/%d/%Y at %I:%M %P")
             %a.pull-right.btn.btn-xs.btn-default{:href => "/event/#{e.id}"} Read more     &#8594; 
             %br.clear 
 

@@ -4,7 +4,7 @@ module MainController
 
     app.get '/?' do
       articles = Article.order(:created_at)
-      events = Event.order(:start_date)
+      events = Event.order(start_date: :desc)
       haml :'home', :locals => { :articles => articles, :events => events }
     end
 
