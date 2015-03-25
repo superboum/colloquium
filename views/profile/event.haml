@@ -1,1 +1,23 @@
-%h1 Hello world
+
+.panel.panel-default
+	.panel.panel-body
+		%h1 Events to which you have registered: 
+		-if events.empty?
+			%p You have not yet registered to any event. 
+		-else						
+			-felt =felts.shift
+			-events.each do |e|
+				%ul.list-group
+					%li.list-group-item 
+						%h3 
+							=e.name
+						/ -p e
+						/ -p felt.class
+						/ -p felt.class != "NilClass"
+						/ -p felts[0]
+						-while(felt.is_a?(FormElement) && e.id == felt.event_id)
+							%p 
+								=felt.question
+							-felt = felts.shift
+
+						

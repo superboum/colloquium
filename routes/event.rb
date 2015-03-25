@@ -32,12 +32,8 @@ module EventController
       if :id != params["event"] then 
         puts "error" #TODO 
       end
-      begin
-        felts = FormElement.where(event_id: params["id"])
-      rescue 
-        felts= {}
-      end
-
+      felts = FormElement.where(event_id: params["id"])
+      
 
       felts.each do |felt|
         fa = FormAnswer.new
@@ -82,8 +78,21 @@ module EventController
     # USERSIDE
     app.get '/profile/event/?' do
       restrictToAuthenticated!
+      events = Event.joins('LEFT OUTER JOIN registered_users_to_events ON registered_users_to_events.event_id = events.id').where(user_id: user.id )
+      felts = FormElement.find_by_sql(['SELECT "form_elements".* FROM "form_elements", form_answers,users_form_answers ON form_answers.form_elements_id = form_elements.id AND users_form_answers.form_answers_id = form_answers.id  WHERE users_form_answers.users_id = ?  ORDER BY form_elements.event_id',user.id])
+      fanswers = FormAnswer.joins('LEFT OUTER JOIN users_form_answers ON users_form_answers.form_answers_id = form_answers.id').where( 'users_form_answers.users_id').order('form_answers.event_id')
+
+      puts "============"
+      
+      for i in 1..3 do 
+        p felts[i]
+        p fanswers[i]
+
+      end
+
+
       haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/event'
+        haml :'profile/event',:locals => { :events => events ,:felts => felts}
       end
     end
 
