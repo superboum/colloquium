@@ -49,7 +49,7 @@ module UserController
       user.first_name = params['first_name']
       user.last_name = params['last_name']
       user.email = params['email']
-      user.password = Digest::SHA256.hexdigest(params['password'])
+      user.raw_password params['password']
       user.phone = params['phone']
       user.address = params['address']
       user.role = params['role']
@@ -90,7 +90,9 @@ module UserController
       user.first_name = params['first_name']
       user.last_name = params['last_name']
       user.email = params['email']
-      user.password = Digest::SHA256.hexdigest(params['password'])
+      if params['password'] != "" then
+        user.raw_password params['password']
+      end
       user.phone = params['phone']
       user.address = params['address']
       user.role = params['role']
