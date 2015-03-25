@@ -3,11 +3,8 @@ module EventController
     # FRONTOFFICE
     app.get '/event/:id/?' do
       event = Event.find_by_id(params[:id])
-      puts authenticated?
-      puts "reg #{event.registration}" 
       if authenticated?
        isRegistered = user.registered?(event)
-       puts isRegistered
       else 
         isRegistered = false
       end
@@ -15,21 +12,18 @@ module EventController
     end
 
 
-    app.get '/event/register/:id/?' do 
-      restrictToAuthenticated!
-      event = Event.find_by_id(params[:id])
-      begin
-        felts = FormElement.where(event_id: event.id)
-      rescue
-        felts= {}
-      end
-      haml :eventRegistration, :locals => {:event => event,:felts => felts}
-    end
+  app.get '/event/register/:id/?' do 
+    restrictToAuthenticated!
+    event = Event.find_by_id(params[:id])
+    felts = event.get_felts
+
+    haml :eventRegistration, :locals => {:event => event,:felts => felts}
+  end
 
 
-    app.post '/event/register/:id/?' do
-      restrictToAuthenticated!
-      if :id != params["event"] then 
+  app.post '/event/register/:id/?' do
+    restrictToAuthenticated!
+    if :id != params["event"] then 
         puts "error" #TODO 
       end
       felts = FormElement.where(event_id: params["id"])
@@ -172,7 +166,7 @@ module EventController
 
       begin
         felts = FormElement.where(event_id: event.id)
-        rescue
+      rescue
         felts= {}
       end
 
@@ -199,9 +193,9 @@ module EventController
         end
       else
 
-      if(params['add_form_element']=='1')   
-        redirect "/admin/form_element/new/#{event.id}"
-      end
+        if(params['add_form_element']=='1')   
+          redirect "/admin/form_element/new/#{event.id}"
+        end
         redirect "/admin/event", 303
       end
     end
