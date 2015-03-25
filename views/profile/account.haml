@@ -22,17 +22,18 @@
             %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doctor, Professor..."}
           
         .form-group 
-          %label.col-md-2.control-label{:for => "lastName"} Gender
+          %label.col-md-2.control-label{:for => "Gender"} Gender
           .col-md-4
-            %select.form-control
-              %option Male
-              %option Female
-              %option Other
+            %select#Gender.form-control{:name => "gender"}
+              %option{:value => "Male"} Male
+              %option{:value => "Female"} Female
+              %option{:value => "Other"} Other
 
-          %label.col-md-2.control-label{:for => "lastName"} Nationality
+          %label.col-md-2.control-label{:for => "Nationality"} Nationality
           .col-md-4
-            %select.form-control
-              %option French
+            %select#Nationality.form-control{:name => "nationality"}
+              %option{:value => "france"} France
+              %option{:value => "Deutschland"} Deutschland
 
       %fieldset
         %legend Contact
