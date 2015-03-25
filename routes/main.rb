@@ -34,13 +34,21 @@ module MainController
           redirect to('/login'), 303
         else
           u = User.new
-          u.email = params['email']
-          u.raw_password params['password1']
-          u.role = 0
+          u.create_account params['email'], params['password1']
           u.save
           haml :'waiting_for_validation', :locals => { }
         end
       end
+    end
+
+    app.get '/confirm/:email/:token' do
+      u = User.find_by email: params[:email]
+      if u.instance_of? User and u.check_token params[:token] then
+        u.save
+        logUserManually(u)
+        redirect to('/profile/account'),303
+      end
+      redirect to('/login'),303
     end
 
     # BACKOFFICE

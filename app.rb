@@ -4,15 +4,18 @@ require 'sinatra/activerecord'
 require 'sinatra/config_file'
 require 'haml'
 require 'pony'
+require 'uri'
 
 require_relative 'routes/init'
 
 #Initialisations
 class ColloquiumApp < Sinatra::Application
   configure do
-    @rootFolder = File.dirname(__FILE__)
     register Sinatra::ActiveRecordExtension
     register Sinatra::ConfigFile
+    
+    @rootFolder = File.dirname(__FILE__)
+    @settings = settings
 
     config_file @rootFolder+'/config/general.yml'
     #Database configuration
@@ -20,7 +23,7 @@ class ColloquiumApp < Sinatra::Application
 
     #Email configuration
     Pony.options = { 
-      :from => 'quentin@deuxfleurs.fr', 
+      :from => settings.mail['from'], 
       :via => :smtp, 
       :via_options => { 
         :address                => settings.mail['address'],

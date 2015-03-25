@@ -1,3 +1,6 @@
+settings:
+  base_url: 'http://127.0.0.1:9292'
+
 cookies:
   key: 'rack.session'
   path: '/'

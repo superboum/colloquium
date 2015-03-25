@@ -22,15 +22,19 @@ module UserHelper
         ok
     end
 
+    def logUserManually(user)
+      session[:user] = user.id
+    end
+
     # Used to check role
-    def admin? ; user != nil and user.role >= 2 ; end
-    def moderator? ; user != nil and user.role >= 1 ; end
-    def authenticated? ; user != nil and user.role >= 0 ; end
-    def notAuthenticated? ; user == nil ; end
+    def admin? ; user.instance_of? User and user.role >= 2 ; end
+    def moderator? ; user.instance_of? User and user.role >= 1 ; end
+    def authenticated? ; user.instance_of? User and user.role >= 0 ; end
+    def notAuthenticated? ; !user.instance_of? User or user.role < 0; end
 
     # Used to restrict access
     def restrictToAdmin! ; redirect to('/login'),303 unless admin? ; end
     def restrictToModerator! ; redirect to('/login'),303 unless moderator? ; end
     def restrictToAuthenticated! ; redirect to('/login'),303 unless authenticated? ; end
-    def restrictToNotAuthenticated! ; redirect to('/account'),303 unless notAuthenticated? ; end
+    def restrictToNotAuthenticated! ; redirect to('/profile/account'),303 unless notAuthenticated? ; end
 end
