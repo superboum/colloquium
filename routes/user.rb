@@ -27,6 +27,18 @@ module UserController
 	end
 	  
 
+    app.get '/profile/parameters/?' do
+      restrictToAuthenticated!
+        haml :'profile/parameters'
+    end
+    
+    app.get '/profile/delete/?' do
+      restrictToAuthenticated!
+      user.destroy
+      session[:user] = nil
+      redirect to('/'),303
+    end
+
     # BACKOFFICE
     app.get '/admin/user/?' do
       restrictToAdmin!
