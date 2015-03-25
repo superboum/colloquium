@@ -14,11 +14,11 @@ class User < ActiveRecord::Base
   end
 
   def raw_password(rpass)
-    @password = Digest::SHA256.hexdigest(rpass)
+    self.password = Digest::SHA256.hexdigest(rpass)
   end
 
   def correct_password?(rpass)
-    @password == Digest::SHA256.hexdigest(rpass)
+    self.password == Digest::SHA256.hexdigest(rpass)
   end
 end
 
