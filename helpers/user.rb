@@ -12,12 +12,12 @@ module UserHelper
 
     def logUser(email,password)
         user = User.find_by email: email
-        ok = user != nil and user.correct_password?(password)
+        ok = (user.instance_of? User and user.correct_password?(password))
         if ok then
             puts "Successfully logged " + user.email
             session[:user] = user.id
         else
-            puts "Unable to log " + user.email
+            puts "Unable to log " + email
         end
         ok
     end
