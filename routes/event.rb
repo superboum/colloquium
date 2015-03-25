@@ -92,7 +92,7 @@ module EventController
 
 
       haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/event',:locals => { :events => events ,:felts => felts}
+        haml :'profile/event',:locals => { :events => events ,:felts => felts,:fanswers => fanswers}
       end
     end
 
