@@ -19,6 +19,8 @@
 						-while(felt.is_a?(FormElement) && e.id == felt.event_id)
 							%p 
 								=felt.question
+								%br/
+								➥
 								=fanswer.answer
 							-i = i+1
 							-felt =felts[i]
