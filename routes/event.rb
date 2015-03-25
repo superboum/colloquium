@@ -72,13 +72,7 @@ module EventController
     app.post '/admin/event/new/?' do
       restrictToAdmin!
       event = Event.new
-      event.name = params['name']
-      event.short_text = params['short_text']
-      event.start_date = params['start_date']
-      event.end_date = params['end_date']
-      event.place_number = params['place_number']
-      event.registration= params['registration']=="1"
-      event.user_id = user.id
+      event.set(params,user)
 
       if(event.invalid?) 
 
@@ -98,11 +92,7 @@ module EventController
     app.get '/admin/event/edit/:id/?' do
       restrictToAdmin!
       event = Event.find(params[:id])
-      begin
-        felts = FormElement.where(event_id: event.id)
-      rescue
-        felts= {}
-      end
+      felts = event.get_felts
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/event/newedit', :locals => { :event => event, :felts => felts,:unvalid => false,:edit => true }
       end
@@ -113,36 +103,12 @@ module EventController
     app.post '/admin/event/edit/:id' do
       restrictToAdmin!
       event = Event.find(params[:id])
-      event.name = params['name']
-      event.short_text = params['short_text']
-      event.start_date = params['start_date']
-      event.end_date = params['end_date']
-      event.registration= params['registration']=="1"
-      event.place_number = params['place_number']
-      event.user_id = user.id
+      event.set(params,user)
 
       event.save
 
-      begin
-        felts = FormElement.where(event_id: event.id)
-      rescue
-        felts= {}
-      end
-
-      felts.each do |felt|
-        if(params["delete::"+felt.id.to_s]=='1')
-          FormAnswer.where(form_elements_id: felt.id).destroy_all
-          felt.destroy
-        else  
-          felt.question= params['question::'+felt.id.to_s]
-          felt.form_type = params["form_type::"+felt.id.to_s]
-          felt.event_id = params["event::"+felt.id.to_s]
-          if felt.form_type == FormElement.TYPES["select"]
-            felt.data=params["dataSelect::"+felt.id.to_s]
-          end
-          felt.save
-        end
-      end
+      event.set_felts(params,user)
+      
 
       if(event.invalid?) 
 
@@ -167,6 +133,7 @@ module EventController
         haml :'admin/event/delete', :locals => { :event => event }
       end
     end
+
     # CRADE ????
     app.post '/admin/event/delete/:id' do
       restrictToAdmin!
