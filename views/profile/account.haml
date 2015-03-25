@@ -4,7 +4,7 @@
       %span.glyphicon.glyphicon-user
       Personnal information
 
-    %form.form-horizontal
+    %form.form-horizontal#Update{:method => "POST"}
       %fieldset
         %legend Identity
         .form-group
@@ -17,17 +17,17 @@
             %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doe"}
 
         .form-group
-          %label.col-md-2.control-label{:for => "lastName"} Title
+          %label.col-md-2.control-label{:for => "title"} Title
           .col-md-4
-            %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doctor, Professor..."}
+            %input.form-control{:type => "text", :id => "title", :name => "title", :placeholder => "Doctor, Professor..."}
           
         .form-group 
-          %label.col-md-2.control-label{:for => "Gender"} Gender
+          %label.col-md-2.control-label{:for => "gender"} Gender
           .col-md-4
-            %select#Gender.form-control{:name => "gender"}
-              %option{:value => "Male"} Male
-              %option{:value => "Female"} Female
-              %option{:value => "Other"} Other
+            %select#gender.form-control{:name => "gender"}
+              %option{:value => "0"} Male
+              %option{:value => "1"} Female
+              %option{:value => "2"} Other
 
           %label.col-md-2.control-label{:for => "Nationality"} Nationality
           .col-md-4
@@ -37,10 +37,31 @@
 
       %fieldset
         %legend Contact
+        .form-group
+          %label.col-md-2.control-label{:for => "phone"} Phone Number *
+          .col-md-4
+            %input.form-control{:type => "text", :id => "phone", :name => "phone", :placeholder => "+33617570950"}
+
+          %label.col-md-2.control-label{:for => "address"} Postal Address *
+          .col-md-4
+            %input.form-control{:type => "text", :id => "address", :name => "address", :placeholder => "20 Avenue des Buttes des Coësmes, 35700 Rennes"}
       
       %fieldset
         %legend Extra information
-
+        .form-group
+          %label.col-md-2.control-label{:for => "diet"} Diet *
+          .col-md-6
+            %label.radio-inline
+              %input#inlineRadio1{:name => "dietRadioOptions", :type => "radio", :value => "0"}
+                No constraint
+            %label.radio-inline
+              %input#inlineRadio2{:name => "dietRadioOptions", :type => "radio", :value => "1"}
+                Vegan
+            %label.radio-inline
+              %input#inlineRadio3{:name => "dietRadioOptions", :type => "radio", :value => "2"}
+                Without pork
+      .col-md-5
+      %button.btn.btn-primary{:type => "submit", :value => "Update"} Update my infos
 
 .panel.panel-default
   .panel-body

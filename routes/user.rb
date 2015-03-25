@@ -7,6 +7,25 @@ module UserController
         haml :'profile/account'
       end
     end
+ 
+	app.post '/profile/account/?' do
+	  restrictToAuthenticated!
+	  puts "has to put fist name in data base of #{user.email} first name : #{user.first_name}"
+      user.first_name = params["firstName"]
+	  puts "first_name done"
+	  user.last_name = params["lastName"]
+      puts "lastName : #{user.last_name} = #{params["lastName"]}"
+	  user.title = params["title"]
+	  user.sex = params["gender"]
+	  user.nationality = params["nationality"]
+	  user.phone = params["phone"]
+	  user.address = params["address"]
+	  user.diet= params["dietRadioOptions"]
+	  user.save
+	  puts "#{params['first_name']} = #{user.first_name}"
+	  redirect "/profile/account/?", 303
+	end
+	  
 
     # BACKOFFICE
     app.get '/admin/user/?' do
