@@ -23,66 +23,25 @@ module EventController
 
   app.post '/event/register/:id/?' do
     restrictToAuthenticated!
-    if :id != params["event"] then 
+      if :id != params["event"] then 
         puts "error" #TODO 
       end
-      felts = FormElement.where(event_id: params["id"])
+      event = Event.find_by_id(params[:id])
       
-
-      felts.each do |felt|
-        fa = FormAnswer.new
-        fa.form_elements_id = felt.id
-        fa.event_id=felt.event_id
-        id="felt::#{felt.id}"
-        puts felt.form_type
-        case felt.form_type
-        when FormElement.TYPES["bool"]
-          if(params[id]=="1")
-            fa.answer="true"
-          else fa.answer = "false"
-          end
-        when FormElement.TYPES["select"]
-          fa.answer =params[id]      
-        when FormElement.TYPES["string"]
-          fa.answer = params[id]
-        else
-          #TODO
-          puts "\033[31merror\033[0m"
-        end
-        fa.save
-
-        ufa = UsersFormAnswer.new
-        ufa.form_answers_id = fa.id
-        ufa.users_id = user.id
-        ufa.save
-
-      end
-
-
-      participant = RegisteredUsersToEvents.new
-      participant.event_id = params[:id]
-      participant.user_id = user.id
-
-      participant.save
-
+      user.register_to_event(event,params)
 
       redirect "/event/#{params[:id]}", 303
 
     end
+
+
+
     # USERSIDE
     app.get '/profile/event/?' do
       restrictToAuthenticated!
-      events = Event.joins('LEFT OUTER JOIN registered_users_to_events ON registered_users_to_events.event_id = events.id').where(user_id: user.id )
-      felts = FormElement.find_by_sql(['SELECT "form_elements".* FROM "form_elements", form_answers,users_form_answers ON form_answers.form_elements_id = form_elements.id AND users_form_answers.form_answers_id = form_answers.id  WHERE users_form_answers.users_id = ?  ORDER BY form_elements.event_id',user.id])
-      fanswers = FormAnswer.joins('LEFT OUTER JOIN users_form_answers ON users_form_answers.form_answers_id = form_answers.id').where( 'users_form_answers.users_id').order('form_answers.event_id')
-
-      puts "============"
-      
-      for i in 1..3 do 
-        p felts[i]
-        p fanswers[i]
-
-      end
+      events = user.get_event_registered
+      felts = user.get_felt_registered
+      fanswers =user.get_form_answer_registered
 
 
       haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do

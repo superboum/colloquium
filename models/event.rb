@@ -6,4 +6,5 @@ class Event < ActiveRecord::Base
 	def get_felts
 		return FormElement.where(event_id: self.id)
 	end
+
 end
