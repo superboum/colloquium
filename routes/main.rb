@@ -44,6 +44,7 @@ module MainController
     app.get '/confirm/:email/:token' do
       u = User.find_by email: params[:email]
       if u.instance_of? User and u.check_token params[:token] then
+        u.role = 0
         u.save
         logUserManually(u)
         redirect to('/profile/account'),303
