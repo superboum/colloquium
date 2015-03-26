@@ -1,0 +1,50 @@
+%br
+%br
+.container
+  .row
+    .col-md-6
+      .panel.panel-default.shift
+        .panel-body
+          %h1
+            %span.glyphicon.glyphicon-lock
+            Change my password
+
+          %form.form-horizontal{:method => "POST", :action => "/profile/parameters"}
+            .form-group
+              %label.control-label.col-sm-4{:for => "form-group"} New password
+              .col-sm-8
+                %input{:type => "password", :class => "form-control", :placeholder => "********", :name => "password1"}
+            .form-group
+              %label.control-label.col-sm-4{:for => "form-group"} Confirmation
+              .col-sm-8
+                %input{:type => "password", :class => "form-control", :placeholder => "********", :name => "password2"}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                %input.btn.btn-primary{:type => "submit", :value => "Change password"}
+
+    .col-md-6
+      .panel.panel-default
+        .panel-body
+          %h1
+            %span.glyphicon.glyphicon-remove
+            Delete my account
+
+          %p Please be aware that this action is not reversible
+          %a.btn.btn-danger{:'data-toggle' => "modal", :'data-target' => "#deleteModal"}
+            %span.glyphicon.glyphicon-warning-sign
+            Delete my account permanently
+
+
+
+#deleteModal.modal.fade{:tabindex => "-1", :role => "dialog",  :'aria-labelledby' => "DeleteModal", :'aria-hidden' => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{:type => "button", :'data-dismiss' => "modal", :'aria-label' => "Close"}
+          %span{:'aria-hidden' => "true"} &times;
+        %h4.modal-title Are you sure ?
+      .modal-body
+        %p This action is not reversible. Do you really want to delete your account ?
+      .modal-footer
+        %a.btn.btn-danger.pull-right{:href => "/profile/delete", :style => "margin-left: 10px"} Delete
+        %a.btn.btn-default.pull-right{:href => "#", :'data-dismiss' => "modal"} Cancel

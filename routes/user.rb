@@ -7,31 +7,70 @@ module UserController
         haml :'profile/account'
       end
     end
- 
-	app.post '/profile/account/?' do
-	  restrictToAuthenticated!
-	  puts "has to put fist name in data base of #{user.email} first name : #{user.first_name}"
+
+    app.post '/profile/account/?' do
+      restrictToAuthenticated!
+      puts "has to put fist name in data base of #{user.email} first name : #{user.first_name}"
       user.first_name = params["firstName"]
-	  puts "first_name done"
-	  user.last_name = params["lastName"]
+      puts "first_name done"
+      user.last_name = params["lastName"]
       puts "lastName : #{user.last_name} = #{params["lastName"]}"
-	  user.title = params["title"]
-	  user.sex = params["gender"]
-	  user.nationality = params["nationality"]
-	  user.phone = params["phone"]
-	  user.address = params["address"]
-	  user.diet= params["dietRadioOptions"]
-	  user.save
-	  puts "#{params['first_name']} = #{user.first_name}"
-	  redirect "/profile/account/?", 303
-	end
-	  
+      user.title = params["title"]
+      user.sex = params["gender"]
+      user.nationality = params["nationality"]
+      user.phone = params["phone"]
+      user.address = params["address"]
+      user.diet= params["dietRadioOptions"]
+      user.save
+      puts "#{params['first_name']} = #{user.first_name}"
+      redirect "/profile/account/?", 303
+    end
+
+
+    app.get '/profile/password_lost/?' do
+      restrictToNotAuthenticated!
+      haml :'profile/password_lost'
+    end
+
+    app.post '/profile/password_lost/?' do
+      restrictToNotAuthenticated!
+      u = User.find_by email: params[:email]
+      if u.instance_of? User then
+        u.lost_password()
+        u.save
+      end
+      redirect to('/profile/password_lost'),303
+    end
+
+    app.get '/profile/password_change/:email/:token/?' do
+      u = User.find_by email: params[:email]
+      puts u
+      puts params[:email]
+      puts params[:token]
+      if u.instance_of? User and u.check_token params[:token] then
+        u.save
+        logUserManually(u)
+        redirect to('/profile/parameters'),303
+      end
+      redirect to('/'),303
+    end
 
     app.get '/profile/parameters/?' do
       restrictToAuthenticated!
-        haml :'profile/parameters'
+      haml :'profile/parameters'
     end
-    
+
+    app.post '/profile/parameters/?' do
+      restrictToAuthenticated!
+      if params['password1'] == params['password2'] then
+        user.raw_password params['password1']
+        user.save
+      end
+
+      haml :'profile/parameters'
+    end
+
+
     app.get '/profile/delete/?' do
       restrictToAuthenticated!
       user.destroy

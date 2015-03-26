@@ -19,24 +19,40 @@ class User < ActiveRecord::Base
     self.password == Digest::SHA256.hexdigest(rpass)
   end
 
+  def generate_token() 
+    self.token = "%010x" % rand(10000000000)
+  end
+
   def create_account(email, rpass)
     self.raw_password(rpass)
     self.email = email
-    self.token = "%010x" % rand(10000000000)
+    self.generate_token
     self.role = -1
     Pony.mail(:to => self.email, 
       :subject => '[Colloquium] Please confirm your email', 
       :body => "Hi !\nYou just registered an account on Colloquium.\nPlease confirm your email address by clicking or copy-pasting this link : "+self.confirmation_link())
   end
 
+  def lost_password()
+    self.generate_token 
+    Pony.mail(:to => self.email, 
+      :subject => '[Colloquium] Reset your password', 
+      :body => "Hi !\nIt seems you have lost your password.\nYou can reset it by clicking or copy-pasting this link : "+self.password_lost_link())
+  end
+
   def confirmation_link()
     URI.escape(ColloquiumApp.settings.parameters['base_url'] + '/confirm/'+self.email+'/'+self.token)
   end
+  
+  def password_lost_link()
+    URI.escape(ColloquiumApp.settings.parameters['base_url'] + '/profile/password_change/'+self.email+'/'+self.token)
+  end
 
   def check_token(token)
+    puts self.token
+    puts token
     if self.token == token then
       self.token = nil
-      self.role = 0
       return true
     end
     return false
