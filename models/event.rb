@@ -18,6 +18,9 @@ class Event < ActiveRecord::Base
 
 	end
 
+
+  
+
 	def set_felts(params,user)
 		felts = self.get_felts
       

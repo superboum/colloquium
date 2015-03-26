@@ -137,10 +137,8 @@ module EventController
     # CRADE ????
     app.post '/admin/event/delete/:id' do
       restrictToAdmin!
-      RegisteredUsersToEvents.where(event_id: params[:id]).destroy_all
-      FormAnswer.where(event_id: params[:id]).destroy_all
-      FormElement.where(event_id: params[:id]).destroy_all
-      Event.destroy(params[:id])
+      event = Event.find(params[:id])
+      event.delete
       redirect "/admin/event", 303
     end
   end
