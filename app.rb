@@ -5,6 +5,7 @@ require 'sinatra/config_file'
 require 'haml'
 require 'pony'
 require 'uri'
+require 'yaml/store'
 
 require_relative 'routes/init'
 
