@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326180118) do
+ActiveRecord::Schema.define(version: 20150327085243) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -75,6 +75,17 @@ ActiveRecord::Schema.define(version: 20150326180118) do
 
   add_index "registered_users_to_events", ["event_id"], name: "index_registered_users_to_events_on_event_id"
   add_index "registered_users_to_events", ["user_id"], name: "index_registered_users_to_events_on_user_id"
+
+  create_table "reviewpropositions", force: :cascade do |t|
+    t.integer  "reviews_id"
+    t.string   "file"
+    t.text     "lecturer_info"
+    t.text     "validator_comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviewpropositions", ["reviews_id"], name: "index_reviewpropositions_on_reviews_id"
 
   create_table "reviews", force: :cascade do |t|
     t.integer  "validator_id"
