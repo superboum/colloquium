@@ -112,5 +112,9 @@ class User < ActiveRecord::Base
       return FormAnswer.joins('LEFT OUTER JOIN users_form_answers ON users_form_answers.form_answers_id = form_answers.id').where( 'users_form_answers.users_id' => self.id).order('form_answers.event_id')
     end
 
+
+    has_many :reviews, :class_name => 'Review', :foreign_key => 'lecturer_id'
+    has_many :reviews_to_correct, :class_name => 'Review', :foreign_key => 'validator_id'
+
   end
 
