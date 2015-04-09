@@ -81,12 +81,12 @@
             .form-group
               %label.col-md-2.control-label{:for => "general_info"} Comments *
               .col-md-6
-                %textarea#general_info.form-control{:name => "general_info", :placeholder => "A quick summary of this proposition"}
+                %textarea#general_info.form-control{:name => "lecturer_info", :placeholder => "A quick summary of this proposition"}
 
             .form-group
-              %label.col-md-2.control-label{:for => "general_info"} File (in pdf) *
+              %label.col-md-2.control-label{:for => "file"} File (in pdf) *
               .col-md-4
-                %input(type='file' name='review')
+                %input#file(type='file' name='review')
 
             .form-group
               .col-md-offset-2.col-md-4

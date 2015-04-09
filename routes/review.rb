@@ -3,12 +3,9 @@ module ReviewController
     app.get '/profile/review/?' do
       restrictToAuthenticated!
       review = Review.find_by_lecturer_id(session[:user])
-            
-      reviewProps = []
-      
+                  
       if !review.nil?
-        Reviewproposition.where(reviews_id: review.id).find_each do |revprop|
-          reviewProps.push(revprop)
+        reviewProps = Reviewproposition.where(review_id: review.id)
         end
       end
       
@@ -41,7 +38,7 @@ module ReviewController
         reviewprop = Reviewproposition.new
         review = Review.find_by_lecturer_id(uId)
         review.state = "waiting_for_validation"
-        reviewprop.reviews_id = review.id
+        reviewprop.review_id = review.id
         reviewprop.file = md5
         reviewprop.file_name = params['review'][:filename]
         reviewprop.lecturer_info = params['lecturer_info']
@@ -68,9 +65,7 @@ module ReviewController
 
       reviewProps = []      
       if !review.nil?
-        Reviewproposition.where(reviews_id: review.id).find_each do |revprop|
-          reviewProps.push(revprop)
-        end
+        reviewProps = Reviewproposition.where(review_id: review.id)
       end
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/review/view', :locals => {:review => review, :reviewProps => reviewProps}
@@ -93,7 +88,7 @@ module ReviewController
       reviewProp = Reviewproposition.find(params[:id])
       reviewProp.validator_comment = params['validator_comment']
       #reviewProp.save
-      review = Review.find_by reviewProp.reviews_id
+      review = Review.find_by reviewProp.review_id
       review.validator_id = session[:user]
       if params[:validate] == "Valid"
         review.state = "validated"
