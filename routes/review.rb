@@ -12,9 +12,8 @@ module ReviewController
         end
       end
       
-      validator = User.find_by review.validator_id
       haml :'profile/layout', :locals => { :menu => 2 }, :layout => :'layout'  do
-        haml :'profile/review', :locals => {:review => review, :reviewProps => reviewProps, :validator => validator }
+        haml :'profile/review', :locals => {:review => review, :reviewProps => reviewProps}
       end
     end
     
