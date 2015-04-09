@@ -24,7 +24,7 @@ module ReviewController
       if File.exists?("uploads/") == false
         Dir::mkdir("uploads/", 0777)
       end
-      if File.extname(params['review'][:filename]) == ".pdf"
+      if File.extname(params['review'][:filename]).downcase == ".pdf"
         md5 = Digest::MD5.hexdigest(params['review'][:tempfile].read)
         File.open("uploads/" + md5, "w") do |f|
           f.write(params['review'][:tempfile].read)
