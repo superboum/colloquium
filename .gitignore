@@ -11,6 +11,7 @@ Gemfile.lock
 db/schema.rb
 config/general.yml
 config/database.yml
+uploads/*
 
 # LaTeX files
 *.toc

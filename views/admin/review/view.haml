@@ -1,0 +1,23 @@
+-last = reviewProps.at(-1)
+
+%h1= review.name
+
+%br
+%table.table.table-stripped
+  %tr
+    %th Title
+    %th Actions
+    %th Validation
+  -reviewProps.each do |reviewProp|
+
+    %tr
+      %td= reviewProp.file
+      %td 
+        %a.btn.btn-default.btn-xs{:href => "#{reviewProp.file}", :target => "_blank"}
+          View
+        -if reviewProp == last
+          
+        -else
+      %td 
+        %a.btn.btn-primary.btn-xs{:href => "/admin/review/validation/#{reviewProp.id}"} 
+          Validate

@@ -1,1 +1,104 @@
-%h1 Hello world
+-review_exist = !review.nil?
+.panel.panel-default
+  .panel-body
+    %h3 
+      %span.glyphicon.glyphicon-book
+      Review : 
+      
+    -if !review_exist
+      %form.form-horizontal{:method => "post", :enctype => 'multipart/form-data'}
+        %input{:type => "hidden", :name => "action", :value => "1st_review"}
+        %fieldset
+      
+      
+          %legend New Review
+          .form-group
+            %label.col-md-2.control-label{:for => "Name"} Title *
+            .col-md-6
+              %input#Name.form-control{:type => "text", :name => "Name", :placeholder => ""}
+
+          .form-group
+            %label.col-md-2.control-label{:for => "general_info"} General information about your review *
+            .col-md-6
+              %textarea#general_info.form-control{:name => "general_info", :placeholder => "A quick summary of your review"}
+              
+          %legend New Proposition
+          .form-group
+            %label.col-md-2.control-label{:for => "lecturer_info"} Comments *
+            .col-md-6
+              %textarea#lecturer_info.form-control{:name => "lecturer_info", :placeholder => "A quick summary of this proposition"}
+
+          .form-group
+            %label.col-md-2.control-label{:for => "file"} File (in pdf) *
+            .col-md-4
+              %input#file(type='file' name='review')
+
+            .form-group
+              .col-md-offset-2.col-md-4
+                %input.btn.btn-lg.btn-primary{:type => 'submit', :value => 'Upload!'}
+       
+    -else
+      %fieldset      
+        %legend= review.name
+        =review.general_info
+
+
+-if review_exist 
+  -i=0
+  -reviewProps.each do |revprop|
+    -i=i+1
+    .panel.panel-default
+      .panel-body
+        %fieldset
+          %legend Proposition #{i}
+          
+          .row
+            .col-md-12
+              %h2= revprop.file
+          .row
+            .col-md-12
+              Validated by #{validator.first_name} #{validator.last_name}
+          .row
+            .col-md-6 
+              %h4 Comment from Validator :
+              .br
+              = revprop.validator_comment
+            .col-md-6 
+              %h4 Info from Lecturer :
+              .br
+              = revprop.lecturer_info
+          
+          
+  .panel.panel-default
+    .panel-body         
+      %form.form-horizontal{:method => "post", :enctype => 'multipart/form-data'}    
+        %input{:type => "hidden", :name => "action", :value => "other_reviews"}
+
+        %fieldset
+        
+          -if review.state == "waiting_for_review"
+            %legend New Proposition
+            .form-group
+              %label.col-md-2.control-label{:for => "general_info"} Comments *
+              .col-md-6
+                %textarea#general_info.form-control{:name => "general_info", :placeholder => "A quick summary of this proposition"}
+
+            .form-group
+              %label.col-md-2.control-label{:for => "general_info"} File (in pdf) *
+              .col-md-4
+                %input(type='file' name='review')
+
+            .form-group
+              .col-md-offset-2.col-md-4
+                %input.btn.btn-lg.btn-primary{:type => 'submit', :value => 'Upload!'}
+          
+          -else
+            %legend Status : 
+            -if review.state == "waiting_for_validation"
+              Waiting for validation
+            -if review.state == "validated"
+              Review validated
+            -if review.state == "closed"
+              The registration is closed
+          
+
