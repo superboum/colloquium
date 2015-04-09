@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327085243) do
+ActiveRecord::Schema.define(version: 20150409124938) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -88,13 +88,13 @@ ActiveRecord::Schema.define(version: 20150327085243) do
   add_index "reviewpropositions", ["reviews_id"], name: "index_reviewpropositions_on_reviews_id"
 
   create_table "reviews", force: :cascade do |t|
-    t.integer  "validator_id"
-    t.integer  "lecturer_id"
     t.string   "name"
     t.text     "general_info"
     t.integer  "state",        default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "validator_id"
+    t.integer  "lecturer_id"
   end
 
   add_index "reviews", ["lecturer_id"], name: "index_reviews_on_lecturer_id"
