@@ -21,12 +21,12 @@ module ReviewController
       restrictToAuthenticated!
       uId = session[:user]
       u = User.find_by_id uId
-      uDir = "#{u.first_name}" + "-" + "#{u.last_name}" + "_" + "#{uId}"
-      if File.exists?("uploads/#{uDir}/") == false
-        Dir::mkdir("uploads/#{uDir}/", 0777)
+      if File.exists?("uploads/") == false
+        Dir::mkdir("uploads/", 0777)
       end
       if File.extname(params['review'][:filename]) == ".pdf"
-        File.open("uploads/#{uDir}/" + params['review'][:filename], "w") do |f|
+        md5 = Digest::MD5.hexdigest(params['review'][:tempfile].read)
+        File.open("uploads/" + md5, "w") do |f|
           f.write(params['review'][:tempfile].read)
         end
         
@@ -42,7 +42,7 @@ module ReviewController
         review = Review.find_by_lecturer_id(uId)
         review.state = "waiting_for_validation"
         reviewprop.reviews_id = review.id
-        reviewprop.file = "uploads/#{uDir}/" + params['review'][:filename]
+        reviewprop.file = md5
         reviewprop.lecturer_info = params['lecturer_info']
         reviewprop.validator_comment = "Validation in progress"
         reviewprop.save
@@ -96,10 +96,11 @@ module ReviewController
       review.validator_id = session[:user]
       if params[:validate] == "validated"
         review.state = "validated"
+        review.save
       else
-        review.state = "waiting_for_review"
+        review.state = "waiting_for_review"      
+        review.save
       end
-      review.save
       reviewProp.save
       redirect "admin/review/view/#{params[:id]}", 303
     end
