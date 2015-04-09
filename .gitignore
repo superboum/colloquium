@@ -12,6 +12,7 @@ db/schema.rb
 config/general.yml
 config/database.yml
 uploads/*
+!uploads/placeholder
 
 # LaTeX files
 *.toc
