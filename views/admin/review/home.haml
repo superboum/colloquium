@@ -18,9 +18,9 @@
         -when "waiting_for_validation" then 
         -tmp="Waiting for validation"
         -when "closed" then 
-        -tmp="closed"
+        -tmp="Closed"
         -when "validated" then
-        -tmp="validated"
+        -tmp="Validated"
       %td= tmp
       %td 
         %a.btn.btn-default.btn-xs{:href => "/admin/review/view/#{a.id}"} 

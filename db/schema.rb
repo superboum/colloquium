@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409124938) do
+ActiveRecord::Schema.define(version: 20150409133105) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150409124938) do
     t.text     "validator_comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "file_name"
   end
 
   add_index "reviewpropositions", ["reviews_id"], name: "index_reviewpropositions_on_reviews_id"

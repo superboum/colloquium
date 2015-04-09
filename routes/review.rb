@@ -43,6 +43,7 @@ module ReviewController
         review.state = "waiting_for_validation"
         reviewprop.reviews_id = review.id
         reviewprop.file = md5
+        reviewprop.file_name = params['review'][:filename]
         reviewprop.lecturer_info = params['lecturer_info']
         reviewprop.validator_comment = "Validation in progress"
         reviewprop.save
