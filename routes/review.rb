@@ -94,7 +94,7 @@ module ReviewController
       #reviewProp.save
       review = Review.find_by reviewProp.reviews_id
       review.validator_id = session[:user]
-      if params[:validate] == "validated"
+      if params[:validate] == "Valid"
         review.state = "validated"
         review.save
       else
@@ -102,7 +102,7 @@ module ReviewController
         review.save
       end
       reviewProp.save
-      redirect "admin/review/view/#{params[:id]}", 303
+      redirect "admin/review/", 303
     end
     
   end
