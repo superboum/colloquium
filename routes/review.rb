@@ -6,7 +6,6 @@ module ReviewController
                   
       if !review.nil?
         reviewProps = Reviewproposition.where(review_id: review.id)
-        end
       end
       
       haml :'profile/layout', :locals => { :menu => 2 }, :layout => :'layout'  do
