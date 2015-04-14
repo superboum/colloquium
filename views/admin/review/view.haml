@@ -15,9 +15,10 @@
       %td 
         %a.btn.btn-default.btn-xs{:href => "#{reviewProp.file}", :target => "_blank"}
           View
-        -if reviewProp == last
-          
+        -if reviewProp != last
+          %td 
+            Already seen
         -else
-      %td 
-        %a.btn.btn-primary.btn-xs{:href => "/admin/review/validation/#{reviewProp.id}"} 
-          Validate
+          %td 
+            %a.btn.btn-primary.btn-xs{:href => "/admin/review/validation/#{reviewProp.id}"} 
+              Validate

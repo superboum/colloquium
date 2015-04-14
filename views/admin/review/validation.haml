@@ -4,7 +4,7 @@
 %form{:method => "POST"}
   .form-group
     %label{:for => "validator_comment"} Comment
-    %textarea#validator_comment.form-control{:type => "text", :name => "validator_comment", :placeholder => "Your comment on the review"}
+    %textarea#validator_comment.form-control{:type => "text", :name => "validator_comment", :placeholder => "#{reviewProp.validator_comment}"}
     
   .form-group
     -#%input.pull-right.btn.btn-lg.btn-danger{:type => "submit", :name => "refused", :value => "Refuse"}
@@ -16,6 +16,10 @@
     %label.radio-inline{:for => "validated"} 
       %input#validated{:name => "validate", :type => "radio", :value => "Valid"} 
         Validate
+
+    %label.radio-inline{:for => "new"} 
+      %input#new{:name => "validate", :type => "radio", :value => "Prop"}
+        Lecturer has to send a new Proposition
  
     %label.radio-inline{:for => "refused"} 
       %input#refused{:name => "validate", :type => "radio", :value => "Ref"}

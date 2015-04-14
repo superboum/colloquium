@@ -76,7 +76,7 @@
 
         %fieldset
         
-          -if review.state == "waiting_for_review"
+          -if review.state == "waiting_for_proposition"
             %legend New Proposition
             .form-group
               %label.col-md-2.control-label{:for => "general_info"} Comments *
@@ -94,7 +94,7 @@
           
           -else
             %legend Status : 
-            -if review.state == "waiting_for_validation"
+            -if review.state == "waiting_for_review"
               Waiting for validation
             -if review.state == "validated"
               Review validated

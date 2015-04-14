@@ -36,7 +36,7 @@ module ReviewController
         end
         reviewprop = Reviewproposition.new
         review = Review.find_by_lecturer_id(uId)
-        review.state = "waiting_for_validation"
+        review.state = "waiting_for_review"
         reviewprop.review_id = review.id
         reviewprop.file = md5
         reviewprop.file_name = params['review'][:filename]
@@ -46,7 +46,7 @@ module ReviewController
         review.save
         redirect "profile/review", 303
       else #If file extnam != ".pdf"
-        haml :'no'
+        haml :'wrong_extension'
       end
     end
 
@@ -71,14 +71,11 @@ module ReviewController
       end
     end
     
-    app.get '/admin/review/view/uploads/Jean-Chorin_2/billet_pot_commun.pdf' do
-      pdf :'uploads/Jean-Chorin_2/billet_pot_commun.pdf'
-    end
-    
     app.get '/admin/review/validation/:id' do
       restrictToAdmin!
+      reviewProp = Reviewproposition.find_by_id(params[:id])
       haml :'admin/layout', :layout => :'layout'  do
-        haml :'admin/review/validation'
+        haml :'admin/review/validation', :locals => {:reviewProp => reviewProp}
       end
     end
     
@@ -86,16 +83,16 @@ module ReviewController
       restrictToAdmin!
       reviewProp = Reviewproposition.find(params[:id])
       reviewProp.validator_comment = params['validator_comment']
-      #reviewProp.save
       review = Review.find_by reviewProp.review_id
       review.validator_id = session[:user]
       if params[:validate] == "Valid"
         review.state = "validated"
-        review.save
+      elsif params[:validate] == "Ref"
+        review.state = "closed"
       else
-        review.state = "waiting_for_review"      
-        review.save
+        review.state = "waiting_for_proposition"
       end
+      review.save
       reviewProp.save
       redirect "admin/review/", 303
     end
