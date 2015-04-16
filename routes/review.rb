@@ -20,33 +20,41 @@ module ReviewController
       if File.exists?("uploads/") == false
         Dir::mkdir("uploads/", 0777)
       end
-      if File.extname(params['review'][:filename]).downcase == ".pdf"
-        md5 = Digest::MD5.hexdigest(params['review'][:tempfile].read)
-        File.open("uploads/" + md5, "w") do |f|
-          f.write(params['review'][:tempfile].read)
-        end
-        
-        
-        if params['action'] == '1st_review' then
-          review = Review.new
-          review.lecturer_id = uId
-          review.name = params['Name']
-          review.general_info = params['general_info']
+
+      if !params['review'].nil?
+        if File.extname(params['review'][:filename]).downcase == ".pdf"
+          md5 = Digest::MD5.hexdigest(params['review'][:tempfile].read)
+          File.open("uploads/" + md5, "w") do |f|
+            f.write(params['review'][:tempfile].read)
+          end        
+          
+          if params['action'] == '1st_review' then
+            review = Review.new
+            review.lecturer_id = uId
+            review.name = params['Name']
+            review.general_info = params['general_info']
+            review.save
+          end
+          reviewprop = Reviewproposition.new
+          review = Review.find_by_lecturer_id(uId)
+          review.state = "waiting_for_review"
+          reviewprop.review_id = review.id
+          reviewprop.file = md5
+          reviewprop.file_name = params['review'][:filename]
+          reviewprop.lecturer_info = params['lecturer_info']
+          reviewprop.validator_comment = "Validation in progress"
+          reviewprop.save
           review.save
+          redirect "profile/review", 303
+        else #If file extnam != ".pdf"
+          haml :'profile/layout', :locals => { :menu => 2 }, :layout => :'layout'  do
+            haml :'wrong_extension'
+          end
         end
-        reviewprop = Reviewproposition.new
-        review = Review.find_by_lecturer_id(uId)
-        review.state = "waiting_for_review"
-        reviewprop.review_id = review.id
-        reviewprop.file = md5
-        reviewprop.file_name = params['review'][:filename]
-        reviewprop.lecturer_info = params['lecturer_info']
-        reviewprop.validator_comment = "Validation in progress"
-        reviewprop.save
-        review.save
-        redirect "profile/review", 303
-      else #If file extnam != ".pdf"
-        haml :'wrong_extension'
+      else #If !params['review'].nil?
+        haml :'profile/layout', :locals => { :menu => 2 }, :layout => :'layout'  do
+          haml :'wrong_extension'
+        end
       end
     end
 

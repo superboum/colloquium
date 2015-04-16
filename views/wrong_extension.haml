@@ -1,5 +1,9 @@
-.container
-  .row
-    %h3 Watch out !
-    %h4 The file must be a in Portable Document Format (pdf).
-    Come back to previous page : 
+.panel.panel-default
+  .panel-body
+    %h2 Watch out !
+    %form.form-horizontal
+      %fieldset
+        %legend The file must be a in Portable Document Format (pdf).
+        Come back to previous page : 
+        %a.btn.btn-primary.btn-sm{:href => "/profile/review"}
+          Back
