@@ -79,6 +79,33 @@ module ReviewController
       end
     end
     
+    app.get '/admin/review/assignement/:id' do
+      restrictToAdmin!
+      reviewProp = Reviewproposition.find_by_id(params[:id])
+      review = Review.find_by_id(reviewProp.review_id)
+      users = User.where("role >= '1'")
+      haml :'admin/layout', :layout => :'layout'  do
+        haml :'admin/review/assignement', :locals => {:reviewProp => reviewProp, :review => review, :users => users}
+      end
+    end
+
+    app.post '/admin/review/assignement/:id' do
+      restrictToAdmin!
+      reviewProp = Reviewproposition.find(params[:id])
+      review = Review.find(reviewProp.review_id)
+      if params['action'] == 'end' then
+        review.validator = nil
+      else
+        id = params['action'].to_i
+        if review.lecturer_id  != id
+          review.validator_id = id
+        end
+      end
+      review.save
+      redirect "admin/review/assignement/#{params[:id]}", 303
+    end
+
+
     app.get '/admin/review/validation/:id' do
       restrictToAdmin!
       reviewProp = Reviewproposition.find_by_id(params[:id])

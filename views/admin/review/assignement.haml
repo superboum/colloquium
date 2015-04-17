@@ -1,0 +1,40 @@
+%h2 Assignement
+%hr
+%h3 For : #{review.name}
+%br
+%h4 Written by : 
+%p #{review.lecturer.first_name} #{review.lecturer.last_name} 
+%h4
+  General information : 
+%p #{review.general_info}
+%h3.text-danger{:style => "margin-bottom: 40px"} 
+  %span.glyphicon.glyphicon-warning-sign
+  You cannot assignate a review validation to his/her writer
+
+%table.table.table-stripped
+  %tr
+    %th First Name
+    %th Last Name
+    %th Created at
+    %th Updated at
+    %th Action
+
+  - users.each do |u|
+    %tr
+      %td= u.first_name
+      %td= u.last_name
+      %td= u.created_at
+      %td= u.updated_at
+      %td
+        -if review.validator_id.nil?
+          %form{:method => "POST"}
+            %input{:type => "hidden", :name => "action", :value => "#{u.id}"}
+            %input.btn.btn-info{:type => "submit", :value => "Assignate"} 
+        -else
+          -if review.validator_id == u.id
+            %form{:method => "POST"}
+              %input{:type => "hidden", :name => "action", :value => "end"}
+              %input.btn.btn-danger{:type => "submit", :value => "End assignement"} 
+
+%a.pull-right{:href => "/admin/user/new", :style => "margin-top: 20px", :class => "btn btn-primary"} 
+  Add a new user
