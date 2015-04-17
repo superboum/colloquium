@@ -1,7 +1,9 @@
 .container
   .row
-    %h2.text-center Register to  "#{event.name}"
-
+    -if edit 
+      %h2.text-center Modificate the registration to   "#{event.name}"
+    -else 
+      %h2.text-center Register to  "#{event.name}"
     %form{:method => "POST"}
     
 
@@ -10,12 +12,20 @@
           - s = "s"
         -else 
           -s=""
-        %p Please fill this form#{s} to register
+        -if edit
+          %p This is your previews registration
+        -else
+          %p Please fill this form#{s} to register
 
 
         %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
-        -felts.each do |felt|
           
+        -felts.each do |felt|
+          -answer=""
+          -felt.form_answers.each do |fa|
+            -if(fa.participant==user)
+              -answer = fa.answer
+              -break
           -if felt.form_type == FormElement.TYPES["select"]
             .form-group
               %label{:for => "felt::#{felt.id}"} #{felt.question}
@@ -35,7 +45,8 @@
             -else 
               .form-group
                 %label{:for => "felt::#{felt.id}"} #{felt.question}
-                %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:placeholder => "#{felt.data}", :type => "text"}
+                %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:placeholder => "#{answer}", :type => "text"}
+          
       .text-center
         %input.btn.btn-primary{:type => "submit", :value => "Register", :style => "margin-left: 5px"} 
         %a.btn.btn-default{:href => "/event/#{event.id}"} Cancel 

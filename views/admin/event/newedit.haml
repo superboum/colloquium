@@ -33,6 +33,7 @@
     %label{:for => "place_number"} Number of place
     %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.place_number}
   -if edit
+    -felts = event.form_elements
     -if !felts.empty?
       .row.vcenter.text-left.panel-group
 

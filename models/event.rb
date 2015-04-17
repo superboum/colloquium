@@ -1,10 +1,15 @@
 require 'sinatra/activerecord'
 
 class Event < ActiveRecord::Base
+
+  has_many :form_answers, :class_name => 'FormAnswer', :foreign_key => 'event_id',:dependent => :delete_all
+  has_many :form_elements, :class_name => 'FormElement', :foreign_key => 'event_id',:dependent => :delete_all
+  belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
+
 	validates :short_text, length: { maximum: 255 }
 
 	def get_felts
-		return FormElement.where(event_id: self.id)
+		return self.form_elements
 	end
 
 	def set(params,user)
@@ -14,7 +19,7 @@ class Event < ActiveRecord::Base
     self.end_date = params['end_date']
     self.place_number = params['place_number']
     self.registration= params['registration']=="1"
-    self.user_id = user.id
+    self.admin = user
 
 	end
 
@@ -26,12 +31,11 @@ class Event < ActiveRecord::Base
       
     felts.each do |felt|
       if(params["delete::"+felt.id.to_s]=='1')
-        FormAnswer.where(form_elements_id: felt.id).destroy_all
-        felt.destroy
+        felt.destroy 
       else  
         felt.question= params['question::'+felt.id.to_s]
         felt.form_type = params["form_type::"+felt.id.to_s]
-        felt.event_id = params["event::"+felt.id.to_s]
+        felt.event = self
         if felt.form_type == FormElement.TYPES["select"]
           felt.data=params["dataSelect::"+felt.id.to_s]
         end

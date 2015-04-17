@@ -4,23 +4,33 @@
 		%h1 Events to which you have registered: 
 		-if events.empty?
 			%p You have not yet registered to any event. 
-		-else						
-			-felt =felts[i]
-			-fanswer = fanswers[i]
-			-events.each do |e|
-				%ul.list-group
+		-else					
+			%ul.list-group
+				-modificate = false
+				-events.each do |e|
 					%li.list-group-item 
-						%h3 
-							=e.name
-						-while(felt.is_a?(FormElement) && e.id == felt.event_id)
-							%p 
-								=felt.question
-								%br/
-								➥
-								=fanswer.answer
-							-i = i+1
-							-felt =felts[i]
-							-fanswer = fanswers[i]
-			
+						.container
+							.col-md-10
+								%h3 
+									=e.name
+								-felts.each do |felt|
+									-modificate=true
+									%p 
+										=felt.question
+										%br/
+										➥
+										-felt.form_answers.each do |fanswer|
+											-if fanswer.participant == user
+												=fanswer.answer
+							.col-md-2
+								-if modificate
+									%a.btn.btn-primary{:href => "/profile/event/edit-registration/#{e.id}", :style => "margin-top: 1px"}
+										Modificate 
+									%br/
+									-modificate = false
+								%a.btn.btn-danger{:href => "/profile/event/deleteRegistration/#{e.id}", :style => "margin-top: 1px"}
+									Unregister 
 
-						
+				
+
+								

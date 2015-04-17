@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409135241) do
+ActiveRecord::Schema.define(version: 20150416154856) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -32,19 +32,21 @@ ActiveRecord::Schema.define(version: 20150409135241) do
     t.datetime "updated_at"
     t.boolean  "registration"
     t.integer  "place_number"
-    t.integer  "user_id"
+    t.integer  "admin_id"
   end
 
-  add_index "events", ["user_id"], name: "index_events_on_user_id"
+  add_index "events", ["admin_id"], name: "index_events_on_admin_id"
 
   create_table "form_answers", force: :cascade do |t|
     t.string  "answer"
-    t.integer "form_elements_id"
     t.integer "event_id"
+    t.integer "form_element_id"
+    t.integer "participant_id"
   end
 
   add_index "form_answers", ["event_id"], name: "index_form_answers_on_event_id"
-  add_index "form_answers", ["form_elements_id"], name: "index_form_answers_on_form_elements_id"
+  add_index "form_answers", ["form_element_id"], name: "index_form_answers_on_form_element_id"
+  add_index "form_answers", ["participant_id"], name: "index_form_answers_on_participant_id"
 
   create_table "form_elements", force: :cascade do |t|
     t.string  "question"
@@ -119,13 +121,5 @@ ActiveRecord::Schema.define(version: 20150409135241) do
     t.date     "birth"
     t.string   "token"
   end
-
-  create_table "users_form_answers", id: false, force: :cascade do |t|
-    t.integer "form_answers_id"
-    t.integer "users_id"
-  end
-
-  add_index "users_form_answers", ["form_answers_id"], name: "index_users_form_answers_on_form_answers_id"
-  add_index "users_form_answers", ["users_id"], name: "index_users_form_answers_on_users_id"
 
 end

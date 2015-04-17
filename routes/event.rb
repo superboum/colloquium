@@ -5,25 +5,25 @@ module EventController
       event = Event.find_by_id(params[:id])
       if authenticated?
        isRegistered = user.registered?(event)
-      else 
-        isRegistered = false
-      end
-      haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => isRegistered}
+     else 
+      isRegistered = false
     end
+    haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => isRegistered}
+  end
 
 
   app.get '/event/register/:id/?' do 
     restrictToAuthenticated!
     event = Event.find_by_id(params[:id])
-    felts = event.get_felts
+    felts = event.form_elements
 
-    haml :eventRegistration, :locals => {:event => event,:felts => felts}
+    haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: false, fanswers: {}}
   end
 
 
   app.post '/event/register/:id/?' do
     restrictToAuthenticated!
-      if :id != params["event"] then 
+    if :id != params["event"] then 
         puts "error" #TODO 
       end
       event = Event.find_by_id(params[:id])
@@ -33,6 +33,8 @@ module EventController
       redirect "/event/#{params[:id]}", 303
 
     end
+
+ 
 
 
 
@@ -48,6 +50,31 @@ module EventController
         haml :'profile/event',:locals => { :events => events ,:felts => felts,:fanswers => fanswers}
       end
     end
+
+
+   app.get '/profile/event/edit-registration/:id/?' do 
+      restrictToAuthenticated!
+      event = Event.find_by_id(params[:id])
+      felts = event.get_felts
+      fanswers= user.get_form_answer_registered(event)
+
+      haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: true, fanswers: fanswers}
+    end
+
+
+    app.post '/profile/event/edit-registration/:id/?' do
+      restrictToAuthenticated!
+      if :id != params["event"] then 
+        puts "error" #TODO 
+      end
+      event = Event.find_by_id(params[:id])
+      
+      user.edit_register_to_event(event,params)
+
+      redirect "/event/#{params[:id]}", 303
+
+    end
+
 
     #BACKOFFICE
     app.get '/admin/event/?' do
@@ -94,7 +121,7 @@ module EventController
       event = Event.find(params[:id])
       felts = event.get_felts
       haml :'admin/layout', :layout => :'layout' do
-        haml :'admin/event/newedit', :locals => { :event => event, :felts => felts,:unvalid => false,:edit => true }
+        haml :'admin/event/newedit', :locals => { :event => event, :unvalid => false,:edit => true }
       end
 
     end
@@ -114,7 +141,7 @@ module EventController
 
         puts event.errors.messages
         haml :'admin/layout', :layout => :'layout' do
-          haml :'admin/event/newedit', :locals => { :event => event, :felts=>felts,:edit => true, :unvalid => true, :errors =>event.errors.messages }
+          haml :'admin/event/newedit', :locals => { :event => event, :edit => true, :unvalid => true, :errors =>event.errors.messages }
         end
       else
 

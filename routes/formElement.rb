@@ -64,7 +64,7 @@ module FormElementController
         then puts "error"
       end
 
-      felt= Form.find(params["felt"])
+      felt= FormElement.find(params["felt"])
       felt.data=params["data"]
       felt.save
     end
