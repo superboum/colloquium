@@ -1,6 +1,6 @@
 -last = reviewProps.at(-1)
 
-%h2= r.name
+%h2= review.name
 
 %br
 %table.table.table-stripped
@@ -17,10 +17,8 @@
           View
         
         -if reviewProp == last
-          %a.btn.btn-info.btn-xs{:href => "/admin/review/assignement/#{reviewProp.id}"}
-            Assignate sby
           %td
-            %a.btn.btn-primary.btn-xs{:href => "/admin/review/validation/#{reviewProp.id}"} 
+            %a.btn.btn-primary.btn-xs{:href => "/moderation/validation/#{reviewProp.id}"} 
               Validate
         -else
           %td 

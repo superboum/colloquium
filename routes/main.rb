@@ -63,11 +63,5 @@ module MainController
       end
     end
 
-    app.get '/moderation/?' do
-      restrictToModerator!
-      haml :'moderation/layout', :layout => :'layout' do
-        haml :'moderation/home', :locals => { }
-      end
-    end
   end
 end

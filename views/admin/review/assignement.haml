@@ -13,16 +13,14 @@
 
 %table.table.table-stripped
   %tr
-    %th First Name
-    %th Last Name
+    %th Name
     %th Created at
     %th Updated at
     %th Action
 
   - users.each do |u|
     %tr
-      %td= u.first_name
-      %td= u.last_name
+      %td #{u.first_name} #{u.last_name}
       %td= u.created_at
       %td= u.updated_at
       %td

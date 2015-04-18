@@ -68,14 +68,13 @@ module ReviewController
     
     app.get '/admin/review/view/:id' do
       restrictToAdmin!
-      review = Review.find_by(params[:id])
-
-      reviewProps = []      
-      if !review.nil?
-        reviewProps = Reviewproposition.where(review_id: review.id)
+      r = Review.find_by_id(params[:id])
+   
+      if !r.nil?
+        reviewProps = Reviewproposition.where("review_id = ?", params[:id]) # PB ICI !!!!!!!!!! Donne que les props de la 1ere review
       end
       haml :'admin/layout', :layout => :'layout'  do
-        haml :'admin/review/view', :locals => {:review => review, :reviewProps => reviewProps}
+        haml :'admin/review/view', :locals => {:r => r, :reviewProps => reviewProps}
       end
     end
     
@@ -118,7 +117,7 @@ module ReviewController
       restrictToAdmin!
       reviewProp = Reviewproposition.find(params[:id])
       reviewProp.validator_comment = params['validator_comment']
-      review = Review.find_by reviewProp.review_id
+      review = Review.find_by_id(reviewProp.review_id)
       review.validator_id = session[:user]
       if params[:validate] == "Valid"
         review.state = "validated"
@@ -132,5 +131,54 @@ module ReviewController
       redirect "admin/review/", 303
     end
     
+
+    app.get '/moderation/?' do
+      restrictToModerator!
+      specific_reviews = Review.where("validator_id = ?", session[:user])# PB ICI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Donne rien
+      haml :'moderation/layout', :layout => :'layout'  do
+        haml :'moderation/home', :locals => {:specific_reviews => specific_reviews}
+      end
+    end
+
+    app.get '/moderation/view/:id' do
+      restrictToModerator!
+      review = Review.find_by_id(params[:id])
+
+      reviewProps = []      
+      if !review.nil?
+        reviewProps = Reviewproposition.where(review_id: review.id)
+      end
+      haml :'moderation/layout', :layout => :'layout'  do
+        haml :'moderation/view', :locals => {:review => review, :reviewProps => reviewProps}
+      end
+    end
+
+    app.get '/moderation/validation/:id' do
+      restrictToModerator!
+      reviewProp = Reviewproposition.find_by_id(params[:id])
+      haml :'moderation/layout', :layout => :'layout'  do
+        haml :'moderation/validation', :locals => {:reviewProp => reviewProp}
+      end
+    end
+    
+    app.post '/moderation/validation/:id' do
+      restrictToModerator!
+      reviewProp = Reviewproposition.find(params[:id])
+      reviewProp.validator_comment = params['validator_comment']
+      review = Review.find_by_id(reviewProp.review_id)
+      review.validator_id = session[:user]
+      if params[:validate] == "Valid"
+        review.state = "validated"
+      elsif params[:validate] == "Ref"
+        review.state = "closed"
+      else
+        review.state = "waiting_for_proposition"
+      end
+      review.save
+      reviewProp.save
+      redirect "moderation", 303
+    end
+
+
   end
 end

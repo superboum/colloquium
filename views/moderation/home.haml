@@ -1,1 +1,27 @@
-%h1 Home
+%h2 Reviews by user
+
+%table.table.table-stripped
+  %tr
+    %th Title
+    %th Author
+    %th Status
+    %th Action
+
+  - specific_reviews.each do |a|
+    -u = User.find(a.lecturer_id)
+    %tr
+      %td= a.name
+      %td #{u.first_name} #{u.last_name}
+      -case a.state
+        -when "waiting_for_review" then 
+        -tmp="Waiting for review"
+        -when "waiting_for_proposition" then 
+        -tmp="Waiting for proposition"
+        -when "closed" then 
+        -tmp="Closed"
+        -when "validated" then
+        -tmp="Validated"
+      %td= tmp
+      %td 
+        %a.btn.btn-success.btn-xs{:href => "/moderation/view/#{a.id}"} 
+          View
