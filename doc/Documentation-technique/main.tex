@@ -47,65 +47,97 @@ Documentation Technique} }
 
 \section{Introduction}  
 
-Lorem Ipsum
+La base du projet est la création d'un site web pour la conférence, IWSM, organisé par notre tuteur, M. Jean-François Dupuy. Ce site a trois buts : 
+\begin{enumerate}
+\item Gérer l'inscription du public à la conférence.  Auparavant, les participants devaient compléter manuellement un document d'inscription, puis l'envoyer à l'INSA, où il était traité à la main par une secrétaire. La perte de temps était grande pour l'utilisateur et pour l'administration. 
+
+Le but est ici d'automatiser cette méthode. L'utilisateur s'inscrira donc sur le site web. Seul le payement restera manuel, n'ayant pas l'aval de la trésorerie de l'INSA pour automatiser cette procédure. 
+
+\item Gérer les résumés. Certains utilisateurs soumettront des résumés. Ceci seront relus avant d'être validé. Le site web devra donc permettre aux utilisateurs de soumettre un résumé. Un relecteur sera ensuite assigné au résumé. Un système de notification mail sera mis en place lors de la validation ou non du résumé. 
+
+\item Faire la promotion de la conférence. Le site web présentera les différents événements qui auront lieu durant la semaine, et permettra également à l'administrateur de créer pages et articles. 
+\end{enumerate}
+
+L'un des buts est également de créer un site web personnalisable, affin de permettre une future réutilisation du projet pour une future conférence. 
+
+\medbreak
+
+Pour développer cette application web, nous avons choisi d'utiliser le langage \textit{ruby}. Nous aurions pu utiliser le framework \textit{Ruby On Rails} (RoR), qui est très puissant. Cependant, ce framework est plus adapté à de plus gros projets. Nous utilisons donc \textit{Sinatra}, qui est une version plus légère de RoR. Nous profitons donc de la légèreté de Sinatra, tout en ayant la possibilité d'utiliser la plupart des modules proposés par RoR. 
+
+Pour gérer la base de donnée, nous utilisons \textit{ActiveRecord}, un module de RoR. Il facilite l'accès à la base de donnée, mais implémente aussi la notion de \textit{migration}, ce qui permet de construire petit à petit la structure des tables. 
+
+Pour le côté \textit{view} du site web, nous utilisons le framework \textit{Bootstrap}, créé par twitter, qui simplifie l'utilisation du CSS. %Javascipt ??? 
+Nous utilisons également \textit{HAML}, qui va générer du code \textit{html}, tout en permettant l'utisation du langage ruby. Par exemple, pour afficher les différents événements, nous utilisons une boucle, au sein même du code haml. 
+
+\medbreak
+
+Nous allons présenter trois partie importantes du développement du projet, après une brève introduction sur ruby : la configuration du projet, l'utilisation de sinatra, puis l'utilisation d'activerecord.   
 \newpage
 
-\section{Trucs tous bêtes et très utiles}
+\section{Présentation de ruby}
 
-Une liste de choses à savoir dès le début pour prendre en main
-\newpage
+\section{Configuration du projet}
 
-\section{Logiciels/frameorks utilisés}
+\section{Sinatra en général}
 
-La liste
-%Comment on les utilise
-\newpage
+\section{ActiveRecord et la base de donnée}
 
-\subsection{HTML/CSS}
-
-\begin{itemize}
-\item Bootstrap
-\end{itemize}
-\newpage
-
-\subsection{Serveur}
-
-\begin{itemize}
-\item Sinatra
-\item Rake
-\item minitest
-\end{itemize}
-\newpage
-
-\subsection{Base de données}
-
-\begin{itemize}
-\item sqlite
-\item Active-record
-\end{itemize}
-\newpage
-
-
-\section{Structure de la Base de Donnée}  
-
-Lorem ipsum
-
-(Avec un bô diagramme UML)
-\newpage
-
-
-\section{Schéma de Navigation} 
-
-Arborescence des fichiers
-Leur rôle
-\newpage
-
-
-\section{Interface administration} 
-
-Fonctionnalités
-Ce qu'elle fait
-\newpage
+%\section{Trucs tous bêtes et très utiles}
+%
+%Une liste de choses à savoir dès le début pour prendre en main
+%\newpage
+%
+%\section{Logiciels/frameorks utilisés}
+%
+%La liste
+%%Comment on les utilise
+%\newpage
+%
+%\subsection{HTML/CSS}
+%
+%\begin{itemize}
+%\item Bootstrap
+%\end{itemize}
+%\newpage
+%
+%\subsection{Serveur}
+%
+%\begin{itemize}
+%\item Sinatra
+%\item Rake
+%\item minitest
+%\end{itemize}
+%\newpage
+%
+%\subsection{Base de données}
+%
+%\begin{itemize}
+%\item sqlite
+%\item Active-record
+%\end{itemize}
+%\newpage
+%
+%
+%\section{Structure de la Base de Donnée}  
+%
+%Lorem ipsum
+%
+%(Avec un bô diagramme UML)
+%\newpage
+%
+%
+%\section{Schéma de Navigation} 
+%
+%Arborescence des fichiers
+%Leur rôle
+%\newpage
+%
+%
+%\section{Interface administration} 
+%
+%Fonctionnalités
+%Ce qu'elle fait
+%\newpage
 
 
 \section{Conclusion} 
