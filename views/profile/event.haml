@@ -13,14 +13,16 @@
 							.col-md-10
 								%h3 
 									=e.name
-								-felts.each do |felt|
+								-e.form_elements.each do |felt|
 									-modificate=true
 									%p 
 										=felt.question
 										%br/
 										➥
 										-felt.form_answers.each do |fanswer|
+											-p fanswer
 											-if fanswer.participant == user
+												-p fanswer
 												=fanswer.answer
 							.col-md-2
 								-if modificate
