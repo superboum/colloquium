@@ -134,6 +134,13 @@ module UserController
         haml :'admin/user/newedit', :locals => { :user => user, :edit => true }
       end
     end
+    
+    app.get '/admin/user/impersonate/:id/?' do
+      restrictToAdmin!
+      u = User.find(params[:id])
+      logUserManually(u)
+      redirect "/", 303
+    end
 
     app.post '/admin/user/edit/:id' do
       restrictToAdmin!

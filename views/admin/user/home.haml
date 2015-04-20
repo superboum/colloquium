@@ -5,20 +5,31 @@
 
 %table.table.table-stripped
   %tr
-    %th First Name
-    %th Last Name
-    %th Created at
-    %th Updated at
+    %th Email
+    %th Name
+    %th Role
+    %th Creation
     %th Action
 
   - users.each do |u|
     %tr
-      %td= u.first_name
-      %td= u.last_name
-      %td= u.created_at
-      %td= u.updated_at
+      %td= u.email
+      %td #{u.first_name} #{u.last_name}
+      %td 
+        -if u.role == 2
+          %span.label.label-danger Administrator
+        -if u.role == 1
+          %span.label.label-warning Moderator
+        -if u.role == 0
+          %span.label.label-success User
+        -if u.role > 2 || u.role < 0
+          %span.label.label-default ?????
+
+
+      %td= u.created_at.strftime("%m/%d/%Y")
       %td
         %a.btn.btn-xs.btn-default{:href => "/admin/user/edit/#{u.id}"} Edit
+        %a.btn.btn-xs.btn-default{:href => "/admin/user/impersonate/#{u.id}"} Impersonate
         %a.btn.btn-xs.btn-danger{:href => "/admin/user/delete/#{u.id}"} Delete
 
 %a.pull-right{:href => "/admin/user/new", :style => "margin-top: 20px", :class => "btn btn-primary"} 
