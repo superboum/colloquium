@@ -1,8 +1,10 @@
-%h2 Unregistration to  the event #{event.name}
+.row
+  .col-sm-9.col-sm-offset-2
+    %h2 Unregistration to  the event #{event.name}
 
-.alert.alert-danger Do you really want to delete your registration to this event?
+    .alert.alert-danger Do you really want to delete your registration to this event?
 
-%form{:method => "POST"}
-  %input.btn.btn-danger.pull-right{:type => "submit", :value => "Delete", :style => "margin-left: 5px"} 
-  %a.btn.btn-default.pull-right{:href => "/admin/event"} Cancel 
+    %form{:method => "POST"}
+      %input.btn.btn-danger.pull-right{:type => "submit", :value => "Delete", :style => "margin-left: 5px"} 
+      %a.btn.btn-default.pull-right{:href => "/admin/event"} Cancel 
 
