@@ -71,7 +71,18 @@ module EventController
 
     end
 
+    app.get '/profile/event/unregister/:id/?' do 
+      restrictToAuthenticated!
+      event = Event.find(params[:id])
+      haml :'profile/unregister', :locals => {event: event}
+    end
 
+
+    app.post '/profile/event/unregister/:id/?' do 
+      restrictToAuthenticated!
+      user.events.destroy(Event.find(params[:id]))
+      redirect "/event/#{params[:id]}", 303
+    end
     #BACKOFFICE
     app.get '/admin/event/?' do
       restrictToAdmin!
