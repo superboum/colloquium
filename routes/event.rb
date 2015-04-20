@@ -42,12 +42,10 @@ module EventController
     app.get '/profile/event/?' do
       restrictToAuthenticated!
       events = user.get_event_registered
-      felts = user.get_felt_registered
-      fanswers =user.get_form_answer_registered
-
+      
 
       haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/event',:locals => { :events => events ,:felts => felts,:fanswers => fanswers}
+        haml :'profile/event',:locals => { :events => events}
       end
     end
 
@@ -55,10 +53,8 @@ module EventController
    app.get '/profile/event/edit-registration/:id/?' do 
       restrictToAuthenticated!
       event = Event.find_by_id(params[:id])
-      felts = event.get_felts
-      fanswers= user.get_form_answer_registered(event)
-
-      haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: true, fanswers: fanswers}
+      
+      haml :eventRegistration, :locals => {:event => event, edit: true}
     end
 
 
@@ -163,7 +159,6 @@ module EventController
 
     app.post '/admin/event/delete/:id' do
       restrictToAdmin!
-      ActiveRecord::Base.connection.execute('DELETE FROM "registered_users_to_events" WHERE "registered_users_to_events"."event_id" = ?',params[:id])
       Event.destroy(params[:id]) 
       redirect "/admin/event", 303
     end

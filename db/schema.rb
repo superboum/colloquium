@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416154856) do
+ActiveRecord::Schema.define(version: 20150419193218) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -70,14 +70,6 @@ ActiveRecord::Schema.define(version: 20150416154856) do
     t.string   "slug"
   end
 
-  create_table "registered_users_to_events", id: false, force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
-  end
-
-  add_index "registered_users_to_events", ["event_id"], name: "index_registered_users_to_events_on_event_id"
-  add_index "registered_users_to_events", ["user_id"], name: "index_registered_users_to_events_on_user_id"
-
   create_table "reviewpropositions", force: :cascade do |t|
     t.string   "file"
     t.text     "lecturer_info"
@@ -121,5 +113,13 @@ ActiveRecord::Schema.define(version: 20150416154856) do
     t.date     "birth"
     t.string   "token"
   end
+
+  create_table "users_events", id: false, force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  add_index "users_events", ["event_id"], name: "index_users_events_on_event_id"
+  add_index "users_events", ["user_id"], name: "index_users_events_on_user_id"
 
 end

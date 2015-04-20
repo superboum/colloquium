@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
 
   has_many :form_answers, :class_name => 'FormAnswer', :foreign_key => 'event_id',:dependent => :delete_all
   has_many :form_elements, :class_name => 'FormElement', :foreign_key => 'event_id',:dependent => :delete_all
+  has_and_belongs_to_many :participants,:class_name => 'User',:foreign_key => 'user_id'
   belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
 
 	validates :short_text, length: { maximum: 255 }
@@ -27,9 +28,8 @@ class Event < ActiveRecord::Base
   
 
 	def set_felts(params,user)
-		felts = self.get_felts
-      
-    felts.each do |felt|
+		  
+    self.felts.each do |felt|
       if(params["delete::"+felt.id.to_s]=='1')
         felt.destroy 
       else  

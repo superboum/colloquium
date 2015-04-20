@@ -4,16 +4,12 @@ class User < ActiveRecord::Base
 
   has_many :reviews, :class_name => 'Review', :foreign_key => 'lecturer_id'
   has_many :reviews_to_correct, :class_name => 'Review', :foreign_key => 'validator_id'
+  has_many :users_events
+  has_many :events, through: :users_events
 
 
   def registered?(event)
-   l= (User.find_by_sql ['SELECT u.* FROM users AS u,
-     registered_users_to_events AS r
-     WHERE u.id = ? AND 
-     r.user_id = u.id AND
-     r.event_id = ?',self.id,event.id])
-   .length 
-   return l>= 1 
+   return self.events.include?(event)
  end
 
  def raw_password(rpass)
@@ -94,12 +90,11 @@ def register_to_event(event,params)
       
     end
     
+    self.events << event
+    self.save
+
+
     
-    participant = RegisteredUsersToEvents.new
-    participant.event_id = event.id
-    participant.user_id = self.id
-    
-    participant.save
   end
 
   
@@ -140,29 +135,21 @@ end
 end
 
 def get_event_registered
- puts "======="
- return Event.joins('LEFT OUTER JOIN registered_users_to_events ON registered_users_to_events.event_id = events.id').where("registered_users_to_events.user_id" => self.id)
+ return self.events
 end
 
 def get_felt_registered
- return FormElement.find_by_sql(['SELECT "form_elements".* FROM "form_elements", form_answers ON form_answers.form_element_id = form_elements.id WHERE form_answers.participant_id = ?  ORDER BY form_elements.event_id',self.id])
+
+ return self.events.felts
 end 
 
-
- #  def get_form_answer(felt)
- #    fa = FormAnswer.joins('LEFT OUTER JOIN users_form_answers ON users_form_answers.form_answers_id = form_answers.id').where( ['users_form_answers.users_id = ? AND form_answers.form_element_id = ? ' , self.id, felt.id])[0]
- #    if(fa==nil)
- #     return [FormAnswer.new,true]
- #   end
- #   return [fa,false]
- # end
 
 
  def get_form_answer_registered(*event)
   if(event.empty?)
-   return FormAnswer.joins('LEFT OUTER JOIN users_form_answers ON users_form_answers.form_answers_id = form_answers.id').where( 'users_form_answers.users_id' => self.id).order('form_answers.event_id')
+   return FormAnswer.where(user: self).order(:event_id)
  else 
-   return FormAnswer.joins('LEFT OUTER JOIN users_form_answers ON users_form_answers.form_answers_id = form_answers.id').where( ['users_form_answers.users_id = ? and form_answers.event_id = ?',self.id,event[0]]).order("form_answers.form_element_id")
+   return FormAnswer.where(user: self,event: event).order(:event_id)
  end
 
 end
