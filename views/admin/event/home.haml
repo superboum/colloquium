@@ -10,6 +10,8 @@
     %th Updated at
     %th Action
 
+    %th Registration
+
   - events.each do |e|
     %tr
       %td= e.name
@@ -19,5 +21,10 @@
         %a.btn.btn-xs.btn-default{:href => "/admin/event/edit/#{e.id}"} Edit
         %a.btn.btn-xs.btn-danger{:href => "/admin/event/delete/#{e.id}"} Delete
 
+      %td
+        -if !e.registration
+          %a.btn.btn-xs.btn-primary{:href => "/admin/event/registration/enable/#{e.id}"} Enable
+        -else 
+          %a.btn.btn-xs.btn-primary{:href => "/admin/event/registration/disable/#{e.id}"} Disable
 %a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
   Add a new event

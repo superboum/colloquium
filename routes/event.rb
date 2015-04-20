@@ -42,12 +42,10 @@ module EventController
     app.get '/profile/event/?' do
       restrictToAuthenticated!
       events = user.get_event_registered
-      felts = user.get_felt_registered
-      fanswers =user.get_form_answer_registered
-
+      
 
       haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/event',:locals => { :events => events ,:felts => felts,:fanswers => fanswers}
+        haml :'profile/event',:locals => { :events => events}
       end
     end
 
@@ -55,10 +53,8 @@ module EventController
    app.get '/profile/event/edit-registration/:id/?' do 
       restrictToAuthenticated!
       event = Event.find_by_id(params[:id])
-      felts = event.get_felts
-      fanswers= user.get_form_answer_registered(event)
-
-      haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: true, fanswers: fanswers}
+      
+      haml :eventRegistration, :locals => {:event => event, edit: true}
     end
 
 
@@ -161,15 +157,22 @@ module EventController
       end
     end
 
-    # CRADE ????
     app.post '/admin/event/delete/:id' do
       restrictToAdmin!
-      ActiveRecord::Base.connection.execute('DELETE FROM "registered_users_to_events" WHERE "registered_users_to_events"."event_id" = ?',params[:id])
-      FormElement.where(event_id: params[:id]).destroy_all
-      ActiveRecord::Base.connection.execute('DELETE  FROM users_form_answers WHERE form_answers_id in ( SELECT id FROM form_answers WHERE event_id = ?)',params[:id]) 
-      FormAnswer.destroy_all(event_id: params[:id])
       Event.destroy(params[:id]) 
       redirect "/admin/event", 303
+    end
+
+    app.get '/admin/event/registration/:action/:id' do
+      e= Event.find(params[:id])
+      if params[:action] == "enable" && !e.registration
+        e.registration = true
+      end      
+      if params[:action] == "disable" && e.registration
+        e.registration = true
+      end
+      e.save
+      redirect '/admin/event'
     end
   end
 end
