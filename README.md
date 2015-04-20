@@ -50,6 +50,12 @@ Générer les fichiers CSS et JS (à chaque modification du CSS ou du JS)
 bundle exec rake assets:generate
 ```
 
+Générer un compte admin de test : 
+
+```bash
+bundle exec rake fixture:admin
+```
+
 Lancer le serveur
 
 ```bash
