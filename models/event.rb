@@ -18,8 +18,8 @@ class Event < ActiveRecord::Base
     self.short_text = params['short_text']
     self.start_date = params['start_date']
     self.end_date = params['end_date']
-    self.place_number = params['place_number']
     self.registration= params['registration']=="1"
+    self.spots_number_limit = params["place_number"]
     self.admin = user
 
 	end
@@ -29,7 +29,7 @@ class Event < ActiveRecord::Base
 
 	def set_felts(params,user)
 		  
-    self.felts.each do |felt|
+    self.form_elements.each do |felt|
       if(params["delete::"+felt.id.to_s]=='1')
         felt.destroy 
       else  

@@ -5,23 +5,29 @@
 
 %table.table.table-stripped
   %tr
-    %th Name
-    %th Created at
-    %th Updated at
-    %th Action
-
-    %th Registration
+    %th.text-center Name
+    %th.text-center Created at
+    %th.text-center Updated at
+    %th.text-center Action
+    %th.text-center 
+      Number of 
+      %br
+      participants
+    %th.text-center Registration
 
   - events.each do |e|
     %tr
-      %td= e.name
-      %td= e.created_at
-      %td= e.updated_at
-      %td
+      %td.text-center= e.name
+      %td.text-center= e.created_at
+      %td.text-center= e.updated_at
+      %td.text-center
         %a.btn.btn-xs.btn-default{:href => "/admin/event/edit/#{e.id}"} Edit
         %a.btn.btn-xs.btn-danger{:href => "/admin/event/delete/#{e.id}"} Delete
-
-      %td
+      %td.text-center
+        =e.number_of_participants
+        -if e.spots_number_limit != 0
+          \/#{e.spots_number_limit}
+      %td.text-center
         -if !e.registration
           %a.btn.btn-xs.btn-primary{:href => "/admin/event/registration/enable/#{e.id}"} Enable
         -else 

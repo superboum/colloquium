@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419193218) do
+ActiveRecord::Schema.define(version: 20150420215439) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20150419193218) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "registration"
-    t.integer  "place_number"
     t.integer  "admin_id"
+    t.integer  "spots_number_limit",     default: 0
+    t.integer  "number_of_participants", default: 0
   end
 
   add_index "events", ["admin_id"], name: "index_events_on_admin_id"

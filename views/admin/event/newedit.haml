@@ -30,8 +30,8 @@
     %label{:for => "end_date"} End of your event 
     %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
   .form-group
-    %label{:for => "place_number"} Number of place
-    %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.place_number}
+    %label{:for => "place_number"} Number of place (0 means no limitation)
+    %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.spots_number_limit}
   -if edit
     -felts = event.form_elements
     -if !felts.empty?

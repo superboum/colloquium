@@ -74,10 +74,7 @@ def register_to_event(event,params)
     id="felt::#{felt.id}"
     case felt.form_type
     when FormElement.TYPES["bool"]
-      if(params[id]=="1")
-        fa.answer="true"
-      else fa.answer = "false"
-      end
+      fa.answer=(params[id]=="1")
     when FormElement.TYPES["select"]
       fa.answer =params[id]      
     when FormElement.TYPES["string"]
@@ -90,6 +87,9 @@ def register_to_event(event,params)
       
     end
     
+    event.number_of_participants += 1
+    event.save
+
     self.events << event
     self.save
 

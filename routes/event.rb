@@ -5,16 +5,20 @@ module EventController
       event = Event.find_by_id(params[:id])
       if authenticated?
        isRegistered = user.registered?(event)
-     else 
-      isRegistered = false
+      else 
+        isRegistered = false
+      end
+      soldout = !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
+      haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => isRegistered,soldout: soldout}
     end
-    haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => isRegistered}
-  end
 
 
   app.get '/event/register/:id/?' do 
     restrictToAuthenticated!
     event = Event.find_by_id(params[:id])
+    if !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
+      redirect "/event/#{params[:id]}"
+    end
     felts = event.form_elements
 
     haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: false, fanswers: {}}
@@ -23,11 +27,15 @@ module EventController
 
   app.post '/event/register/:id/?' do
     restrictToAuthenticated!
+   
+    
     if :id != params["event"] then 
         puts "error" #TODO 
       end
       event = Event.find_by_id(params[:id])
-      
+       if !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
+      redirect "/event/#{params[:id]}"
+    end
       user.register_to_event(event,params)
 
       redirect "/event/#{params[:id]}", 303
@@ -80,14 +88,19 @@ module EventController
 
     app.post '/profile/event/unregister/:id/?' do 
       restrictToAuthenticated!
-      user.events.destroy(Event.find(params[:id]))
+      event = Event.find(params[:id])
+      event.number_of_participants-= 1
+      event.form_answers.destroy(FormAnswer.where(event: event, participant: user))
+      event.save
+      user.events.destroy(event)
       redirect "/event/#{params[:id]}", 303
     end
+
+    
     #BACKOFFICE
     app.get '/admin/event/?' do
       restrictToAdmin!
       events = Event.all
-
 
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/event/home', :locals => { :events => events }

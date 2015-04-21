@@ -73,6 +73,10 @@ module UserController
 
     app.get '/profile/delete/?' do
       restrictToAuthenticated!
+      user.events.each do |event|
+        event.number_of_participants--
+        event.save
+      end
       user.destroy
       session[:user] = nil
       redirect to('/'),303
@@ -123,7 +127,12 @@ module UserController
 
     app.post '/admin/user/delete/:id' do
       restrictToAdmin!
-      User.destroy(params[:id])
+      tmp_user = User.find(params[:id])
+      tmp_user.events.each do |event|
+        event.number_of_participants -= 1
+        event.save
+      end
+      User.destroy(tmp_user)
       redirect "/admin/user", 303
     end
 
