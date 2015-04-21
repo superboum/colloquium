@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
 
   has_many :form_answers, :class_name => 'FormAnswer', :foreign_key => 'event_id',:dependent => :delete_all
   has_many :form_elements, :class_name => 'FormElement', :foreign_key => 'event_id',:dependent => :delete_all
-  has_and_belongs_to_many :participants,:class_name => 'User',:foreign_key => 'user_id'
+  has_many :users_events
+  has_many :participants, through: :users_events
   belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
 
 	validates :short_text, length: { maximum: 255 }
@@ -16,6 +17,7 @@ class Event < ActiveRecord::Base
 	def set(params,user)
 		self.name = params['name']
     self.short_text = params['short_text']
+    self.long_text = params['long_text']
     self.start_date = params['start_date']
     self.end_date = params['end_date']
     self.registration= params['registration']=="1"

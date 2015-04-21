@@ -49,11 +49,11 @@ module EventController
     # USERSIDE
     app.get '/profile/event/?' do
       restrictToAuthenticated!
-      events = user.get_event_registered
-      
+      events_registered = user.get_event_registered
+      other_events = Event.all - events_registered
 
       haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/event',:locals => { :events => events}
+        haml :'profile/event',:locals => { :events_registered => events_registered, other_events: other_events}
       end
     end
 
@@ -110,8 +110,12 @@ module EventController
 
     app.get '/admin/event/new/?' do
       restrictToAdmin!
+      event = Event.new
+      now = (Time.now+ 60*60 - Time.now.min*60 - Time.now.sec)
+      event.start_date = now
+      event.end_date = now + 60*60
       haml :'admin/layout', :layout => :'layout' do
-        haml :'admin/event/newedit', :locals => { :event => Event.new, :edit => false, :unvalid =>false  }
+        haml :'admin/event/newedit', :locals => { :event => event, :edit => false, :unvalid =>false  }
       end
     end
 

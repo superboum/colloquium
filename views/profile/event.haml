@@ -1,13 +1,12 @@
--i=0
 .panel.panel-default
 	.panel.panel-body
-		%h1 Events to which you have registered: 
-		-if events.empty?
+		%h2 Events to which you have registered: 
+		-if events_registered.empty?
 			%p You have not yet registered to any event. 
 		-else					
 			%ul.list-group
 				-modificate = false
-				-events.each do |e|
+				-events_registered.each do |e|
 					%li.list-group-item 
 						.container
 							.col-md-10
@@ -32,6 +31,20 @@
 									-modificate = false
 								%a.btn.btn-danger{:href => "/profile/event/unregister/#{e.id}", :style => "margin-top: 1px"}
 									Unregister 
+		%h2 Other events 
+		-if other_events.empty?
+			%p There is not any other event 
+		-else					
+			%ul.list-group
+				-other_events.each do |e|
+					%li.list-group-item 
+						%a{href: "/event/#{e.id}"}
+							%h3 
+								=e.name
+						= markdown(e.short_text)
+						%a{href: "/event/#{e.id}"}
+							Read more and register
+								
 
 				
 

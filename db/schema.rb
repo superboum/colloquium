@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420215439) do
+ActiveRecord::Schema.define(version: 20150421145605) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150420215439) do
     t.integer  "admin_id"
     t.integer  "spots_number_limit",     default: 0
     t.integer  "number_of_participants", default: 0
+    t.text     "long_text"
   end
 
   add_index "events", ["admin_id"], name: "index_events_on_admin_id"

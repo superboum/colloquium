@@ -2,20 +2,17 @@
   .row
     .col-md-9.col-md-offset-2
       %h1.text-center=event.name 
-      .row.vcenter
+      .row
         .col-md-8
-          %h4.lead
-            = markdown(event.short_text)
+          %h4.lead.text-center
+          = markdown(event.short_text)
 
+
+          %p
+          = markdown(event.long_text)
 
           
-          %h4.lead
-            From : 
-            = event.start_date
-            <br/>
-            To :
-            = event.end_date
-
+         
           
           
 
@@ -23,15 +20,28 @@
             \- Last update :
             = event.updated_at
         .col-md-3.col-md-offset-1
+          %h4.lead
+            From : 
+            = event.start_date.strftime("%m/%d/%Y at %I:%M %P")
+            <br/>
+            To :
+            = event.end_date.strftime("%m/%d/%Y at %I:%M %P")
+
           .panel.panel-default
             .panel-body
+
+
               -if registration  
                 -if isAuthentificated
                   -if isRegistered
                     %p You have already registered to this event. 
+
+
+                    %a.btn.btn-primary{:href => "/profile/event/edit-registration/#{event.id}", :role => "button"} Edit registration  
                   -else
                     -if soldout
                       %p Sorry, there is no spot left for this event
+
                     -else 
                       %p You have not yet registered to this event. 
 

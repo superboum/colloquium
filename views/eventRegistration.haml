@@ -45,7 +45,7 @@
             -else 
               .form-group
                 %label{:for => "felt::#{felt.id}"} #{felt.question}
-                %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:placeholder => "#{answer}", :type => "text"}
+                %input.form-control{:name=>"felt::#{felt.id}",:title=>"#{felt.question}",:id=>"felt::#{felt.id}",:value => "#{answer}", :type => "text"}
           
       .text-center
         %input.btn.btn-primary{:type => "submit", :value => "Register", :style => "margin-left: 5px"} 
