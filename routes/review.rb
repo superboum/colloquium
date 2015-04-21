@@ -68,13 +68,13 @@ module ReviewController
     
     app.get '/admin/review/view/:id' do
       restrictToAdmin!
-      r = Review.find_by_id(params[:id])
+      review = Review.find_by_id(params[:id])
    
-      if !r.nil?
+      if !review.nil?
         reviewProps = Reviewproposition.where("review_id = ?", params[:id]) # PB ICI !!!!!!!!!! Donne que les props de la 1ere review
       end
       haml :'admin/layout', :layout => :'layout'  do
-        haml :'admin/review/view', :locals => {:r => r, :reviewProps => reviewProps}
+        haml :'admin/review/view', :locals => {:review => review, :reviewProps => reviewProps}
       end
     end
     

@@ -1,17 +1,22 @@
 -last = reviewProps.at(-1)
 
-%h2= r.name
+%h2= review.name
 
 %br
 %table.table.table-stripped
   %tr
     %th Title
+    %th Person in charge
     %th Actions
     %th Validation
   -reviewProps.each do |reviewProp|
 
     %tr
       %td= reviewProp.lecturer_info
+      -if review.validator.nil?
+        %td 
+      -else
+        %td #{review.validator.first_name} #{review.validator.last_name}
       %td 
         %a.btn.btn-default.btn-xs{:href => "#{reviewProp.file}", :target => "_blank"}
           View

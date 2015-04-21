@@ -11,7 +11,7 @@
     -u = User.find(a.lecturer_id)
     %tr
       %td= a.name
-      %td= u.first_name
+      %td #{u.first_name} #{u.last_name}
       -case a.state
         -when "waiting_for_review" then 
         -tmp="Waiting for review"
