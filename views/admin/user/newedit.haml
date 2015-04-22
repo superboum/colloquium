@@ -30,11 +30,18 @@
 
   .form-group
     %label{:for => "role"} Role
-    %input{:type => "number", :class => "form-control", :id => "role", :name => "role", :placeholder => "0 lambda user, 1 lecturer, 2 admin", :title => "role", :value => user.role}
+    %select{:name => "role", :id => "role", :class => "form-control"}
+      %option{:value => "-1", :selected => user.role == -1} Waiting for email confirmation
+      %option{:value => "0", :selected => user.role == 0} User
+      %option{:value => "1", :selected => user.role == 1} Moderator
+      %option{:value => "2", :selected => user.role == 2} Administrator 
 
   .form-group
     %label{:for => "diet"} Diet
-    %input{:type => "number", :class => "form-control", :id => "diet", :name => "diet", :placeholder => "0 for veggies, 1 for normals", :title => "diet", :value => user.diet}
+    %select{:name => "diet", :id => "diet", :class => "form-control"}
+      %option{:value => "0", :selected => user.diet == 0} No constraint
+      %option{:value => "1", :selected => user.diet == 1} Vegan
+      %option{:value => "2", :selected => user.diet == 2} Without pork
 
   .form-group
     %label{:for => "nationality"} Nationality
@@ -45,12 +52,17 @@
     %input{:type => "text", :class => "form-control", :id => "title", :name => "title", :placeholder => "Dr", :title => "title", :value => user.title}
 
   .form-group
-    %label{:for => "sex"} Sex
-    %input{:type => "number", :class => "form-control", :id => "sex", :name => "sex", :placeholder => "0 for F, 1 for M", :title => "sex", :value => user.sex}
+    %label{:for => "sex"} Gender
+    %select{:name => "sex", :id => "sex", :class => "form-control"}
+      %option{:value => "0", :selected => user.sex == 0} Female
+      %option{:value => "1", :selected => user.sex == 1} Male
+      %option{:value => "2", :selected => user.sex == 2} Other
 
   .form-group
-    %label{:for => "has_paid"} Has (s)he paid?
-    %input{:type => "number", :class => "form-control", :id => "has_paid", :name => "has_paid", :placeholder => "0 for yes, 1 for no", :title => "has_paid", :value => user.has_paid}
+    %label{:for => "has_paid"} Payment status
+    %select{:name => "has_paid", :id => "has_paid", :class => "form-control"}
+      %option{:value => "true", :selected => user.has_paid} Payment done
+      %option{:value => "false", :selected => !user.has_paid} Waiting for payment
 
   .form-group
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}

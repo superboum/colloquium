@@ -8,6 +8,7 @@
     %th Email
     %th Name
     %th Role
+    %th Payment
     %th Creation
     %th Action
 
@@ -18,13 +19,20 @@
       %td 
         -if u.role == 2
           %span.label.label-danger Administrator
-        -if u.role == 1
+        -elsif u.role == 1
           %span.label.label-warning Moderator
-        -if u.role == 0
+        -elsif u.role == 0
           %span.label.label-success User
-        -if u.role > 2 || u.role < 0
+        -elsif u.role == -1
+          %span.label.label-info Not validated
+        -else
           %span.label.label-default ?????
 
+      %td 
+        -if u.has_paid
+          %span.label.label-success Done
+        -else
+          %span.label.label-default Waiting
 
       %td= u.created_at.strftime("%m/%d/%Y")
       %td
