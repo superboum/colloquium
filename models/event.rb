@@ -12,7 +12,8 @@ class Event < ActiveRecord::Base
   validates :name, length: {minimum: 1, message: "This field can't be blank"}
   validates :spots_number_limit, numericality: { only_integer: true,greater_than_or_equal_to: 0}
 
-	def get_felts
+
+  def get_felts
 		return self.form_elements
 	end
 
@@ -35,7 +36,7 @@ class Event < ActiveRecord::Base
     felt_key = {}
     ret[0]=Array.new(2+nb_of_felts)
     ret[0][0]="Participant"
-    ret[0][1]="Date of </br> registration"
+    ret[0][1]="Date of registration"
     self.form_elements.each do |felt|
       felt_key[felt.id] = felt_cpt
       ret[0][felt_cpt] = felt.question
@@ -82,4 +83,30 @@ class Event < ActiveRecord::Base
       end
     end
   end
+
+
+  def self.make_excel_stats_file 
+    book =  Spreadsheet::Workbook.new
+    Event.all.each do |e|
+      if e.registration
+        e.set_sheet(book)
+      end
+    end
+
+    file= './tmp/events.xls'
+    book.write file
+
+    return file
+  end 
+
+  def set_sheet(book)
+    stats  = self.get_stats
+    stats.unshift([self.name])
+    sheet = book.create_worksheet :name => self.name
+    for i in 1..(stats.count) # (stats.count -1) doesn't work ?? 
+        sheet.row(i-1).replace stats[i-1]
+    end
+  end
+
+ 
 end

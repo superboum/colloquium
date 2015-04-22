@@ -127,9 +127,8 @@ module EventController
 
       if(event.invalid?) 
 
-        puts event.errors.messages
         haml :'admin/layout', :layout => :'layout' do
-          haml :'admin/event/newedit', :locals => { :event => event, :edit => false, :unvalid => true, :errors =>event.errors.full_messages }
+          haml :'admin/event/newedit', :locals => { :event => event, :edit => false, :unvalid => true, :errors =>event.errors.messages }
         end
       else
         event.save
@@ -203,7 +202,15 @@ module EventController
       e.save
       redirect '/admin/event'
     end
-
+    
+    app.get '/admin/event/download/?' do
+      restrictToAdmin!
+      Dir.mkdir('tmp') unless File.exists?('tmp')
+      file = Event.make_excel_stats_file 
+      send_file file, :filename => 'events.xls', :type => 'Application/octet-stream'
+      redirect '/admin/event'
+    end
+    
     app.get '/admin/event/:id/?' do 
       restrictToAdmin!
       e = Event.find(params[:id])
@@ -211,5 +218,7 @@ module EventController
         haml :'admin/event/stats', :locals => { :event => e, stats: e.get_stats}
       end
     end 
+
+    
   end
 end
