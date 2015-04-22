@@ -6,6 +6,7 @@ require 'haml'
 require 'pony'
 require 'uri'
 require 'yaml/store'
+require 'spreadsheet'
 
 require_relative 'routes/init'
 
@@ -52,6 +53,10 @@ class ColloquiumApp < Sinatra::Application
     register ReviewController
     register UserController
     register SettingsController
+
+    #spreedsheet configuration
+
+    Spreadsheet.client_encoding = 'UTF-8'
   end
 end
 

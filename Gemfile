@@ -20,3 +20,4 @@ gem "racksh"
 gem "capybara"
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'rubocop', require: false
+gem "spreadsheet"
