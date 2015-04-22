@@ -12,7 +12,7 @@
     -if unvalid && errors.has_key?(:name)
       -errors[:name].each do |msg|
         .alert.alert-danger 
-          =msg
+          =msg.capitalize
     %input{:type => "text", :class => "form-control", :id => "name", :placeholder => "Conference...", :name => "name", :value => event.name}/
   
   
@@ -23,7 +23,7 @@
     -if unvalid && errors.has_key?(:short_text)
       -errors[:short_text].each do |msg|
         .alert.alert-danger 
-          =msg
+          =msg.capitalize
     %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you event", :name => "short_text"}= event.short_text
   
   .form-group
@@ -32,7 +32,7 @@
     -if unvalid && errors.has_key?(:long_text)
       -errors[:long_text].each do |msg|
         .alert.alert-danger 
-          =msg
+          =msg.capitalize
     %textarea{:class => "form-control", :id => "long_text", :placeholder => "A quick summary of you event", :name => "long_text"}= event.long_text
      
 
@@ -41,7 +41,7 @@
     -if unvalid && errors.has_key?(:start_date)
       -errors[:start_date].each do |msg|
         .alert.alert-danger 
-          =msg
+          =msg.capitalize
     %input{:type => "datetime-local",:class => "form-control", :id => "start_date", :name => "start_date", :value => event.start_date}/
       
   .form-group
@@ -49,15 +49,13 @@
     -if unvalid && errors.has_key?(:end_date)
       -errors[:end_date].each do |msg|
         .alert.alert-danger 
-          =msg
-    %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
+          =msg.capitalize    %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
   .form-group
     %label{:for => "spots_number_limit"} Number of place (0 means no limitation)
     -if unvalid && errors.has_key?(:spots_number_limit)
       -errors[:spots_number_limit].each do |msg|
         .alert.alert-danger 
-          =msg
-    %input{:type => "number",:class => "form-control", :id => "spots_number_limit", :name => "spots_number_limit", :value => event.spots_number_limit}
+          =msg.capitalize    %input{:type => "number",:class => "form-control", :id => "spots_number_limit", :name => "spots_number_limit", :value => event.spots_number_limit}
   -if edit
     -felts = event.form_elements
     -if !felts.empty?
