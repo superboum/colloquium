@@ -8,7 +8,9 @@ class Event < ActiveRecord::Base
   has_many :participants, through: :users_events
   belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
 
-	validates :short_text, length: { maximum: 255 }
+	validates :short_text, length: { maximum: 255 ,message: "The size is limited to 255 chars"}
+  validates :name, length: {minimum: 1, message: "This field can't be blank"}
+  validates :spots_number_limit, numericality: { only_integer: true,greater_than_or_equal_to: 0}
 
 	def get_felts
 		return self.form_elements
@@ -21,7 +23,7 @@ class Event < ActiveRecord::Base
     self.start_date = params['start_date']
     self.end_date = params['end_date']
     self.registration= params['registration']=="1"
-    self.spots_number_limit = params["place_number"]
+    self.spots_number_limit = params["spots_number_limit"]
     self.admin = user
 
 	end

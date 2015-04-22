@@ -17,7 +17,9 @@
 
   - events.each do |e|
     %tr
-      %td.text-center= e.name
+      %td.text-center
+        %a{href: "/admin/event/#{e.id}", title: "Show informations about this event"}
+          = e.name
       %td.text-center= e.created_at
       %td.text-center= e.updated_at
       %td.text-center

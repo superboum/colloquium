@@ -9,6 +9,10 @@
 %form.form-horizontal{:method => "POST"}
   .form-group
     %label{:for => "name"} Title
+    -if unvalid && errors.has_key?(:name)
+      -errors[:name].each do |msg|
+        .alert.alert-danger 
+          =msg
     %input{:type => "text", :class => "form-control", :id => "name", :placeholder => "Conference...", :name => "name", :value => event.name}/
   
   
@@ -16,27 +20,44 @@
     
     %label{:for => "short_text"} Summary (max 255 chars)
 
-    -if unvalid
-      .alert.alert-danger The size is limited to 255 chars. 
+    -if unvalid && errors.has_key?(:short_text)
+      -errors[:short_text].each do |msg|
+        .alert.alert-danger 
+          =msg
     %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you event", :name => "short_text"}= event.short_text
   
   .form-group
     
-    %label{:for => "short_text"} Description of the event
-
+    %label{:for => "long_text"} Description of the event
+    -if unvalid && errors.has_key?(:long_text)
+      -errors[:long_text].each do |msg|
+        .alert.alert-danger 
+          =msg
     %textarea{:class => "form-control", :id => "long_text", :placeholder => "A quick summary of you event", :name => "long_text"}= event.long_text
      
 
   .form-group
     %label{:for => "start_date"} Begin of your event 
+    -if unvalid && errors.has_key?(:start_date)
+      -errors[:start_date].each do |msg|
+        .alert.alert-danger 
+          =msg
     %input{:type => "datetime-local",:class => "form-control", :id => "start_date", :name => "start_date", :value => event.start_date}/
       
   .form-group
     %label{:for => "end_date"} End of your event 
+    -if unvalid && errors.has_key?(:end_date)
+      -errors[:end_date].each do |msg|
+        .alert.alert-danger 
+          =msg
     %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
   .form-group
-    %label{:for => "place_number"} Number of place (0 means no limitation)
-    %input{:type => "number",:class => "form-control", :id => "place_number", :name => "place_number", :value => event.spots_number_limit}
+    %label{:for => "spots_number_limit"} Number of place (0 means no limitation)
+    -if unvalid && errors.has_key?(:spots_number_limit)
+      -errors[:spots_number_limit].each do |msg|
+        .alert.alert-danger 
+          =msg
+    %input{:type => "number",:class => "form-control", :id => "spots_number_limit", :name => "spots_number_limit", :value => event.spots_number_limit}
   -if edit
     -felts = event.form_elements
     -if !felts.empty?

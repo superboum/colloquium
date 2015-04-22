@@ -129,7 +129,7 @@ module EventController
 
         puts event.errors.messages
         haml :'admin/layout', :layout => :'layout' do
-          haml :'admin/event/newedit', :locals => { :event => event, :edit => false, :unvalid => true, :errors =>event.errors.messages }
+          haml :'admin/event/newedit', :locals => { :event => event, :edit => false, :unvalid => true, :errors =>event.errors.full_messages }
         end
       else
         event.save
