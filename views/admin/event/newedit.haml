@@ -18,15 +18,13 @@
 
     -if unvalid
       .alert.alert-danger The size is limited to 255 chars. 
-    %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you event", :name => "short_text"}
-      = event.short_text
+    %textarea{:class => "form-control", :id => "short_text", :placeholder => "A quick summary of you event", :name => "short_text"}= event.short_text
   
   .form-group
     
     %label{:for => "short_text"} Description of the event
 
-    %textarea{:class => "form-control", :id => "long_text", :placeholder => "A quick summary of you event", :name => "long_text"}
-      = event.long_text
+    %textarea{:class => "form-control", :id => "long_text", :placeholder => "A quick summary of you event", :name => "long_text"}= event.long_text
      
 
   .form-group
