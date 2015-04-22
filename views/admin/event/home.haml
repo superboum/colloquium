@@ -1,7 +1,10 @@
-%h2.pull-left List of events
 
+
+%h2.pull-left List of events
 %a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
   Add a new event
+%a.pull-right{:href => "/admin/event/download", :style => "margin-top: 20px; margin-right: 2px", :class => "btn btn btn-default"} 
+  Download statistics
 
 %table.table.table-stripped
   %tr
@@ -36,3 +39,5 @@
           %a.btn.btn-xs.btn-primary{:href => "/admin/event/registration/disable/#{e.id}"} Disable
 %a.pull-right{:href => "/admin/event/new", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
   Add a new event
+%a.pull-right{:href => "/admin/event/download", :style => "margin-top: 20px; margin-right: 2px", :class => "btn btn btn-default"} 
+  Download statistics

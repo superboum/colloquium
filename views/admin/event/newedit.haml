@@ -19,7 +19,6 @@
   .form-group
     
     %label{:for => "short_text"} Summary (max 255 chars)
-
     -if unvalid && errors.has_key?(:short_text)
       -errors[:short_text].each do |msg|
         .alert.alert-danger 
@@ -33,7 +32,8 @@
       -errors[:long_text].each do |msg|
         .alert.alert-danger 
           =msg.capitalize
-    %textarea{:class => "form-control", :id => "long_text", :placeholder => "A quick summary of you event", :name => "long_text"}= event.long_text
+    %textarea{:rows => "15", :'data-provide' => "markdown", :class => "form-control", :id => "long_text", :name => "long_text", :placeholder => "You article content.", :title => "long_text"}= event.long_text
+
      
 
   .form-group
