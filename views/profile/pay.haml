@@ -1,7 +1,40 @@
-.panel.panel-default
-  .panel-body
-    %h3 Pay
+.panel{:class => (user.has_paid ? "panel-success" : "panel-warning")}
+  .panel-heading
+    %h3.panel-title
+      Registration status : 
+      -if user.has_paid
+        %span.label.label-success Validated
+      -else
+        %span.label.label-warning Waiting for payment
 
+  -if !user.has_paid
+    .panel-body
+      %p.small Once your payment received, your registration will be validated. You'll receive an email and this page will be updated.
+      .row
+        .col-md-6
+          %h3 Bank transfer
+          %p 
+            RIB : 
+            %em 0000000000000
+
+        .col-md-6
+          %h3 Cheque
+          %p
+            Order : 
+            %em Blabalabblabla
+
+          %p
+            Address : 
+            %em Blabmabma
+      %hr
+      %h3.text-center
+        Total : 
+        %span.label.label-warning 42 €
+  -else
+    .panel-body
+      %h3.text-center.text-muted
+        %span.glyphicon.glyphicon-ok
+        Registration validated
 .row
   .col-md-6
     %a.btn.btn-default.btn-lg.btn-block{:href => "/profile/review"} Previous
