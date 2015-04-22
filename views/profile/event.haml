@@ -1,51 +1,55 @@
 .panel.panel-default
-	.panel.panel-body
-		%h2 Events to which you have registered: 
-		-if events_registered.empty?
-			%p You have not yet registered to any event. 
-		-else					
-			%ul.list-group
-				-modificate = false
-				-events_registered.each do |e|
-					%li.list-group-item 
-						.container
-							.col-md-10
-								%h3 
-									=e.name
-								-e.form_elements.each do |felt|
-									-modificate=true
-									%p 
-										=felt.question
-										%br/
-										➥
-										-felt.form_answers.each do |fanswer|
-											-p fanswer
-											-if fanswer.participant == user
-												-p fanswer
-												=fanswer.answer
-							.col-md-2
-								-if modificate
-									%a.btn.btn-primary{:href => "/profile/event/edit-registration/#{e.id}", :style => "margin-top: 1px"}
-										Modificate 
-									%br/
-									-modificate = false
-								%a.btn.btn-danger{:href => "/profile/event/unregister/#{e.id}", :style => "margin-top: 1px"}
-									Unregister 
-		%h2 Other events 
-		-if other_events.empty?
-			%p There is not any other event 
-		-else					
-			%ul.list-group
-				-other_events.each do |e|
-					%li.list-group-item 
-						%a{href: "/event/#{e.id}"}
-							%h3 
-								=e.name
-						= markdown(e.short_text)
-						%a{href: "/event/#{e.id}"}
-							Read more and register
-								
+  .panel.panel-body
+    %h2 Events to which you have registered: 
+    -if events_registered.empty?
+      %p You have not yet registered to any event. 
+    -else					
+      %ul.list-group
+        -modificate = false
+        -events_registered.each do |e|
+          %li.list-group-item 
+            .container
+              .col-md-10
+                %h3 
+                  =e.name
+                -e.form_elements.each do |felt|
+                  -modificate=true
+                  %p 
+                    =felt.question
+                    %br/
+                    ➥
+                    -felt.form_answers.each do |fanswer|
+                      -p fanswer
+                      -if fanswer.participant == user
+                        -p fanswer
+                        =fanswer.answer
+              .col-md-2
+                -if modificate
+                  %a.btn.btn-primary{:href => "/profile/event/edit-registration/#{e.id}", :style => "margin-top: 1px"}
+                    Modificate 
+                  %br/
+                  -modificate = false
+                %a.btn.btn-danger{:href => "/profile/event/unregister/#{e.id}", :style => "margin-top: 1px"}
+                  Unregister 
+    %h2 Other events 
+    -if other_events.empty?
+      %p There is not any other event 
+    -else					
+      %ul.list-group
+        -other_events.each do |e|
+          %li.list-group-item 
+            %a{href: "/event/#{e.id}"}
+              %h3 
+                =e.name
+            = markdown(e.short_text)
+            %a{href: "/event/#{e.id}"}
+              Read more and register
 
-				
+.row
+  .col-md-6
+    %a.btn.btn-default.btn-lg.btn-block{:href => "/profile/account"} Previous
 
-								
+  .col-md-6
+    %a.btn.btn-primary.btn-lg.btn-block{:href => "/profile/review"} Next
+
+

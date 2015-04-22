@@ -1,10 +1,6 @@
-.panel.panel-default
-  .panel-body
-    %h3 
-      %span.glyphicon.glyphicon-user
-      Personnal information
-
-    %form.form-horizontal#Update{:method => "POST"}
+%form.form-horizontal#Update{:method => "POST"}
+  .panel.panel-default
+    .panel-body
       %fieldset
         %legend Identity
         .form-group
@@ -60,14 +56,9 @@
             %label.radio-inline
               %input#inlineRadio3{:name => "dietRadioOptions", :type => "radio", :value => "2"}
                 Without pork
-      .col-md-5
-      %button.btn.btn-primary{:type => "submit", :value => "Update"} Update my infos
 
-.panel.panel-default
-  .panel-body
-    %h3
-      %span.glyphicon.glyphicon-shopping-cart
-      Payment
-      %small You must fill your personnal information before
+  .row
+    .col-md-6.col-md-offset-6
+      %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Next"}
 
 

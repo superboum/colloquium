@@ -9,27 +9,20 @@
     .col-lg-12
       .btn-group.btn-group-justified{"aria-label" => "choice", :role => "group"}
         %a.btn.btn-lg.btn-default{:href => "/profile/account", :class => ("active" unless menu != 0)} 
-          %span.glyphicon.glyphicon-bookmark
-          Conference registration
+          %span.glyphicon.glyphicon-user
+          About me
         %a.btn.btn-lg.btn-default{:href => "/profile/event", :class => ("active" unless menu != 1)}
           %span.glyphicon.glyphicon-glass
-          Participate to side events
+          Events registration
         %a.btn.btn-lg.btn-default{:href => "/profile/review", :class => ("active" unless menu != 2)}
           %span.glyphicon.glyphicon-inbox
-          Become a lecturer
+          Resume submission
+        %a.btn.btn-lg.btn-default{:href => "/profile/pay", :class => ("active" unless menu != 3)} 
+          %span.glyphicon.glyphicon-shopping-cart
+          Payment
 
   %br
+
   .row
-    .col-lg-12
-      .alert.alert-danger
-        %strong Registration state : 
-        Not registrated (fill your information)
-      -#.alert.alert-warning
-        -#%strong Registration state : 
-        -#Pending (waiting for your payment)
-      -#.alert.alert-success
-        -#%strong Registration state : 
-        -#Success
-      
     .col-lg-12
       = yield
