@@ -32,7 +32,7 @@ module UserController
       user.diet= params["dietRadioOptions"]
       user.save
       puts "#{params['first_name']} = #{user.first_name}"
-      redirect "/profile/account/?", 303
+      redirect "/profile/event", 303
     end
 
 

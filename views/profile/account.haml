@@ -6,41 +6,39 @@
         .form-group
           %label.col-md-2.control-label{:for => "firstName"} First name *
           .col-md-4
-            %input.form-control{:type => "text", :id => "firstName", :name => "firstName", :placeholder => "John"}
+            %input.form-control{:type => "text", :id => "firstName", :name => "firstName", :placeholder => "John", :value => user.first_name }
 
           %label.col-md-2.control-label{:for => "lastName"} Last name *
           .col-md-4
-            %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doe"}
+            %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doe", :value => user.last_name }
 
         .form-group
           %label.col-md-2.control-label{:for => "title"} Title
           .col-md-4
-            %input.form-control{:type => "text", :id => "title", :name => "title", :placeholder => "Doctor, Professor..."}
+            %input.form-control{:type => "text", :id => "title", :name => "title", :placeholder => "Doctor, Professor...", :value => user.title }
           
         .form-group 
           %label.col-md-2.control-label{:for => "gender"} Gender
           .col-md-4
             %select#gender.form-control{:name => "gender"}
-              %option{:value => "0"} Male
-              %option{:value => "1"} Female
-              %option{:value => "2"} Other
+              %option{:value => "0", :selected => user.sex == 0} Male
+              %option{:value => "1", :selected => user.sex == 1} Female
+              %option{:value => "2", :selected => user.sex == 2} Other
 
           %label.col-md-2.control-label{:for => "Nationality"} Nationality
           .col-md-4
-            %select#Nationality.form-control{:name => "nationality"}
-              %option{:value => "france"} France
-              %option{:value => "Deutschland"} Deutschland
+            %input.form-control{:type => "text", :name => "nationality", :id => "Nationality", :value => user.nationality}
 
       %fieldset
         %legend Contact
         .form-group
           %label.col-md-2.control-label{:for => "phone"} Phone Number *
           .col-md-4
-            %input.form-control{:type => "text", :id => "phone", :name => "phone", :placeholder => "+33617570950"}
+            %input.form-control{:type => "text", :id => "phone", :name => "phone", :placeholder => "+33617570950", :value => user.phone}
 
           %label.col-md-2.control-label{:for => "address"} Postal Address *
           .col-md-4
-            %input.form-control{:type => "text", :id => "address", :name => "address", :placeholder => "20 Avenue des Buttes des Coësmes, 35700 Rennes"}
+            %input.form-control{:type => "text", :id => "address", :name => "address", :placeholder => "20 Avenue des Buttes des Coësmes, 35700 Rennes", :value => user.address}
       
       %fieldset
         %legend Extra information
@@ -48,13 +46,13 @@
           %label.col-md-2.control-label{:for => "diet"} Diet *
           .col-md-6
             %label.radio-inline
-              %input#inlineRadio1{:name => "dietRadioOptions", :type => "radio", :value => "0"}
+              %input#inlineRadio1{:name => "dietRadioOptions", :type => "radio", :value => "0", :checked => user.diet == 0}
                 No constraint
             %label.radio-inline
-              %input#inlineRadio2{:name => "dietRadioOptions", :type => "radio", :value => "1"}
+              %input#inlineRadio2{:name => "dietRadioOptions", :type => "radio", :value => "1", :checked => user.diet == 1}
                 Vegan
             %label.radio-inline
-              %input#inlineRadio3{:name => "dietRadioOptions", :type => "radio", :value => "2"}
+              %input#inlineRadio3{:name => "dietRadioOptions", :type => "radio", :value => "2", :checked => user.diet == 2}
                 Without pork
 
   .row
