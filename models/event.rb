@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   has_many :form_answers, :class_name => 'FormAnswer', :foreign_key => 'event_id',:dependent => :delete_all
   has_many :form_elements, :class_name => 'FormElement', :foreign_key => 'event_id',:dependent => :delete_all
   has_many :users_events
-  has_many :participants, through: :users_events
+  has_many :participants, through: :users_events, source: :user
   belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
 
 	validates :short_text, length: { maximum: 255 ,message: "The size is limited to 255 chars"}
@@ -28,7 +28,43 @@ class Event < ActiveRecord::Base
 
 	end
 
+  def get_stats
+    nb_of_felts = self.form_elements.count
+    ret = Array.new(self.participants.count+1)
+    felt_cpt = 2
+    felt_key = {}
+    ret[0]=Array.new(2+nb_of_felts)
+    ret[0][0]="Participant"
+    ret[0][1]="Date of </br> registration"
+    self.form_elements.each do |felt|
+      felt_key[felt.id] = felt_cpt
+      ret[0][felt_cpt] = felt.question
+      felt_cpt += 1
+    end
 
+    participant_key = {}
+    ret_cpt = 1
+    self.participants.each do |p|
+      participant_key[p.id] = ret_cpt
+      if  p.last_name.nil?
+        p.last_name = ""
+      end
+      if  p.first_name.nil?
+        p.first_name = ""
+      end
+      ret[ret_cpt]= Array.new(2+nb_of_felts)
+      ret[ret_cpt][0]="#{p.last_name.upcase} #{p.first_name.capitalize}"
+      ret_cpt +=1
+    end
+
+    self.form_answers.each do |fa| 
+      if ret[participant_key[fa.participant.id]][1].nil?
+         ret[participant_key[fa.participant.id]][1]=fa.created_at.strftime("%m/%d/%Y at %I:%M %P")
+        end
+      ret[participant_key[fa.participant.id]][felt_key[fa.form_element.id]]= fa.answer
+    end
+  return ret
+  end
   
 
 	def set_felts(params,user)

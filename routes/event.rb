@@ -185,13 +185,13 @@ module EventController
       end
     end
 
-    app.post '/admin/event/delete/:id' do
+    app.post '/admin/event/delete/:id/?' do
       restrictToAdmin!
       Event.destroy(params[:id]) 
       redirect "/admin/event", 303
     end
 
-    app.get '/admin/event/registration/:action/:id' do
+    app.get '/admin/event/registration/:action/:id/?' do
       e= Event.find(params[:id])
       if params[:action] == "enable" && !e.registration
         e.registration = true
@@ -202,5 +202,12 @@ module EventController
       e.save
       redirect '/admin/event'
     end
+
+    app.get '/admin/event/:id/?' do 
+      e = Event.find(params[:id])
+      haml :'admin/layout', :layout => :'layout' do
+        haml :'admin/event/stats', :locals => { :event => e, stats: e.get_stats}
+      end
+    end 
   end
 end

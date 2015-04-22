@@ -1,0 +1,14 @@
+%h2.pull-left Statistics about the event #{event.name}
+
+
+%table.table.table-stripped
+  
+  %tr
+    -stats[0].each do |head|
+      %th 
+        =head
+    -stats.delete_at 0
+  -stats.each do |row|
+    %tr
+      -row.each do |data|
+        %td=data

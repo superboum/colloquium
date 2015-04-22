@@ -3,6 +3,7 @@ require 'sinatra/activerecord'
 class User < ActiveRecord::Base
 
   has_many :reviews, :class_name => 'Review', :foreign_key => 'lecturer_id'
+  has_many :form_answers, class_name: 'FormAnswer', foreign_key: 'participant_id'
   has_many :reviews_to_correct, :class_name => 'Review', :foreign_key => 'validator_id'
   has_many :users_events
   has_many :events, through: :users_events
@@ -111,6 +112,7 @@ def register_to_event(event,params)
         fa=FormAnswer.new
         fa.form_element = felt
         fa.event=event
+        fa.participant = self
       end
       id="felt::#{felt.id}"
       case felt.form_type
@@ -124,10 +126,13 @@ def register_to_event(event,params)
        fa.answer =params[id]      
      when FormElement.TYPES["string"]
        fa.answer = params[id]
+
      else
     #TODO
     puts "\033[31merror\033[0m"
   end
+  
+  fa.participant = self
   fa.save
 
 end
