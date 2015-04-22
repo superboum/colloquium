@@ -49,13 +49,15 @@
     -if unvalid && errors.has_key?(:end_date)
       -errors[:end_date].each do |msg|
         .alert.alert-danger 
-          =msg.capitalize    %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
+          =msg.capitalize    
+    %input{:type => "datetime-local",:class => "form-control", :id => "end_date", :name => "end_date", :value => event.end_date}/
   .form-group
     %label{:for => "spots_number_limit"} Number of place (0 means no limitation)
     -if unvalid && errors.has_key?(:spots_number_limit)
       -errors[:spots_number_limit].each do |msg|
         .alert.alert-danger 
-          =msg.capitalize    %input{:type => "number",:class => "form-control", :id => "spots_number_limit", :name => "spots_number_limit", :value => event.spots_number_limit}
+          =msg.capitalize
+    %input{:type => "number",:class => "form-control", :id => "spots_number_limit", :name => "spots_number_limit", :value => event.spots_number_limit}
   -if edit
     -felts = event.form_elements
     -if !felts.empty?
