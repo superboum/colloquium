@@ -192,6 +192,7 @@ module EventController
     end
 
     app.get '/admin/event/registration/:action/:id/?' do
+      restrictToAdmin!
       e= Event.find(params[:id])
       if params[:action] == "enable" && !e.registration
         e.registration = true
@@ -204,6 +205,7 @@ module EventController
     end
 
     app.get '/admin/event/:id/?' do 
+      restrictToAdmin!
       e = Event.find(params[:id])
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/event/stats', :locals => { :event => e, stats: e.get_stats}

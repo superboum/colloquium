@@ -54,13 +54,12 @@ class Event < ActiveRecord::Base
       end
       ret[ret_cpt]= Array.new(2+nb_of_felts)
       ret[ret_cpt][0]="#{p.last_name.upcase} #{p.first_name.capitalize}"
+      date = self.users_events.where(user: p).first.created_at
+      date.nil? ? ret[ret_cpt][1] = "Unknown" : ret[ret_cpt][1] = date.strftime("%m/%d/%Y at %I:%M %P")
       ret_cpt +=1
     end
 
     self.form_answers.each do |fa| 
-      if ret[participant_key[fa.participant.id]][1].nil?
-         ret[participant_key[fa.participant.id]][1]=fa.created_at.strftime("%m/%d/%Y at %I:%M %P")
-        end
       ret[participant_key[fa.participant.id]][felt_key[fa.form_element.id]]= fa.answer
     end
   return ret

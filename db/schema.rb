@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422122647) do
+ActiveRecord::Schema.define(version: 20150422164920) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -119,8 +119,10 @@ ActiveRecord::Schema.define(version: 20150422122647) do
   end
 
   create_table "users_events", id: false, force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users_events", ["event_id"], name: "index_users_events_on_event_id"
