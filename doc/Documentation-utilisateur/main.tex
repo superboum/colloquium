@@ -45,44 +45,66 @@ Documentation utilisateur} }
 \end{abstract} 
 \newpage
 %une partie user ? 
-\section{Introduction}  
+\section*{Introduction}  
 
-\section{L'administration en général}   %utile ? C'est plutôt l'introduction... 
+La base du projet est la création d'un site web pour la conférence, IWSM, organisé par notre tuteur, M. Jean-François Dupuy. Ce site a trois buts : 
+\begin{enumerate}
+\item Gérer l'inscription du public à la conférence.  Auparavant, les participants devaient compléter manuellement un document d'inscription, puis l'envoyer à l'INSA, où il était traité à la main par une secrétaire. La perte de temps était grande pour l'utilisateur et pour l'administration. 
 
-Lorem ipsum
+Le but est ici d'automatiser cette méthode. L'utilisateur s'inscrira donc sur le site web. Seul le payement restera manuel, n'ayant pas l'aval de la trésorerie de l'INSA pour automatiser cette procédure. 
 
-\section{Gestion des éléments du site (articles, pages et événements}
-\subsection{La gestion des pages}  
+\item Gérer les résumés. Certains utilisateurs soumettront des résumés. Ceci seront relus avant d'être validé. Le site web devra donc permettre aux utilisateurs de soumettre un résumé. Un relecteur sera ensuite assigné au résumé. Un système de notification mail sera mis en place lors de la validation ou non du résumé. 
 
-Lorem ipsum
+\item Faire la promotion de la conférence. Le site web présentera les différents événements qui auront lieu durant la semaine, et permettra également à l'administrateur de créer pages et articles. 
+\end{enumerate}
 
+Le site web présente donc trois manière différentes de l'utiliser : 
+\begin{itemize}
+\item Utilisateur normal, non enregistré
+\item Participant aux conférences, enregistré. Il peut être spectateur ou conférencier.
+\item Administrateur. 
+\end{itemize}
+La partie utilisateur normal est basique : il ne peut qu'accéder au contenu des pages publiques (description des événements, différentes pages et articles... ). Il peut s'inscrire, et devient alors un participant. 
 
-\subsection{La gestion des articles}  
+La partie participant est plus étendue. Le participant à accès aux mêmes fonctionnalités qu'un utilisateur normal, mais peut en plus s'enregistrer aux événements, devenir conférencier et donc soumettre  résumés. Certains des participants auront également le rôle de modérateur. Ils valideront les résumés soumis. 
 
-Lorem ipsum
+Enfin, un administrateur contrôle tout les éléments du site web. Il crée ainsi les articles, les pages et les événements. Il peut aussi modifier l'apparence du site web (nom, image, ... ). C'est également lui qui validera l'inscription des utilisateurs (suite à la réception du paiement).
+\newpage
+\section{Partie utilisateur/participants} 
 
-
-\subsection{La gestion des événements}  
-
-Lorem ipsum
-
-
-\section{La gestion des reviews}  
-
-Lorem ipsum
-
-
-\section{La gestion des utilisateurs}  
-
-Lorem ipsum
-
-
-\section{La gestion des paramètres}  
+\section{Partie administrateur}
+\subsection{Gestion des éléments du site (articles, pages et événements}
+\subsubsection{La gestion des pages}  
 
 Lorem ipsum
 
 
-\section{Conclusion} 
+\subsubsection{La gestion des articles}  
+
+Lorem ipsum
+
+
+\subsubsection{La gestion des événements}  
+
+Lorem ipsum
+
+
+\subsection{La gestion des reviews}  
+
+Lorem ipsum
+
+
+\subsection{La gestion des utilisateurs}  
+
+Lorem ipsum
+
+
+\subsection{La gestion des paramètres}  
+
+Lorem ipsum
+
+
+\section*{Conclusion} 
  
 \LaTeX\ c'est facile pour produire des documents standard et nickel ! 
 Et Bib\TeX\ pour les références, c'est le pied.
