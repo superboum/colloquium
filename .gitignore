@@ -34,3 +34,4 @@ uploads/*
 *.out
 *.glg
 *.gls
+tmp/*
