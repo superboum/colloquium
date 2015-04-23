@@ -213,7 +213,7 @@ module EventController
     
     app.get '/admin/event/:id/?' do 
       restrictToAdmin!
-      e = Event.find(params[:id])
+      e = Event.includes(:participants,:form_elements, :form_answers, :users_events).find(params[:id])
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/event/stats', :locals => { :event => e, stats: e.get_stats}
       end
