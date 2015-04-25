@@ -22,8 +22,8 @@ Documentation utilisateur} }
 \markright{Site Web de conférence scientifique} 
                            % Pour avoir le titre de l'expose sur chaque page
 
-\author{Quentin \textsc{Dufour} \and Thomas \textsc{Hareau} \\\and
-        Laurent \textsc{Aymard}\and Jean \textsc{Chorin}\\\and 
+\author{Quentin \textsc{Dufour}, Thomas \textsc{Hareau} \\
+        Laurent \textsc{Aymard}, Jean \textsc{Chorin}\\
         \\
         Encadreur : Jean-François \textsc{Dupuy}}
 
@@ -37,8 +37,6 @@ Documentation utilisateur} }
 \thispagestyle{empty}      % Supprime le numéro de page sur la 1re page
 \newpage
 
-\tableofcontents
-\newpage
 
 \begin{abstract}
 %Resumé
@@ -151,8 +149,23 @@ Lorem ipsum
 
 \subsubsection{La gestion des événements}  
 
-Lorem ipsum
+La gestion des événements est accessible via l'onglet \textbf{Event} du menu de gauche. Y est présenté la liste des événements qui ont déjà été créés. 
 
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.33]{fig/admin_event.png} 
+\end{center}
+\caption{Gestion des événements, côté admin}
+\end{figure}
+ 
+\paragraph{Création d'un nouvel événement :}  La création d'un événement se fait en cliquant sur l'onglet \textbf{Add a new event}. Un formulaire est alors affiché, où l'on défini l'événement (titre, description, date de début et de fin). On y défini également un nombre de place limite. Si celui ci est à 0, il n'y a pas de limite de place. Deux case sont finalement cochable : \textbf{Enable registration} qui autorisera les participants à s'inscrire à l'événement, et \textbf{Add a form to your event} qui permet de créer un formulaire, qui devra être rempli par le participant lors   de son inscription à l'événement. 
+
+\paragraph{Modification d'un événement :}  Il est possible de modifier un événement à partir du bouton \textbf{Edit}, dans la liste des événement. Le formulaire à remplir est sensiblement le même que dans le paragraphe précédent. 
+
+\paragraph{Statistiques :} Un clique sur le nom d'un événement dans la liste emmène l'administrateur vers un résumé des différentes inscription  à cet événement.  Une liste des différents utilisateur y est présente, avec la réponse à chacun des formulaires associé à l'événement. 
+
+L'administrateur peut télécharger un fichier excel (format \textit{.xls}) qui résume la totalité des événements (un événement par feuille).  
 
 \subsection{La gestion des reviews}  
 \label{reviewStates}
