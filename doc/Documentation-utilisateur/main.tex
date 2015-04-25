@@ -35,7 +35,6 @@ Documentation utilisateur} }
 
 \maketitle                 % Génère le titre
 \thispagestyle{empty}      % Supprime le numéro de page sur la 1re page
-\newpage
 
 
 \begin{abstract}
@@ -136,6 +135,16 @@ En cliquant sur \textbf{Add a new page}, on arrive sur un formulaire permettant 
 \item[Body :] le contenu de la page à proprement parler. Celui-ci peut être entré selon la syntaxe Markdown. Une barre de tâche est présente afin de permettre l'utilisation de cette syntaxe et d'en voir le rendu.
 \end{description}
 
+\begin{figure}[h]
+\begin{center}
+\hspace{2cm}\includegraphics[scale=0.5]{fig/form_markdown.png} 
+\end{center}
+\caption{Le formulaire en syntaxe Markdown.}
+\end{figure}
+
+De gauche à droite : Gras, Italique, Titre, Lien, Image, Liste, Liste numérotée, Code, Citation, Rendu final.
+
+\bigbreak
 Le bouton \textbf{Edit} de la liste des pages permet de modifier une page déjà créée.
 
 Enfin le bouton \textbf{Delete} permet de supprimer la page. Un message d'alerte apparait, demandant confirmation.
@@ -198,6 +207,14 @@ Après l'assignation (bouton \textbf{Assignate}), il est toujours possible de cha
 
 \bigbreak
 \paragraph*{Validation :}\label{validationReview}Un formulaire permet à l'administrateur de commenter la proposition. Il peut également choisir l'état du résumé : 
+
+\begin{figure}[h]
+\begin{center}
+\hspace{2cm}\includegraphics[scale=0.5]{fig/validation_review.png} 
+\end{center}
+\caption{Le formulaire de validation}
+\end{figure}
+
 \begin{description}
 \item[Validate :] le résumé est validé .
 \item[Lecturer has to send a new Proposition :] une nouvelle proposition devra être envoyée par le participant, qui sera relue et validée (ou non) de la même façon.
