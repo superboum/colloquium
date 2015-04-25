@@ -17,7 +17,7 @@
     %tr
       %td= a.title
       %td= a.category
-      %td= a.author
+      %td #{a.author.first_name} #{a.author.last_name}
       %td= a.priority
       %td= a.created_at
       %td= a.updated_at

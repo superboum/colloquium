@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422164920) do
+ActiveRecord::Schema.define(version: 20150425131645) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -65,14 +65,16 @@ ActiveRecord::Schema.define(version: 20150422164920) do
     t.string   "title"
     t.string   "category"
     t.integer  "priority"
-    t.string   "author"
     t.string   "short_text"
     t.text     "long_text"
     t.string   "version"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "author_id"
   end
+
+  add_index "pages", ["author_id"], name: "index_pages_on_author_id"
 
   create_table "reviewpropositions", force: :cascade do |t|
     t.string   "file"

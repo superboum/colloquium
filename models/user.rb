@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :reviews_to_correct, :class_name => 'Review', :foreign_key => 'validator_id'
   has_many :users_events
   has_many :events, through: :users_events
+  has_many :pages, :class_name => 'Page', :foreign_key => 'author_id'
 
 
   def registered?(event)

@@ -27,7 +27,7 @@ module PageController
       page.title = params['title']
       page.generateSlug()
       page.category = params['category']
-      page.author = params['author']
+      page.author_id = session[:user]
       page.long_text = params['long_text']
       page.priority = params['priority']
       page.save
@@ -49,7 +49,7 @@ module PageController
       page.title = params['title']
       page.generateSlug()
       page.category = params['category']
-      page.author = params['author']
+      page.author_id = session[:user]
       page.long_text = params['long_text']
       page.priority = params['priority']
       page.save
