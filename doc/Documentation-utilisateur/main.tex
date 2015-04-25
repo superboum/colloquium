@@ -114,12 +114,10 @@ Finalement, l'utilisateur a accès à la zone de payement (\textbf{/profile/pay}).
 
 Le modérateur a accès à une page spécifique sur la page d'accueil, bouton \textbf{moderator}. Sur la page qui s'ouvre, il peut observer les différents résumés qui lui sont assignés, ainsi que leur statut. Il peut ainsi un à un les valider en cliquant sur \textbf{Validate}, au bout de la ligne d'un résumé.
 
-Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensuite valider, clore l'inscription ou demander le renvoi d'une nouvelle proposition (voir \ref{reviewStates}).
+Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensuite valider, clore l'inscription ou demander le renvoi d'une nouvelle proposition (voir \ref{reviewStates} et \ref{validationReview}).
 
 Le modérateur est assigné à un résumé par l'administrateur.
-
-\label{validationReview}
-Un formulaire permet au modérateur de 
+ 
 
 
 
@@ -166,14 +164,17 @@ Tous les résumés des participants apparaissent ici, avec leur titre, auteur et s
 \end{description}
 
 \bigbreak
-\paragraph*{Assignation}
-Il est ici possible de choisir quel modérateur aura à relire le résumé sélectionné. A savoir qu'il est bien entendu impossible d'assigner un résumé à son auteur.
-
+\paragraph*{Assignation :}Il est ici possible de choisir quel modérateur aura à relire le résumé sélectionné. A savoir qu'il est bien entendu impossible d'assigner un résumé à son auteur.
 Après l'assignation (bouton \textbf{Assignate}), il est toujours possible de changer de modérateur en cliquant sur \textbf{End Assignement}, puis d'assigner une nouvelle personne.
 
 \bigbreak
-\paragraph*{Validation}
-De la même façon qu'un modérateur, l'administrateur peut valider la proposition et donner son avis sous forme de commentaire (voir \ref{validationReview}).
+\paragraph*{Validation :}\label{validationReview}Un formulaire permet à l'administrateur de commenter la proposition. Il peut également choisir l'état du résumé : 
+\begin{description}
+\item[Validate :] le résumé est validé .
+\item[Lecturer has to send a new Proposition :] une nouvelle proposition devra être envoyée par le participant, qui sera relue et validée (ou non) de la même façon.
+\item[Refuse :] la proposition est close. Le résumé est refusé et le participant ne pourra pas tenter une nouvelle proposition ni présenter ce dernier durant la conférence.
+\end{description} 
+
 
 \subsection{La gestion des utilisateurs}  
 
