@@ -92,6 +92,8 @@ Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensui
 
 Le modérateur est assigné à un résumé par l'administrateur.
 
+\label{validationReview}
+Un formulaire permet au modérateur de 
 
 
 
@@ -113,12 +115,39 @@ Lorem ipsum
 
 
 \subsection{La gestion des reviews}  
+\label{reviewStates}
 
 
--> ordre pour l'inscription
--> 4 états différents \label{reviewStates}
--> 
+En cliquant sur Reviews dans la partie gauche, on accède à la gestion des résumés.
 
+\bigbreak
+
+Il faut savoir qu'un résumé possède quatre états différents. Il est soit : 
+\begin{description}
+\item[Waiting for Review :] lorsqu'un résumé est soumis par un participant, en attente d'être relu.
+\item[Waiting for proposition :] après la relecture, lorsqu'une nouvelle proposition est demandée au participant. Le modérateur assigné à ce résumé demande des précisions ou des modifications à apporter au résumé.
+\item[Validated :] si le modérateur approuve le résumé, il le valide. Le résumé est donc accepté et la personne l'ayant soumise pourra effectuer une présentation lors de la conférence.
+\item[Closed :] Après une date fixée, la soumission de résumés n'est plus possible. L'inscription est donc close.
+\end{description}
+
+\bigbreak
+Tous les résumés des participants apparaissent ici, avec leur titre, auteur et statut. En cliquant sur le bouton \textbf{View}, il est possible d'accéder à une nouvelle page. Les actions y sont les suivantes :
+
+\begin{description}
+\item[View :] pour afficher le résumé.
+\item[Assignate sby :] pour assigner un modérateur au résumé. Ouvre une nouvelle page
+\item[Validate :] ouvre une nouvelle page pour la validation (ou non) du résumé.
+\end{description}
+
+\bigbreak
+\paragraph*{Assignation}
+Il est ici possible de choisir quel modérateur aura à relire le résumé sélectionné. A savoir qu'il est bien entendu impossible d'assigner un résumé à son auteur.
+
+Après l'assignation (bouton \textbf{Assignate}), il est toujours possible de changer de modérateur en cliquant sur \textbf{End Assignement}, puis d'assigner une nouvelle personne.
+
+\bigbreak
+\paragraph*{Validation}
+De la même façon qu'un modérateur, l'administrateur peut valider la proposition et donner son avis sous forme de commentaire (voir \ref{validationReview}).
 
 \subsection{La gestion des utilisateurs}  
 
