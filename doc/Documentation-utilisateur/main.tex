@@ -114,7 +114,7 @@ Finalement, l'utilisateur a accès à la zone de payement (\textbf{/profile/pay}).
 
 Le modérateur a accès à une page spécifique sur la page d'accueil, bouton \textbf{moderator}. Sur la page qui s'ouvre, il peut observer les différents résumés qui lui sont assignés, ainsi que leur statut. Il peut ainsi un à un les valider en cliquant sur \textbf{Validate}, au bout de la ligne d'un résumé.
 
-Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensuite valider, clore l'inscription ou demander le renvoi d'une nouvelle proposition (voir \ref{reviewStates} et \ref{validationReview}).
+Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensuite valider, clore l'inscription ou demander le renvoi d'une nouvelle proposition (voir \ref{reviewStates}).
 
 Le modérateur est assigné à un résumé par l'administrateur.
  
@@ -125,7 +125,23 @@ Le modérateur est assigné à un résumé par l'administrateur.
 \subsection{Gestion des éléments du site (articles, pages et événements}
 \subsubsection{La gestion des pages}  
 
-Lorem ipsum
+On peut accéder à la gestion des pages depuis la partie administration en cliquant sur le lien \textbf{Pages} sur la gauche.
+
+La liste des pages est affichée ici, avec l'auteur et la priorité. La priorité permet de choisir l'ordre selon lequel seront affichées les pages sur la barre de navigation du site. Plus le nombre est faible, plus la page sera située vers la gauche.
+
+\bigbreak
+En cliquant sur \textbf{Add a new page}, on arrive sur un formulaire permettant de créer une nouvelle page. On peut y entrer : 
+\begin{description}
+\item[Title :] le titre de la page, qui sera affiché sur le site.
+\item[Category :] le type de contenu.
+\item[Priority :] la priorité susnommée.
+\item[Body :] le contenu de la page à proprement parler. Celui-ci peut être entré selon la syntaxe Markdown. Une barre de tâche est présente afin de permettre l'utilisation de cette syntaxe et d'en voir le rendu.
+\end{description}
+
+Le bouton \textbf{Edit} de la liste des pages permet de modifier une page déjà créée.
+
+Enfin le bouton \textbf{Delete} permet de supprimer la page. Un message d'alerte apparait, demandant confirmation.
+
 
 
 \subsubsection{La gestion des articles}  
