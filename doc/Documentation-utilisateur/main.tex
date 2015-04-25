@@ -62,28 +62,37 @@ Le site web présente donc trois manière différentes de l'utiliser :
 \begin{itemize}
 \item Utilisateur normal, non enregistré
 \item Participant aux conférences, enregistré. Il peut être spectateur ou conférencier.
+\item Modérateur, qui valide ou non les résumés.
 \item Administrateur. 
 \end{itemize}
 La partie utilisateur normal est basique : il ne peut qu'accéder au contenu des pages publiques (description des événements, différentes pages et articles... ). Il peut s'inscrire, et devient alors un participant. 
 
-La partie participant est plus étendue. Le participant à accès aux mêmes fonctionnalités qu'un utilisateur normal, mais peut en plus s'enregistrer aux événements, devenir conférencier et donc soumettre  résumés. Certains des participants auront également le rôle de modérateur. Ils valideront les résumés soumis. 
+La partie participant est plus étendue. Le participant à accès aux mêmes fonctionnalités qu'un utilisateur normal, mais peut en plus s'enregistrer aux événements, devenir conférencier et donc soumettre un résumé. Certains des participants auront également le rôle de modérateur. Ils valideront les résumés soumis. 
 
 Enfin, un administrateur contrôle tout les éléments du site web. Il crée ainsi les articles, les pages et les événements. Il peut aussi modifier l'apparence du site web (nom, image, ... ). C'est également lui qui validera l'inscription des utilisateurs (suite à la réception du paiement).
 \newpage
 
 \section{Partie utilisateur/participants} 
 
-Le nouvel utilisateur doit s'inscrire sur la page \textbf{/login}. Après le remplissage du formulaire, un mail lui est envoyé. Celui-ci permet de valider son compte. 
+Le nouvel utilisateur doit s'inscrire sur la page \textbf{/login}, accessible en cliquant sur le bouton \textbf{Sign in/Sign up} sur la page d'accueil. Après le remplissage du formulaire, un mail lui est envoyé. Celui-ci permet de valider son compte. 
 
 Il peut dès lors remplir ses informations personnelles sur la page \textbf{/profile/account} : nom, prénom, nationalité, régime alimentaire et d'autres.
 
 En naviguant grâce aux boutons \textbf{Previous} et \textbf{Next}, l'utilisateur peut par exemple s'inscrire aux événements sur \textbf{/profile/event}. Ceux-ci sont proposés par les administrateurs. 
 
-La troisième étape de l'inscription est la soumission de résumés à l'adresse \textbf{/profile/review}. L'utilisateur précise le nom de la conférence qu'il souhaite présenter et envoie un court résumé. Celui-ci sera validé ou non par un administrateur ou un modérateur. Dans le cas où ces derniers souhaitent plus de précisions, une nouvelle proposition pourra être envoyée par l'utilisateur.
+La troisième étape de l'inscription est la soumission de résumés (review) à l'adresse \textbf{/profile/review}. L'utilisateur précise le nom de la conférence qu'il souhaite présenter et envoie un court résumé. Celui-ci sera validé ou non par un administrateur ou un modérateur. Dans le cas où ces derniers souhaitent plus de précisions, une nouvelle proposition pourra être envoyée par l'utilisateur. La proposition peut avoir quatre états différents (voir \ref{reviewStates})
 
 Finalement, l'utilisateur a accès à la zone de payement (\textbf{/profile/pay}). !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 \section{Partie modérateur}
+
+Le modérateur a accès à une page spécifique sur la page d'accueil, bouton \textbf{moderator}. Sur la page qui s'ouvre, il peut observer les différents résumés qui lui sont assignés, ainsi que leur statut. Il peut ainsi un à un les valider en cliquant sur \textbf{Validate}, au bout de la ligne d'un résumé.
+
+Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensuite valider, clore l'inscription ou demander le renvoi d'une nouvelle proposition (voir \ref{reviewStates}).
+
+Le modérateur est assigné à un résumé par l'administrateur.
+
+
 
 
 \section{Partie administrateur}
@@ -105,7 +114,10 @@ Lorem ipsum
 
 \subsection{La gestion des reviews}  
 
-Lorem ipsum
+
+-> ordre pour l'inscription
+-> 4 états différents \label{reviewStates}
+-> 
 
 
 \subsection{La gestion des utilisateurs}  
