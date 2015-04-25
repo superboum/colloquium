@@ -57,8 +57,13 @@ Le but est ici d'automatiser cette méthode. L'utilisateur s'inscrira donc sur le
 
 \item Faire la promotion de la conférence. Le site web présentera les différents événements qui auront lieu durant la semaine, et permettra également à l'administrateur de créer pages et articles. 
 \end{enumerate}
-
-Le site web présente donc trois manière différentes de l'utiliser : 
+\begin{figure}[h]
+\begin{center}
+\hspace{2cm}\includegraphics[scale=0.25]{fig/global.png} 
+\end{center}
+\caption{La page d'accueil du site web}
+\end{figure}
+Le site web présente donc quatre manière différentes de l'utiliser : 
 \begin{itemize}
 \item Utilisateur normal, non enregistré
 \item Participant aux conférences, enregistré. Il peut être spectateur ou conférencier.
@@ -73,15 +78,36 @@ Enfin, un administrateur contrôle tout les éléments du site web. Il crée ainsi l
 \newpage
 
 \section{Partie utilisateur/participants} 
+À la première visite sur le site web, l'utilisateur n'est pas inscrit. Il ne peut donc que consulter les éléments publiques du site. 
 
-Le nouvel utilisateur doit s'inscrire sur la page \textbf{/login}, accessible en cliquant sur le bouton \textbf{Sign in/Sign up} sur la page d'accueil. Après le remplissage du formulaire, un mail lui est envoyé. Celui-ci permet de valider son compte. 
+\subsection{Inscription}
+L'utilisateur peut ensutie s'inscrire sur la page \textbf{/login}, accessible en cliquant sur le bouton \textbf{Sign in/Sign up} sur la page d'accueil. Après le remplissage du formulaire, un mail lui est envoyé. Celui-ci permet de valider son compte. 
 
 Il peut dès lors remplir ses informations personnelles sur la page \textbf{/profile/account} : nom, prénom, nationalité, régime alimentaire et d'autres.
+\medbreak
 
-En naviguant grâce aux boutons \textbf{Previous} et \textbf{Next}, l'utilisateur peut par exemple s'inscrire aux événements sur \textbf{/profile/event}. Ceux-ci sont proposés par les administrateurs. 
+\subsection{Inscription aux événements}
 
-La troisième étape de l'inscription est la soumission de résumés (review) à l'adresse \textbf{/profile/review}. L'utilisateur précise le nom de la conférence qu'il souhaite présenter et envoie un court résumé. Celui-ci sera validé ou non par un administrateur ou un modérateur. Dans le cas où ces derniers souhaitent plus de précisions, une nouvelle proposition pourra être envoyée par l'utilisateur. La proposition peut avoir quatre états différents (voir \ref{reviewStates})
+En naviguant grâce aux boutons \textbf{Previous} et \textbf{Next}, l'utilisateur peut par exemple s'inscrire aux événements sur \textbf{/profile/event}. Cette action est également possible à partir de la description de l'événement, si l'utilisateur est enregistré. Dans le cas contraire, un message l'incite à s'enregistrer.
 
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.25]{fig/event_user_global.png} 
+
+
+
+\includegraphics[scale=0.25]{fig/event_user_disconect.png} 
+\hspace{1cm}\includegraphics[scale=0.25]{fig/event_user_not_registered.png} 
+\hspace{1cm}\includegraphics[scale=0.25]{fig/event_user_registered.png} 
+\end{center}
+\caption{Gestion des événements, côté utilisateur}
+\end{figure}
+ 
+
+\subsection{Soumission des résumés}
+La troisième étape de l'inscription est la soumission de résumés (review) à l'adresse \textbf{/profile/review}. Le participant précise le nom de la conférence qu'il souhaite présenter et envoie un court résumé. Celui-ci sera validé ou non par un administrateur ou un modérateur. Dans le cas où ces derniers souhaitent plus de précisions, une nouvelle proposition pourra être envoyée par l'utilisateur. La proposition peut avoir quatre états différents (voir \ref{reviewStates})
+
+\subsection{Payement}
 Finalement, l'utilisateur a accès à la zone de payement (\textbf{/profile/pay}). !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 \section{Partie modérateur}
