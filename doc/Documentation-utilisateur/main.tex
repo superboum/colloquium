@@ -111,6 +111,13 @@ Finalement, l'utilisateur a accès à la zone de payement (\textbf{/profile/pay}).
 
 Le modérateur a accès à une page spécifique sur la page d'accueil, bouton \textbf{moderator}. Sur la page qui s'ouvre, il peut observer les différents résumés qui lui sont assignés, ainsi que leur statut. Il peut ainsi un à un les valider en cliquant sur \textbf{Validate}, au bout de la ligne d'un résumé.
 
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.33]{fig/moderator_side.png} 
+\end{center}
+\caption{Gestion des événements, côté admin}
+\end{figure}
+
 Sur la page qui s'ouvre, il peut soumettre un commentaire sur le résumé et ensuite valider, clore l'inscription ou demander le renvoi d'une nouvelle proposition (voir \ref{reviewStates}).
 
 Le modérateur est assigné à un résumé par l'administrateur.
@@ -124,7 +131,7 @@ Le modérateur est assigné à un résumé par l'administrateur.
 
 On peut accéder à la gestion des pages depuis la partie administration en cliquant sur le lien \textbf{Pages} sur la gauche.
 
-La liste des pages est affichée ici, avec l'auteur et la priorité. La priorité permet de choisir l'ordre selon lequel seront affichées les pages sur la barre de navigation du site. Plus le nombre est faible, plus la page sera située vers la gauche.
+La liste des pages est affichée ici, avec l'auteur et la priorité. La priorité permet de choisir l'ordre selon lequel seront affichées les pages sur la barre de navigation du site. Plus le nombre est petit, plus la page sera située vers la gauche.
 
 \bigbreak
 En cliquant sur \textbf{Add a new page}, on arrive sur un formulaire permettant de créer une nouvelle page. On peut y entrer : 
@@ -142,7 +149,7 @@ En cliquant sur \textbf{Add a new page}, on arrive sur un formulaire permettant 
 \caption{Le formulaire en syntaxe Markdown.}
 \end{figure}
 
-De gauche à droite : Gras, Italique, Titre, Lien, Image, Liste, Liste numérotée, Code, Citation, Rendu final.
+De gauche à droite : Gras, Italique, Titre ; Lien, Image ; Liste, Liste numérotée, Code, Citation ; Rendu final.
 
 \bigbreak
 Le bouton \textbf{Edit} de la liste des pages permet de modifier une page déjà créée.
@@ -153,7 +160,16 @@ Enfin le bouton \textbf{Delete} permet de supprimer la page. Un message d'alerte
 
 \subsubsection{La gestion des articles}  
 
-Lorem ipsum
+A gauche, dans le menu administration, se trouve le lien vers la gestion des articles : \textbf{Articles}. On peut y effectuer les mêmes actions qu'à la gestion de pages : création, modification et suppression.
+
+\begin{figure}[h]
+\begin{center}
+\hspace{2cm}\includegraphics[scale=0.30]{fig/article_display.png} 
+\end{center}
+\caption{L'affichage des articles en page d'accueil.}
+\end{figure}
+
+La grande différence est la position. Les articles, lorsqu'ils sont crées, ont un titre, un résumé et un contenu. Ils apparaissent ensuite sur la page d'accueil du site.
 
 
 \subsubsection{La gestion des événements}  
