@@ -10,6 +10,16 @@ class User < ActiveRecord::Base
   has_many :pages, :class_name => 'Page', :foreign_key => 'author_id'
 
 
+  def modify_name
+    if  self.last_name.nil?
+      self.last_name = ""
+    end
+    if  self.first_name.nil?
+      self.first_name = ""
+    end
+  end
+  
+
   def registered?(event)
    return self.events.include?(event)
  end
@@ -122,13 +132,13 @@ def register_to_event(event,params)
          fa.answer="true"
        else 
         fa.answer = "false"
-       end
-     when FormElement.TYPES["select"]
-       fa.answer =params[id]      
-     when FormElement.TYPES["string"]
-       fa.answer = params[id]
+      end
+    when FormElement.TYPES["select"]
+     fa.answer =params[id]      
+   when FormElement.TYPES["string"]
+     fa.answer = params[id]
 
-     else
+   else
     #TODO
     puts "\033[31merror\033[0m"
   end
@@ -151,7 +161,7 @@ end
 
 
 
- def get_form_answer_registered(*event)
+def get_form_answer_registered(*event)
   if(event.empty?)
    return FormAnswer.where(user: self).order(:event_id)
  else 

@@ -58,7 +58,7 @@ module EventController
     end
       user.register_to_event(event,params)
 
-      redirect "/event/#{params[:id]}", 303
+      redirect "/profile/event", 303
 
     end
 
