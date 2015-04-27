@@ -2,13 +2,32 @@
 .container
   .row
     .col-md-6
-      %h2 test mabut
       %form#Sign_in{:method => "POST"}
         
-        %input{:type => "hidden", :name => "action", :value => "settings"}
+        %fieldset
+          %legend Website
+          .form-group
+            %label{:for => "base_url"} Base URL
+            %input#base_url.form-control{:placeholder => "Enter base_url", :type => "text", :title => "base_url", :name => "base_url", :value => store['parameters']['base_url']}
+          
+          .form-group
+            %label{:for => "title"} Title
+            %input#base_url.form-control{:placeholder => "Enter title", :type => "text", :title => "title", :name => "title", :value => store['parameters']['title']}
+          
+          .form-group
+            %label{:for => "slogan"} Slogan
+            %input#base_url.form-control{:placeholder => "Enter slogan", :type => "text", :title => "slogan", :name => "slogan", :value => store['parameters']['slogan']}
+            
+          .form-group
+            %label{:for => "cover"} Cover
+            %input#base_url.form-control{:placeholder => "Choose cover", :type => "text", :title => "cover", :name => "cover", :value => store['parameters']['cover']}
+        
+        %fieldset
+          %legend Payment
+          
+          .form-group
+            %label{:for => "rib"} RIB
+            %input#base_url.form-control{:placeholder => "Enter RIB", :type => "text", :title => "rib", :name => "rib", :value =>  store['payment']['rib']}
         
         .form-group
-          %label{:for => "test"} MB
-          %input#base_url.form-control{:placeholder => "Enter base_url", :type => "text", :title => "base_url", :name => "base_url", :value => base_url}/
-        .form-group
-          %input.btn.btn-default{:type => "submit", :value => "login"}/
+          %input.btn.btn-primary{:type => "submit", :value => "Save"}

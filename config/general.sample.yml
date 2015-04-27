@@ -1,11 +1,14 @@
 parameters:
   base_url: 'http://127.0.0.1:9292'
-
+  title: eee
+  slogan: eee
+  cover: zzzz.jpg
+payment: 
+  rib: 000000a
 cookies:
   key: 'rack.session'
   path: '/'
   secret: 's3cr3t'
-
 mail:
   address: 'smtp.gmail.com'
   port: 587
