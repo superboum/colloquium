@@ -50,7 +50,7 @@ end
 namespace :fixture do
     desc "Create test admin account"
     task :admin do
-        sh "echo -e \"u = User.new\nu.email='admin@admin.com'\nu.password=Digest::SHA256.hexdigest('admin')\nu.role=2\nu.save\"|bundle exec racksh"
+        sh "echo \"u = User.new; u.email='admin@admin.com'; u.password=Digest::SHA256.hexdigest('admin'); u.role=2; u.save\"|bundle exec racksh"
     end
 end
 
