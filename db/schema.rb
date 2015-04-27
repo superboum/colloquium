@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425131645) do
+ActiveRecord::Schema.define(version: 20150427193810) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 20150425131645) do
     t.date     "birth"
     t.string   "token"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "users_events", id: false, force: :cascade do |t|
     t.integer  "event_id"
