@@ -7,7 +7,7 @@
       %ul.list-group
         -modificate = false
         -events_registered.each do |e|
-          %li.list-group-item 
+          %li.list-group-item{id: "event::#{e.id}"}
             .container
               .col-md-10
                 %h3 
@@ -37,7 +37,7 @@
     -else					
       %ul.list-group
         -other_events.each do |e|
-          %li.list-group-item 
+          %li.list-group-item{id: "event::#{e.id}"} 
             %a{href: "/event/#{e.id}"}
               %h3 
                 =e.name
