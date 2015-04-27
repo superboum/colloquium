@@ -15,23 +15,10 @@ module UserController
       end
     end
 
-
-
     app.post '/profile/account/?' do
       restrictToAuthenticated!
-      puts "has to put fist name in data base of #{user.email} first name : #{user.first_name}"
-      user.first_name = params["firstName"]
-      puts "first_name done"
-      user.last_name = params["lastName"]
-      puts "lastName : #{user.last_name} = #{params["lastName"]}"
-      user.title = params["title"]
-      user.sex = params["gender"]
-      user.nationality = params["nationality"]
-      user.phone = params["phone"]
-      user.address = params["address"]
-      user.diet= params["dietRadioOptions"]
+      user.from_params params
       user.save
-      puts "#{params['first_name']} = #{user.first_name}"
       redirect "/profile/event", 303
     end
 
@@ -53,9 +40,6 @@ module UserController
 
     app.get '/profile/password_change/:email/:token/?' do
       u = User.find_by email: params[:email]
-      puts u
-      puts params[:email]
-      puts params[:token]
       if u.instance_of? User and u.check_token params[:token] then
         u.save
         logUserManually(u)
@@ -110,18 +94,7 @@ module UserController
     app.post '/admin/user/new' do
       restrictToAdmin!
       user = User.new
-      user.first_name = params['first_name']
-      user.last_name = params['last_name']
-      user.email = params['email']
-      user.raw_password params['password']
-      user.phone = params['phone']
-      user.address = params['address']
-      user.role = params['role']
-      user.diet = params['diet']
-      user.nationality = params['nationality']
-      user.title = params['title']
-      user.sex = params['sex']
-      user.has_paid = params['has_paid']
+      user.from_params_admin params
       user.save
       redirect "/admin/user", 303
     end
@@ -163,20 +136,7 @@ module UserController
     app.post '/admin/user/edit/:id' do
       restrictToAdmin!
       user = User.find(params[:id])
-      user.first_name = params['first_name']
-      user.last_name = params['last_name']
-      user.email = params['email']
-      if params['password'] != "" then
-        user.raw_password params['password']
-      end
-      user.phone = params['phone']
-      user.address = params['address']
-      user.role = params['role']
-      user.diet = params['diet']
-      user.nationality = params['nationality']
-      user.title = params['title']
-      user.sex = params['sex']
-      user.has_paid = params['has_paid']
+      user.from_params_admin params
       user.save
       redirect "/admin/user", 303
     end

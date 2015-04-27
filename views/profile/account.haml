@@ -6,11 +6,11 @@
         .form-group
           %label.col-md-2.control-label{:for => "firstName"} First name *
           .col-md-4
-            %input.form-control{:type => "text", :id => "firstName", :name => "firstName", :placeholder => "John", :value => user.first_name }
+            %input.form-control{:type => "text", :id => "firstName", :name => "first_name", :placeholder => "John", :value => user.first_name }
 
           %label.col-md-2.control-label{:for => "lastName"} Last name *
           .col-md-4
-            %input.form-control{:type => "text", :id => "lastName", :name => "lastName", :placeholder => "Doe", :value => user.last_name }
+            %input.form-control{:type => "text", :id => "lastName", :name => "last_name", :placeholder => "Doe", :value => user.last_name }
 
         .form-group
           %label.col-md-2.control-label{:for => "title"} Title
@@ -18,9 +18,9 @@
             %input.form-control{:type => "text", :id => "title", :name => "title", :placeholder => "Doctor, Professor...", :value => user.title }
           
         .form-group 
-          %label.col-md-2.control-label{:for => "gender"} Gender
+          %label.col-md-2.control-label{:for => "sex"} Gender
           .col-md-4
-            %select#gender.form-control{:name => "gender"}
+            %select#gender.form-control{:name => "sex"}
               %option{:value => "0", :selected => user.sex == 0} Male
               %option{:value => "1", :selected => user.sex == 1} Female
               %option{:value => "2", :selected => user.sex == 2} Other
@@ -46,13 +46,13 @@
           %label.col-md-2.control-label{:for => "diet"} Diet *
           .col-md-6
             %label.radio-inline
-              %input#inlineRadio1{:name => "dietRadioOptions", :type => "radio", :value => "0", :checked => user.diet == 0}
+              %input#inlineRadio1{:name => "diet", :type => "radio", :value => "0", :checked => user.diet == 0}
                 No constraint
             %label.radio-inline
-              %input#inlineRadio2{:name => "dietRadioOptions", :type => "radio", :value => "1", :checked => user.diet == 1}
+              %input#inlineRadio2{:name => "diet", :type => "radio", :value => "1", :checked => user.diet == 1}
                 Vegan
             %label.radio-inline
-              %input#inlineRadio3{:name => "dietRadioOptions", :type => "radio", :value => "2", :checked => user.diet == 2}
+              %input#inlineRadio3{:name => "diet", :type => "radio", :value => "2", :checked => user.diet == 2}
                 Without pork
 
   .row
