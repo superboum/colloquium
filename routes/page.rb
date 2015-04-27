@@ -24,12 +24,8 @@ module PageController
     app.post '/admin/page/new' do
       restrictToAdmin!
       page = Page.new
-      page.title = params['title']
-      page.generateSlug()
-      page.category = params['category']
+      page.from_params params
       page.author_id = session[:user]
-      page.long_text = params['long_text']
-      page.priority = params['priority']
       page.save
       redirect "/admin/page", 303
     end
@@ -46,12 +42,8 @@ module PageController
     app.post '/admin/page/edit/:id' do
       restrictToAdmin!
       page = Page.find_by_id(params[:id])
-      page.title = params['title']
-      page.generateSlug()
-      page.category = params['category']
+      page.from_params params
       page.author_id = session[:user]
-      page.long_text = params['long_text']
-      page.priority = params['priority']
       page.save
       redirect "/admin/page", 303
     end
