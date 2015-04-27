@@ -1,7 +1,7 @@
 require "sinatra/activerecord/rake"
 require "./app"
 
-task default: %w[test:test_app]
+task default: %w[test:normal]
 
 namespace :assets do
     desc "download assets"
@@ -63,8 +63,14 @@ namespace :server do
 end
 
 namespace :test do
-    desc "Unit tests"
-    task :test_app do
+    desc "Run all tests"
+    task :normal do
+        ruby "test/init.rb"
+    end
+    
+    desc "Unit tests with selenium"
+    task :selenium do
+        ENV['TEST_DRIVER'] = 'selenium'
         ruby "test/init.rb"
     end
 end
