@@ -103,18 +103,7 @@ class User < ActiveRecord::Base
       fa.participant = self
 
 
-      id="felt::#{felt.id}"
-      case felt.form_type
-      when FormElement.TYPES["bool"]
-        fa.answer=(params[id]=="1")
-      when FormElement.TYPES["select"]
-        fa.answer =params[id]      
-      when FormElement.TYPES["string"]
-        fa.answer = params[id]
-      else
-        #TODO
-        puts "\033[31merror\033[0m"
-      end
+      fa.set_answer(params,felt)
       fa.save
 
     end
@@ -140,23 +129,7 @@ class User < ActiveRecord::Base
         fa.event=event
         fa.participant = self
       end
-      id="felt::#{felt.id}"
-      case felt.form_type
-      when FormElement.TYPES["bool"]
-        if(params[id]=="1")
-          fa.answer="true"
-        else 
-          fa.answer = "false"
-        end
-      when FormElement.TYPES["select"]
-        fa.answer =params[id]      
-      when FormElement.TYPES["string"]
-        fa.answer = params[id]
-
-      else
-        #TODO
-        puts "\033[31merror\033[0m"
-      end
+        fa.set_answer(params,felt)
 
       fa.participant = self
       fa.save
