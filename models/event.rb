@@ -38,13 +38,7 @@ class Event < ActiveRecord::Base
       if(params["delete::"+felt.id.to_s]=='1')
         felt.destroy 
       else  
-        felt.question= params['question::'+felt.id.to_s]
-        felt.form_type = params["form_type::"+felt.id.to_s]
-        felt.event = self
-        if felt.form_type == FormElement.TYPES["select"]
-          felt.data=params["dataSelect::"+felt.id.to_s]
-        end
-        felt.save
+        felt.set(params,self)
       end
     end
   end
@@ -75,10 +69,7 @@ class Event < ActiveRecord::Base
 
   def get_stats
     stats = Stats.new(self)
-      p "========================="
-      p stats
-      p "========================="
-      
+     
     return stats.fil(self)
   end 
 end
