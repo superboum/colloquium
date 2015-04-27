@@ -13,7 +13,27 @@ module EventController
     end
 
 
-  app.get '/event/register/:id/?' do 
+ 
+
+
+
+    # USERSIDE
+
+
+
+    app.get '/profile/event/?' do
+      restrictToAuthenticated!
+      events_registered = user.get_event_registered
+      other_events = Event.all - events_registered
+
+      haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
+        haml :'profile/event',:locals => { :events_registered => events_registered, other_events: other_events}
+      end
+    end
+
+
+
+  app.get '/profile/event/register/:id/?' do 
     restrictToAuthenticated!
     event = Event.find_by_id(params[:id])
     if !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
@@ -25,7 +45,7 @@ module EventController
   end
 
 
-  app.post '/event/register/:id/?' do
+  app.post '/profile/event/register/:id/?' do
     restrictToAuthenticated!
    
     
@@ -42,20 +62,6 @@ module EventController
 
     end
 
- 
-
-
-
-    # USERSIDE
-    app.get '/profile/event/?' do
-      restrictToAuthenticated!
-      events_registered = user.get_event_registered
-      other_events = Event.all - events_registered
-
-      haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/event',:locals => { :events_registered => events_registered, other_events: other_events}
-      end
-    end
 
 
    app.get '/profile/event/edit-registration/:id/?' do 

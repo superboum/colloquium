@@ -23,6 +23,8 @@
                       -if fanswer.participant == user
                         -p fanswer
                         =fanswer.answer
+                %a{href: "/event/#{e.id}"}
+                  Read more
               .col-md-2
                 -if modificate
                   %a.btn.btn-primary{:href => "/profile/event/edit-registration/#{e.id}", :style => "margin-top: 1px"}
@@ -38,12 +40,17 @@
       %ul.list-group
         -other_events.each do |e|
           %li.list-group-item{id: "event::#{e.id}"} 
-            %a{href: "/event/#{e.id}"}
-              %h3 
-                =e.name
-            = markdown(e.short_text)
-            %a{href: "/event/#{e.id}"}
-              Read more and register
+            .container
+              .col-md-10
+                %a{href: "/event/#{e.id}"}
+                  %h3 
+                    =e.name
+                = markdown(e.short_text)
+                %a{href: "/event/#{e.id}"}
+                  Read more
+              .col-md-2
+                %a.btn.btn-primary{:href => "/profile/event/register/#{e.id}", :style => "margin-top: 1px"}
+                  Register
 
 .row
   .col-md-6

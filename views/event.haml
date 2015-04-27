@@ -30,24 +30,6 @@
           .panel.panel-default
             .panel-body
 
-
-              -if registration  
-                -if isAuthentificated
-                  -if isRegistered
-                    %p You have already registered to this event. 
-
-
-                    %a.btn.btn-primary{:href => "/profile/event#event::#{event.id}", :role => "button"} Edit registration  
-                  -else
-                    -if soldout
-                      %p Sorry, there is no spot left for this event
-
-                    -else 
-                      %p You have not yet registered to this event. 
-
-                      %a.btn.btn-primary{:href => "/profile/event#event::#{event.id}", :role => "button"} Register
-                -else
-                  %p You need to be authentificated to register
-              -else
-                %p Registration is not allowed for this event.
-
+              %p Events management:
+              %a.btn.btn-primary{:href => "/profile/event", :role => "button"} 
+                Inscrition
