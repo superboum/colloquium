@@ -26,78 +26,46 @@ class ArticleTest < AbstractTest
   def test_004_add_article
     find('a[href="/admin/article"]').click
     first(:link, 'Add a new article').click
+    fill_in 'title', :with => "La relativité restreinte"
+    fill_in 'category', :with => "Physique"
+    fill_in 'short_text', :with => "This is a joke :)"
+    fill_in 'long_text', :with => "Everything is __cool__"
+    click_on('Publish')
+  end
+
+  def test_005_show_article
+    click_on('Home')
+    assert page.has_content?('La relativité restreinte')
+    first(:link, 'Read more').click
+    assert page.has_content?('La relativité restreinte')
+    assert page.has_content?('This is a joke :)')
+    assert page.has_content?('Everything is cool')
+  end
+
+  def test_006_edit_article
+    click_on('admin')
+    find('a[href="/admin/article"]').click
+    all('a[href^="/admin/article/edit"]').last.click
+    fill_in 'title', :with => "Albert Einstein"
+    fill_in 'category', :with => "History"
+    fill_in 'short_text', :with => "Great man"
+    fill_in 'long_text', :with => "> So amazing"
+    click_on('Publish')
+  end  
+  
+  def test_007_show_modified_article
+    click_on('Home')
+    assert page.has_content?('Albert Einstein')
+    first(:link, 'Read more').click
+    assert page.has_content?('Albert Einstein')
+    assert page.has_content?('History')
+    assert page.has_content?('So amazing')
+  end
+  
+  def test_008_delete_article
+    click_on('admin')
+    find('a[href="/admin/article"]').click
+    all('a[href^="/admin/article/delete"]').last.click
+    click_on('Delete')
   end
 end
-
-#class CMSTest < MiniTest::Test
-
-
-  #Capybara.use_default_driver
-
-  #def setup
-    #Capybara.app = ColloquiumApp
-  #end
-
-
-  #test "home" do
-    #visit '/'
-    #assert page.has_content?('IWSM')
-  #end
-
-#  def test_admin_login
-    #visit '/'
-    #click_link("Sign in / Sign up")
-    #fill_in 'emailSI', :with => "admin@admin.com"
-    #fill_in "InputPasswordSI", :with => "admin"
-    #click_button "Sign in"
-    #assert page.find('.btn-danger')
-    #assert page.has_content?('admin@admin.com')
-  #end
-
-
-  #def test_admin_home
-    #visit '/'
-    #click_on('admin')
-    #assert page.find('.btn-danger')
-    ##To find text in the page
-    #assert page.has_content?('Dashboard')
-    #assert page.has_content?('Type')
-  #end 
-
-  #def test_admin_add_article
-    #visit '/'
-    #click_on('admin')
-    #click_on('Articles')
-    #click_on('Add a new article')
-     
-  #end
-
-  #def test_admin_article_new
-  ##Fill the form and create a new article
-  #new_article
-  #a = Article.find_by_title($tmp_article.title)
-  #visit "/article/#{a.id}"
-  #assert html.include?($tmp_article.long_text)        
-  #a.destroy
-  #end
-
-  #def test_pages
-  #admin_login
-  #visit '/admin/page/new'
-  #html.include?('(Markdown Syntax is allowed)')
-  #fill_in 'title', :with => "In test_pages"
-  #fill_in 'long_text', :with => "The text of the page"
-  #click_button "Publish"
-  #p = Page.find_by_title("In test_pages")
-  #Page.all.each do |page|
-  #visit "/page/#{page.slug}"
-  ##assert last_response.ok?
-  ##assert last_response.body.include?(page.title)
-  ##assert last_response.body.include?(page.long_text)
-  #end
-  #p.destroy
-  #p = Page.find_by_title("In test_pages")
-  #assert p == nil
-  #end                
-
-#end
