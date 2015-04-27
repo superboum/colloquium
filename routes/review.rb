@@ -16,18 +16,16 @@ module ReviewController
     app.post "/profile/review" do
       restrictToAuthenticated!
       uId = session[:user]
-      u = User.find_by_id uId
       if File.exists?("uploads/") == false
         Dir::mkdir("uploads/", 0777)
       end
 
       if !params['review'].nil?
         if File.extname(params['review'][:filename]).downcase == ".pdf"
-          md5 = Digest::MD5.hexdigest(params['review'][:tempfile].read)
-          File.open("uploads/" + md5, "w") do |f|
-            f.write(params['review'][:tempfile].read)
-          end        
-          
+          file = params['review'][:tempfile].read
+          md5 = Digest::MD5.hexdigest(file + Time.now.to_s)
+          File.write("uploads/" + md5, file)
+
           if params['action'] == '1st_review' then
             review = Review.new
             review.lecturer_id = uId
@@ -69,13 +67,21 @@ module ReviewController
     app.get '/admin/review/view/:id' do
       restrictToAdmin!
       review = Review.find_by_id(params[:id])
-   
-      if !review.nil?
-        reviewProps = Reviewproposition.where("review_id = ?", params[:id]) # PB ICI !!!!!!!!!! Donne que les props de la 1ere review
+      
+      if review.nil?
+        halt 404, haml(:error, :locals => { :code => 404, :msg => "Unable to find a review with this id "+params[:id]})
       end
+   
+      reviewProps = Reviewproposition.where("review_id = ?", params[:id]) # PB ICI !!!!!!!!!! Donne que les props de la 1ere review
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/review/view', :locals => {:review => review, :reviewProps => reviewProps}
       end
+    end
+
+    app.get '/moderator/review/document/:hash/:name' do
+      restrictToAdmin!
+      content_type "application/pdf"
+      send_file 'uploads/'+params[:hash]
     end
     
     app.get '/admin/review/assignement/:id' do
