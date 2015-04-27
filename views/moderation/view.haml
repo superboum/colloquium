@@ -13,7 +13,7 @@
     %tr
       %td= reviewProp.lecturer_info
       %td 
-        %a.btn.btn-default.btn-xs{:href => "#{reviewProp.file}", :target => "_blank"}
+        %a.btn.btn-default.btn-xs{:href => "/moderation/review/document/#{reviewProp.file}/#{reviewProp.file_name}", :target => "_blank"}
           View
         
       -if reviewProp == last

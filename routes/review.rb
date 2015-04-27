@@ -78,8 +78,8 @@ module ReviewController
       end
     end
 
-    app.get '/moderator/review/document/:hash/:name' do
-      restrictToAdmin!
+    app.get '/moderation/review/document/:hash/:name' do
+      restrictToModerator!
       content_type "application/pdf"
       send_file 'uploads/'+params[:hash]
     end

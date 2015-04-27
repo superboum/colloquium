@@ -9,6 +9,7 @@ before_script:
   - bundle exec rake assets:download
   - bundle exec rake assets:generate
   - bundle exec rake db:migrate
+  - bundle exec rake fixture:admin
   - sqlite3 app.db ".dump"
 
 script: bundle exec rake

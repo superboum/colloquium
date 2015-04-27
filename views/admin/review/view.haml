@@ -18,7 +18,7 @@
       -else
         %td #{review.validator.first_name} #{review.validator.last_name}
       %td 
-        %a.btn.btn-default.btn-xs{:href => "/moderator/review/document/#{reviewProp.file}/#{reviewProp.file_name}", :target => "_blank"}
+        %a.btn.btn-default.btn-xs{:href => "/moderation/review/document/#{reviewProp.file}/#{reviewProp.file_name}", :target => "_blank"}
           View
         
         -if reviewProp == last
