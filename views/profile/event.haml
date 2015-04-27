@@ -1,8 +1,8 @@
 .panel.panel-default
   .panel.panel-body
-    %h2 Events to which you have registered: 
+    %h2 You registered for 
     -if events_registered.empty?
-      %p You have not yet registered to any event. 
+      %p.text-muted No event to display 
     -else					
       %ul.list-group
         -modificate = false
@@ -33,7 +33,7 @@
                   Unregister 
     %h2 Other events 
     -if other_events.empty?
-      %p There is not any other event 
+      %p.text-muted No event to display
     -else					
       %ul.list-group
         -other_events.each do |e|
