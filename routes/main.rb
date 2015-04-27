@@ -18,27 +18,28 @@ module MainController
       redirect to('/'),303
     end
 
-    app.post '/login' do
+    app.post '/sign_in' do
       restrictToNotAuthenticated!
-
-      if params['action'] == 'login' then
-        if logUser(params['email'],params['password']) then 
-          redirect to('/'), 303
-        else
-          redirect to('/login'),303
-        end
+      if logUser(params['email'],params['password']) then 
+        redirect to('/'), 303
       else
-        if params['password1'] != params['password2']
-          redirect to('/login'), 303
-        elsif User.find_by(email: params['email']) != nil
-          redirect to('/login'), 303
-        else
-          u = User.new
-          u.create_account params['email'], params['password1']
-          u.save
-          haml :'waiting_for_validation', :locals => { }
-        end
+        redirect to('/login'),303
       end
+    end
+
+    app.post '/sign_up' do
+      restrictToNotAuthenticated!
+      if params['password1'] != params['password2']
+        redirect to('/login'), 303
+      elsif User.find_by(email: params['email']) != nil
+        redirect to('/login'), 303
+      else
+        u = User.new
+        u.create_account params['email'], params['password1']
+        u.save
+        haml :'waiting_for_validation', :locals => { }
+      end
+
     end
 
     app.get '/confirm/:email/:token' do

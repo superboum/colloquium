@@ -2,9 +2,7 @@
   .row
     .col-md-6
       %h2 Sign in
-      %form#Sign_in{:method => "POST"}
-        
-        %input{:type => "hidden", :name => "action", :value => "login"}
+      %form#Sign_in{:method => "POST", :action => "/sign_in"}
         
         .form-group
           %label{:for => "emailSI"} Email address
@@ -20,10 +18,8 @@
 
     .col-md-6
       %h2 Sign up
-      %form{:method => "POST"}
+      %form{:method => "POST", :action => "/sign_up"}
         
-        %input{:type => "hidden", :name => "action", :value => "register"}
-
         .form-group
           %label{:for => "InputEmailSU"} Email address
           %input#InputEmailSU.form-control{:placeholder => "Enter email", :type => "email", :name => "email"}/
