@@ -39,6 +39,7 @@ module UserController
     end
 
     app.get '/profile/password_change/:email/:token/?' do
+      restrictToNotAuthenticated!
       u = User.find_by email: params[:email]
       if u.instance_of? User and u.check_token params[:token] then
         u.save
@@ -66,10 +67,6 @@ module UserController
 
     app.get '/profile/delete/?' do
       restrictToAuthenticated!
-      user.events.each do |event|
-        event.number_of_participants--
-        event.save
-      end
       user.destroy
       session[:user] = nil
       redirect to('/'),303
@@ -110,10 +107,6 @@ module UserController
     app.post '/admin/user/delete/:id' do
       restrictToAdmin!
       tmp_user = User.find(params[:id])
-      tmp_user.events.each do |event|
-        event.number_of_participants -= 1
-        event.save
-      end
       User.destroy(tmp_user)
       redirect "/admin/user", 303
     end

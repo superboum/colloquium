@@ -29,7 +29,7 @@
         %a.btn.btn-xs.btn-default{:href => "/admin/event/edit/#{e.id}"} Edit
         %a.btn.btn-xs.btn-danger{:href => "/admin/event/delete/#{e.id}"} Delete
       %td.text-center
-        =e.number_of_participants
+        =e.users_events.count
         -if e.spots_number_limit != 0
           \/#{e.spots_number_limit}
       %td.text-center

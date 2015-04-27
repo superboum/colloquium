@@ -4,23 +4,15 @@ module EventController
     app.get '/event/:id/?' do
       event = Event.find_by_id(params[:id])
       if authenticated?
-       isRegistered = user.registered?(event)
+        isRegistered = user.registered?(event)
       else 
         isRegistered = false
       end
-      soldout = !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
+      soldout = !(event.spots_number_limit ==0 || event.spots_number_limit > event.users_events.count)
       haml :event, :locals => { :event => event,:registration => event.registration ,:isAuthentificated => authenticated?, :isRegistered => isRegistered,soldout: soldout}
     end
 
-
- 
-
-
-
     # USERSIDE
-
-
-
     app.get '/profile/event/?' do
       restrictToAuthenticated!
       events_registered = user.get_event_registered
@@ -33,29 +25,29 @@ module EventController
 
 
 
-  app.get '/profile/event/register/:id/?' do 
-    restrictToAuthenticated!
-    event = Event.find_by_id(params[:id])
-    if !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
-      redirect "/event/#{params[:id]}"
+    app.get '/profile/event/register/:id/?' do 
+      restrictToAuthenticated!
+      event = Event.find_by_id(params[:id])
+      if !(event.spots_number_limit ==0 || event.spots_number_limit > event.users_events.count)
+        redirect "/event/#{params[:id]}"
+      end
+      felts = event.form_elements
+
+      haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: false, fanswers: {}}
     end
-    felts = event.form_elements
-
-    haml :eventRegistration, :locals => {:event => event,:felts => felts, edit: false, fanswers: {}}
-  end
 
 
-  app.post '/profile/event/register/:id/?' do
-    restrictToAuthenticated!
-   
-    
-    if :id != params["event"] then 
+    app.post '/profile/event/register/:id/?' do
+      restrictToAuthenticated!
+
+
+      if :id != params["event"] then 
         puts "error" #TODO 
       end
       event = Event.find_by_id(params[:id])
-       if !(event.spots_number_limit ==0 || event.spots_number_limit > event.number_of_participants)
-      redirect "/event/#{params[:id]}"
-    end
+      if !(event.spots_number_limit ==0 || event.spots_number_limit > event.users_events.count)
+        redirect "/event/#{params[:id]}"
+      end
       user.register_to_event(event,params)
 
       redirect "/profile/event", 303
@@ -64,10 +56,10 @@ module EventController
 
 
 
-   app.get '/profile/event/edit-registration/:id/?' do 
+    app.get '/profile/event/edit-registration/:id/?' do 
       restrictToAuthenticated!
       event = Event.find_by_id(params[:id])
-      
+
       haml :eventRegistration, :locals => {:event => event, edit: true}
     end
 
@@ -78,7 +70,7 @@ module EventController
         puts "error" #TODO 
       end
       event = Event.find_by_id(params[:id])
-      
+
       user.edit_register_to_event(event,params)
 
       redirect "/event/#{params[:id]}", 303
@@ -102,7 +94,7 @@ module EventController
       redirect "/event/#{params[:id]}", 303
     end
 
-    
+
     #BACKOFFICE
     app.get '/admin/event/?' do
       restrictToAdmin!
@@ -164,7 +156,7 @@ module EventController
       event.save
 
       event.set_felts(params,user)
-      
+
 
       if(event.invalid?) 
 
@@ -208,7 +200,7 @@ module EventController
       e.save
       redirect '/admin/event'
     end
-    
+
     app.get '/admin/event/download/?' do
       restrictToAdmin!
       Dir.mkdir('tmp') unless File.exists?('tmp')
@@ -216,7 +208,7 @@ module EventController
       send_file file, :filename => 'events.xls', :type => 'Application/octet-stream'
       redirect '/admin/event'
     end
-    
+
     app.get '/admin/event/:id/?' do 
       restrictToAdmin!
       e = Event.includes(:participants,:form_elements, :form_answers, :users_events).find(params[:id])
@@ -225,6 +217,6 @@ module EventController
       end
     end 
 
-    
+
   end
 end

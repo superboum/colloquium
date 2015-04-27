@@ -108,9 +108,6 @@ class User < ActiveRecord::Base
 
     end
 
-    event.number_of_participants += 1
-    event.save
-
     self.events << event
     self.save
   end
