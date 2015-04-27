@@ -10,6 +10,7 @@ require 'spreadsheet'
 require 'redcarpet'
 
 require_relative 'routes/init'
+require_relative 'lib/init'
 
 #Initialisations
 class ColloquiumApp < Sinatra::Application
