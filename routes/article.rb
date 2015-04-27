@@ -25,10 +25,7 @@ module ArticleController
     app.post '/admin/article/new' do
       restrictToAdmin!
       article = Article.new
-      article.title = params['title']
-      article.category = params['category']
-      article.short_text = params['short_text']
-      article.long_text = params['long_text']
+      article.from_params params
       article.save
       redirect "/admin/article", 303
     end
@@ -45,10 +42,7 @@ module ArticleController
     app.post '/admin/article/edit/:id' do
       restrictToAdmin!
       article = Article.find(params[:id])
-      article.title = params['title']
-      article.category = params['category']
-      article.short_text = params['short_text']
-      article.long_text = params['long_text']
+      article.from_params params
       article.save
       redirect "/admin/article", 303
     end

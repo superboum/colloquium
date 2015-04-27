@@ -65,7 +65,7 @@ end
 namespace :test do
     desc "Unit tests"
     task :test_app do
-        ruby "test/app_test.rb"
+        ruby "test/init.rb"
     end
 end
 

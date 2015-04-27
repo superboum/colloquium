@@ -14,10 +14,8 @@ module UserHelper
         user = User.find_by email: email
         ok = (user.instance_of? User and user.correct_password?(password))
         if ok then
-            puts "Successfully logged " + user.email
             session[:user] = user.id
         else
-            puts "Unable to log " + email
         end
         ok
     end

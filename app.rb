@@ -7,6 +7,7 @@ require 'pony'
 require 'uri'
 require 'yaml/store'
 require 'spreadsheet'
+require 'redcarpet'
 
 require_relative 'routes/init'
 
