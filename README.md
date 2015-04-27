@@ -1,39 +1,43 @@
-Etude Pratique
-==============
+Colloquium
+==========
 
 [![Build Status](https://travis-ci.org/superboum/etude-pratique.svg?branch=master)](https://travis-ci.org/superboum/etude-pratique)
 [![Dependency Status](https://gemnasium.com/superboum/etude-pratique.svg)](https://gemnasium.com/superboum/etude-pratique)
 [![Code Climate](https://codeclimate.com/github/superboum/etude-pratique/badges/gpa.svg)](https://codeclimate.com/github/superboum/etude-pratique)
 [![Test Coverage](https://codeclimate.com/github/superboum/etude-pratique/badges/coverage.svg)](https://codeclimate.com/github/superboum/etude-pratique)
 
-Cette étude pratique porte sur la création d'un site web pour des conférences.
+Colloquium is a simple tool to create a website for your conference or symposium.
 
-Il devra entre autre être utilisé pour la 30th Internation Workshop on Statistical Modeling.
+It can handle :
 
+  * Registration
+  * Review of resume
+  * Side events
+  * Articles and pages
+  * Many other things
 
 Installation
 ------------
 
-Installer ruby & ses dépendances ainsi que npm
+Install npm, ruby and its dependencies
 
-Pour RHEL/Fedora :
+RHEL/Fedora :
 
 ```bash
 sudo yum install -y ruby sqlite-devel rubygem-bundler
 ```
-Pour Ubuntu
+Ubuntu
 
 ```bash
 sudo apt-get install libsqlite3-dev ruby 
 ```
 
-Installer les dépendances serveurs
+Install ruby gems with bundle
 
 ```bash
 bundle install
 ```
-
-Installer les dépendances clients & la BDD
+Generate client-side assets and create database
 
 ```bash
 bundle exec rake assets:download
@@ -41,28 +45,28 @@ bundle exec rake assets:generate
 bundle exec rake db:migrate
 ```
 
-Lancement
----------
+Run
+---
 
-Générer les fichiers CSS et JS (à chaque modification du CSS ou du JS)
+If you modify Colloquium CSS or JS, you must regenerate your assets:
 
 ```bash
 bundle exec rake assets:generate
 ```
 
-Générer un compte admin de test : 
+Create an admin account to test Colloquium (id: admin@admin.com, pw: admin):
 
 ```bash
 bundle exec rake fixture:admin
 ```
 
-Lancer le serveur
+Launch Colloquium:
 
 ```bash
 bundle exec rake server:run
 ```
 
-Aide
+Help
 ----
 
 ```bash
@@ -72,8 +76,14 @@ bundle exec rake -T
 Tests
 -----
 
-Lancer les tests
+Launch tests
 
 ```bash
 bundle exec rake
+```
+
+Launch tests with Selenium
+
+```bash
+bundle exec rake test:selenium
 ```
