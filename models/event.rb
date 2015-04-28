@@ -8,18 +8,18 @@ class Event < ActiveRecord::Base
   has_many :participants, through: :users_events, source: :user
   belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
 
-	validates :short_text, length: { maximum: 255 ,message: "The size is limited to 255 chars"}
+  validates :short_text, length: { maximum: 255 ,message: "The size is limited to 255 chars"}
   validates :name, length: {minimum: 1, message: "This field can't be blank"}
   validates :spots_number_limit, numericality: { only_integer: true,greater_than_or_equal_to: 0}
 
   def get_felts
-		return self.form_elements
-	end
+    return self.form_elements
+  end
 
 
 
-	def set(params,user)
-		self.name = params['name']
+  def set(params,user)
+    self.name = params['name']
     self.short_text = params['short_text']
     self.long_text = params['long_text']
     self.start_date = params['start_date']
@@ -28,12 +28,12 @@ class Event < ActiveRecord::Base
     self.spots_number_limit = params["spots_number_limit"]
     self.admin = user
 
-	end
+  end
 
   
 
   def set_felts(params,user)
-      
+    
     self.form_elements.each do |felt|
       if(params["delete::"+felt.id.to_s]=='1')
         felt.destroy 
@@ -63,13 +63,13 @@ class Event < ActiveRecord::Base
     stats.unshift([self.name])
     sheet = book.create_worksheet :name => self.name
     for i in 1..(stats.count) # (stats.count -1) doesn't work ?? 
-        sheet.row(i-1).replace stats[i-1]
+      sheet.row(i-1).replace stats[i-1]
     end
   end
 
   def get_stats
     stats = Stats.new(self)
-     
+    
     return stats.fil(self)
   end 
 end

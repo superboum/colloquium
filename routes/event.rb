@@ -176,7 +176,7 @@ module EventController
         e.registration = true
       end      
       if params[:action] == "disable" && e.registration
-        e.registration = true
+        e.registration = false
       end
       e.save
       redirect '/admin/event'
