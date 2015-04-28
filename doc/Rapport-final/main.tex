@@ -41,6 +41,7 @@ Site Web pour conférence scientifique} }
 \begin{abstract}
 %Resumé
 \end{abstract} 
+
 \newpage
 
 \section{Introduction}  
@@ -93,7 +94,16 @@ Ces modification devront être faisable par une personne non expérimentée en info
 
 L'administrateur aura également accès à des fichiers de statistiques, résumant les différentes inscriptions aux événements. 
 
-\section{Lancement du projet}
+\section{Architecture, Technologies et Organisation}
+\subsection{Architecture}
+mvc
+
+diagramme uml
+
+user story
+
+@TODO Quentin
+
 \subsection{Technologies utilisées}
 Ruby : Sinatra
 
@@ -105,12 +115,9 @@ CSS : Bootstrap
 
 @TODO:JEAN
 
+\section{Fonctionnalités}
 
-\section{Mise en place du serveur et de la Base de Donnée}
-@TODO:QDUF
-
-
-\section{Gestion des Articles et des Pages}
+\subsection{CMS}
 L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un système de CRUD (Create, Read, Update, Delete), nous avons travaillé chacun de notre côté afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela était nécessaire. Nous avons ainsi développé ces Pages et Articles dont la gestion est très semblable.
 
 Après avoir ajouté les tables liées dans la base (tables articles et pages), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Dans la base, les textes long devaient être indiqués en tant que \textit{text} et non \textit{string} comme fait initialement, sans quoi la taille d'enregistrement n'était pas suffisante. Les informations entrées dans le formulaires sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
@@ -119,13 +126,13 @@ Suite à la création de la page, il était nécessaire d'avoir un formulaire afin d
 
 Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
-\section{Gestion des Event et Users}
+\subsection{Évènements}
 
-\subsection*{users}
+\subsection{Utilisateurs}
 @TODO:QDUF:USERS
 
 
-\section{Gestion des Reviews et Settings}
+\subsection{Candidatures}
 
 Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Il faut donc récupérer des fichiers soumis sur le site. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés. 
 
@@ -143,14 +150,13 @@ La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie p
 
 @TODO:JEAN
 
-
-
+\subsection{Paramètres}
 
 @TODO:QDUF:SETTINGS
 
-\section{Gestion des }
+\section{Déploiement}
 
-
+@TODO:QDUF
 
 \section{Conclusion} 
  
