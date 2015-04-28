@@ -5,6 +5,7 @@ Colloquium
 [![Dependency Status](https://gemnasium.com/superboum/etude-pratique.svg)](https://gemnasium.com/superboum/etude-pratique)
 [![Code Climate](https://codeclimate.com/github/superboum/colloquium/badges/gpa.svg)](https://codeclimate.com/github/superboum/colloquium)
 [![Test Coverage](https://codeclimate.com/github/superboum/colloquium/badges/coverage.svg)](https://codeclimate.com/github/superboum/colloquium)
+[![PullReview stats](https://www.pullreview.com/github/superboum/colloquium/badges/master.svg?)](https://www.pullreview.com/github/superboum/colloquium/reviews/master)
 
 Colloquium is a simple tool to create a website for your conference or symposium.
 

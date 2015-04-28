@@ -6,7 +6,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,11pt]{article}
-
 \usepackage{exptech}       % Fichier (./exptech.sty) contenant les styles pour 
                            % l'expose technique (ne pas le modifier)
 
@@ -96,7 +95,9 @@ L'administrateur aura également accès à des fichiers de statistiques, résumant l
 
 \section{Architecture, Technologies et Organisation}
 \subsection{Architecture}
-mvc
+patron de conception mvc
+
+business layer
 
 diagramme uml
 
@@ -112,6 +113,8 @@ DB : sqlite3 / Active Record
 CSS : Bootstrap
 
 \subsection{Organisation du projet}
+
+github, issues
 
 @TODO:JEAN
 
@@ -156,13 +159,27 @@ La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie p
 
 \section{Qualité logiciel}
 
+La qualité logiciel a été un point clé du développement de notre application web, et ce dès le début. En étant strict à ce niveau là, nous n'avons pas rencontré de problèmes particuliers lorsque la taille du projet a commencé à augmenter.
+
+\subsection{Gestionnaire de version}
+
+
+
 \subsection{Tests unitaires}
 
 \subsection{Tests fonctionnels}
 
 \subsection{Intégration continue}
+\begin{figure}[!h]
+   \includegraphics[width=15cm]{fig/travis}
+   \caption{\label{travis} Travis, outil d'intégration continue SaaS}
+\end{figure}
 
 \subsection{Revue de code automatique}
+\begin{figure}[!h]
+   \includegraphics[width=15cm]{fig/codeclimate}
+   \caption{\label{codeclimate} Codeclimate, outil de revue de code SaaS}
+\end{figure}
 
 \section{Déploiement}
 
