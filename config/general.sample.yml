@@ -4,7 +4,17 @@ parameters:
   slogan: eee
   cover: zzzz.jpg
 payment: 
-  rib: 000000a
+  rib: 
+    code_banque: 00
+    code_guichet: 00
+    numero_compte: 123456
+    cle_rib: 00
+    domiciliation: 'insa'
+    iban: 000
+    bic: 0000
+  cheque:
+    order: 'aa'
+    address: 'bb'
 cookies:
   key: 'rack.session'
   path: '/'
