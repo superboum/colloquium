@@ -53,15 +53,15 @@ Après avoir recherché les technologies et langages nécessaires au projets. Un ch
 
 
 
-
-
 \section{Cahier des Charges}
 
 
 
 \section{Lancement du projet}
 \subsection{Technologies utilisées}
-
+Ruby : Sinatra
+DB : sqlite3 / Active Record
+CSS : Bootstrap
 \subsection{Organisation du projet}
 
 
@@ -69,9 +69,15 @@ Après avoir recherché les technologies et langages nécessaires au projets. Un ch
 \section{Mise en place du serveur et de la Base de Donnée}
 
 
+
 \section{Gestion des Articles et des Pages}
+L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un système de CRUD (Create, Read, Update, Delete), nous avons travaillé chacun de notre côté afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela était nécessaire. Nous avons ainsi développé ces Pages et Articles dont la gestion est très semblable.
 
+Après avoir ajouté les tables liées dans la base (tables articles et pages), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Dans la base, les textes long devaient être indiqués en tant que \textit{text} et non \textit{string} comme fait initialement, sans quoi la taille d'enregistrement n'était pas suffisante. Les informations entrées dans le formulaires sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
 
+Suite à la création de la page, il était nécessaire d'avoir un formulaire afin de modifier la page ou l'article aisément. Dans la partie administration, les anciennes informations sont donc affichées et il est possible d'en entrer de nouvelles. Celles-ci permettront la mise à jour de l'élément sélectionné. La page ou l'article ont ensuite été liés à des boutons permettant de les supprimer. 
+
+Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
 \section{Gestion des Event et Users}
 
