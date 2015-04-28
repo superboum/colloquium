@@ -7,4 +7,5 @@ require_relative 'unit/page'
 require_relative 'unit/user'
 
 #Functionnal tests
-require_relative 'functionnal/article'
+# require_relative 'functionnal/article'
+require_relative 'functionnal/event'
