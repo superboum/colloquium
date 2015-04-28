@@ -28,8 +28,8 @@ module FormElementController
 
     app.post '/admin/form_element/new/:id' do 
       restrictToAdmin!
-      if :id != params["event"] then 
-        puts "error" #TODO 
+      if params[:id] != params["event"] then 
+        puts "error" #@TODO 
       end
 
 

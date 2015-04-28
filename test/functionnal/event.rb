@@ -38,6 +38,7 @@ class EventTest < AbstractTest
   
   def test_005_add_felt
     fill_in 'question', :with => "Event felt"
+    choose("bool")
     assert page.has_content?('Add a form to your event')
     click_on('Publish')
     assert page.has_content?('Event test')
