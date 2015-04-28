@@ -1,9 +1,9 @@
 .wrapper
 .jumbotron.home.hidden-xs
   .container.text-center
-    %h1 31th International Workshop on Statistical Modelling
-    %p INSA Rennes
-    %br
+    %h1= settings.parameters['title']
+    %p= settings.parameters['slogan']
+
     %a.btn.btn-lg.btn-success{:href => "/profile/account"}
       Registration
       %span.glyphicon.glyphicon-chevron-right
