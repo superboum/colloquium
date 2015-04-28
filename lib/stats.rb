@@ -24,15 +24,24 @@ class Stats
 
   end
 
+  def date_management(e,p)
+    date = e.users_events.where(user: p).first.created_at
+    if(date.nil?) 
+      return "Unknown" 
+    else 
+      return date.strftime("%m/%d/%Y at %I:%M %P")
+    end
+      
+  end
+
   def fil(e)    
     ret_cpt = 1
     e.participants.each do |p|
       @participant_key[p.id] = ret_cpt
-      p.modify_name
+
       @ret[ret_cpt]= Array.new(2+@nb_of_felts)
-      @ret[ret_cpt][0]="#{p.last_name.upcase} #{p.first_name.capitalize}"
-      date = e.users_events.where(user: p).first.created_at
-      date.nil? ? @ret[ret_cpt][1] = "Unknown" : @ret[ret_cpt][1] = date.strftime("%m/%d/%Y at %I:%M %P")
+      @ret[ret_cpt][0]=p.full_name
+      @ret[ret_cpt][1] = date_management(e,p)
       ret_cpt += 1
     end
 

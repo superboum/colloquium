@@ -10,15 +10,15 @@ class User < ActiveRecord::Base
   has_many :pages, :class_name => 'Page', :foreign_key => 'author_id'
 
 
-  def modify_name
+  def full_name
     if  self.last_name.nil?
       self.last_name = ""
     end
     if  self.first_name.nil?
       self.first_name = ""
     end
+    return self.last_name.upcase+" "+self.first_name.capitalize
   end
-
 
   def registered?(event)
     return self.events.include?(event)
