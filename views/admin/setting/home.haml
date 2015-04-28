@@ -52,6 +52,16 @@
           .form-group
             %label{:for => "bic"} BIC
             %input.form-control{:placeholder => "ABCDEFGH", :type => "text", :title => "bic", :name => "bic", :value => store['payment']['rib']['bic']}
+        
+        %fieldset
+          %legend Payment by cheque
+          .form-group
+            %label{:for => "order"} Order
+            %input.form-control{:placeholder => "Alan Smithee", :type => "text", :title => "order", :name => "order", :value => store['payment']['cheque']['order']}
+          .form-group
+            %label{:for => "address"} Address
+            %textarea.form-control{:name => 'address'}= store['payment']['cheque']['address']
+
 
         
         .form-group
