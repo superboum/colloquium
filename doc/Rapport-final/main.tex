@@ -103,7 +103,7 @@ CSS : Bootstrap
 
 
 \section{Mise en place du serveur et de la Base de Donnée}
-
+@TODO:QDUF
 
 
 \section{Gestion des Articles et des Pages}
@@ -118,10 +118,17 @@ Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, l
 \section{Gestion des Event et Users}
 
 
+@TODO:QDUF:USERS
+
 
 \section{Gestion des Reviews et Settings}
 
+Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Il faut donc récupérer des fichiers soumis sur le site. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés. 
 
+Cependant, il a d'abord fallu créer les tables \textit{reviews} et \textit{reviewpropositions} dans la base de donnée. \textit{Reviews} contient le nom du participant, le nom de la conférence, l'état de l'inscription et est lié aux reviewpropositions. Ceux-ci sont crées à chaque nouvelle soumission de résumé. Ils contiennent le lien vers le fichier, un commentaire du participant expliquant la proposition et le lien vers la review liée. Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{users} ont été difficiles à mettre en place. Il a fallu créer des associations entre les différentes tables. Après de nombreux essais, recherches et tests, les liens en dur ont été changés en \textit{references}
+
+
+@TODO:QDUF:SETTINGS
 
 \section{Gestion des : }
 
