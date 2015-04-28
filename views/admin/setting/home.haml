@@ -8,26 +8,51 @@
           %legend Website
           .form-group
             %label{:for => "base_url"} Base URL
-            %input#base_url.form-control{:placeholder => "Enter base_url", :type => "text", :title => "base_url", :name => "base_url", :value => store['parameters']['base_url']}
+            %input.form-control{:placeholder => "Enter base_url", :type => "text", :title => "base_url", :name => "base_url", :value => store['parameters']['base_url']}
           
           .form-group
             %label{:for => "title"} Title
-            %input#base_url.form-control{:placeholder => "Enter title", :type => "text", :title => "title", :name => "title", :value => store['parameters']['title']}
+            %input.form-control{:placeholder => "Enter title", :type => "text", :title => "title", :name => "title", :value => store['parameters']['title']}
           
           .form-group
             %label{:for => "slogan"} Slogan
-            %input#base_url.form-control{:placeholder => "Enter slogan", :type => "text", :title => "slogan", :name => "slogan", :value => store['parameters']['slogan']}
+            %input.form-control{:placeholder => "Enter slogan", :type => "text", :title => "slogan", :name => "slogan", :value => store['parameters']['slogan']}
             
           .form-group
             %label{:for => "cover"} Cover
-            %input#base_url.form-control{:placeholder => "Choose cover", :type => "text", :title => "cover", :name => "cover", :value => store['parameters']['cover']}
+            %input.form-control{:placeholder => "Choose cover", :type => "text", :title => "cover", :name => "cover", :value => store['parameters']['cover']}
         
         %fieldset
-          %legend Payment
+          %legend Payment by bank transfer
           
           .form-group
-            %label{:for => "rib"} RIB
-            %input#base_url.form-control{:placeholder => "Enter RIB", :type => "text", :title => "rib", :name => "rib", :value =>  store['payment']['rib']}
+            %table
+              %tr
+                %th Code banque
+                %th Code guichet
+                %th Num. compte
+                %th Clé RIB
+                %th Domiciliation
+              %tr
+                %td
+                  %input.form-control{:placeholder => "12345", :type => "text", :title => "rib", :name => "code_banque", :value =>  store['payment']['rib']['code_banque']}
+                %td
+                  %input.form-control{:placeholder => "12345", :type => "text", :title => "rib", :name => "code_guichet", :value =>  store['payment']['rib']['code_guichet']}
+                %td
+                  %input.form-control{:placeholder => "12345679891A", :type => "text", :title => "rib", :name => "numero_compte", :value =>  store['payment']['rib']['numero_compte']}
+                %td
+                  %input.form-control{:placeholder => "12", :type => "text", :title => "cle_rib", :name => "cle_rib", :value =>  store['payment']['rib']['cle_rib']}
+                %td
+                  %input.form-control{:placeholder => "Banque-ville-agence", :type => "text", :title => "rib", :name => "domiciliation", :value =>  store['payment']['rib']['domiciliation']}
+                  
+          .form-group
+            %label{:for => "iban"} IBAN
+            %input.form-control{:placeholder => "FR00 0000 0000 0000 0000 0000 00", :type => "text", :title => "iban", :name => "iban", :value => store['payment']['rib']['iban']}
+          
+          .form-group
+            %label{:for => "bic"} BIC
+            %input.form-control{:placeholder => "ABCDEFGH", :type => "text", :title => "bic", :name => "bic", :value => store['payment']['rib']['bic']}
+
         
         .form-group
           %input.btn.btn-primary{:type => "submit", :value => "Save"}

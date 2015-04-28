@@ -16,10 +16,25 @@ module SettingsController
       store["parameters"] = { 
         "base_url" => params["base_url"],
         "title"  => params["title"],
+        "short_title"  => params["short_title"],
         "slogan" => params["slogan"],
         "cover" => params["cover"],
       }
-      store['payment'] = { 'rib' => params['rib'] }
+      store['payment'] = { 
+        'rib' => {
+          'code_banque' => params['code_banque'],
+          'code_guichet' => params['code_guichet'],
+          'numero_compte' => params['numero_compte'],
+          'cle_rib' => params['cle_rib'],
+          'domiciliation' => params['domiciliation'],
+          'iban' => params['iban'],
+          'bic' => params['bic']
+        },
+        'cheque' => {
+          'order' => params['order'],
+          'address' => params['address']
+        }
+      }
 	  end
       redirect "/admin/settings", 303
 	end
