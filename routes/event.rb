@@ -78,7 +78,6 @@ module EventController
     app.post '/profile/event/unregister/:id/?' do 
       restrictToAuthenticated!
       event = Event.find(params[:id])
-      event.number_of_participants-= 1
       event.form_answers.destroy(FormAnswer.where(event: event, participant: user))
       event.save
       user.events.destroy(event)

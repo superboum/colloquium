@@ -9,13 +9,13 @@
 
       -if !event.form_elements.empty?
         -if event.form_elements.length > 1
-          - s = "s"
+          - this_form= "these forms"
         -else 
-          -s=""
+          -this_form="this form"
         -if edit
           %p This is your previews registration
         -else
-          %p Please fill this form#{s} to register
+          %p Please fill #{this_form} to register
 
 
         %input{:type=>"hidden",:id=>"event",:name=>"event",:value=>event.id}
