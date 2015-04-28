@@ -51,8 +51,6 @@ La conférence IWSM se déroulera à l'INSA de Rennes en 2016. Monsieur Jean-Franço
 Nous avons ainsi discuté plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressé.
 Après avoir recherché les technologies et langages nécessaires au projets. Un choix fut fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
 
-
-
 \section{Cahier des Charges}
 Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
 
@@ -97,7 +95,7 @@ L'administrateur aura également accès à des fichiers de statistiques, résumant l
 \subsection{Architecture}
 patron de conception mvc
 
-business layer
+business layer/application layer
 
 diagramme uml
 
@@ -163,11 +161,23 @@ La qualité logiciel a été un point clé du développement de notre application web
 
 \subsection{Gestionnaire de version}
 
+Nous avons choisi git, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
+Entre autre, nous avons utilisé les branches pour développer de nouvelles fonctionnalités. Une fois ces dernières terminées, nous avons fusionné la branche avec notre branche courante. Nous n'avons pas jugé utile pour le moment de différencier les branches master et develop. En effet, beaucoup d'entreprises travaillant en cycles courts considèrent les corrections de bugs comme des fonctionnalités. De plus, grâce à une chaine de test efficace, ces derniers se font rares.
 
 \subsection{Tests unitaires}
 
+Nous avons testé unitairement l'ensemble des classes que nous utilisions : nos modèles ainsi que toutes nos classes appartenant à notre business layer. 
+
+Nous n'avons pas pu tester nos controllers unitairement, cas en ayant fais le choix de Sinatra, un DSL, ces derniers ne sont pas testables.
+
 \subsection{Tests fonctionnels}
+
+Les tests fonctionnels sont des scénarios types, pour tester le comportement de notre application dans son ensemble.
+
+En ayant fais le choix de Capybara, nous pouvons à travers son API unique, lancer nos tests sur une grande variété de plateformes. En effet, par défaut les tests fonctionnels se font sans interface graphique, grâce au driver rack\_test qui ne lance pas de navigateur et se contente de vérifier le html généré. 
+
+Mais sans modifier nos tests, nous pouvons lancer ces derniers avec Selenium-Webdriver, qui lance le navigateur de notre choix et simule les clics de souris et les entrées claviers.
 
 \subsection{Intégration continue}
 \begin{figure}[!h]
@@ -175,11 +185,29 @@ La qualité logiciel a été un point clé du développement de notre application web
    \caption{\label{travis} Travis, outil d'intégration continue SaaS}
 \end{figure}
 
+L'intégration continue permet de s'assurer de la viabilité de notre projet au cours de son développement.
+
+En effet, à chaque commit Travis lance un build. Pour chaque build, Travis créer une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
+
+Ainsi, nous nous assurons que pour un commit donné, notre application est bien pleinement compatible avec un environnement donné et clairement défini.
+
+Dans le cas d'un échec de build, les collaborateurs du projet recoivent un mail les alertant de l'erreur, ainsi qu'un compte rendu du build.
+
+Nous pouvons alors sereinement déployé notre application à n'importe quel moment.
+
+Enfin Travis permet de créer des matrices de build, qui permettent de tester le projet avec des configuration différentes. Par exemple 4 versions de ruby différentes et 3 SGBD différents. Travis lancera alors 12 builds.
+
 \subsection{Revue de code automatique}
 \begin{figure}[!h]
    \includegraphics[width=15cm]{fig/codeclimate}
    \caption{\label{codeclimate} Codeclimate, outil de revue de code SaaS}
 \end{figure}
+
+La revue de code automatique permet à notre équipe d'acquérir les bons réflexes et de s'améliorer au fur et à mesure du développement de l'application.
+
+Cela permet aussi d'améliorer sa maintenabilité.
+
+Codeclimate calcule aussi la couverture de tests de l'application, afin d'avoir un aperçu des fonctions testées et des fonctions qui ne sont pas testées.
 
 \section{Déploiement}
 
