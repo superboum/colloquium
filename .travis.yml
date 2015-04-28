@@ -16,7 +16,7 @@ script: bundle exec rake
 
 addons:
   code_climate:
-    repo_token: a18103c8bb694e4732f0e022d64fde84b59c9f586fa3bc6d3abd72e9bdefcb8d
+    repo_token: aab33f3fbaf13b1d83bb56977ca63bdfb3cbb259fc915bfad094a173170fc705
 
 rvm:
   - 2.0.0
