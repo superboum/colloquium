@@ -82,7 +82,7 @@ Launch tests
 bundle exec rake
 ```
 
-Launch tests with Selenium
+Launch tests with Selenium (works out of the box with firefox)
 
 ```bash
 bundle exec rake test:selenium
