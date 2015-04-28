@@ -19,6 +19,7 @@ module FormElementController
     app.get '/admin/form_element/new/:id/?' do
       restrictToAdmin!
       felt = FormElement.new
+      felt.form_type = 0
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/formElement/newedit', :locals => {:felt => felt,:event => Event.find(params[:id]),:elements=> FormElement.TYPES, :edit => false}
       end

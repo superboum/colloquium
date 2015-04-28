@@ -19,9 +19,7 @@
                     %br/
                     ➥
                     -felt.form_answers.each do |fanswer|
-                      -p fanswer
                       -if fanswer.participant == user
-                        -p fanswer
                         =fanswer.answer
                 %a{href: "/event/#{e.id}"}
                   Read more

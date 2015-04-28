@@ -20,13 +20,13 @@
         .panel
           .btn-group{"data-toggle" => "buttons"}
             %label.btn.btn-primary{felt.form_type == FormElement.TYPES["bool"] ? {:class => "active"}:{},"data-parent" => "#typeSelection#{id}","aria-controls" => "collapseBool#{id}", "data-target" => "#collapseBool#{id}", "data-toggle" => "collapse", :type => "button"}
-              %input{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{},:autocomplete => "off", :type => "radio",:name => "form_type#{suf}",:id=>"bool",:value =>elements['bool']}
+              %input{felt.form_type == FormElement.TYPES["bool"] ? {:checked => ""}:{},:autocomplete => "off", :type => "radio",:name => "form_type#{suf}",:id=>"bool#{suf}",:value =>elements['bool']}
                 Checkbox
             %label.btn.btn-primary{felt.form_type == FormElement.TYPES["select"] ? {:class => "active"}:{},"data-parent" => "#typeSelection#{id}","aria-controls" => "collapseBool#{id}", "data-target" => "#collapseSelect#{id}", "data-toggle" => "collapse", :type => "button"}
-              %input{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""}:{},:autocomplete => "off", :type => "radio",:name => "form_type#{suf}",:id=>"bool",:value =>elements['select']}
+              %input{felt.form_type == FormElement.TYPES["select"] ? {:checked => ""}:{},:autocomplete => "off", :type => "radio",:name => "form_type#{suf}",:id=>"select#{suf}",:value =>elements['select']}
                 Select list
             %label.btn.btn-primary{felt.form_type == FormElement.TYPES["string"] ? {:class => "active"}:{},"data-parent" => "#typeSelection#{id}","aria-controls" => "collapseString#{id}", "data-target" => "#collapseString#{id}", "data-toggle" => "collapse", :type => "button"}
-              %input{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""}:{},:autocomplete => "off", :type => "radio",:name => "form_type#{suf}",:id=>"bool",:value =>elements['string']}
+              %input{felt.form_type == FormElement.TYPES["string"] ? {:checked => ""}:{},:autocomplete => "off", :type => "radio",:name => "form_type#{suf}",:id=>"text#{suf}",:value =>elements['string']}
                 Text
           .collapse{felt.form_type == FormElement.TYPES["bool"] ? {:class => "in"}:{},:id => "collapseBool#{id}"}
           .collapse{felt.form_type == FormElement.TYPES["select"] ? {:class => "in"}:{},:id => "collapseSelect#{id}"}
