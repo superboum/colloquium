@@ -8,12 +8,14 @@ class ArticleTest < AbstractTest
   end
 
   def test_002_admin_auth
-    click_link("Sign in / Sign up")
-    fill_in 'emailSI', :with => "admin@admin.com"
-    fill_in "InputPasswordSI", :with => "admin"
-    click_button "Sign in"
-    assert page.find('.btn-danger')
-    assert page.has_content?('admin@admin.com')
+    if (!page.has_content?('admin@admin.com'))
+      click_link("Sign in / Sign up")
+      fill_in 'emailSI', :with => "admin@admin.com"
+      fill_in "InputPasswordSI", :with => "admin"
+      click_button "Sign in"
+      assert page.find('.btn-danger')
+      assert page.has_content?('admin@admin.com')
+    end
   end
 
   def test_003_dashboard
