@@ -24,6 +24,7 @@ class Stats
 
   end
 
+
   def date_management(e,p)
     date = e.users_events.where(user: p).first.created_at
     if(date.nil?) 
@@ -34,7 +35,13 @@ class Stats
       
   end
 
-  def fil(e)    
+  def fil(e)
+    fil_participant(e)
+    fil_fa(e)
+    return @ret
+  end
+
+  def fil_participant(e)    
     ret_cpt = 1
     e.participants.each do |p|
       @participant_key[p.id] = ret_cpt
@@ -44,11 +51,12 @@ class Stats
       @ret[ret_cpt][1] = date_management(e,p)
       ret_cpt += 1
     end
+  end
 
+  def fil_fa(e)
     e.form_answers.each do |fa| 
       @ret[@participant_key[fa.participant.id]][@felt_key[fa.form_element.id]]= fa.answer
     end
-    return @ret
   end
 
 end
