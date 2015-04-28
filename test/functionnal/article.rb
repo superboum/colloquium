@@ -4,7 +4,8 @@ class ArticleTest < AbstractTest
 
   def test_001_home_page
     visit '/'
-    assert page.has_content?('IWSM')
+    assert page.has_content?('News')
+    assert page.has_content?('Events')
   end
 
   def test_002_admin_auth
