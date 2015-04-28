@@ -60,7 +60,7 @@ module EventController
     app.post '/profile/event/edit-registration/:id/?' do
       restrictToAuthenticated!
       if :id != params["event"] then 
-        puts "error" #TODO 
+        puts "error" #@TODO 
       end
       event = Event.find_by_id(params[:id])
 
