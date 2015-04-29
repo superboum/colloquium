@@ -127,7 +127,7 @@ La première étape consiste en la création du \textit{CRUD} de l'événement. Cette
 
 \medbreak
 %\subsubsection{La création du formulaire d'inscription}
-Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaire (imaginons qu'un événement soit en hauteur, il peut être utile de savoir si l'utilisateur à le vertige\dots). 
+Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaires (imaginons qu'un événement soit en hauteur, il peut être utile de savoir si l'utilisateur à le vertige\dots). 
 
 \label{diffuculté_relation}
 
@@ -136,7 +136,7 @@ Cette création est légèrement plus complexe que la création d'un article. Nous a
 %\subsubsection{La gestion des inscriptions}
 Lorsque les éléments de formulaires furent correctement configurés,  nous avons implémenté l'inscription à un événement. Celle ci utilise également des relations \textit{SQL}, cependant la technologie nous étais connue à ce moment. Cette partie a donc été relativement rapide. 
 
-Deux éléments sont à vérifié : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
+Deux éléments sont à vérifier : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
 \medbreak
 %\subsubsection{La gestion des statistiques}
 
@@ -150,17 +150,17 @@ Par la suite, nous avons mis en place la gestion des statistiques.
 
 L'inscription et la connexion de l'utilisateur se font via un formulaire. Nous avons choisi l'email comme identifiant unique. 
 
-L'inscription se cantonne à créer un utilisateur en base de donnée, puis passe la main à la validation de l'email.
+L'inscription se cantonne à créer un utilisateur en base de données, puis passe la main à la validation de l'email.
 
 \subsubsection{Validation de l'email}
 
-La validation de l'email se fait via l'envoi d'un email à l'adresse indiquée afin de vérifier que cette dernière est bien correcte et appartient bien à l'utilisateur. Ce dernier n'a plus qu'à cliquer sur un lien, et son compte sera validé. Afin d'améliorer l'expérience utilisateur, ce dernier est aussi authentifié. 
+La validation du compte se fait via l'envoi d'un email à l'adresse indiquée afin de vérifier que cette dernière est bien correcte et appartient bien à l'utilisateur. Ce dernier n'a plus qu'à cliquer sur un lien, et son compte sera validé. Afin d'améliorer l'expérience utilisateur, ce dernier est aussi authentifié. 
 
 Côté serveur, un jeton est généré pour l'utilisateur, à usage unique. A partir de ce dernier et de l'email de l'utilisateur, un lien est généré, et envoyé par email. Lors du clic sur le lien, si les informations correspondent, l'utilisateur passe authentifié et est automatiquement connecté pour cette session. Le jeton est alors détruit.
 
 \subsubsection{Sécurité}
 
-Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Le niveau de sécurité est hautement amélioré par cette méthode. 
+Tous d'abord, les mots de passe sont hashés et salés dynamiquement. Le niveau de sécurité est amélioré grâce à cette méthode. 
 
 Enfin, une fois authentifié, l'utilisateur est géré via une session, les informations sont donc stockées côté serveur et ne peuvent donc pas être modifiées par l'utilisateur. Ce qui serait le cas si elles étaient stockées directement dans le cookie.
 
@@ -168,11 +168,11 @@ Plusieurs rôles sont définis : Non authentifié, Compte Non validé, Utilisateur, 
 
 \subsubsection{Récupération de mot de passe}
 
-La récupération de mot de passe fonctionne sensiblement pareil que la validation par email, via l'utilisation des jetons uniques.
+La récupération de mot de passe fonctionne de la même façon que la validation par email, via l'utilisation des jetons uniques.
 
 \subsection{Candidatures}
 
-Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés à travers le protocole \textit{HTTP}.
+Les candidatures sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés à travers le protocole \textit{HTTP}.
 
 
 \medbreak
@@ -182,7 +182,7 @@ Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{
 
 
 \medbreak
-Lorsque les tables furent crées et la base de données migrée, est arrivé le problème de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers à la racine du projet et de stocker dans la base de donnée les hash MD5 des fichiers. Il s'agit d'une chaine de caractère générée selon un algorithme. Elle est différente pour chaque fichier et permet donc de les différencier dans la base. En effet, stocker le nom serait une très mauvaise idée si deux fichiers se trouvaient à avoir le même nom. 
+Lorsque les tables furent crées et la base de données migrée, est arrivé le problème de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers à la racine du projet et de stocker dans la base de données les hash MD5 des fichiers. Il s'agit d'une chaine de caractère générée selon un algorithme. Elle est différente pour chaque fichier et permet donc de les différencier dans la base. En effet, stocker le nom serait une très mauvaise idée si deux fichiers se trouvaient à avoir le même nom. 
 
 
 \subsection{Paramètres}
@@ -214,7 +214,7 @@ Mais sans modifier nos tests, nous pouvons lancer ces derniers avec \textit{Sele
 
 L'intégration continue permet de s'assurer de la viabilité de notre projet au cours de son développement.
 
-En effet, à chaque commit \textit{Travis} lance un build. Pour chaque build, \textit{Travis} créer une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
+En effet, à chaque commit \textit{Travis} lance un build. Pour chaque build, \textit{Travis} crée une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
 
 \subsection{Revue de code automatique}
 
@@ -222,7 +222,7 @@ La revue de code automatique permet à notre équipe d'acquérir les bons réflexes 
 
 Cela permet aussi d'améliorer sa maintenabilité.
 
-\textit{Codeclimate} calcule aussi la couverture de tests de l'application, afin d'avoir un aperçu des fonctions testées et des fonctions qui ne sont pas testées.
+\textit{Codeclimate} calcule aussi la couverture de tests de l'application, afin d'avoir un aperçu des fonctions testées et des fonctions qui ne sont pas encore testées.
 
 \section{Déploiement}
 
@@ -240,11 +240,11 @@ Dans le cas d'une utilisation professionnelle, il est aussi fortement recommandé
  
 Le développement de cette étude pratique nous a permis de nous mettre en situation d'une gestion de projet, étape essentiel dans la vie d'un élève-ingénieur. Nous avons expérimenté le développement en groupe, mais nous avons pu également aborder la relation client.
 
-Nous avons commencé par comprendre les besoin de notre encadrant puis  de trouver les technologies adaptés. Nous avons aussi collaboré pour implémenter chaque fonctionnalité une à une, en s'assurant qu'elles correspondent à ce qu'il attendais.
+Nous avons commencé par comprendre les besoin de notre encadrant puis  de trouver les technologies adaptés. Nous avons aussi collaboré pour implémenter chaque fonctionnalité une à une, en s'assurant qu'elles correspondent à ce qu'il attendait.
 
 La séparation des tâches nous a permis de nous focaliser chacun sur notre travail à réaliser, et aussi d'optimiser le temps d'apprentissage, chacun apprend ce dont il a besoin.
 
-Dans le cadre d'un prolongement du développement du projet, il est envisageable d'implémenter une interface dynamique grâce à Javascript.
+Dans le cadre d'un prolongement du développement du projet, il est envisageable d'implémenter une interface dynamique grâce à \textit{Javascript}.
 Nous avons construit un système complexe composé de plusieurs technologies, tout en vérifiant en permanence que ce que l'on développe correspond au besoin de notre encadrant. 
 
 
