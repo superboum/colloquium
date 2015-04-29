@@ -133,18 +133,14 @@ Deux éléments sont à vérifier : l'utilisateur doit bien remplir les différents c
 \medbreak
 %\subsection*{La gestion des statistiques}
 Par la suite, nous avons mis en place la gestion des statistiques. 
-Cette partie à également été plutôt rapide à produire. L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). Un tableau résume toutes les informations. Ce tableau peut ensuite être, soit affiché dans le site, soit exporté en fichier \textit{.xls}. 
+ L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). 
  
 
 \subsection{Utilisateurs}
 
-Même si aux premiers abords, la gestion des utilisateurs peut sembler simple, elle recèle quelques subtilités. De plus, certaines informations étant confidentielles, il est important de les protéger correctement.
-
 \subsubsection{Inscription / Connexion}
 
-L'inscription et la connexion de l'utilisateur se font via un formulaire. Nous avons choisi l'email comme identifiant. 
-
-La connexion est gérée via l'utilisation de sessions côté serveur. Afin de vérifier les identifiants fournis, un hash est généré à partir du mot de passe fourni et comparé à celui stocké en base de donnée
+L'inscription et la connexion de l'utilisateur se font via un formulaire. Nous avons choisi l'email comme identifiant unique. 
 
 L'inscription se cantonne à créer un utilisateur en base de donnée, puis passe la main à la validation de l'email.
 
@@ -156,15 +152,15 @@ Côté serveur, un jeton est généré pour l'utilisateur, à usage unique. A partir d
 
 \subsubsection{Sécurité}
 
-Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Tout d'abord, le hash est une fonction injective, et ne permet donc pas de retrouver le mot de passe depuis ce dernier. De plus, le fait de saler le mot de passe permet d'empêcher la personne malveillante de retrouver le mot de passe à partir d'un rainbow table, ni même d'en générer ou encore de réaliser des suppositions sur le mot de passe. En effet, deux utilisateurs ayant le même mot de passe auront un hash différent grâce au salage dynamique.
+Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Le hash est à sens unique, et ne permet pas de retrouver le mot de passe initial. De plus, le fait de saler le mot de passe permet d'empêcher la personne malveillante de retrouver le mot de passe à partir d'une rainbow table. En effet, deux utilisateurs ayant le même mot de passe auront un hash différent grâce au salage dynamique.
 
-Enfin, une fois authentifié, l'utilisateur est géré via une session, les informations sont donc stockées côté serveur et ne peuvent donc pas être modifiées par la personne. Ce qui serait le cas si elles étaient stockées directement dans le cookie.
+Enfin, une fois authentifié, l'utilisateur est géré via une session, les informations sont donc stockées côté serveur et ne peuvent donc pas être modifiées par l'utilisateur. Ce qui serait le cas si elles étaient stockées directement dans le cookie.
 
 Plusieurs rôles sont définis : Non authentifié, Compte Non validé, Utilisateur, Modérateur et Administrateur. Chaque page peut être restreinte à un rôle particulier.
 
 \subsubsection{Récupération de mot de passe}
 
-La récupération de mot de passe fonctionne sensiblement pareil que la validation par email. Un jeton est généré pour l'utilisateur, qui lui est envoyé par mail et permet à ce dernier de se connecter sans entrer son mot de passe. Ce dernier est détruit à l'utilisation. Mais l'utilisateur peut changer son mot de passe durant cette session.
+La récupération de mot de passe fonctionne sensiblement pareil que la validation par email, via l'utilisation des jetons uniques.
 
 \subsection{Candidatures}
 
@@ -211,14 +207,6 @@ Mais sans modifier nos tests, nous pouvons lancer ces derniers avec \textit{Sele
 L'intégration continue permet de s'assurer de la viabilité de notre projet au cours de son développement.
 
 En effet, à chaque commit \textit{Travis} lance un build. Pour chaque build, \textit{Travis} créer une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
-
-Ainsi, nous nous assurons que pour un commit donné, notre application est bien pleinement compatible avec un environnement donné et clairement défini.
-
-Dans le cas d'un échec de build, les collaborateurs du projet reçoivent un mail les alertant de l'erreur, ainsi qu'un compte-rendu du build.
-
-Nous pouvons alors sereinement déployé notre application à n'importe quel moment.
-
-Enfin \textit{Travis} permet de créer des matrices de build, qui permettent de tester le projet avec des configuration différentes. Par exemple 4 versions de ruby différentes et 3 SGBD différents. \textit{Travis} lancera alors 12 builds.
 
 \subsection{Revue de code automatique}
 
