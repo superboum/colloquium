@@ -1,1 +1,11 @@
 *~
+.bundle/
+Gemfile.lock
+app.db
+assets/
+config/
+doc/
+public/
+uploads/
+vendor/
+
