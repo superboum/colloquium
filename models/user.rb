@@ -37,8 +37,8 @@ class User < ActiveRecord::Base
   end
 
   def create_account(email, rpass)
-    self.raw_password(rpass)
     self.email = email
+    self.raw_password(rpass)
     self.generate_token
     self.role = -1
     Pony.mail(:to => self.email, 
