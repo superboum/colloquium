@@ -102,8 +102,7 @@ Pour l'organisation, la méthode Agile fut choisie : nous devions donc poser diff
 \medbreak
 Il fut donc décidé d'utiliser \textit{GitHub}, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
-D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{issues}. Les \textit{issues} nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. Par exemple, pour les résumés, il a été décidé dès le début de créer un formulaire dans la partie profil utilisateur, d'obliger les fichiers à être au format pdf, et bien d'autres précisions concernant le développement.
-
+D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{issues}. Les \textit{issues} nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. 
 
 \section{Développement des fonctionnalités}
 
@@ -121,22 +120,25 @@ Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, l
 Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscrition à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
 
 Nous avons séparé le travail en petites étapes, construisant tout d'abord une base, puis en la complexifiant peu à peu. 
-
-\subsubsection{La création des événements}
+\medbreak
+%\subsubsection{La création des événements}
 
 La première étape consiste en la création du \textit{CRUD} de l'événement. Cette étape est plutôt simple, puisqu'un événement n'est en lui même qu'un article avec quelques colonnes en plus : les dates de début et de fin de l'événement, le nombre limite de place, et l'activation des inscriptions. 
 
-\subsubsection{La création du formulaire d'inscription}
+\medbreak
+%\subsubsection{La création du formulaire d'inscription}
 Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaire (imaginons qu'un événement soit en hauteur, il peut être utile de savoir si l'utilisateur à le vertige\dots). 
 
 \label{diffuculté_relation}
 
 Cette création est légèrement plus complexe que la création d'un article. Nous avons recontré une grosse difficulté ici : l'élément doit être relié à un événement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifier normalement ce processus. Cependant, la configuration n'a pas été correctement effectuée dans un premier temps. Il fallait alors écrire une grande partie des requêtes \textit{SQL} à la main. Cela a été une légère perte de temps, puisqu'il a fallu, quelques jours plus tard, corrigé cette maladresse. 
-\subsubsection{La gestion des inscriptions}
+\medbreak
+%\subsubsection{La gestion des inscriptions}
 Lorsque les éléments de formulaires furent correctement configurés,  nous avons implémenté l'inscription à un événement. Celle ci utilise également des relations \textit{SQL}, cependant la technologie nous étais connue à ce moment. Cette partie a donc été relativement rapide. 
 
 Deux éléments sont à vérifié : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
-\subsubsection{La gestion des statistiques}
+\medbreak
+%\subsubsection{La gestion des statistiques}
 
 Par la suite, nous avons mis en place la gestion des statistiques. 
  L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). 
