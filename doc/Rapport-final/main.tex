@@ -61,7 +61,7 @@ Lors du développement de l'application, nous avons fait attention à utiliser les
 
 La conférence \textit{IWSM} se déroulera à l'INSA de Rennes en 2016. Monsieur Jean-François Dupuy, enseignant-chercheur en Mathématiques et organisateur de la conférence au niveau de l'INSA souhaitait un outil permettant aux participants de s'inscrire. Celui-ci devait être accessible de tous, ergonomique et disposer de plusieurs fonctionnalités. Il a ainsi fait part de sa requête au département INFO qui nous as proposé la réalisation de ce projet. Il s'agit donc d'un site internet ou application Web qui permet de gérer les inscriptions, les participants, les événements lors de la conférence et bien plus encore.
 
-\bigbreak
+\medbreak
 Nous avons ainsi discuté plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressé.
 Après avoir recherché les technologies et langages nécessaires au projets, un choix dû être fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
 
@@ -117,17 +117,11 @@ Suite à la création de la page, il était nécessaire d'avoir un formulaire afin d
 Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
 \subsection{Évènements}
-Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscrition à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
-
-
-\medbreak
-%\subsection*{La création des événements}
-
-La première étape consiste en la création du \textit{CRUD} de l'événement. Cette étape est plutôt simple, puisqu'un événement n'est en lui même qu'un article avec quelques colonnes en plus : les dates de début et de fin de l'événement, le nombre limite de place, et l'activation des inscriptions. 
+Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscription à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
 
 \medbreak
 %\subsection*{La création du formulaire d'inscription}
-Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaires.
+La première étape a consisté en la création du \textit{CRUD} de l'événement. Une fois celui-ci terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaires.
 
 Cette création est légèrement plus complexe que la création d'un article. L'élément doit être relié à un événement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifie normalement ce processus. Cependant, la configuration n'a pas été correctement effectuée dans un premier temps. Il fallait alors écrire une grande partie des requêtes \textit{SQL} à la main.
 
@@ -139,9 +133,8 @@ Deux éléments sont à vérifier : l'utilisateur doit bien remplir les différents c
 \medbreak
 %\subsection*{La gestion des statistiques}
 Par la suite, nous avons mis en place la gestion des statistiques. 
-Cette partie à également été plutôt rapide à produire. L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). Nous avons donc décidé de créer un tableau ruby, résumant toutes les informations. Ce tableau peut ensuite être, soit affiché dans le site, soit exporté en fichier \textit{.xls}. 
-
-C'est la seule partie du projet ou nous avons utilisé pleinement le langage Ruby. Malgré les conventions de nommage différentes de celle habituel (l'instance actuelle de l'objet s'appelle \verb!self!, et pas \verb!this! comme dans certains langage, ... ), l'utilisation d'un langage orienté objet nous est plutôt familière.   
+Cette partie à également été plutôt rapide à produire. L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). Un tableau résume toutes les informations. Ce tableau peut ensuite être, soit affiché dans le site, soit exporté en fichier \textit{.xls}. 
+ 
 
 \subsection{Utilisateurs}
 
@@ -178,13 +171,13 @@ La récupération de mot de passe fonctionne sensiblement pareil que la validation
 Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés à travers le protocole \textit{HTTP}.
 
 
-\bigbreak
+\medbreak
 Cependant, il a d'abord fallu créer les tables \textit{reviews} et \textit{reviewpropositions} dans la base de donnée. \textit{Reviews} contient le nom du participant, le nom de la conférence, l'état de l'inscription et est lié aux reviewpropositions. Ceux-ci sont crées à chaque nouvelle soumission de résumé. Ils contiennent le lien vers le fichier, un commentaire du participant expliquant la proposition et le lien vers la review liée. 
 
 Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{users} ont été difficiles à mettre en place. Il a fallu créer des associations entre les différentes tables. Après de nombreux essais, recherches et tests, les liens en dur ont été changés en \textit{references} entre les tables. 
 
 
-\bigbreak
+\medbreak
 Lorsque les tables furent crées et la base de données migrée, est arrivé le problème de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers à la racine du projet et de stocker dans la base de donnée les hash MD5 des fichiers. Il s'agit d'une chaine de caractère générée selon un algorithme. Elle est différente pour chaque fichier et permet donc de les différencier dans la base. En effet, stocker le nom serait une très mauvaise idée si deux fichiers se trouvaient à avoir le même nom. 
 
 
