@@ -51,34 +51,34 @@ La conférence \textit{IWSM} se déroulera à l'INSA de Rennes en 2016. Monsieur Je
 Nous avons ainsi discuté plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressé.
 Après avoir recherché les technologies et langages nécessaires au projets, un choix dû être fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
 
-\section{Cahier des Charges}
-Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
-
-\medbreak
-Le site présentera une partie publique, et une partie administrative. 
-
-Le site web présentera les différentes fonctions suivantes : 
-
-\subsection*{Inscription}
-
-Chaque utilisateur pourra s'inscrire à \textit{l'IWSM}. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
-
-L'utilisateur peut ensuite s'inscrire aux différents événements organisés, dans la limite des places disponibles. 
-
-Les utilisateurs qui le souhaitent pourront soumettre un résumé, qui sera ou non intégré à un livre résumant la conférence. 
-
-La dernière étape est le paiement, effectué par bon de commande. Le prix est calculé automatiquement. 
-\subsection*{Gestion des résumés}
-
-Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération sera donc mise en place. Des modérateurs valideront donc les résumés soumis. Un système de notification par mail avertira l'utilisateur si un changement de statut survient. 
-
-\subsection*{Administration et personnalisation}
-
-Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. Une personne non expérimentée en informatique devra pouvoir effectuer ces modifications.
-
-\smallbreak
-
-L'administrateur aura également accès à des fichiers de statistiques, résumant les différentes inscriptions aux événements. 
+%\section{Cahier des Charges}
+%Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
+%
+%\medbreak
+%Le site présentera une partie publique, et une partie administrative. 
+%
+%Le site web présentera les différentes fonctions suivantes : 
+%
+%\paragraph*{Inscription}
+%
+%Chaque utilisateur pourra s'inscrire à \textit{l'IWSM}. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
+%
+%L'utilisateur peut ensuite s'inscrire aux différents événements organisés, dans la limite des places disponibles. 
+%
+%Les utilisateurs qui le souhaitent pourront soumettre un résumé, qui sera ou non intégré à un livre résumant la conférence. 
+%
+%La dernière étape est le paiement, effectué par bon de commande. Le prix est calculé automatiquement. 
+%\paragraph{Gestion des résumés}
+%
+%Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération sera donc mise en place. Des modérateurs valideront donc les résumés soumis. Un système de notification par mail avertira l'utilisateur si un changement de statut survient. 
+%
+%\paragraph*{Administration et personnalisation}
+%
+%Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. Une personne non expérimentée en informatique devra pouvoir effectuer ces modifications.
+%
+%\smallbreak
+%
+%L'administrateur aura également accès à des fichiers de statistiques, résumant les différentes inscriptions aux événements. 
 
 \section{Étude du projet}
 \subsection{Architecture}
@@ -111,33 +111,23 @@ Nous utilisons un SGBD relationnel à travers l'utilisation de l'ORM \textit{Acti
 Afin d'uniformiser l'apparence du site web sur tous les navigateurs, de réaliser facilement un site web responsive et de minimiser les développements en CSS, nous avons choisi d'utiliser le framework \textit{Bootstrap}. Ce dernier livre aussi quelques élèments d'interfaces, très appréciés pour leur clarté.
 
 \subsection{Organisation du projet}
-Pour le projet, nous avons décidé de ne pas nous précipiter et de d'abord fixer les bases du projet. Lors de réunions effectuées entre membre du groupe, nous avons réfléchi durant le premier semestre aux technologies utilisées, mais aussi à l'organisation que nous suivrions durant le reste du projet. 
-
-Nous avons choisi la méthode Agile comme méthode de travail. Nous devions donc poser différentes deadlines et présenter régulièrement notre travail à l'encadrant. Les différentes dates de rendu ont été placées afin d'avoir une base de travail convenable, et que chacun puisse s'y retrouver dans le travail à effectuer. Les différentes étapes furent les suivantes :
-
-\begin{itemize}
-\item Gestion des articles et des pages.
-\item Gestion des événements et des utilisateurs.
-\item Gestion des résumés et des paramètres du site.
-\item Diverses améliorations.
-\end{itemize}
+Pour l'organisation, la méthode Agile fut choisie : nous devions donc poser différentes deadlines et présenter régulièrement notre travail à l'encadrant. Les différentes dates de rendu ont été placées afin d'avoir une base de travail convenable, et que chacun puisse s'y retrouver dans le travail à effectuer. Les différentes étapes furent les suivantes : gestion des articles et des pages, gestion des événements et des utilisateurs, gestion des résumés et des paramètres du site.
 
 
-\bigbreak
-Il fut donc décidé d'utiliser \textit{GitHub}, un gestionnaire de version, afin de travailler tous sur le même projet mais chacun de son côté. Nous pouvions ainsi développer en local sur nos ordinateurs personnels, puis envoyer nos modifications sur le serveur commun.
+\medbreak
+Il fut donc décidé d'utiliser \textit{GitHub}, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
-D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{Milestones} ou les \textit{issues}. Les premières permettent de poser une date de rendu de travail. Les \textit{issues} quant à elles nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. Par exemple, pour les résumés, il a été décidé dès le début de créer un formulaire dans la partie profil utilisateur, d'obliger les fichiers à être au format pdf, et bien d'autres précisions concernant le développement.
+D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{issues}. Les \textit{issues} nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. Par exemple, pour les résumés, il a été décidé dès le début de créer un formulaire dans la partie profil utilisateur, d'obliger les fichiers à être au format pdf, et bien d'autres précisions concernant le développement.
 
-@TODO:JEAN
 
 \section{Développement des fonctionnalités}
 
 \subsection{CMS}
-L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un système de CRUD (Create, Read, Update, Delete), nous avons travaillé chacun de notre côté afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela était nécessaire. Nous avons ainsi développé ces Pages et Articles dont la gestion est très semblable.
+L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Un système de CRUD (Create, Read, Update, Delete) a été mis en place pour ces Pages et Articles dont la gestion est très semblable.
 
-Après avoir ajouté les tables liées dans la base (tables articles et pages), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Les informations entrées sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
+Après avoir ajouté les tables liées dans la base (\textit{articles} et \textit{pages}), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Elles sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
 
-Suite à la création de la page, il était nécessaire d'avoir un formulaire afin de modifier la page ou l'article aisément. Dans la partie administration, les anciennes informations sont donc affichées et il est possible d'en entrer de nouvelles. Celles-ci permettront la mise à jour de l'élément sélectionné. La page ou l'article ont ensuite été liés à des boutons permettant de les supprimer. 
+Suite à la création de la page, il était nécessaire d'avoir un formulaire afin de modifier la page ou l'article aisément. Dans la partie administration il est possible d'entrer de nouvelles informations. Celles-ci permettront la mise à jour de l'élément sélectionné. La page ou l'article ont ensuite été liés à des boutons permettant de les supprimer. 
 
 Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
@@ -201,7 +191,7 @@ La récupération de mot de passe fonctionne sensiblement pareil que la validation
 
 \subsection{Candidatures}
 
-Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Il faut donc récupérer des fichiers soumis sur le site. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés. 
+Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés à travers le protocole \textit{HTTP}.
 
 
 \bigbreak
@@ -212,8 +202,6 @@ Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{
 
 \bigbreak
 Lorsque les tables furent crées et la base de données migrée, est arrivé le problème de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers à la racine du projet et de stocker dans la base de donnée les hash MD5 des fichiers. Il s'agit d'une chaine de caractère générée selon un algorithme. Elle est différente pour chaque fichier et permet donc de les différencier dans la base. En effet, stocker le nom serait une très mauvaise idée si deux fichiers se trouvaient à avoir le même nom. 
-
-La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie profil
 
 
 \subsection{Paramètres}
@@ -226,9 +214,6 @@ Entre autre les informations de base du site : nom, slogan, couverture. Mais aus
 
 La qualité logiciel a été un point clé du développement de notre application web, et ce dès le début. En étant strict à ce niveau là, nous n'avons pas rencontré de problèmes particuliers lorsque la taille du projet a commencé à augmenter.
 
-\subsection{Gestionnaire de version}
-
-Nous avons choisi \textit{git}, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
 \subsection{Tests unitaires}
 
