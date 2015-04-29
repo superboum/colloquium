@@ -107,7 +107,7 @@ Nous avons voulu séparer au maximum la couche applicative (application layer) de
 Le projet étant encore jeune, nous n'avons actuellement que quelques classes appartenant à la couche métier.
 
 \subsubsection{Modèle de données}
-
+\label{mdd}
 Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnée. Ainsi la base de données est générée à partir de nos Modèles. Nous pouvons aisément passer d'une base de donnée sqlite, à une base MySQL ou encore PostgreSQL.
 
 \begin{figure}[!h]
@@ -118,31 +118,20 @@ Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre 
 Nous avons donc réalisé un diagramme UML de nos modèles.
 
 \subsection{Technologies utilisées}
-Ruby : Sinatra
+Le choix des technologies a été fait dans le but de créer un projet léger, et simple à mettre en place. 
+\paragraph*{Choix du langage : Ruby et Sinatra : } Nous avons choisi d'utiliser le langage ruby avec Sinatra. Ce framework est une version allégée du framework \textit{Ruby on Rails (RoR)}, qui est trop complexe pour des débutants, et trop lourd pour notre projet. \textit{Sinatra} permet d'utiliser les composants associées à  \textit{RoR}, tout en étant plus simple à utiliser. 
 
-DB : Active Record (sqlite3 mais adaptable à n'importe quels DB)
+\paragraph{Gestion de la base de donnée}
+Dans la même optique de simplicité, nous utilisons \textit{sqlite3}. Cependant, comme expliqué en \ref{mdd}, nous pouvons facilement changer de bibliothèque, grâce à l'utilisation de l'ORM \textit{Activerecord}. Cette technologie est très puissante, et est utilisable sur Sinatra, mais aussi sur RoR ou Symfony (framework PHP).
 
-CSS : Bootstrap
+\paragraph{Gestion du style de la page}
+L'aspect du site web est important. Cependant, une configuration manuelle du CSS et Javascript est très longue et très fastidieuse. Nous utilisons donc \textit{Bootstrap}, qui simplifie énormément la gestion du style.
 
 \subsection{Organisation du projet}
 
-Pour le projet, nous avons décidé de ne pas nous précipiter et de d'abord fixer les bases du projet. Lors de réunions effectuées entre membre du groupe, nous avons réfléchi durant le premier semestre aux technologies utilisées, mais aussi à l'organisation que nous suivrions durant le reste du projet. 
+github, issues
 
-Nous avons choisi la méthode Agile comme méthode de travail. Nous devions donc poser différentes deadlines et présenter régulièrement notre travail à l'encadrant. Les différentes dates de rendu ont été placées afin d'avoir une base de travail convenable, et que chacun puisse s'y retrouver dans le travail à effectuer. Les différentes étapes furent les suivantes :
-
-\begin{itemize}
-\item Gestion des articles et des pages.
-\item Gestion des événements et des utilisateurs.
-\item Gestion des résumés et des paramètres du site.
-\item Diverses améliorations.
-\end{itemize}
-
-
-\bigbreak
-Il fut donc décidé d'utiliser \textit{GitHub}, un gestionnaire de version, afin de travailler tous sur le même projet mais chacun de son côté. Nous pouvions ainsi développer en local sur nos ordinateurs personnels, puis envoyer nos modifications sur le serveur commun.
-
-D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{Milestones} ou les \textit{issues}. Les premières permettent de poser une date de rendu de travail. Les issues quant à elles nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. Par exemple, pour les résumés, il a été décidé dès le début de créer un formulaire dans la partie profil utilisateur, d'obliger les fichiers à être au format pdf, et bien d'autres précisions concernant le développement.
-
+@TODO:JEAN
 
 \section{Développement des fonctionnalités}
 
@@ -211,7 +200,7 @@ Plusieurs rôles sont définis : Non authentifié, Compte Non validé, Utilisateur, 
 
 \subsubsection{Récupération de mot de passe}
 
-La récupération de mot de passe fonctionne sensiblement de la même façon que la validation par email. Un jeton est généré pour l'utilisateur, qui lui est envoyé par mail et permet à ce dernier de se connecter sans entrer son mot de passe. Ce dernier est détruit à l'utilisation. Mais l'utilisateur peut changer son mot de passe durant cette session.
+La récupération de mot de passe fonctionne sensiblement pareil que la validation par email. Un jeton est généré pour l'utilisateur, qui lui est envoyé par mail et permet à ce dernier de se connecter sans entrer son mot de passe. Ce dernier est détruit à l'utilisation. Mais l'utilisateur peut changer son mot de passe durant cette session.
 
 \subsection{Candidatures}
 
@@ -227,13 +216,7 @@ Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{
 \bigbreak
 Lorsque les tables furent crées et la base de données migrée, est arrivé le problème de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers à la racine du projet et de stocker dans la base de donnée les hash MD5 des fichiers. Il s'agit d'une chaine de caractère générée selon un algorithme. Elle est différente pour chaque fichier et permet donc de les différencier dans la base. En effet, stocker le nom serait une très mauvaise idée si deux fichiers se trouvaient à avoir le même nom. 
 
-La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie profil. Il fallait faire en sorte que les utilisateurs entrent un résumé seulement. Après cela, la gestion des \textit{reviews} fut ajoutée dans la partie administrateur. L'affichage du fichier a été plus difficile à implémenter et fut faite plus tard. Néanmoins, l'administrateur put rapidement valider la proposition soumise, la refuser ou demander à l'utilisateur une nouvelle proposition. 
-
-La suite fut la partie modération. Elle consiste en une page spécifique aux utilisateurs ayant le rôle de modérateur. L'administrateur leur assigne des résumés qu'il doit relire et valider ou non. Le même type de validation que dans la partie administrateur fut donc implémentée. Il fallait cependant que seule certain résumés soient disponibles à la relecture. L'administration a donc été dotée d'une page d'assignation.  Les modérateurs sont listés sur cette page, et le résumé sélectionné est assigné au modérateur choisi par l'administrateur (en fonction du domaine de compétence de ce dernier par exemple). Dans la partie modération, l'utilisateur peut donc valider les résumés assignés et uniquement ceux-ci.
-
-
-\bigbreak
-Enfin, le participant qui soumet un résumé, l'administrateur et le modérateur doivent recevoir des mails lorsqu'ils ont des notifications : nouveau résumé à corriger pour le modérateur ou validation pour le participant par exemple. La méthode d'envoi de mail fut ainsi réutilisée.
+La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie profil
 
 @TODO:JEAN
 
