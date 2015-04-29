@@ -38,7 +38,21 @@ Site Web pour conférence scientifique} }
 
 
 \begin{abstract}
-%Resumé
+Cette étude pratique résume le déroulement du projet de création de site web dynamique  de gestion de conférence. Il sera utilisé par Jean-François Dupuy, pour la 31 édition de la conférence \textit{IWSM}.
+
+Il présente la particularité de devoir être entièrement modulable. Ainsi, M. Dupuy ou une autre personne pourra s'en servir pour gérer une nouvelle conférence. 
+
+\smallbreak
+ Pour développer cette application, nous utilisons le langage \textit{Ruby}, aidé par le framework \textit{Sinatra}. La base de donnée est gérée par la bibliothèque SQL \textit{Sqlite3}, et l'ORM Activerecord. Le style utilise quant à lui \textit{Bootstrap}. 
+
+\smallbreak
+Le site  permet à l'administrateur de créer différentes pages et article, mais aussi des événements auxquels les utilisateurs ont la possibilité de s'inscrire. Lors de son inscription, l'utilisateur les sélectionne donc. À partir de ces données, et d'information fournies, un bon de commande est généré, qui permet à l'utilisateur d'achever cette inscription.
+Le site web intègre également un système de modération de résumés.
+
+
+\smallbreak  
+
+Lors du développement de l'application, nous avons fait attention à utiliser les principes de qualité logiciel. Nous utilisons donc le gestionnaire de version \textit{GIT}, effectuons des tests fonctionnels et unitaire. Le site web \textit{travis } permet de s'assurer que notre application reste fonctionnelle. 
 \end{abstract} 
 
 \newpage
