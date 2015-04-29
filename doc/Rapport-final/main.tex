@@ -69,7 +69,7 @@ L'étape suivante consiste pour l'utilisateur à s'inscrire aux différents événeme
 
 Les utilisateurs qui le souhaitent pourront soumettre un résumé (dans l'espoir de le voir intégré au livre produit à la suite des conférence, résumant la conférence). 
 
-La dernière étape est le payement. Le prix est calculé automatiquement. L'utilisateur pourra télécharger un bon de commande, puis l'envoyer avec un chèque à l'INSA. 
+La dernière étape est le paiement. Le prix est calculé automatiquement. L'utilisateur pourra télécharger un bon de commande, puis l'envoyer avec un chèque à l'INSA. 
 
 \subsection*{Gestion des résumés}
 
@@ -145,17 +145,33 @@ Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, l
 
 \subsection{Utilisateurs}
 
+Même si aux premiers abords, la gestion des utilisateurs peut sembler simple, elle recèle quelques subtilités. De plus, certaines informations étant confidentielles, il est important de les protéger correctement.
+
 \subsubsection{Inscription / Connexion}
 
-\subsubsection{Validation par mail}
+L'inscription et la connexion de l'utilisateur se font via un formulaire. Nous avons choisi l'email comme identifiant. 
+
+La connexion est gérée via l'utilisation de sessions côté serveur. Afin de vérifier les identifiants fournis, un hash est généré à partir du mot de passe fourni et comparé à celui stocké en base de donnée
+
+L'inscription se cantonne à créer un utilisateur en base de donnée, puis passe la main à la validation de l'email.
+
+\subsubsection{Validation de l'email}
+
+La validation de l'email se fait via l'envoie d'un email à l'adresse indiquée afin de vérifier que cette dernière est bien correcte et appartient bien à l'utilisateur. Ce dernier n'a plus qu'à cliquer sur un lien, et son compte sera validé. Afin d'améliorer l'expérience utilisateur, ce dernier est aussi authentifié. 
+
+Côté serveur, un jeton est généré pour l'utilisateur, à usage unique. A partir de ce dernier et de l'email de l'utilisateur, un lien est généré, et envoyé par email. Lors du clic sur le lien, si les informations correspondent, l'utilisateur passe authentifié et est automatiquement connecté pour cette session. Le jeton est alors détruit.
 
 \subsubsection{Sécurité}
 
-Tous d'abord, les mots de passes sont hashés et salés dynamiquement.
+Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Tout d'abord, le hash est une fonction injective, et ne permet donc pas de retrouver le mot de passe depuis ce dernier. De plus, le fait de saler le mot de passe permet d'empêcher la personne malveillante de retrouver le mot de passe à partir d'un rainbow table, ni même d'en générer ou encore de réaliser des suppositions sur le mot de passe. En effet, deux utilisateurs ayant le même mot de passe auront un hash différent grâce au salage dynamique.
 
-Roles, Cookies coté serveur, hash mot de passe
+Enfin, une fois authentifié, l'utilisateur est géré via une session, les informations sont donc stockées côté serveur et ne peuvent donc pas être modifiées par la personne. Ce qui serait le cas si elles étaient stockées directement dans le cookie.
+
+Plusieurs rôles sont définis : Non authentifié, Compte Non validé, Utilisateur, Modérateur et Administrateur. Chaque page peut être restreinte à un rôle particulier.
 
 \subsubsection{Récupération de mot de passe}
+
+La récupération de mot de passe fonctionne sensiblement pareil que la validation par email. Un jeton est généré pour l'utilisateur, qui lui est envoyé par mail et permet à ce dernier de se connecter sans entrer son mot de passe. Ce dernier est détruit à l'utilisation. Mais l'utilisateur peut changer son mot de passe durant cette session.
 
 \subsection{Candidatures}
 
@@ -177,7 +193,9 @@ La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie p
 
 \subsection{Paramètres}
 
-@TODO:QDUF:SETTINGS
+Nous avons voulu créer une plateforme de gestion de conférence assez ouverte. Nous voulons donc que cette dernière puisse être réutilisable pour d'autres évènements, c'est pourquoi de nombreuses données peuvent être modifiées.
+
+Entre autre les informations de base du site : nom, slogan, couverture. Mais aussi des informations de paiement, le serveur de mail utilisé...
 
 \section{Qualité logiciel}
 
@@ -235,7 +253,17 @@ Codeclimate calcule aussi la couverture de tests de l'application, afin d'avoir 
 
 \section{Déploiement}
 
-@TODO:QDUF
+Nous n'avons pas encore eu l'occasion de déployer notre projet en production, mais avons un serveur de démo (UAT, User Acceptance Testing).
+
+Il est d'ailleurs actuellement accessible à l'URL suivante : http://suzanne.deuxfleurs.fr
+
+Nous avons choisi un conteneur LXC pour le compartimenter du reste du système, avec une distribution Debian stable.
+
+Nous recommandons l'utilisation du serveur web thin en lieu et place du serveur de développement webrick. En effet, thin est plus optimisé. De plus, il est possible de mettre en place un reverse proxy, comme nginx ou varnish devant le serveur ruby, qui peut servir les fichiers statiques directement sans avoir à passer par notre serveur, nécessairement plus lent.
+
+Ayant choisi ruby comme langage, notre projet n'est pas déployable sur les hébergement mutualisés habituels (PHP). Cependant, il s'adaptera très bien aux offres PaaS (heroku, gandi simple hosting, etc.), ainsi qu'aux VPS et serveurs dédiés.
+
+Dans le cas d'une utilisation professionnelle, il est aussi fortement recommandé d'utiliser une connexion chiffrée avec un certificat valide (https), afin d'éviter la transmission d'informations sensibles en clair. 
 
 \section{Conclusion} 
  
