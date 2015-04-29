@@ -91,20 +91,13 @@ Avant de coder, nous avons clairement établi l'architecture de notre projet, sa 
 
 Les patrons de conception sont des modèles efficaces pour concevoir un projet. Dans le cas du web, le patron Modèle - Vue - Controlleur est majoritairement utilisé, et c'est celui que nous avons choisi. Il permet de segmenter notre code, et limiter sa duplication. La partie modèle correspond à nos données (que nous persistons, dans une base de donnée par exemple). La vue est une façon de présenter les données. Dans notre cas, nous générons du HTML. Enfin, le controlleur récupère la requête de l'utilisateur, réalise les requêtes nécessaires sur les modèles et renvoie la vue à l'utilisateur.
 
-\subsubsection{Couche applicative et couche métier}
-
-Nous avons voulu séparer au maximum la couche applicative (application layer) de la couche métier (business layer). En effet, la première est totalement dépendante des technologies utilisées (web, client lourd, etc), alors que la seconde est juste un modèle que nous créons, représentant notre "monde". En séparant cette dernière de la couche applicative, nous pouvons plus facilement la réutiliser dans d'autres projets. 
-
-Le projet étant encore jeune, nous n'avons actuellement que quelques classes appartenant à la couche métier.
-
 \subsubsection{Modèle de données}
 \label{mdd}
-Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnée. Ainsi la base de données est générée à partir de nos Modèles. Nous pouvons aisément passer d'une base de donnée sqlite, à une base MySQL ou encore PostgreSQL.
-
 \begin{figure}[!h]
    \includegraphics[width=15cm]{fig/uml-models}
    \caption{\label{uml} Diagramme UML des modèles}
 \end{figure}
+Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnée. Ainsi la base de données est générée à partir de nos Modèles. Nous pouvons aisément passer d'une base de donnée sqlite, à une base MySQL ou encore PostgreSQL.
 
 Nous avons donc réalisé un diagramme UML de nos modèles.
 
