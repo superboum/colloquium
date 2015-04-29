@@ -156,6 +156,32 @@ Suite à la création de la page, il était nécessaire d'avoir un formulaire afin d
 Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
 \subsection{Évènements}
+Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscrition à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
+
+Nous avons séparé le travail en petites étapes, construisant tout d'abord une base, puis en la complexifiant peu à peu. 
+
+\medbreak
+%\subsection*{La création des événements}
+
+La première étape consiste en la création du \textit{CRUD} de l'événement. Cette étape est plutôt simple, puisqu'un événement n'est en lui même qu'un article avec quelques colonnes en plus : les dates de début et de fin de l'événement, le nombre limite de place, et l'activation des inscriptions. 
+
+\medbreak
+%\subsection*{La création du formulaire d'inscription}
+Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaire (imaginons qu'un événement soit en hauteur, il peut être utile de savoir si l'utilisateur à le vertige\dots). 
+
+Cette création est légèrement plus complexe que la création d'un article. Nous avons recontré une grosse difficulté ici : l'élément doit être relié à un événement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifier normalement ce processus. Cependant, la configuration n'a pas été correctement effectuée dans un premier temps. Il fallait alors écrire une grande partie des requêtes \textit{SQL} à la main. Cela a été une légère perte de temps, puisqu'il a fallu, quelques jours plus tard, corrigé cette maladresse. 
+
+\medbreak
+%\subsection*{La gestion des inscriptions}
+Lorsque les éléments de formulaires furent correctement configurés,  nous avons implémenté l'inscription à un événement. Celle ci utilise également des relations \textit{SQL}, cependant la technologie nous étais connue à ce moment. Cette partie a donc été relativement rapide. 
+
+Deux éléments sont a vérifié : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
+\medbreak
+%\subsection*{La gestion des statistiques}
+Par la suite, nous avons mis en place la gestion des statistiques. 
+Cette partie à également été plutôt rapide à produire. L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). Nous avons donc décidé de créer un tableau ruby, résumant toutes les informations. Ce tableau peut ensuite être, soit affiché dans le site, soit exporté en fichier \textit{.xls}. 
+
+C'est la seule partie du projet ou nous avons utilisé pleinement le langage Ruby. Malgré les conventions de nommage différentes de celle habituel (l'instance actuelle de l'objet s'appelle \verb!self!, et pas \verb!this! comme dans certains langage, ... ), l'utilisation d'un langage orienté objet nous est plutôt familière.   
 
 \subsection{Utilisateurs}
 
