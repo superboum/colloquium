@@ -117,21 +117,27 @@ Suite à la création de la page, il était nécessaire d'avoir un formulaire afin d
 Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
 \subsection{Évènements}
-Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscription à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
 
-\medbreak
-%\subsection*{La création du formulaire d'inscription}
-La première étape a consisté en la création du \textit{CRUD} de l'événement. Une fois celui-ci terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaires.
+Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscrition à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
 
-Cette création est légèrement plus complexe que la création d'un article. L'élément doit être relié à un événement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifie normalement ce processus. Cependant, la configuration n'a pas été correctement effectuée dans un premier temps. Il fallait alors écrire une grande partie des requêtes \textit{SQL} à la main.
+Nous avons séparé le travail en petites étapes, construisant tout d'abord une base, puis en la complexifiant peu à peu. 
 
-\medbreak
-%\subsection*{La gestion des inscriptions}
-Lorsque les éléments de formulaires furent correctement configurés, nous avons implémenté l'inscription à un événement.
+\subsubsection{La création des événements}
 
-Deux éléments sont à vérifier : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
-\medbreak
-%\subsection*{La gestion des statistiques}
+La première étape consiste en la création du \textit{CRUD} de l'événement. Cette étape est plutôt simple, puisqu'un événement n'est en lui même qu'un article avec quelques colonnes en plus : les dates de début et de fin de l'événement, le nombre limite de place, et l'activation des inscriptions. 
+
+\subsubsection{La création du formulaire d'inscription}
+Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaire (imaginons qu'un événement soit en hauteur, il peut être utile de savoir si l'utilisateur à le vertige\dots). 
+
+\label{diffuculté_relation}
+
+Cette création est légèrement plus complexe que la création d'un article. Nous avons recontré une grosse difficulté ici : l'élément doit être relié à un événement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifier normalement ce processus. Cependant, la configuration n'a pas été correctement effectuée dans un premier temps. Il fallait alors écrire une grande partie des requêtes \textit{SQL} à la main. Cela a été une légère perte de temps, puisqu'il a fallu, quelques jours plus tard, corrigé cette maladresse. 
+\subsubsection{La gestion des inscriptions}
+Lorsque les éléments de formulaires furent correctement configurés,  nous avons implémenté l'inscription à un événement. Celle ci utilise également des relations \textit{SQL}, cependant la technologie nous étais connue à ce moment. Cette partie a donc été relativement rapide. 
+
+Deux éléments sont à vérifié : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
+\subsubsection{La gestion des statistiques}
+
 Par la suite, nous avons mis en place la gestion des statistiques. 
  L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). 
  
@@ -152,7 +158,7 @@ Côté serveur, un jeton est généré pour l'utilisateur, à usage unique. A partir d
 
 \subsubsection{Sécurité}
 
-Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Le hash est à sens unique, et ne permet pas de retrouver le mot de passe initial. De plus, le fait de saler le mot de passe permet d'empêcher la personne malveillante de retrouver le mot de passe à partir d'une rainbow table. En effet, deux utilisateurs ayant le même mot de passe auront un hash différent grâce au salage dynamique.
+Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Le niveau de sécurité est hautement amélioré par cette méthode. 
 
 Enfin, une fois authentifié, l'utilisateur est géré via une session, les informations sont donc stockées côté serveur et ne peuvent donc pas être modifiées par l'utilisateur. Ce qui serait le cas si elles étaient stockées directement dans le cookie.
 
@@ -170,7 +176,7 @@ Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer 
 \medbreak
 Cependant, il a d'abord fallu créer les tables \textit{reviews} et \textit{reviewpropositions} dans la base de donnée. \textit{Reviews} contient le nom du participant, le nom de la conférence, l'état de l'inscription et est lié aux reviewpropositions. Ceux-ci sont crées à chaque nouvelle soumission de résumé. Ils contiennent le lien vers le fichier, un commentaire du participant expliquant la proposition et le lien vers la review liée. 
 
-Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{users} ont été difficiles à mettre en place. Il a fallu créer des associations entre les différentes tables. Après de nombreux essais, recherches et tests, les liens en dur ont été changés en \textit{references} entre les tables. 
+Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{users} ont été difficiles à mettre en place, pour les mêmes raisons que celle évoquées dans la partie \ref{diffuculté_relation}. 
 
 
 \medbreak
