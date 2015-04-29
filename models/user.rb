@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   has_many :users_events
   has_many :events, through: :users_events
   has_many :pages, :class_name => 'Page', :foreign_key => 'author_id'
-
+  has_many :users_meals
+  has_many :meals, through: :users_meals, source: :meal
+  
 
   def full_name
     if  self.last_name.nil?
