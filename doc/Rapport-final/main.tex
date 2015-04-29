@@ -103,13 +103,13 @@ Nous avons donc réalisé un diagramme UML de nos modèles.
 
 \subsection{Technologies utilisées}
 Le choix des technologies a été fait dans le but de créer un projet léger, et simple à mettre en place. 
-\paragraph*{Choix du langage : Ruby et Sinatra : } Nous avons choisi d'utiliser le langage ruby avec Sinatra. Ce framework est une version allégée du framework \textit{Ruby on Rails (RoR)}, qui est trop complexe pour des débutants, et trop lourd pour notre projet. \textit{Sinatra} permet d'utiliser les composants associées à  \textit{RoR}, tout en étant plus simple à utiliser. 
+\paragraph*{Ruby et Sinatra} Nous avons choisi d'utiliser le langage ruby en concert avec le framework Sinatra. Ce dernier est un DSL (Domain Specific Language), et est plus léger que d'autres gros frameworks comme \textit{Ruby on Rails}. Grâce à leur forte modularité, nous avons pu réutiliser de nombreux composants de base de \textit{Ruby on Rails}. 
 
-\paragraph{Gestion de la base de donnée}
-Dans la même optique de simplicité, nous utilisons \textit{sqlite3}. Cependant, comme expliqué en \ref{mdd}, nous pouvons facilement changer de bibliothèque, grâce à l'utilisation de l'ORM \textit{Activerecord}. Cette technologie est très puissante, et est utilisable sur Sinatra, mais aussi sur RoR ou Symfony (framework PHP).
+\paragraph{SGBD}
+Nous utilisons un SGBD relationnel à travers l'utilisation de l'ORM \textit{Activerecord}. Pour les développements, nous avons choisi d'utiliser une base de donnée sqlite3, plus facile de configuration. Cependant, en changeant les paramètres, il est très facile de se connecter à une base MySQL ou PostgreSQL.
 
-\paragraph{Gestion du style de la page}
-L'aspect du site web est important. Cependant, une configuration manuelle du CSS et Javascript est très longue et très fastidieuse. Nous utilisons donc \textit{Bootstrap}, qui simplifie énormément la gestion du style.
+\paragraph{Frontend}
+Afin d'uniformiser l'apparence du site web sur tous les navigateurs, de réaliser facilement un site web responsive et de minimiser les développements en CSS, nous avons choisi d'utiliser le framework \textit{Bootstrap}. Ce dernier livre aussi quelques élèments d'interfaces, très appréciés pour leur clarté.
 
 \subsection{Organisation du projet}
 
