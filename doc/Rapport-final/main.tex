@@ -45,11 +45,11 @@ Site Web pour conférence scientifique} }
 
 \section{Introduction}  
 
-La conférence IWSM se déroulera à l'INSA de Rennes en 2016. Monsieur Jean-François Dupuy, enseignant-chercheur en Mathématiques et organisateur de la conférence au niveau de l'INSA souhaitait un outil permettant aux participants de s'inscrire. Celui-ci devait être accessible de tous, ergonomique et disposer de plusieurs fonctionnalités. Il a ainsi fait part de sa requête au département INFO qui nous as proposé la réalisation de ce projet. Il s'agit donc d'un site internet ou application Web qui permet de gérer les inscriptions, les participants, les événements lors de la conférence et bien plus encore.
+La conférence \textit{IWSM} se déroulera à l'INSA de Rennes en 2016. Monsieur Jean-François Dupuy, enseignant-chercheur en Mathématiques et organisateur de la conférence au niveau de l'INSA souhaitait un outil permettant aux participants de s'inscrire. Celui-ci devait être accessible de tous, ergonomique et disposer de plusieurs fonctionnalités. Il a ainsi fait part de sa requête au département INFO qui nous as proposé la réalisation de ce projet. Il s'agit donc d'un site internet ou application Web qui permet de gérer les inscriptions, les participants, les événements lors de la conférence et bien plus encore.
 
 \bigbreak
 Nous avons ainsi discuté plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressé.
-Après avoir recherché les technologies et langages nécessaires au projets. Un choix fut fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
+Après avoir recherché les technologies et langages nécessaires au projets, un choix dû être fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
 
 \section{Cahier des Charges}
 Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
@@ -61,7 +61,7 @@ Le site web présentera les différentes fonctions suivantes :
 
 \subsection*{Inscription}
 
-Chaque utilisateur pourra s'inscrire à l'IWSM. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
+Chaque utilisateur pourra s'inscrire à \textit{l'IWSM}. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
 
 L'utilisateur peut ensuite s'inscrire aux différents événements organisés, dans la limite des places disponibles. 
 
@@ -74,9 +74,7 @@ Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération ser
 
 \subsection*{Administration et personnalisation}
 
-Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. 
-    
-Ces modification devront être faisable par une personne non expérimentée en informatique. 
+Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. Une personne non expérimentée en informatique devra pouvoir effectuer ces modifications.
 
 \smallbreak
 
@@ -89,31 +87,46 @@ Avant de coder, nous avons clairement établi l'architecture de notre projet, sa 
 
 \subsubsection{Patron de conception}
 
-Les patrons de conception sont des modèles efficaces pour concevoir un projet. Dans le cas du web, le patron Modèle - Vue - Controlleur est majoritairement utilisé, et c'est celui que nous avons choisi. Il permet de segmenter notre code, et limiter sa duplication. La partie modèle correspond à nos données (que nous persistons, dans une base de donnée par exemple). La vue est une façon de présenter les données. Dans notre cas, nous générons du HTML. Enfin, le controlleur récupère la requête de l'utilisateur, réalise les requêtes nécessaires sur les modèles et renvoie la vue à l'utilisateur.
+Les patrons de conception sont des modèles efficaces pour concevoir un projet. Dans le cas du web, le patron Modèle - Vue - Contrôleur est majoritairement utilisé, et c'est celui que nous avons choisi. Il permet de segmenter notre code, et limiter sa duplication. La partie modèle correspond à nos données (que nous persistons, dans une base de donnée par exemple). La vue est une façon de présenter les données. Dans notre cas, nous générons du \textit{HTML}. Enfin, le contrôleur récupère la requête de l'utilisateur, réalise les requêtes nécessaires sur les modèles et renvoie la vue à l'utilisateur.
 
 \subsubsection{Modèle de données}
 \label{mdd}
+
 \begin{figure}[!h]
    \includegraphics[width=15cm]{fig/uml-models}
-   \caption{\label{uml} Diagramme UML des modèles}
+   \caption{\label{uml} Diagramme \textit{UML} des modèles}
 \end{figure}
 Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnée. Ainsi la base de données est générée à partir de nos Modèles. Nous pouvons aisément passer d'une base de donnée sqlite, à une base MySQL ou encore PostgreSQL.
 
-Nous avons donc réalisé un diagramme UML de nos modèles.
+Nous avons donc réalisé un diagramme \textit{UML} de nos modèles.
 
 \subsection{Technologies utilisées}
 Le choix des technologies a été fait dans le but de créer un projet léger, et simple à mettre en place. 
 \paragraph*{Ruby et Sinatra} Nous avons choisi d'utiliser le langage ruby en concert avec le framework Sinatra. Ce dernier est un DSL (Domain Specific Language), et est plus léger que d'autres gros frameworks comme \textit{Ruby on Rails}. Grâce à leur forte modularité, nous avons pu réutiliser de nombreux composants de base de \textit{Ruby on Rails}. 
 
 \paragraph{SGBD}
-Nous utilisons un SGBD relationnel à travers l'utilisation de l'ORM \textit{Activerecord}. Pour les développements, nous avons choisi d'utiliser une base de donnée sqlite3, plus facile de configuration. Cependant, en changeant les paramètres, il est très facile de se connecter à une base MySQL ou PostgreSQL.
+Nous utilisons un SGBD relationnel à travers l'utilisation de l'ORM \textit{Activerecord}. Pour les développements, nous avons choisi d'utiliser une base de donnée \textit{sqlite3}, plus facile de configuration. Cependant, en changeant les paramètres, il est très facile de se connecter à une base \textit{MySQL} ou \textit{PostgreSQL}.
 
 \paragraph{Frontend}
 Afin d'uniformiser l'apparence du site web sur tous les navigateurs, de réaliser facilement un site web responsive et de minimiser les développements en CSS, nous avons choisi d'utiliser le framework \textit{Bootstrap}. Ce dernier livre aussi quelques élèments d'interfaces, très appréciés pour leur clarté.
 
 \subsection{Organisation du projet}
+Pour le projet, nous avons décidé de ne pas nous précipiter et de d'abord fixer les bases du projet. Lors de réunions effectuées entre membre du groupe, nous avons réfléchi durant le premier semestre aux technologies utilisées, mais aussi à l'organisation que nous suivrions durant le reste du projet. 
 
-github, issues
+Nous avons choisi la méthode Agile comme méthode de travail. Nous devions donc poser différentes deadlines et présenter régulièrement notre travail à l'encadrant. Les différentes dates de rendu ont été placées afin d'avoir une base de travail convenable, et que chacun puisse s'y retrouver dans le travail à effectuer. Les différentes étapes furent les suivantes :
+
+\begin{itemize}
+\item Gestion des articles et des pages.
+\item Gestion des événements et des utilisateurs.
+\item Gestion des résumés et des paramètres du site.
+\item Diverses améliorations.
+\end{itemize}
+
+
+\bigbreak
+Il fut donc décidé d'utiliser \textit{GitHub}, un gestionnaire de version, afin de travailler tous sur le même projet mais chacun de son côté. Nous pouvions ainsi développer en local sur nos ordinateurs personnels, puis envoyer nos modifications sur le serveur commun.
+
+D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{Milestones} ou les \textit{issues}. Les premières permettent de poser une date de rendu de travail. Les \textit{issues} quant à elles nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. Par exemple, pour les résumés, il a été décidé dès le début de créer un formulaire dans la partie profil utilisateur, d'obliger les fichiers à être au format pdf, et bien d'autres précisions concernant le développement.
 
 @TODO:JEAN
 
@@ -122,7 +135,7 @@ github, issues
 \subsection{CMS}
 L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un système de CRUD (Create, Read, Update, Delete), nous avons travaillé chacun de notre côté afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela était nécessaire. Nous avons ainsi développé ces Pages et Articles dont la gestion est très semblable.
 
-Après avoir ajouté les tables liées dans la base (tables articles et pages), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Dans la base, les textes long devaient être indiqués en tant que \textit{text} et non \textit{string} comme fait initialement, sans quoi la taille d'enregistrement n'était pas suffisante. Les informations entrées dans le formulaires sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
+Après avoir ajouté les tables liées dans la base (tables articles et pages), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Les informations entrées sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
 
 Suite à la création de la page, il était nécessaire d'avoir un formulaire afin de modifier la page ou l'article aisément. Dans la partie administration, les anciennes informations sont donc affichées et il est possible d'en entrer de nouvelles. Celles-ci permettront la mise à jour de l'élément sélectionné. La page ou l'article ont ensuite été liés à des boutons permettant de les supprimer. 
 
@@ -170,7 +183,7 @@ L'inscription se cantonne à créer un utilisateur en base de donnée, puis passe l
 
 \subsubsection{Validation de l'email}
 
-La validation de l'email se fait via l'envoie d'un email à l'adresse indiquée afin de vérifier que cette dernière est bien correcte et appartient bien à l'utilisateur. Ce dernier n'a plus qu'à cliquer sur un lien, et son compte sera validé. Afin d'améliorer l'expérience utilisateur, ce dernier est aussi authentifié. 
+La validation de l'email se fait via l'envoi d'un email à l'adresse indiquée afin de vérifier que cette dernière est bien correcte et appartient bien à l'utilisateur. Ce dernier n'a plus qu'à cliquer sur un lien, et son compte sera validé. Afin d'améliorer l'expérience utilisateur, ce dernier est aussi authentifié. 
 
 Côté serveur, un jeton est généré pour l'utilisateur, à usage unique. A partir de ce dernier et de l'email de l'utilisateur, un lien est généré, et envoyé par email. Lors du clic sur le lien, si les informations correspondent, l'utilisateur passe authentifié et est automatiquement connecté pour cette session. Le jeton est alors détruit.
 
@@ -202,7 +215,6 @@ Lorsque les tables furent crées et la base de données migrée, est arrivé le prob
 
 La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie profil
 
-@TODO:JEAN
 
 \subsection{Paramètres}
 
@@ -216,35 +228,35 @@ La qualité logiciel a été un point clé du développement de notre application web
 
 \subsection{Gestionnaire de version}
 
-Nous avons choisi git, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
+Nous avons choisi \textit{git}, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
 \subsection{Tests unitaires}
 
 Nous avons testé unitairement l'ensemble des classes que nous utilisions : nos modèles ainsi que toutes nos classes appartenant à notre business layer. 
 
-Nous n'avons pas pu tester nos controllers unitairement, cas en ayant fais le choix de Sinatra, un DSL, ces derniers ne sont pas testables.
+Nous n'avons pas pu tester nos controllers unitairement, car en ayant fais le choix de Sinatra, un DSL, ces derniers ne sont pas testables.
 
 \subsection{Tests fonctionnels}
 
 Les tests fonctionnels sont des scénarios types, pour tester le comportement de notre application dans son ensemble.
 
-En ayant fais le choix de Capybara, nous pouvons à travers son API unique, lancer nos tests sur une grande variété de plateformes. En effet, par défaut les tests fonctionnels se font sans interface graphique, grâce au driver \verb!rack_test! qui ne lance pas de navigateur et se contente de vérifier le html généré. 
+En ayant fais le choix de \textit{Capybara}, nous pouvons à travers son API unique, lancer nos tests sur une grande variété de plateformes. En effet, par défaut les tests fonctionnels se font sans interface graphique, grâce au driver \verb!rack_test! qui ne lance pas de navigateur et se contente de vérifier le html généré. 
 
-Mais sans modifier nos tests, nous pouvons lancer ces derniers avec Selenium-Webdriver, qui lance le navigateur de notre choix et simule les clics de souris et les entrées claviers.
+Mais sans modifier nos tests, nous pouvons lancer ces derniers avec \textit{Selenium-Webdriver}, qui lance le navigateur de notre choix et simule les clics de souris et les entrées claviers.
 
 \subsection{Intégration continue}
 
 L'intégration continue permet de s'assurer de la viabilité de notre projet au cours de son développement.
 
-En effet, à chaque commit Travis lance un build. Pour chaque build, Travis créer une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
+En effet, à chaque commit \textit{Travis} lance un build. Pour chaque build, \textit{Travis} créer une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
 
 Ainsi, nous nous assurons que pour un commit donné, notre application est bien pleinement compatible avec un environnement donné et clairement défini.
 
-Dans le cas d'un échec de build, les collaborateurs du projet recoivent un mail les alertant de l'erreur, ainsi qu'un compte rendu du build.
+Dans le cas d'un échec de build, les collaborateurs du projet reçoivent un mail les alertant de l'erreur, ainsi qu'un compte-rendu du build.
 
 Nous pouvons alors sereinement déployé notre application à n'importe quel moment.
 
-Enfin Travis permet de créer des matrices de build, qui permettent de tester le projet avec des configuration différentes. Par exemple 4 versions de ruby différentes et 3 SGBD différents. Travis lancera alors 12 builds.
+Enfin \textit{Travis} permet de créer des matrices de build, qui permettent de tester le projet avec des configuration différentes. Par exemple 4 versions de ruby différentes et 3 SGBD différents. \textit{Travis} lancera alors 12 builds.
 
 \subsection{Revue de code automatique}
 
@@ -252,7 +264,7 @@ La revue de code automatique permet à notre équipe d'acquérir les bons réflexes 
 
 Cela permet aussi d'améliorer sa maintenabilité.
 
-Codeclimate calcule aussi la couverture de tests de l'application, afin d'avoir un aperçu des fonctions testées et des fonctions qui ne sont pas testées.
+\textit{Codeclimate} calcule aussi la couverture de tests de l'application, afin d'avoir un aperçu des fonctions testées et des fonctions qui ne sont pas testées.
 
 \section{Déploiement}
 
@@ -268,6 +280,15 @@ Dans le cas d'une utilisation professionnelle, il est aussi fortement recommandé
 
 \section{Conclusion} 
  
+Le développement de cette étude pratique nous a permis de nous mettre en situation d?une gestion de projet, étape essentielle dans la vie d?un élève-ingénieur. Nous avons expérimenté le développement en groupe, mais nous avons pu également aborder la relation client.
+
+En effet, durant notre étude pratique, nous avons dû apprendre à travailler avec un client qui n?est pas expert en informatique. Cela a commencé par comprendre les besoins de notre client, ici à l'occurrence M. Jean-François Dupuy, puis rechercher les technologies adaptées à son besoin. L?adoption d?une méthode agile nous a permis d?avancer en nous assurant que chaque fonctionnalité correspondait toujours à ce que M.Dupuy attendait du site web. De cette manière nous étions sûr d?avoir assimiler ce qu?il attendait de nous, et nous pouvions continuer sur une nouvelle fonctionnalité. Cela nous a aussi formé à vulgariser le langage informatique à notre encadrant.
+
+Pour ce qui est du développement, nous avons dû d?abord appréhender plusieurs technologies informatiques en étudiant leur documentation et en les pratiquant. Nous avons également fait le nécessaire pour que chaque technologie communique avec les autres sans dysfonctionnement. La séparation des tâches nous a permis de nous focaliser chacun sur notre travail à réaliser, et aussi d?optimiser le temps d?apprentissage. En effet, nous n?étions pas obligé de maîtriser toutes les technologies ou les bibliothèques utilisées, seulement celles qui sont utilisées dans le travail personnel.
+
+Dans les pistes à améliorer, nous aurions pu offrir au site des composantes Javascript afin de lui donner plus de dynamisme. Nous aurions pu aussi apporter un design plus attractif, le nôtre est pour ainsi dire un peu trop sobre.
+
+Pour résumer, ce projet nous a apporté à chacun bien plus que des connaissances en informatique. Nous avons construit un système complexe composé de plusieurs technologies, tout en vérifiant en permanence que ce que l?on développe correspond au besoin de notre encadrant. Le site sera implémenté au début de l?été 2015. Nous surveillerons son utilisation avec attention, et nous devrons assurer une maintenance au moindre dysfonctionnement.
 
 Le développement de cette étude pratique nous a permis de nous mettre en situation d'une gestion de projet, étape essentiel dans la vie d'un élève-ingénieur. Nous avons expérimenté le développement en groupe, mais nous avons pu également aborder la relation client.
 
