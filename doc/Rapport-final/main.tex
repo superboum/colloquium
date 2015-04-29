@@ -43,7 +43,7 @@ Cette étude pratique résume le déroulement du projet de création de site web dyn
 Il présente la particularité de devoir être entièrement modulable. Ainsi, M. Dupuy ou une autre personne pourra s'en servir pour gérer une nouvelle conférence. 
 
 \smallbreak
- Pour développer cette application, nous utilisons le langage \textit{Ruby}, aidé par le framework \textit{Sinatra}. La base de donnée est gérée par la bibliothèque SQL \textit{Sqlite3}, et l'ORM Activerecord. Le style utilise quant à lui \textit{Bootstrap}. 
+ Pour développer cette application, nous utilisons le langage \textit{Ruby}, auquel nous avous adjoins le framework \textit{Sinatra} et l'ORM Activerecord. Quant à l'interface, nous avons utilisé \textit{Bootstrap}. 
 
 \smallbreak
 Le site  permet à l'administrateur de créer différentes pages et article, mais aussi des événements auxquels les utilisateurs ont la possibilité de s'inscrire. Lors de son inscription, l'utilisateur les sélectionne donc. À partir de ces données, et d'information fournies, un bon de commande est généré, qui permet à l'utilisateur d'achever cette inscription.
@@ -52,7 +52,7 @@ Le site web intègre également un système de modération de résumés.
 
 \smallbreak  
 
-Lors du développement de l'application, nous avons fait attention à utiliser les principes de qualité logiciel. Nous utilisons donc le gestionnaire de version \textit{GIT}, effectuons des tests fonctionnels et unitaire. Le site web \textit{travis } permet de s'assurer que notre application reste fonctionnelle. 
+Lors du développement de l'application, nous avons fait attention à utiliser les principes de qualité logiciel. Nous utilisons donc le gestionnaire de version \textit{GIT}, effectuons des tests fonctionnels et unitaire. Les plateformes \textit{Travis} et \textit{Codeclimate} permettent de s'assurer que notre application reste fonctionnelle au cours de ses évolutions. 
 \end{abstract} 
 
 \newpage
@@ -64,35 +64,6 @@ La conférence \textit{IWSM} se déroulera à l'INSA de Rennes en 2016. Monsieur Je
 \bigbreak
 Nous avons ainsi discuté plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressé.
 Après avoir recherché les technologies et langages nécessaires au projets, un choix dû être fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
-
-%\section{Cahier des Charges}
-%Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
-%
-%\medbreak
-%Le site présentera une partie publique, et une partie administrative. 
-%
-%Le site web présentera les différentes fonctions suivantes : 
-%
-%\paragraph*{Inscription}
-%
-%Chaque utilisateur pourra s'inscrire à \textit{l'IWSM}. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
-%
-%L'utilisateur peut ensuite s'inscrire aux différents événements organisés, dans la limite des places disponibles. 
-%
-%Les utilisateurs qui le souhaitent pourront soumettre un résumé, qui sera ou non intégré à un livre résumant la conférence. 
-%
-%La dernière étape est le paiement, effectué par bon de commande. Le prix est calculé automatiquement. 
-%\paragraph{Gestion des résumés}
-%
-%Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération sera donc mise en place. Des modérateurs valideront donc les résumés soumis. Un système de notification par mail avertira l'utilisateur si un changement de statut survient. 
-%
-%\paragraph*{Administration et personnalisation}
-%
-%Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. Une personne non expérimentée en informatique devra pouvoir effectuer ces modifications.
-%
-%\smallbreak
-%
-%L'administrateur aura également accès à des fichiers de statistiques, résumant les différentes inscriptions aux événements. 
 
 \section{Étude du projet}
 \subsection{Architecture}
