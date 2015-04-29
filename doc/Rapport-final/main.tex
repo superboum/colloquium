@@ -91,22 +91,36 @@ Ces modification devront être faisable par une personne non expérimentée en info
 
 L'administrateur aura également accès à des fichiers de statistiques, résumant les différentes inscriptions aux événements. 
 
-\section{Architecture, Technologies et Organisation}
+\section{Étude du projet}
 \subsection{Architecture}
-patron de conception mvc
 
-business layer/application layer
+Avant de coder, nous avons clairement établi l'architecture de notre projet, sa structure afin d'avoir un code consistant et organisé.
 
-diagramme uml
+\subsubsection{Patron de conception}
 
-user story
+Les patrons de conception sont des modèles efficaces pour concevoir un projet. Dans le cas du web, le patron Modèle - Vue - Controlleur est majoritairement utilisé, et c'est celui que nous avons choisi. Il permet de segmenter notre code, et limiter sa duplication. La partie modèle correspond à nos données (que nous persistons, dans une base de donnée par exemple). La vue est une façon de présenter les données. Dans notre cas, nous générons du HTML. Enfin, le controlleur récupère la requête de l'utilisateur, réalise les requêtes nécessaires sur les modèles et renvoie la vue à l'utilisateur.
 
-@TODO Quentin
+\subsubsection{Couche applicative et couche métier}
+
+Nous avons voulu séparer au maximum la couche applicative (application layer) de la couche métier (business layer). En effet, la première est totalement dépendante des technologies utilisées (web, client lourd, etc), alors que la seconde est juste un modèle que nous créons, représentant notre "monde". En séparant cette dernière de la couche applicative, nous pouvons plus facilement la réutiliser dans d'autres projets. 
+
+Le projet étant encore jeune, nous n'avons actuellement que quelques classes appartenant à la couche métier.
+
+\subsubsection{Modèle de données}
+
+Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnée. Ainsi la base de données est générée à partir de nos Modèles. Nous pouvons aisément passer d'une base de donnée sqlite, à une base MySQL ou encore PostgreSQL.
+
+\begin{figure}[!h]
+   \includegraphics[width=15cm]{fig/uml-models}
+   \caption{\label{uml} Diagramme UML des modèles}
+\end{figure}
+
+Nous avons donc réalisé un diagramme UML de nos modèles.
 
 \subsection{Technologies utilisées}
 Ruby : Sinatra
 
-DB : sqlite3 / Active Record
+DB : Active Record (sqlite3 mais adaptable à n'importe quels DB)
 
 CSS : Bootstrap
 
@@ -116,7 +130,7 @@ github, issues
 
 @TODO:JEAN
 
-\section{Fonctionnalités}
+\section{Développement des fonctionnalités}
 
 \subsection{CMS}
 L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un système de CRUD (Create, Read, Update, Delete), nous avons travaillé chacun de notre côté afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela était nécessaire. Nous avons ainsi développé ces Pages et Articles dont la gestion est très semblable.
@@ -130,8 +144,18 @@ Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, l
 \subsection{Évènements}
 
 \subsection{Utilisateurs}
-@TODO:QDUF:USERS
 
+\subsubsection{Inscription / Connexion}
+
+\subsubsection{Validation par mail}
+
+\subsubsection{Sécurité}
+
+Tous d'abord, les mots de passes sont hashés et salés dynamiquement.
+
+Roles, Cookies coté serveur, hash mot de passe
+
+\subsubsection{Récupération de mot de passe}
 
 \subsection{Candidatures}
 

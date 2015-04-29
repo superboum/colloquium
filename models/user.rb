@@ -25,11 +25,11 @@ class User < ActiveRecord::Base
   end
 
   def raw_password(rpass)
-    self.password = Digest::SHA256.hexdigest(rpass)
+    self.password = Digest::SHA256.hexdigest(self.email + ':' + rpass)
   end
 
   def correct_password?(rpass)
-    self.password == Digest::SHA256.hexdigest(rpass)
+    self.password == Digest::SHA256.hexdigest(self.email + ':' + rpass)
   end
 
   def generate_token() 
