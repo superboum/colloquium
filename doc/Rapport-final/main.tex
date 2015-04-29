@@ -55,9 +55,7 @@ Après avoir recherché les technologies et langages nécessaires au projets. Un ch
 Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
 
 \medbreak
-Tout d'abord, le nom de la conférence, IWSM devra être visible.
-
-Le site devra présenter une partie publique, et une partie réservée à l'administration, non accessible par le grand public.
+Le site présentera une partie publique, et une partie administrative. 
 
 Le site web présentera les différentes fonctions suivantes : 
 
@@ -65,26 +63,19 @@ Le site web présentera les différentes fonctions suivantes :
 
 Chaque utilisateur pourra s'inscrire à l'IWSM. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
 
-L'étape suivante consiste pour l'utilisateur à s'inscrire aux différents événements organisé. Il peut lui être demandé des informations complémentaire à ce moment. 
+L'utilisateur peut ensuite s'inscrire aux différents événements organisés, dans la limite des places disponibles. 
 
-Les utilisateurs qui le souhaitent pourront soumettre un résumé (dans l'espoir de le voir intégré au livre produit à la suite des conférence, résumant la conférence). 
+Les utilisateurs qui le souhaitent pourront soumettre un résumé, qui sera ou non intégré à un livre résumant la conférence. 
 
-La dernière étape est le paiement. Le prix est calculé automatiquement. L'utilisateur pourra télécharger un bon de commande, puis l'envoyer avec un chèque à l'INSA. 
-
+La dernière étape est le paiement, effectué par bon de commande. Le prix est calculé automatiquement. 
 \subsection*{Gestion des résumés}
 
-Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération sera donc mis en place. Des modérateurs valideront donc les résumés soumis. Un système de notification par mail est mis en place. 
+Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération sera donc mise en place. Des modérateurs valideront donc les résumés soumis. Un système de notification par mail avertira l'utilisateur si un changement de statut survient. 
 
 \subsection*{Administration et personnalisation}
 
-Un administrateur du site pourra personnaliser le site. Il pourra :
-
-    \begin{itemize}
-\item    Écrire des articles, qui seront référencés dans un "blog"
-\item    Créer ou modifier une page
-\item    Créer des événements
-    \end{itemize}
-
+Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. 
+    
 Ces modification devront être faisable par une personne non expérimentée en informatique. 
 
 \smallbreak
@@ -246,7 +237,7 @@ Nous n'avons pas pu tester nos controllers unitairement, cas en ayant fais le ch
 
 Les tests fonctionnels sont des scénarios types, pour tester le comportement de notre application dans son ensemble.
 
-En ayant fais le choix de Capybara, nous pouvons à travers son API unique, lancer nos tests sur une grande variété de plateformes. En effet, par défaut les tests fonctionnels se font sans interface graphique, grâce au driver rack\_test qui ne lance pas de navigateur et se contente de vérifier le html généré. 
+En ayant fais le choix de Capybara, nous pouvons à travers son API unique, lancer nos tests sur une grande variété de plateformes. En effet, par défaut les tests fonctionnels se font sans interface graphique, grâce au driver \verb!rack_test! qui ne lance pas de navigateur et se contente de vérifier le html généré. 
 
 Mais sans modifier nos tests, nous pouvons lancer ces derniers avec Selenium-Webdriver, qui lance le navigateur de notre choix et simule les clics de souris et les entrées claviers.
 
