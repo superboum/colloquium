@@ -225,8 +225,6 @@ La qualité logiciel a été un point clé du développement de notre application web
 
 Nous avons choisi git, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
-Entre autre, nous avons utilisé les branches pour développer de nouvelles fonctionnalités. Une fois ces dernières terminées, nous avons fusionné la branche avec notre branche courante. Nous n'avons pas jugé utile pour le moment de différencier les branches master et develop. En effet, beaucoup d'entreprises travaillant en cycles courts considèrent les corrections de bugs comme des fonctionnalités. De plus, grâce à une chaine de test efficace, ces derniers se font rares.
-
 \subsection{Tests unitaires}
 
 Nous avons testé unitairement l'ensemble des classes que nous utilisions : nos modèles ainsi que toutes nos classes appartenant à notre business layer. 
@@ -242,10 +240,6 @@ En ayant fais le choix de Capybara, nous pouvons à travers son API unique, lance
 Mais sans modifier nos tests, nous pouvons lancer ces derniers avec Selenium-Webdriver, qui lance le navigateur de notre choix et simule les clics de souris et les entrées claviers.
 
 \subsection{Intégration continue}
-\begin{figure}[!h]
-   \includegraphics[width=15cm]{fig/travis}
-   \caption{\label{travis} Travis, outil d'intégration continue SaaS}
-\end{figure}
 
 L'intégration continue permet de s'assurer de la viabilité de notre projet au cours de son développement.
 
@@ -260,10 +254,6 @@ Nous pouvons alors sereinement déployé notre application à n'importe quel moment
 Enfin Travis permet de créer des matrices de build, qui permettent de tester le projet avec des configuration différentes. Par exemple 4 versions de ruby différentes et 3 SGBD différents. Travis lancera alors 12 builds.
 
 \subsection{Revue de code automatique}
-\begin{figure}[!h]
-   \includegraphics[width=15cm]{fig/codeclimate}
-   \caption{\label{codeclimate} Codeclimate, outil de revue de code SaaS}
-\end{figure}
 
 La revue de code automatique permet à notre équipe d'acquérir les bons réflexes et de s'améliorer au fur et à mesure du développement de l'application.
 
@@ -280,8 +270,6 @@ Il est d'ailleurs actuellement accessible à l'URL suivante : http://suzanne.deux
 Nous avons choisi un conteneur LXC pour le compartimenter du reste du système, avec une distribution Debian stable.
 
 Nous recommandons l'utilisation du serveur web thin en lieu et place du serveur de développement webrick. En effet, thin est plus optimisé. De plus, il est possible de mettre en place un reverse proxy, comme nginx ou varnish devant le serveur ruby, qui peut servir les fichiers statiques directement sans avoir à passer par notre serveur, nécessairement plus lent.
-
-Ayant choisi ruby comme langage, notre projet n'est pas déployable sur les hébergement mutualisés habituels (PHP). Cependant, il s'adaptera très bien aux offres PaaS (heroku, gandi simple hosting, etc.), ainsi qu'aux VPS et serveurs dédiés.
 
 Dans le cas d'une utilisation professionnelle, il est aussi fortement recommandé d'utiliser une connexion chiffrée avec un certificat valide (https), afin d'éviter la transmission d'informations sensibles en clair. 
 
