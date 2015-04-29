@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     STYLE POUR LES EXPOSÃ‰S TECHNIQUES 
-%         3e annÃ©e INSA de Rennes
+%     STYLE POUR LES EXPOSÉS TECHNIQUES 
+%         3e année INSA de Rennes
 %
 %             NE PAS MODIFIER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,22 +9,22 @@
 \usepackage{exptech}       % Fichier (./exptech.sty) contenant les styles pour 
                            % l'expose technique (ne pas le modifier)
 
-%\linespread{1,6}          % Pour une version destinÃ©e Ã  un relecteur,
-                           % dÃ©commenter cette commande (double interligne) 
+%\linespread{1,6}          % Pour une version destinée à un relecteur,
+                           % décommenter cette commande (double interligne) 
                            
-% UTILISEZ SPELL (correcteur orthographique) Ã  accÃ¨s simplifiÃ© depuis XEmacs
+% UTILISEZ SPELL (correcteur orthographique) à accès simplifié depuis XEmacs
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{ \textbf{Rapport d'Ã‰tude Pratique : \\
-Site Web pour confÃ©rence scientifique} }
-\markright{Site Web de confÃ©rence scientifique} 
+\title{ \textbf{Rapport d'Étude Pratique : \\
+Site Web pour conférence scientifique} }
+\markright{Site Web de conférence scientifique} 
                            % Pour avoir le titre de l'expose sur chaque page
 
 \author{Quentin \textsc{Dufour}, Thomas \textsc{Hareau}, \\
         Laurent \textsc{Aymard}, Jean \textsc{Chorin} \\
         \\
-        Encadrant : Jean-FranÃ§ois \textsc{Dupuy}}
+        Encadrant : Jean-François \textsc{Dupuy}}
 
 \date{2015}                    % Ne pas modifier
  
@@ -32,262 +32,262 @@ Site Web pour confÃ©rence scientifique} }
 
 \begin{document}          
 
-\maketitle                 % GÃ©nÃ¨re le titre
-\thispagestyle{empty}      % Supprime le numÃ©ro de page sur la 1re page
+\maketitle                 % Génère le titre
+\thispagestyle{empty}      % Supprime le numéro de page sur la 1re page
 \newpage
 
 
 \begin{abstract}
-%ResumÃ©
+%Resumé
 \end{abstract} 
 
 \newpage
 
 \section{Introduction}  
 
-La confÃ©rence \textit{IWSM} se dÃ©roulera Ã  l'INSA de Rennes en 2016. Monsieur Jean-FranÃ§ois Dupuy, enseignant-chercheur en MathÃ©matiques et organisateur de la confÃ©rence au niveau de l'INSA souhaitait un outil permettant aux participants de s'inscrire. Celui-ci devait Ãªtre accessible de tous, ergonomique et disposer de plusieurs fonctionnalitÃ©s. Il a ainsi fait part de sa requÃªte au dÃ©partement INFO qui nous as proposÃ© la rÃ©alisation de ce projet. Il s'agit donc d'un site internet ou application Web qui permet de gÃ©rer les inscriptions, les participants, les Ã©vÃ©nements lors de la confÃ©rence et bien plus encore.
+La conférence \textit{IWSM} se déroulera à l'INSA de Rennes en 2016. Monsieur Jean-François Dupuy, enseignant-chercheur en Mathématiques et organisateur de la conférence au niveau de l'INSA souhaitait un outil permettant aux participants de s'inscrire. Celui-ci devait être accessible de tous, ergonomique et disposer de plusieurs fonctionnalités. Il a ainsi fait part de sa requête au département INFO qui nous as proposé la réalisation de ce projet. Il s'agit donc d'un site internet ou application Web qui permet de gérer les inscriptions, les participants, les événements lors de la conférence et bien plus encore.
 
 \bigbreak
-Nous avons ainsi discutÃ© plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressÃ©.
-AprÃ¨s avoir recherchÃ© les technologies et langages nÃ©cessaires au projets, un choix dÃ» Ãªtre fait, Ã©tant donnÃ© le nombre consÃ©quent Ã  disposition. Nous avons ensuite commencÃ© la rÃ©alisation de ce projet. Sont prÃ©sentÃ©s Ã  la suite de ce rapport le cahier des charges dÃ©finitif, les diffÃ©rentes Ã©tapes de dÃ©veloppement, les difficultÃ©s rencontrÃ©s ainsi que l'Ã©tat final du projet.
+Nous avons ainsi discuté plusieurs fois avec Monsieur Dupuy afin de cerner son besoin et finalement un cahier des charges fut dressé.
+Après avoir recherché les technologies et langages nécessaires au projets, un choix dû être fait, étant donné le nombre conséquent à disposition. Nous avons ensuite commencé la réalisation de ce projet. Sont présentés à la suite de ce rapport le cahier des charges définitif, les différentes étapes de développement, les difficultés rencontrés ainsi que l'état final du projet.
 
 \section{Cahier des Charges}
-Au dÃ©but du projet, nos premiÃ¨res rÃ©unions avec M. Dupuy consistaient en une comprÃ©hension des diffÃ©rents buts du projet. Nous avons pu Ã©tablir un cahier des charges, rÃ©sumÃ© ici, et dont la version complÃ¨te est visible sur le dÃ©pot \textit{GitHub} du projet. 
+Au début du projet, nos premières réunions avec M. Dupuy consistaient en une compréhension des différents buts du projet. Nous avons pu établir un cahier des charges, résumé ici, et dont la version complète est visible sur le dépot \textit{GitHub} du projet. 
 
 \medbreak
-Le site prÃ©sentera une partie publique, et une partie administrative. 
+Le site présentera une partie publique, et une partie administrative. 
 
-Le site web prÃ©sentera les diffÃ©rentes fonctions suivantes : 
+Le site web présentera les différentes fonctions suivantes : 
 
 \subsection*{Inscription}
 
-Chaque utilisateur pourra s'inscrire Ã  \textit{l'IWSM}. Il y indique donc des informations gÃ©nÃ©rales (nom, prÃ©nom, nombre de repas, ...). 
+Chaque utilisateur pourra s'inscrire à \textit{l'IWSM}. Il y indique donc des informations générales (nom, prénom, nombre de repas, ...). 
 
-L'utilisateur peut ensuite s'inscrire aux diffÃ©rents Ã©vÃ©nements organisÃ©s, dans la limite des places disponibles. 
+L'utilisateur peut ensuite s'inscrire aux différents événements organisés, dans la limite des places disponibles. 
 
-Les utilisateurs qui le souhaitent pourront soumettre un rÃ©sumÃ©, qui sera ou non intÃ©grÃ© Ã  un livre rÃ©sumant la confÃ©rence. 
+Les utilisateurs qui le souhaitent pourront soumettre un résumé, qui sera ou non intégré à un livre résumant la conférence. 
 
-La derniÃ¨re Ã©tape est le paiement, effectuÃ© par bon de commande. Le prix est calculÃ© automatiquement. 
-\subsection*{Gestion des rÃ©sumÃ©s}
+La dernière étape est le paiement, effectué par bon de commande. Le prix est calculé automatiquement. 
+\subsection*{Gestion des résumés}
 
-Le rÃ©sumÃ©, lorsqu'il est soumis, n'est pas forcÃ©ment parfait. Une modÃ©ration sera donc mise en place. Des modÃ©rateurs valideront donc les rÃ©sumÃ©s soumis. Un systÃ¨me de notification par mail avertira l'utilisateur si un changement de statut survient. 
+Le résumé, lorsqu'il est soumis, n'est pas forcément parfait. Une modération sera donc mise en place. Des modérateurs valideront donc les résumés soumis. Un système de notification par mail avertira l'utilisateur si un changement de statut survient. 
 
 \subsection*{Administration et personnalisation}
 
-Un administrateur pourra personnaliser le site. Il pourra crÃ©er ou modifier articles, pages et Ã©vÃ©nements. Une personne non expÃ©rimentÃ©e en informatique devra pouvoir effectuer ces modifications.
+Un administrateur pourra personnaliser le site. Il pourra créer ou modifier articles, pages et événements. Une personne non expérimentée en informatique devra pouvoir effectuer ces modifications.
 
 \smallbreak
 
-L'administrateur aura Ã©galement accÃ¨s Ã  des fichiers de statistiques, rÃ©sumant les diffÃ©rentes inscriptions aux Ã©vÃ©nements. 
+L'administrateur aura également accès à des fichiers de statistiques, résumant les différentes inscriptions aux événements. 
 
-\section{Ã‰tude du projet}
+\section{Étude du projet}
 \subsection{Architecture}
 
-Avant de coder, nous avons clairement Ã©tabli l'architecture de notre projet, sa structure afin d'avoir un code consistant et organisÃ©.
+Avant de coder, nous avons clairement établi l'architecture de notre projet, sa structure afin d'avoir un code consistant et organisé.
 
 \subsubsection{Patron de conception}
 
-Les patrons de conception sont des modÃ¨les efficaces pour concevoir un projet. Dans le cas du web, le patron ModÃ¨le - Vue - ContrÃ´leur est majoritairement utilisÃ©, et c'est celui que nous avons choisi. Il permet de segmenter notre code, et limiter sa duplication. La partie modÃ¨le correspond Ã  nos donnÃ©es (que nous persistons, dans une base de donnÃ©e par exemple). La vue est une faÃ§on de prÃ©senter les donnÃ©es. Dans notre cas, nous gÃ©nÃ©rons du \textit{HTML}. Enfin, le contrÃ´leur rÃ©cupÃ¨re la requÃªte de l'utilisateur, rÃ©alise les requÃªtes nÃ©cessaires sur les modÃ¨les et renvoie la vue Ã  l'utilisateur.
+Les patrons de conception sont des modèles efficaces pour concevoir un projet. Dans le cas du web, le patron Modèle - Vue - Contrôleur est majoritairement utilisé, et c'est celui que nous avons choisi. Il permet de segmenter notre code, et limiter sa duplication. La partie modèle correspond à nos données (que nous persistons, dans une base de donnée par exemple). La vue est une façon de présenter les données. Dans notre cas, nous générons du \textit{HTML}. Enfin, le contrôleur récupère la requête de l'utilisateur, réalise les requêtes nécessaires sur les modèles et renvoie la vue à l'utilisateur.
 
-\subsubsection{ModÃ¨le de donnÃ©es}
+\subsubsection{Modèle de données}
 \label{mdd}
 
 \begin{figure}[!h]
    \includegraphics[width=15cm]{fig/uml-models}
-   \caption{\label{uml} Diagramme \textit{UML} des modÃ¨les}
+   \caption{\label{uml} Diagramme \textit{UML} des modèles}
 \end{figure}
-Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnÃ©e. Ainsi la base de donnÃ©es est gÃ©nÃ©rÃ©e Ã  partir de nos ModÃ¨les. Nous pouvons aisÃ©ment passer d'une base de donnÃ©e sqlite, Ã  une base MySQL ou encore PostgreSQL.
+Nous utilisons un ORM (Object-Relational Mapping), qui permet d'abstraire notre base de donnée. Ainsi la base de données est générée à partir de nos Modèles. Nous pouvons aisément passer d'une base de donnée sqlite, à une base MySQL ou encore PostgreSQL.
 
-Nous avons donc rÃ©alisÃ© un diagramme \textit{UML} de nos modÃ¨les.
+Nous avons donc réalisé un diagramme \textit{UML} de nos modèles.
 
-\subsection{Technologies utilisÃ©es}
-Le choix des technologies a Ã©tÃ© fait dans le but de crÃ©er un projet lÃ©ger, et simple Ã  mettre en place. 
-\paragraph*{Ruby et Sinatra} Nous avons choisi d'utiliser le langage ruby en concert avec le framework Sinatra. Ce dernier est un DSL (Domain Specific Language), et est plus lÃ©ger que d'autres gros frameworks comme \textit{Ruby on Rails}. GrÃ¢ce Ã  leur forte modularitÃ©, nous avons pu rÃ©utiliser de nombreux composants de base de \textit{Ruby on Rails}. 
+\subsection{Technologies utilisées}
+Le choix des technologies a été fait dans le but de créer un projet léger, et simple à mettre en place. 
+\paragraph*{Ruby et Sinatra} Nous avons choisi d'utiliser le langage ruby en concert avec le framework Sinatra. Ce dernier est un DSL (Domain Specific Language), et est plus léger que d'autres gros frameworks comme \textit{Ruby on Rails}. Grâce à leur forte modularité, nous avons pu réutiliser de nombreux composants de base de \textit{Ruby on Rails}. 
 
 \paragraph{SGBD}
-Nous utilisons un SGBD relationnel Ã  travers l'utilisation de l'ORM \textit{Activerecord}. Pour les dÃ©veloppements, nous avons choisi d'utiliser une base de donnÃ©e \textit{sqlite3}, plus facile de configuration. Cependant, en changeant les paramÃ¨tres, il est trÃ¨s facile de se connecter Ã  une base \textit{MySQL} ou \textit{PostgreSQL}.
+Nous utilisons un SGBD relationnel à travers l'utilisation de l'ORM \textit{Activerecord}. Pour les développements, nous avons choisi d'utiliser une base de donnée \textit{sqlite3}, plus facile de configuration. Cependant, en changeant les paramètres, il est très facile de se connecter à une base \textit{MySQL} ou \textit{PostgreSQL}.
 
 \paragraph{Frontend}
-Afin d'uniformiser l'apparence du site web sur tous les navigateurs, de rÃ©aliser facilement un site web responsive et de minimiser les dÃ©veloppements en CSS, nous avons choisi d'utiliser le framework \textit{Bootstrap}. Ce dernier livre aussi quelques Ã©lÃ¨ments d'interfaces, trÃ¨s apprÃ©ciÃ©s pour leur clartÃ©.
+Afin d'uniformiser l'apparence du site web sur tous les navigateurs, de réaliser facilement un site web responsive et de minimiser les développements en CSS, nous avons choisi d'utiliser le framework \textit{Bootstrap}. Ce dernier livre aussi quelques élèments d'interfaces, très appréciés pour leur clarté.
 
 \subsection{Organisation du projet}
-Pour le projet, nous avons dÃ©cidÃ© de ne pas nous prÃ©cipiter et de d'abord fixer les bases du projet. Lors de rÃ©unions effectuÃ©es entre membre du groupe, nous avons rÃ©flÃ©chi durant le premier semestre aux technologies utilisÃ©es, mais aussi Ã  l'organisation que nous suivrions durant le reste du projet. 
+Pour le projet, nous avons décidé de ne pas nous précipiter et de d'abord fixer les bases du projet. Lors de réunions effectuées entre membre du groupe, nous avons réfléchi durant le premier semestre aux technologies utilisées, mais aussi à l'organisation que nous suivrions durant le reste du projet. 
 
-Nous avons choisi la mÃ©thode Agile comme mÃ©thode de travail. Nous devions donc poser diffÃ©rentes deadlines et prÃ©senter rÃ©guliÃ¨rement notre travail Ã  l'encadrant. Les diffÃ©rentes dates de rendu ont Ã©tÃ© placÃ©es afin d'avoir une base de travail convenable, et que chacun puisse s'y retrouver dans le travail Ã  effectuer. Les diffÃ©rentes Ã©tapes furent les suivantes :
+Nous avons choisi la méthode Agile comme méthode de travail. Nous devions donc poser différentes deadlines et présenter régulièrement notre travail à l'encadrant. Les différentes dates de rendu ont été placées afin d'avoir une base de travail convenable, et que chacun puisse s'y retrouver dans le travail à effectuer. Les différentes étapes furent les suivantes :
 
 \begin{itemize}
 \item Gestion des articles et des pages.
-\item Gestion des Ã©vÃ©nements et des utilisateurs.
-\item Gestion des rÃ©sumÃ©s et des paramÃ¨tres du site.
-\item Diverses amÃ©liorations.
+\item Gestion des événements et des utilisateurs.
+\item Gestion des résumés et des paramètres du site.
+\item Diverses améliorations.
 \end{itemize}
 
 
 \bigbreak
-Il fut donc dÃ©cidÃ© d'utiliser \textit{GitHub}, un gestionnaire de version, afin de travailler tous sur le mÃªme projet mais chacun de son cÃ´tÃ©. Nous pouvions ainsi dÃ©velopper en local sur nos ordinateurs personnels, puis envoyer nos modifications sur le serveur commun.
+Il fut donc décidé d'utiliser \textit{GitHub}, un gestionnaire de version, afin de travailler tous sur le même projet mais chacun de son côté. Nous pouvions ainsi développer en local sur nos ordinateurs personnels, puis envoyer nos modifications sur le serveur commun.
 
-D'autres fonctionnalitÃ©s de \textit{GitHub} ont Ã©galement Ã©tÃ© trÃ¨s utiles comme les \textit{Milestones} ou les \textit{issues}. Les premiÃ¨res permettent de poser une date de rendu de travail. Les \textit{issues} quant Ã  elles nous permettaient de prÃ©ciser diffÃ©rents soucis dans la construction ou le dÃ©veloppement du site, ou de dÃ©tailler les fonctionnalitÃ©s Ã  ajouter au site. Par exemple, pour les rÃ©sumÃ©s, il a Ã©tÃ© dÃ©cidÃ© dÃ¨s le dÃ©but de crÃ©er un formulaire dans la partie profil utilisateur, d'obliger les fichiers Ã  Ãªtre au format pdf, et bien d'autres prÃ©cisions concernant le dÃ©veloppement.
+D'autres fonctionnalités de \textit{GitHub} ont également été très utiles comme les \textit{Milestones} ou les \textit{issues}. Les premières permettent de poser une date de rendu de travail. Les \textit{issues} quant à elles nous permettaient de préciser différents soucis dans la construction ou le développement du site, ou de détailler les fonctionnalités à ajouter au site. Par exemple, pour les résumés, il a été décidé dès le début de créer un formulaire dans la partie profil utilisateur, d'obliger les fichiers à être au format pdf, et bien d'autres précisions concernant le développement.
 
 @TODO:JEAN
 
-\section{DÃ©veloppement des fonctionnalitÃ©s}
+\section{Développement des fonctionnalités}
 
 \subsection{CMS}
-L'une des premiÃ¨res fonctionnalitÃ©s ajoutÃ©es furent les Articles et les Pages. Il s'agissaient de permettre la crÃ©ation, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un systÃ¨me de CRUD (Create, Read, Update, Delete), nous avons travaillÃ© chacun de notre cÃ´tÃ© afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela Ã©tait nÃ©cessaire. Nous avons ainsi dÃ©veloppÃ© ces Pages et Articles dont la gestion est trÃ¨s semblable.
+L'une des premières fonctionnalités ajoutées furent les Articles et les Pages. Il s'agissaient de permettre la création, la modification et la suppression d'articles et de pages sans toucher une ligne de code. Pour la mise en place d'un système de CRUD (Create, Read, Update, Delete), nous avons travaillé chacun de notre côté afin d'assimiler les bases de Sinatra, de Ruby, d'HTML et de Bootstrap lorsque cela était nécessaire. Nous avons ainsi développé ces Pages et Articles dont la gestion est très semblable.
 
-AprÃ¨s avoir ajoutÃ© les tables liÃ©es dans la base (tables articles et pages), il fallait d'abord crÃ©er un formulaire Web afin de rentrer les informations de la page ou de l'article. Les informations entrÃ©es sont ensuite utilisÃ©es pour la crÃ©ation d'un Ã©lÃ©ment Article ou Page dans la base.
+Après avoir ajouté les tables liées dans la base (tables articles et pages), il fallait d'abord créer un formulaire Web afin de rentrer les informations de la page ou de l'article. Les informations entrées sont ensuite utilisées pour la création d'un élément Article ou Page dans la base.
 
-Suite Ã  la crÃ©ation de la page, il Ã©tait nÃ©cessaire d'avoir un formulaire afin de modifier la page ou l'article aisÃ©ment. Dans la partie administration, les anciennes informations sont donc affichÃ©es et il est possible d'en entrer de nouvelles. Celles-ci permettront la mise Ã  jour de l'Ã©lÃ©ment sÃ©lectionnÃ©. La page ou l'article ont ensuite Ã©tÃ© liÃ©s Ã  des boutons permettant de les supprimer. 
+Suite à la création de la page, il était nécessaire d'avoir un formulaire afin de modifier la page ou l'article aisément. Dans la partie administration, les anciennes informations sont donc affichées et il est possible d'en entrer de nouvelles. Celles-ci permettront la mise à jour de l'élément sélectionné. La page ou l'article ont ensuite été liés à des boutons permettant de les supprimer. 
 
-Il faut ensuite afficher ces pages ou articles. Lors d'une requÃªte au serveur, les informations de la base de donnÃ©es sont envoyÃ©s Ã  l'utilisateur et forment un article ou une page sur le navigateur.
+Il faut ensuite afficher ces pages ou articles. Lors d'une requête au serveur, les informations de la base de données sont envoyés à l'utilisateur et forment un article ou une page sur le navigateur.
 
-\subsection{Ã‰vÃ¨nements}
-Les Ã©vÃ©nements comportent trois aspects : la description de l'Ã©vÃ©nement, la gestion de l'inscrition Ã  l'Ã©vÃ©nement, et la gestion des statistiques qui permettent de tÃ©lÃ©charger un fichier Excel, qui rÃ©sumera toutes les inscriptions. 
+\subsection{Évènements}
+Les événements comportent trois aspects : la description de l'événement, la gestion de l'inscrition à l'événement, et la gestion des statistiques qui permettent de télécharger un fichier Excel, qui résumera toutes les inscriptions. 
 
-Nous avons sÃ©parÃ© le travail en petites Ã©tapes, construisant tout d'abord une base, puis en la complexifiant peu Ã  peu. 
-
-\medbreak
-%\subsection*{La crÃ©ation des Ã©vÃ©nements}
-
-La premiÃ¨re Ã©tape consiste en la crÃ©ation du \textit{CRUD} de l'Ã©vÃ©nement. Cette Ã©tape est plutÃ´t simple, puisqu'un Ã©vÃ©nement n'est en lui mÃªme qu'un article avec quelques colonnes en plus : les dates de dÃ©but et de fin de l'Ã©vÃ©nement, le nombre limite de place, et l'activation des inscriptions. 
+Nous avons séparé le travail en petites étapes, construisant tout d'abord une base, puis en la complexifiant peu à peu. 
 
 \medbreak
-%\subsection*{La crÃ©ation du formulaire d'inscription}
-Une fois le \textit{CRUD} de l'Ã©vÃ©nement terminÃ©, nous y avons ajoutÃ© la possibilitÃ© de crÃ©er un Ã©lÃ©ment de formulaire. En effet, lorsque l'utilisateur s'inscrit Ã  l'Ã©vÃ©nement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complÃ©mentaire (imaginons qu'un Ã©vÃ©nement soit en hauteur, il peut Ãªtre utile de savoir si l'utilisateur Ã  le vertige\dots). 
+%\subsection*{La création des événements}
 
-Cette crÃ©ation est lÃ©gÃ¨rement plus complexe que la crÃ©ation d'un article. Nous avons recontrÃ© une grosse difficultÃ© ici : l'Ã©lÃ©ment doit Ãªtre reliÃ© Ã  un Ã©vÃ©nement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifier normalement ce processus. Cependant, la configuration n'a pas Ã©tÃ© correctement effectuÃ©e dans un premier temps. Il fallait alors Ã©crire une grande partie des requÃªtes \textit{SQL} Ã  la main. Cela a Ã©tÃ© une lÃ©gÃ¨re perte de temps, puisqu'il a fallu, quelques jours plus tard, corrigÃ© cette maladresse. 
+La première étape consiste en la création du \textit{CRUD} de l'événement. Cette étape est plutôt simple, puisqu'un événement n'est en lui même qu'un article avec quelques colonnes en plus : les dates de début et de fin de l'événement, le nombre limite de place, et l'activation des inscriptions. 
+
+\medbreak
+%\subsection*{La création du formulaire d'inscription}
+Une fois le \textit{CRUD} de l'événement terminé, nous y avons ajouté la possibilité de créer un élément de formulaire. En effet, lorsque l'utilisateur s'inscrit à l'événement, on souhaite qu'il puisse remplir un formulaire pour ajouter des informations complémentaire (imaginons qu'un événement soit en hauteur, il peut être utile de savoir si l'utilisateur à le vertige\dots). 
+
+Cette création est légèrement plus complexe que la création d'un article. Nous avons recontré une grosse difficulté ici : l'élément doit être relié à un événement. Il s'agit donc d'une relation \textit{many to one}. \textit{Activerecord} simplifier normalement ce processus. Cependant, la configuration n'a pas été correctement effectuée dans un premier temps. Il fallait alors écrire une grande partie des requêtes \textit{SQL} à la main. Cela a été une légère perte de temps, puisqu'il a fallu, quelques jours plus tard, corrigé cette maladresse. 
 
 \medbreak
 %\subsection*{La gestion des inscriptions}
-Lorsque les Ã©lÃ©ments de formulaires furent correctement configurÃ©s,  nous avons implÃ©mentÃ© l'inscription Ã  un Ã©vÃ©nement. Celle ci utilise Ã©galement des relations \textit{SQL}, cependant la technologie nous Ã©tais connue Ã  ce moment. Cette partie a donc Ã©tÃ© relativement rapide. 
+Lorsque les éléments de formulaires furent correctement configurés,  nous avons implémenté l'inscription à un événement. Celle ci utilise également des relations \textit{SQL}, cependant la technologie nous étais connue à ce moment. Cette partie a donc été relativement rapide. 
 
-Deux Ã©lÃ©ments sont a vÃ©rifiÃ© : l'utilisateur doit bien remplir les diffÃ©rents champs, et le site doit vÃ©rifier que le nombre limite de place n'a pas Ã©tÃ© dÃ©passÃ©.
+Deux éléments sont a vérifié : l'utilisateur doit bien remplir les différents champs, et le site doit vérifier que le nombre limite de place n'a pas été dépassé.
 \medbreak
 %\subsection*{La gestion des statistiques}
 Par la suite, nous avons mis en place la gestion des statistiques. 
-Cette partie Ã  Ã©galement Ã©tÃ© plutÃ´t rapide Ã  produire. L'administrateur peut visualiser les statistiques de deux maniÃ¨res diffÃ©rentes (soit sur Excel, soit directement sur le site web). Nous avons donc dÃ©cidÃ© de crÃ©er un tableau ruby, rÃ©sumant toutes les informations. Ce tableau peut ensuite Ãªtre, soit affichÃ© dans le site, soit exportÃ© en fichier \textit{.xls}. 
+Cette partie à également été plutôt rapide à produire. L'administrateur peut visualiser les statistiques de deux manières différentes (soit sur Excel, soit directement sur le site web). Nous avons donc décidé de créer un tableau ruby, résumant toutes les informations. Ce tableau peut ensuite être, soit affiché dans le site, soit exporté en fichier \textit{.xls}. 
 
-C'est la seule partie du projet ou nous avons utilisÃ© pleinement le langage Ruby. MalgrÃ© les conventions de nommage diffÃ©rentes de celle habituel (l'instance actuelle de l'objet s'appelle \verb!self!, et pas \verb!this! comme dans certains langage, ... ), l'utilisation d'un langage orientÃ© objet nous est plutÃ´t familiÃ¨re.   
+C'est la seule partie du projet ou nous avons utilisé pleinement le langage Ruby. Malgré les conventions de nommage différentes de celle habituel (l'instance actuelle de l'objet s'appelle \verb!self!, et pas \verb!this! comme dans certains langage, ... ), l'utilisation d'un langage orienté objet nous est plutôt familière.   
 
 \subsection{Utilisateurs}
 
-MÃªme si aux premiers abords, la gestion des utilisateurs peut sembler simple, elle recÃ¨le quelques subtilitÃ©s. De plus, certaines informations Ã©tant confidentielles, il est important de les protÃ©ger correctement.
+Même si aux premiers abords, la gestion des utilisateurs peut sembler simple, elle recèle quelques subtilités. De plus, certaines informations étant confidentielles, il est important de les protéger correctement.
 
 \subsubsection{Inscription / Connexion}
 
 L'inscription et la connexion de l'utilisateur se font via un formulaire. Nous avons choisi l'email comme identifiant. 
 
-La connexion est gÃ©rÃ©e via l'utilisation de sessions cÃ´tÃ© serveur. Afin de vÃ©rifier les identifiants fournis, un hash est gÃ©nÃ©rÃ© Ã  partir du mot de passe fourni et comparÃ© Ã  celui stockÃ© en base de donnÃ©e
+La connexion est gérée via l'utilisation de sessions côté serveur. Afin de vérifier les identifiants fournis, un hash est généré à partir du mot de passe fourni et comparé à celui stocké en base de donnée
 
-L'inscription se cantonne Ã  crÃ©er un utilisateur en base de donnÃ©e, puis passe la main Ã  la validation de l'email.
+L'inscription se cantonne à créer un utilisateur en base de donnée, puis passe la main à la validation de l'email.
 
 \subsubsection{Validation de l'email}
 
-La validation de l'email se fait via l'envoi d'un email Ã  l'adresse indiquÃ©e afin de vÃ©rifier que cette derniÃ¨re est bien correcte et appartient bien Ã  l'utilisateur. Ce dernier n'a plus qu'Ã  cliquer sur un lien, et son compte sera validÃ©. Afin d'amÃ©liorer l'expÃ©rience utilisateur, ce dernier est aussi authentifiÃ©. 
+La validation de l'email se fait via l'envoi d'un email à l'adresse indiquée afin de vérifier que cette dernière est bien correcte et appartient bien à l'utilisateur. Ce dernier n'a plus qu'à cliquer sur un lien, et son compte sera validé. Afin d'améliorer l'expérience utilisateur, ce dernier est aussi authentifié. 
 
-CÃ´tÃ© serveur, un jeton est gÃ©nÃ©rÃ© pour l'utilisateur, Ã  usage unique. A partir de ce dernier et de l'email de l'utilisateur, un lien est gÃ©nÃ©rÃ©, et envoyÃ© par email. Lors du clic sur le lien, si les informations correspondent, l'utilisateur passe authentifiÃ© et est automatiquement connectÃ© pour cette session. Le jeton est alors dÃ©truit.
+Côté serveur, un jeton est généré pour l'utilisateur, à usage unique. A partir de ce dernier et de l'email de l'utilisateur, un lien est généré, et envoyé par email. Lors du clic sur le lien, si les informations correspondent, l'utilisateur passe authentifié et est automatiquement connecté pour cette session. Le jeton est alors détruit.
 
-\subsubsection{SÃ©curitÃ©}
+\subsubsection{Sécurité}
 
-Tous d'abord, les mots de passes sont hashÃ©s et salÃ©s dynamiquement. Tout d'abord, le hash est une fonction injective, et ne permet donc pas de retrouver le mot de passe depuis ce dernier. De plus, le fait de saler le mot de passe permet d'empÃªcher la personne malveillante de retrouver le mot de passe Ã  partir d'un rainbow table, ni mÃªme d'en gÃ©nÃ©rer ou encore de rÃ©aliser des suppositions sur le mot de passe. En effet, deux utilisateurs ayant le mÃªme mot de passe auront un hash diffÃ©rent grÃ¢ce au salage dynamique.
+Tous d'abord, les mots de passes sont hashés et salés dynamiquement. Tout d'abord, le hash est une fonction injective, et ne permet donc pas de retrouver le mot de passe depuis ce dernier. De plus, le fait de saler le mot de passe permet d'empêcher la personne malveillante de retrouver le mot de passe à partir d'un rainbow table, ni même d'en générer ou encore de réaliser des suppositions sur le mot de passe. En effet, deux utilisateurs ayant le même mot de passe auront un hash différent grâce au salage dynamique.
 
-Enfin, une fois authentifiÃ©, l'utilisateur est gÃ©rÃ© via une session, les informations sont donc stockÃ©es cÃ´tÃ© serveur et ne peuvent donc pas Ãªtre modifiÃ©es par la personne. Ce qui serait le cas si elles Ã©taient stockÃ©es directement dans le cookie.
+Enfin, une fois authentifié, l'utilisateur est géré via une session, les informations sont donc stockées côté serveur et ne peuvent donc pas être modifiées par la personne. Ce qui serait le cas si elles étaient stockées directement dans le cookie.
 
-Plusieurs rÃ´les sont dÃ©finis : Non authentifiÃ©, Compte Non validÃ©, Utilisateur, ModÃ©rateur et Administrateur. Chaque page peut Ãªtre restreinte Ã  un rÃ´le particulier.
+Plusieurs rôles sont définis : Non authentifié, Compte Non validé, Utilisateur, Modérateur et Administrateur. Chaque page peut être restreinte à un rôle particulier.
 
-\subsubsection{RÃ©cupÃ©ration de mot de passe}
+\subsubsection{Récupération de mot de passe}
 
-La rÃ©cupÃ©ration de mot de passe fonctionne sensiblement pareil que la validation par email. Un jeton est gÃ©nÃ©rÃ© pour l'utilisateur, qui lui est envoyÃ© par mail et permet Ã  ce dernier de se connecter sans entrer son mot de passe. Ce dernier est dÃ©truit Ã  l'utilisation. Mais l'utilisateur peut changer son mot de passe durant cette session.
+La récupération de mot de passe fonctionne sensiblement pareil que la validation par email. Un jeton est généré pour l'utilisateur, qui lui est envoyé par mail et permet à ce dernier de se connecter sans entrer son mot de passe. Ce dernier est détruit à l'utilisation. Mais l'utilisateur peut changer son mot de passe durant cette session.
 
 \subsection{Candidatures}
 
-Les Reviews sont les rÃ©sumÃ©s envoyÃ©s par les inscrits qui souhaitent participer Ã  la confÃ©rence. Il faut donc rÃ©cupÃ©rer des fichiers soumis sur le site. Une des difficultÃ©s est donc le stockage de ces fichiers. En effet ceux-ci doivent Ãªtre accessible facilement par le serveur, pour l'affichage ultÃ©rieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyÃ©s. 
+Les Reviews sont les résumés envoyés par les inscrits qui souhaitent participer à la conférence. Il faut donc récupérer des fichiers soumis sur le site. Une des difficultés est donc le stockage de ces fichiers. En effet ceux-ci doivent être accessible facilement par le serveur, pour l'affichage ultérieur, mais pas par un utilisateur lambda. Sinatra et Ruby permettent la sauvegarde des fichiers envoyés. 
 
 
 \bigbreak
-Cependant, il a d'abord fallu crÃ©er les tables \textit{reviews} et \textit{reviewpropositions} dans la base de donnÃ©e. \textit{Reviews} contient le nom du participant, le nom de la confÃ©rence, l'Ã©tat de l'inscription et est liÃ© aux reviewpropositions. Ceux-ci sont crÃ©es Ã  chaque nouvelle soumission de rÃ©sumÃ©. Ils contiennent le lien vers le fichier, un commentaire du participant expliquant la proposition et le lien vers la review liÃ©e. 
+Cependant, il a d'abord fallu créer les tables \textit{reviews} et \textit{reviewpropositions} dans la base de donnée. \textit{Reviews} contient le nom du participant, le nom de la conférence, l'état de l'inscription et est lié aux reviewpropositions. Ceux-ci sont crées à chaque nouvelle soumission de résumé. Ils contiennent le lien vers le fichier, un commentaire du participant expliquant la proposition et le lien vers la review liée. 
 
-Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{users} ont Ã©tÃ© difficiles Ã  mettre en place. Il a fallu crÃ©er des associations entre les diffÃ©rentes tables. AprÃ¨s de nombreux essais, recherches et tests, les liens en dur ont Ã©tÃ© changÃ©s en \textit{references} entre les tables. 
+Ici, le lien entre les \textit{reviews}, \textit{reviewpropositions} et \textit{users} ont été difficiles à mettre en place. Il a fallu créer des associations entre les différentes tables. Après de nombreux essais, recherches et tests, les liens en dur ont été changés en \textit{references} entre les tables. 
 
 
 \bigbreak
-Lorsque les tables furent crÃ©es et la base de donnÃ©es migrÃ©e, est arrivÃ© le problÃ¨me de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers Ã  la racine du projet et de stocker dans la base de donnÃ©e les hash MD5 des fichiers. Il s'agit d'une chaine de caractÃ¨re gÃ©nÃ©rÃ©e selon un algorithme. Elle est diffÃ©rente pour chaque fichier et permet donc de les diffÃ©rencier dans la base. En effet, stocker le nom serait une trÃ¨s mauvaise idÃ©e si deux fichiers se trouvaient Ã  avoir le mÃªme nom. 
+Lorsque les tables furent crées et la base de données migrée, est arrivé le problème de la sauvegarde des fichiers. Le choix fut fait de stocker les fichiers à la racine du projet et de stocker dans la base de donnée les hash MD5 des fichiers. Il s'agit d'une chaine de caractère générée selon un algorithme. Elle est différente pour chaque fichier et permet donc de les différencier dans la base. En effet, stocker le nom serait une très mauvaise idée si deux fichiers se trouvaient à avoir le même nom. 
 
-La soumission des rÃ©sumÃ©s par les utilisateurs fut donc ajoutÃ©e dans la partie profil
+La soumission des résumés par les utilisateurs fut donc ajoutée dans la partie profil
 
 
-\subsection{ParamÃ¨tres}
+\subsection{Paramètres}
 
-Nous avons voulu crÃ©er une plateforme de gestion de confÃ©rence assez ouverte. Nous voulons donc que cette derniÃ¨re puisse Ãªtre rÃ©utilisable pour d'autres Ã©vÃ¨nements, c'est pourquoi de nombreuses donnÃ©es peuvent Ãªtre modifiÃ©es.
+Nous avons voulu créer une plateforme de gestion de conférence assez ouverte. Nous voulons donc que cette dernière puisse être réutilisable pour d'autres évènements, c'est pourquoi de nombreuses données peuvent être modifiées.
 
-Entre autre les informations de base du site : nom, slogan, couverture. Mais aussi des informations de paiement, le serveur de mail utilisÃ©...
+Entre autre les informations de base du site : nom, slogan, couverture. Mais aussi des informations de paiement, le serveur de mail utilisé...
 
-\section{QualitÃ© logiciel}
+\section{Qualité logiciel}
 
-La qualitÃ© logiciel a Ã©tÃ© un point clÃ© du dÃ©veloppement de notre application web, et ce dÃ¨s le dÃ©but. En Ã©tant strict Ã  ce niveau lÃ , nous n'avons pas rencontrÃ© de problÃ¨mes particuliers lorsque la taille du projet a commencÃ© Ã  augmenter.
+La qualité logiciel a été un point clé du développement de notre application web, et ce dès le début. En étant strict à ce niveau là, nous n'avons pas rencontré de problèmes particuliers lorsque la taille du projet a commencé à augmenter.
 
 \subsection{Gestionnaire de version}
 
-Nous avons choisi \textit{git}, gestionnaire de version de derniÃ¨re gÃ©nÃ©ration et actuellement le plus utilisÃ©. Nous avons pu profiter de toutes ses fonctionnalitÃ©s, avec entre autre les tags et les branches. Nous nous sommes basÃ©s sur un modÃ¨le existant et Ã©prouvÃ©\cite{nvie} et l'avons adaptÃ© Ã  nos besoins.
+Nous avons choisi \textit{git}, gestionnaire de version de dernière génération et actuellement le plus utilisé. Nous avons pu profiter de toutes ses fonctionnalités, avec entre autre les tags et les branches. Nous nous sommes basés sur un modèle existant et éprouvé\cite{nvie} et l'avons adapté à nos besoins.
 
 \subsection{Tests unitaires}
 
-Nous avons testÃ© unitairement l'ensemble des classes que nous utilisions : nos modÃ¨les ainsi que toutes nos classes appartenant Ã  notre business layer. 
+Nous avons testé unitairement l'ensemble des classes que nous utilisions : nos modèles ainsi que toutes nos classes appartenant à notre business layer. 
 
 Nous n'avons pas pu tester nos controllers unitairement, car en ayant fais le choix de Sinatra, un DSL, ces derniers ne sont pas testables.
 
 \subsection{Tests fonctionnels}
 
-Les tests fonctionnels sont des scÃ©narios types, pour tester le comportement de notre application dans son ensemble.
+Les tests fonctionnels sont des scénarios types, pour tester le comportement de notre application dans son ensemble.
 
-En ayant fais le choix de \textit{Capybara}, nous pouvons Ã  travers son API unique, lancer nos tests sur une grande variÃ©tÃ© de plateformes. En effet, par dÃ©faut les tests fonctionnels se font sans interface graphique, grÃ¢ce au driver \verb!rack_test! qui ne lance pas de navigateur et se contente de vÃ©rifier le html gÃ©nÃ©rÃ©. 
+En ayant fais le choix de \textit{Capybara}, nous pouvons à travers son API unique, lancer nos tests sur une grande variété de plateformes. En effet, par défaut les tests fonctionnels se font sans interface graphique, grâce au driver \verb!rack_test! qui ne lance pas de navigateur et se contente de vérifier le html généré. 
 
-Mais sans modifier nos tests, nous pouvons lancer ces derniers avec \textit{Selenium-Webdriver}, qui lance le navigateur de notre choix et simule les clics de souris et les entrÃ©es claviers.
+Mais sans modifier nos tests, nous pouvons lancer ces derniers avec \textit{Selenium-Webdriver}, qui lance le navigateur de notre choix et simule les clics de souris et les entrées claviers.
 
-\subsection{IntÃ©gration continue}
+\subsection{Intégration continue}
 
-L'intÃ©gration continue permet de s'assurer de la viabilitÃ© de notre projet au cours de son dÃ©veloppement.
+L'intégration continue permet de s'assurer de la viabilité de notre projet au cours de son développement.
 
-En effet, Ã  chaque commit \textit{Travis} lance un build. Pour chaque build, \textit{Travis} crÃ©er une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dÃ©pendances, configure l'environnement et lance les tests.
+En effet, à chaque commit \textit{Travis} lance un build. Pour chaque build, \textit{Travis} créer une nouvelle machine virtuelle, totalement vierge. Puis, il installe les dépendances, configure l'environnement et lance les tests.
 
-Ainsi, nous nous assurons que pour un commit donnÃ©, notre application est bien pleinement compatible avec un environnement donnÃ© et clairement dÃ©fini.
+Ainsi, nous nous assurons que pour un commit donné, notre application est bien pleinement compatible avec un environnement donné et clairement défini.
 
-Dans le cas d'un Ã©chec de build, les collaborateurs du projet reÃ§oivent un mail les alertant de l'erreur, ainsi qu'un compte-rendu du build.
+Dans le cas d'un échec de build, les collaborateurs du projet reçoivent un mail les alertant de l'erreur, ainsi qu'un compte-rendu du build.
 
-Nous pouvons alors sereinement dÃ©ployÃ© notre application Ã  n'importe quel moment.
+Nous pouvons alors sereinement déployé notre application à n'importe quel moment.
 
-Enfin \textit{Travis} permet de crÃ©er des matrices de build, qui permettent de tester le projet avec des configuration diffÃ©rentes. Par exemple 4 versions de ruby diffÃ©rentes et 3 SGBD diffÃ©rents. \textit{Travis} lancera alors 12 builds.
+Enfin \textit{Travis} permet de créer des matrices de build, qui permettent de tester le projet avec des configuration différentes. Par exemple 4 versions de ruby différentes et 3 SGBD différents. \textit{Travis} lancera alors 12 builds.
 
 \subsection{Revue de code automatique}
 
-La revue de code automatique permet Ã  notre Ã©quipe d'acquÃ©rir les bons rÃ©flexes et de s'amÃ©liorer au fur et Ã  mesure du dÃ©veloppement de l'application.
+La revue de code automatique permet à notre équipe d'acquérir les bons réflexes et de s'améliorer au fur et à mesure du développement de l'application.
 
-Cela permet aussi d'amÃ©liorer sa maintenabilitÃ©.
+Cela permet aussi d'améliorer sa maintenabilité.
 
-\textit{Codeclimate} calcule aussi la couverture de tests de l'application, afin d'avoir un aperÃ§u des fonctions testÃ©es et des fonctions qui ne sont pas testÃ©es.
+\textit{Codeclimate} calcule aussi la couverture de tests de l'application, afin d'avoir un aperçu des fonctions testées et des fonctions qui ne sont pas testées.
 
-\section{DÃ©ploiement}
+\section{Déploiement}
 
-Nous n'avons pas encore eu l'occasion de dÃ©ployer notre projet en production, mais avons un serveur de dÃ©mo (UAT, User Acceptance Testing).
+Nous n'avons pas encore eu l'occasion de déployer notre projet en production, mais avons un serveur de démo (UAT, User Acceptance Testing).
 
-Il est d'ailleurs actuellement accessible Ã  l'URL suivante : http://suzanne.deuxfleurs.fr
+Il est d'ailleurs actuellement accessible à l'URL suivante : http://suzanne.deuxfleurs.fr
 
-Nous avons choisi un conteneur LXC pour le compartimenter du reste du systÃ¨me, avec une distribution Debian stable.
+Nous avons choisi un conteneur LXC pour le compartimenter du reste du système, avec une distribution Debian stable.
 
-Nous recommandons l'utilisation du serveur web thin en lieu et place du serveur de dÃ©veloppement webrick. En effet, thin est plus optimisÃ©. De plus, il est possible de mettre en place un reverse proxy, comme nginx ou varnish devant le serveur ruby, qui peut servir les fichiers statiques directement sans avoir Ã  passer par notre serveur, nÃ©cessairement plus lent.
+Nous recommandons l'utilisation du serveur web thin en lieu et place du serveur de développement webrick. En effet, thin est plus optimisé. De plus, il est possible de mettre en place un reverse proxy, comme nginx ou varnish devant le serveur ruby, qui peut servir les fichiers statiques directement sans avoir à passer par notre serveur, nécessairement plus lent.
 
-Dans le cas d'une utilisation professionnelle, il est aussi fortement recommandÃ© d'utiliser une connexion chiffrÃ©e avec un certificat valide (https), afin d'Ã©viter la transmission d'informations sensibles en clair. 
+Dans le cas d'une utilisation professionnelle, il est aussi fortement recommandé d'utiliser une connexion chiffrée avec un certificat valide (https), afin d'éviter la transmission d'informations sensibles en clair. 
 
 \section{Conclusion} 
  
-Le dÃ©veloppement de cette Ã©tude pratique nous a permis de nous mettre en situation dâ€™une gestion de projet, Ã©tape essentiel dans la vie dâ€™un Ã©lÃ¨ve-ingÃ©nieur. Nous avons expÃ©rimentÃ© le dÃ©veloppement en groupe, mais nous avons pu Ã©galement aborder la relation client.
+Le développement de cette étude pratique nous a permis de nous mettre en situation d´une gestion de projet, étape essentiel dans la vie d´un élève-ingénieur. Nous avons expérimenté le développement en groupe, mais nous avons pu également aborder la relation client.
 
-Nous avons commencÃ© par comprendre les besoin de notre encadrant puis  de trouver les technologies adaptÃ©s. Nous avons aussi collaborÃ© pour implÃ©menter chaque fonctionnalitÃ© une Ã  une, en sâ€™assurant quâ€™elles correspondent Ã  ce quâ€™il attendais.
+Nous avons commencé par comprendre les besoin de notre encadrant puis  de trouver les technologies adaptés. Nous avons aussi collaboré pour implémenter chaque fonctionnalité une à une, en s´assurant qu´elles correspondent à ce qu´il attendais.
 
-La sÃ©paration des tÃ¢ches nous a permis de nous focaliser chacun sur notre travail Ã  rÃ©aliser, et aussi dâ€™optimiser le temps dâ€™apprentissage, chacun apprend ce dont il a besoin.
+La séparation des tâches nous a permis de nous focaliser chacun sur notre travail à réaliser, et aussi d´optimiser le temps d´apprentissage, chacun apprend ce dont il a besoin.
 
-Dans le cadre dâ€™un prolongement du dÃ©veloppement du projet, il est envisageable dâ€™implÃ©menter une interface dynamique grÃ¢ce Ã  Javascript.
-Nous avons construit un systÃ¨me complexe composÃ© de plusieurs technologies, tout en vÃ©rifiant en permanence que ce que lâ€™on dÃ©veloppe correspond au besoin de notre encadrant. 
+Dans le cadre d´un prolongement du développement du projet, il est envisageable d´implémenter une interface dynamique grâce à Javascript.
+Nous avons construit un système complexe composé de plusieurs technologies, tout en vérifiant en permanence que ce que l´on développe correspond au besoin de notre encadrant. 
 
 
 
