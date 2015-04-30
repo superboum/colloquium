@@ -55,6 +55,7 @@ class ColloquiumApp < Sinatra::Application
     register ReviewController
     register UserController
     register SettingsController
+    register MealController
 
     #spreedsheet configuration
 

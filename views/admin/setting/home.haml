@@ -22,25 +22,14 @@
             %label{:for => "cover"} Cover
             %input.form-control{:placeholder => "Choose cover", :type => "text", :title => "cover", :name => "cover", :value => store['parameters']['cover']}
         %fiedset
-          %legend
-            .form-group
-              %label{:for => "meal_begin"} First day
-              %input.form-control{:placeholder => "Enter the day of the first meal", :type => "date", :title => "first_day", :name => "first_day", :value => store['meal']['first_day']}
-            .form-group
-              %label{:for => "meal"} First meal  
-              %select.form-control{ :title => "first_meal", :name => "first_meal", :value => store['meal']['first_meal']}
-                %option{value: "8h00"} Breakfast
-                %option{value: "12h00"} Lunch
-                %option{value: "19h00"} Dinner
-            .form-group
-              %label{:for => "meal_begin"} Last day
-              %input.form-control{:placeholder => "Enter the day of the last meal", :type => "date", :title => "last_day", :name => "last_day", :value => store['meal']['last_day']}
-            .form-group
-              %label{:for => "meal"} Last meal  
-              %select.form-control{ :title => "last_meal", :name => "last_meal"}
-                %option{value: "8h00"} Breakfast
-                %option{value: "12h00"} Lunch
-                %option{value: "19h00"} Dinner
+          %legend Meals
+          %a.btn.btn-default{href: "/admin/settings/meals"}
+            Edit meals
+          %br
+          %small
+            Please save your changes before 
+          %br
+          %br
                   
         %fieldset
           %legend Payment by bank transfer
