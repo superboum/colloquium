@@ -61,28 +61,32 @@
   -if edit
     -felts = event.form_elements
     -if !felts.empty?
-      .row.vcenter.text-left.panel-group
+      .panel.panel-default
+        .panel-heading
+          .row.vcenter.text-left.panel-group
 
-        .col-md-1
-          %br/
-          %p Delete 
-        .col-md-10        
-          %h3 Edit form element : 
-
-      -felts.each do |felt|
-        .row.vcenter
-          .col-md-1.text-center
-            .checkbox
-              .label
-                %input{:type => "checkbox",:id => "delete::#{felt.id}",:name => "delete::#{felt.id}",:value=> '1',:title => "Check this boxe to delete this form-element"}
-          .col-md-10.panel.panel-default
-            %br
-            = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
-          .col-md-1
-            %a.btn.btn-xs.btn-danger{:href => "/admin/form_element/delete/#{felt.id}"} 
-              Delete
-        
-
+            .col-md-1
+              %br/
+              %p Delete 
+            .col-md-10        
+              %h3 Edit form element : 
+        .panel-body
+          -felts.each do |felt|
+            .row.vcenter
+              .col-md-1.text-center
+                .checkbox
+                  .label
+                    %input{:type => "checkbox",:id => "delete::#{felt.id}",:name => "delete::#{felt.id}",:value=> '1',:title => "Check this boxe to delete this form-element"}
+              .col-md-10.panel.panel-default
+                %br
+                = haml :'/admin/formElement/newedit', :locals => {:felt => felt,:event => event,:elements=> FormElement.TYPES, :edit => true}
+              .col-md-1
+                %a.btn.btn-xs.btn-danger{:href => "/admin/form_element/delete/#{felt.id}"} 
+                  Delete
+        .panel-footer   
+          %input.pull-left.btn.btn-danger{:type => "submit", :value => "Delete selected"}
+          %br
+          %br
   .checkbox
     %label
       %input{ :type => "checkbox",  :id => "add_form_element", :name => "add_form_element",:value=> '1'}/
