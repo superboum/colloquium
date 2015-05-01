@@ -28,3 +28,11 @@ mail:
   authentication: 'plain'
   starttls: true
   from: 'your.account@gmail.com'
+meal:
+  first_day: 
+  first_meal:
+  last_day: 
+  last_meal:
+  breackfast:
+  lunch: 
+  dinner: 
