@@ -166,7 +166,7 @@ class User < ActiveRecord::Base
               :body => "You have one new Review to validate.\n\nThis email has been send automaticaly, please do not respond.")
   end
 
-  def review_validation(review)
+  def review_validation_mail(review)
     if review.state == "waiting_for_proposition"
       body = "Your review has been read by one of our moderator. Please send a new proposition with the asked modification."
     end

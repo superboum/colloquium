@@ -14,8 +14,8 @@ module ReviewHelper
     end
     
     #Mail sending
-    u = User.find_by_id(session[:user])
-    u.review_validation(review)
+    u = User.find_by_id(review.lecturer_id)
+    u.review_validation_mail(review)
 
     review.save
     reviewProp.save
