@@ -61,7 +61,8 @@ ActiveRecord::Schema.define(version: 20150429173950) do
   add_index "form_elements", ["event_id"], name: "index_form_elements_on_event_id"
 
   create_table "meals", force: :cascade do |t|
-    t.datetime "date_of_meal"
+    t.date    "day"
+    t.integer "meal"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -136,11 +137,11 @@ ActiveRecord::Schema.define(version: 20150429173950) do
   add_index "users_events", ["user_id"], name: "index_users_events_on_user_id"
 
   create_table "users_meals", id: false, force: :cascade do |t|
-    t.integer "users_id"
-    t.integer "meals_id"
+    t.integer "user_id"
+    t.integer "meal_id"
   end
 
-  add_index "users_meals", ["meals_id"], name: "index_users_meals_on_meals_id"
-  add_index "users_meals", ["users_id"], name: "index_users_meals_on_users_id"
+  add_index "users_meals", ["meal_id"], name: "index_users_meals_on_meal_id"
+  add_index "users_meals", ["user_id"], name: "index_users_meals_on_user_id"
 
 end

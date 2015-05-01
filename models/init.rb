@@ -7,5 +7,6 @@ require_relative 'formElement'
 require_relative 'review'
 require_relative 'reviewproposition'
 require_relative 'usersEvent'
+require_relative 'usersMeal'
 require_relative 'meal'
 

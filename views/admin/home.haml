@@ -16,3 +16,25 @@
   %tr
     %td Users
     %td= users.count
+
+%h2 Meals
+
+%table.table.table-striped
+  %tr
+    %th
+      \
+    %th
+      Breackfast
+    %th
+      Lunch
+    %th
+      Dinner
+
+  -table_of_meals.each do |line|
+    %tr
+      %th
+        =line[0]
+      -for m in 1..3
+        %td
+          -if !line[m].nil?
+            =line[m]
