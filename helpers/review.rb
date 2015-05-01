@@ -12,6 +12,11 @@ module ReviewHelper
     else
       review.state = "waiting_for_proposition"
     end
+    
+    #Mail sending
+    u = User.find_by_id(session[:user])
+    u.review_validation(review)
+
     review.save
     reviewProp.save
   end

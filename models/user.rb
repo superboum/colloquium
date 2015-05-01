@@ -160,10 +160,25 @@ class User < ActiveRecord::Base
               :body => "Hello\n\n Your submission has been taken in account. Thanks for participating.\n\n This email has been send automaticaly, please do not respond.")
   end
 
-  def moderation_assign(name)
+  def moderation_assign
     Pony.mail(:to => self.email, 
               :subject => 'New Review assigned', 
               :body => "You have one new Review to validate.\n\nThis email has been send automaticaly, please do not respond.")
+  end
+
+  def review_validation(review)
+    if review.state == "waiting_for_proposition"
+      body = "Your review has been read by one of our moderator. Please send a new proposition with the asked modification."
+    end
+    if review.state == "validated"
+      body = "Your review has been validated. Welcome to the conference."
+    end
+    if review.state == "closed"
+      body = "Sorry, the review subsmission is closed. Please try next year"
+    end
+    Pony.mail(:to => self.email, 
+              :subject => 'Review ' + review.name + ' checked', 
+              :body => body + "\n\nThis email has been send automaticaly, please do not respond.")
   end
 
 end

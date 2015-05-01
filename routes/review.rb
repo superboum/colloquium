@@ -106,7 +106,7 @@ module ReviewController
         id = params['action'].to_i
         if review.lecturer_id  != id
           review.validator_id = id
-          User.find_by_id(id).moderation_assign(review.name)
+          User.find_by_id(id).moderation_assign()
         end
       end
       review.save
