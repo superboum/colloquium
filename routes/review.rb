@@ -15,7 +15,7 @@ module ReviewController
     
     app.post "/profile/review" do
       restrictToAuthenticated!
-      uId = session[:user]
+      u = User.find_by_id(session[:user])
       if File.exists?("uploads/") == false
         Dir::mkdir("uploads/", 0777)
       end
@@ -28,13 +28,13 @@ module ReviewController
 
           if params['action'] == '1st_review' then
             review = Review.new
-            review.lecturer_id = uId
+            review.lecturer_id = u.id
             review.name = params['Name']
             review.general_info = params['general_info']
             review.save
           end
           reviewprop = Reviewproposition.new
-          review = Review.find_by_lecturer_id(uId)
+          review = Review.find_by_lecturer_id(u.id)
           review.state = "waiting_for_review"
           reviewprop.review_id = review.id
           reviewprop.file = md5
@@ -43,6 +43,8 @@ module ReviewController
           reviewprop.validator_comment = "Validation in progress"
           reviewprop.save
           review.save
+          u.confirm_review(review.name)
+
           redirect "profile/review", 303
         else #If file extnam != ".pdf"
           haml :'profile/layout', :locals => { :menu => 2 }, :layout => :'layout'  do
@@ -104,6 +106,7 @@ module ReviewController
         id = params['action'].to_i
         if review.lecturer_id  != id
           review.validator_id = id
+          User.find_by_id(id).moderation_assign(review.name)
         end
       end
       review.save

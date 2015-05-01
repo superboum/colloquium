@@ -150,4 +150,20 @@ class User < ActiveRecord::Base
       return FormAnswer.where(user: self,event: event).order(:event_id)
     end
   end
+
+
+  #Review
+
+  def confirm_review(name)
+    Pony.mail(:to => self.email, 
+              :subject => 'Review ' + name, 
+              :body => "Hello\n\n Your submission has been taken in account. Thanks for participating.\n\n This email has been send automaticaly, please do not respond.")
+  end
+
+  def moderation_assign(name)
+    Pony.mail(:to => self.email, 
+              :subject => 'New Review assigned', 
+              :body => "You have one new Review to validate.\n\nThis email has been send automaticaly, please do not respond.")
+  end
+
 end
