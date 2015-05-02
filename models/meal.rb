@@ -170,6 +170,8 @@ class Meal < ActiveRecord::Base
 
 		store = YAML.load_file('config/general.yml')
 
+		begin
+
 		first_day= Date.parse(store["meal"]["first_day"])
 		last_day= Date.parse(store["meal"]["last_day"])
 
@@ -200,6 +202,11 @@ class Meal < ActiveRecord::Base
 
 		end
 		return table
+
+		rescue
+			return nil
+		end
+
 	end
 
 

@@ -12,6 +12,7 @@ module MealController
         haml :'admin/setting/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: true, meal: Meal.MEAL}
       end
     end
+    
     app.get '/admin/settings/meals/?' do
       restrictToAdmin!
       redirect '/admin/settings/meals/date'
