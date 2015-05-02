@@ -60,33 +60,44 @@ class Meal < ActiveRecord::Base
 		return meal
 	end
 
-	def in_range?(*store)
-		store = nil
-		if(store.nil?)
-			store = YAML.load_file('config/general.yml')
+	def self.get_info_from_store(*store)
+		if(store.all? &:blank?)
+			store = YAML.load_file('config/general.yml')["meal"]
+			store["first_day"]=Date.parse(store["first_day"])
+			store["last_day"]=Date.parse(store["last_day"])
 		else 
-			if (store.is_a?(Array))
+			while(store.is_a?(Array))
 				store = store[0]
 			end
 		end
 
+		ret = {"first_day" => store["first_day"],
+			"last_day" => store["last_day"],
+			"first_meal" => store["first_meal"],
+			"last_meal" => store["last_meal"],
+			"breackfast" => store["breackfast"],
+			"lunch" => store["lunch"],
+			"dinner" => store["dinner"],
 
-		first_day= Date.parse(store["meal"]["first_day"])
-		last_day= Date.parse(store["meal"]["last_day"])
-		first_meal= store["meal"]["first_meal"]
-		last_meal = (store["meal"]["last_meal"])
+		}
 
-		if(self.day >= first_day)
-			if(self.day==first_day&&self.meal<first_meal)	
+			return ret
+
+	end
+
+	def in_range?(*store)
+		store = Meal.get_info_from_store(store)
+		if(self.day >=(store["first_day" ]))
+			if(self.day==store["first_day" ]&&self.meal<store["first_meal" ])	
 				return false
 			end
-
-
-			if(self.day < last_day)
+			if(self.day <  (store["last_day" ]))
 				return true
 			else 
-				if(self.day==last_day)
-					return self.meal <= last_meal
+				if(self.day== (store["last_day" ]))
+					return self.meal <= (store["last_meal" ])
+				else 
+					return false
 				end
 			end
 
@@ -94,17 +105,11 @@ class Meal < ActiveRecord::Base
 
 	end
 
+
+
 	def self.get_nb_of_days(*store)
-		if(store.nil?)
-			store = YAML.load_file('config/general.yml')
-		else 
-			store = store[0]
-		end
-
-		first_day= Date.parse(store["meal"]["first_day"])
-		last_day= Date.parse(store["meal"]["last_day"])
-
-		return  ((last_day - first_day)).to_i
+		store = get_info_from_store(store)
+		return  ((store["last_day"] - store["first_day"])).to_i
 
 	end
 
@@ -119,7 +124,7 @@ class Meal < ActiveRecord::Base
 				"first_day" => params["first_day"],
 				"first_meal"  => params["first_meal"].to_i,
 				"last_day"  => params["last_day"],
-				"last_meal" => params["last_meal"].to_i,
+				"last_meal"  => params["last_meal"].to_i,
 				"breackfast" => !params["breackfast"].nil?,
 				"lunch" => !params["lunch"].nil?,
 				"dinner" => !params["dinner"].nil?,
@@ -129,110 +134,71 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.get_table_of_meal_number
-		return	meal = Meal.iterate_over_table 	do |line, db_meal, current_meal, store, empty_line_array|
 
-			m = current_meal.meal
-			if current_meal.in_range?(store)
-				if(!db_meal.nil?)
-					p db_meal.participants
-
-					line[m+1]=db_meal.participants.count
+		return	meal = Meal.iterate_over_table 	do |line, meal,meal_exists, store|
+				
+				if(meal_exists)
+					m = meal.meal
+					line[m] = meal.participants.count
 				end
-			end
-
-			if(!line[m+1].nil?)
-				empty_line_array[0] = false
-			end
+			
 		end
 
 	end
 
 	def self.get_table_of_meals
-		return	meal = Meal.iterate_over_table 	do |line, db_meal, current_meal, store, empty_line_array|
 
-			m = current_meal.meal
-			if current_meal.in_range?(store)
-				empty_line_array[0] = false
-				if(!db_meal.nil?)
-					line[m+1]=store["meal"][Meal.convert_int_to_string(m)]
-				else 
-					line[m+1]=false
-				end
-
-				if(!line[m+1].nil?)
-					empty_line_array[0] = false
-				end
-			end
+		return	meal = Meal.iterate_over_table 	do |line, meal,meal_exists, store|
+			m = meal.meal
+			line[m]=meal_exists && store[Meal.convert_int_to_string(m)]
+			
 		end
+	end
+
+	def self.create_or_find(day,m)
+		begin
+			meal = Meal.where(day: day,meal: m).first!
+			meal_exists = true
+		rescue
+			meal = Meal.new(day: day, meal: m)
+			meal_exists = false
+		end
+		return [meal,meal_exists]
 	end
 
 	def self.iterate_over_table(*u)
 
-		store = YAML.load_file('config/general.yml')
-
-		begin
-
-		first_day= Date.parse(store["meal"]["first_day"])
-		last_day= Date.parse(store["meal"]["last_day"])
-
-		
-		
+		store = get_info_from_store
 		table = Array.new
 
-
-		for day in first_day..last_day
+		for day in store["first_day" ]..store["last_day"]
 			empty_line=true
-			line= Array.new(4)
-			line[0]=day.strftime("%d/%m/%Y")
+			line = Array.new(3)
+
 			for m in 0..2
 				#From the database
-				db_meal = Meal.where(day: day,meal: m).first
+				meal,meal_exists = Meal.create_or_find(day,m)
 
-				#actual day in iteration
-				current_meal = Meal.create_meal(day,m)
-
-				empty_line_array = [empty_line]
-				yield  line, db_meal, current_meal,store,empty_line_array
-				empty_line = empty_line_array[0]
+				if meal.in_range?(store)
+					yield  line, meal,meal_exists , store
 				end
-			if(!empty_line)
-				table<<line
+				if(!line[m].nil?)
+					empty_line = false
+				end
 			end
-
+			if(!empty_line)
+				table<<[day.strftime("%d/%m/%Y")].concat(line)
+			end
 
 		end
 		return table
-
-		rescue
-			return nil
-		end
-
 	end
 
 
-
-	def self.create_meals(first_day,last_day,breackfast,lunch,dinner)
+	def self.create_meals(first_day,last_day,meal_type)
 		for day in first_day..last_day
 			for m in 0..2
-
-				continue = true
-
-				case m 
-				when Meal.MEAL["breackfast"]
-					if breackfast.nil?
-						continue = false
-					end
-				when Meal.MEAL["lunch"]
-					if lunch.nil?
-						continue = false
-					end
-				when Meal.MEAL["dinner"]
-					if dinner.nil?
-						continue = false
-					end
-				end
-
-				if(continue)
+				if(!meal_type[m].nil?)
 					if(!Meal.where(day: day,meal: m).exists?)
 						meal = Meal.new
 						meal.day=day

@@ -11,6 +11,8 @@ module MealController
     app.get '/profile/meal' do
      restrictToAuthenticated!
 
+     user.get_table_of_meals
+
      haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
         haml :'profile/meal'
       end
@@ -50,7 +52,7 @@ module MealController
         first_day = Date.parse(params["first_day"])
         last_day = Date.parse(params["last_day"])
 
-        Meal.create_meals(first_day,last_day,params["breackfast"],params["lunch"],params["dinner"])
+        Meal.create_meals(first_day,last_day,[params["breackfast"],params["lunch"],params["dinner"]])
   
         redirect "/admin/settings/meals/selection"
       end
@@ -60,9 +62,8 @@ module MealController
     app.get '/admin/settings/meals/selection/?' do
       restrictToAdmin!
       
-      table =Meal.get_table_of_meals
       store = YAML.load_file('config/general.yml')
-      
+      table =Meal.get_table_of_meals
 
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/setting/meal_select', :locals => { first_day: Date.parse(store["meal"]["first_day"]),last_day: Date.parse(store["meal"]["last_day"]),table: table}
@@ -71,14 +72,9 @@ module MealController
 
     app.post '/admin/settings/meals/selection/?' do
       restrictToAdmin!
-      p params
-      p params["meals"]
       Meal.all.each do |m|
         day = m.day.strftime("%d/%m/%Y")
         meal_type = m.meal.to_s
-        p params["meals"]
-        p day
-        p meal_type
         if(!params["meals"].has_key?(day))
           m.destroy
         else

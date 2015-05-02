@@ -122,7 +122,6 @@ class User < ActiveRecord::Base
       fa=FormAnswer.where(form_element: felt, participant: self).first
       newFormAnswer = (fa==nil)
       if(newFormAnswer)
-        p "New FormAnswer creation"
         fa=FormAnswer.new
         fa.form_element = felt
         fa.event=event
