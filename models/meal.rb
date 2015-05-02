@@ -6,6 +6,30 @@ class Meal < ActiveRecord::Base
 
 	@@MEAL={"breackfast" => 0,"lunch" => 1,"dinner" => 2}
 
+#INSTANCE METHODES
+
+	def in_range?(*store)
+		store = Meal.get_info_from_store(store)
+		if(self.day >=(store["first_day" ]))
+			if(self.day==store["first_day" ]&&self.meal<store["first_meal" ])	
+				return false
+			end
+			if(self.day <  (store["last_day" ]))
+				return true
+			else 
+				if(self.day== (store["last_day" ]))
+					return self.meal <= (store["last_meal" ])
+				else 
+					return false
+				end
+			end
+
+		end
+
+	end
+
+
+#GLOBAL METHODES
 	def self.MEAL
 		@@MEAL
 	end
@@ -81,29 +105,10 @@ class Meal < ActiveRecord::Base
 
 		}
 
-			return ret
+		return ret
 
 	end
 
-	def in_range?(*store)
-		store = Meal.get_info_from_store(store)
-		if(self.day >=(store["first_day" ]))
-			if(self.day==store["first_day" ]&&self.meal<store["first_meal" ])	
-				return false
-			end
-			if(self.day <  (store["last_day" ]))
-				return true
-			else 
-				if(self.day== (store["last_day" ]))
-					return self.meal <= (store["last_meal" ])
-				else 
-					return false
-				end
-			end
-
-		end
-
-	end
 
 
 
@@ -136,11 +141,11 @@ class Meal < ActiveRecord::Base
 	def self.get_table_of_meal_number
 
 		return	meal = Meal.iterate_over_table 	do |line, meal,meal_exists, store|
-				
-				if(meal_exists)
-					m = meal.meal
-					line[m] = meal.participants.count
-				end
+
+			if(meal_exists)
+				m = meal.meal
+				line[m] = meal.participants.count
+			end
 			
 		end
 
@@ -210,5 +215,5 @@ class Meal < ActiveRecord::Base
 				end
 			end
 		end
-end
+	end
 end
