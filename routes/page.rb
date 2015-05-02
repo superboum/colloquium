@@ -21,7 +21,7 @@ module PageController
       end
     end
 
-    app.post '/admin/page/new' do
+    app.post '/admin/page/new/?' do
       restrictToAdmin!
       page = Page.new
       page.from_params params
@@ -39,7 +39,7 @@ module PageController
       end
     end
 
-    app.post '/admin/page/edit/:id' do
+    app.post '/admin/page/edit/:id/?' do
       restrictToAdmin!
       page = Page.find_by_id(params[:id])
       page.from_params params
@@ -56,7 +56,7 @@ module PageController
       end
     end
 
-    app.post '/admin/page/delete/:id' do
+    app.post '/admin/page/delete/:id/?' do
       restrictToAdmin!
       Page.destroy(params[:id])
       redirect "/admin/page", 303

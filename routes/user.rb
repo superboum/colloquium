@@ -19,7 +19,7 @@ module UserController
       restrictToAuthenticated!
       user.from_params params
       user.save
-      redirect "/profile/event", 303
+      redirect "/profile/meal", 303
     end
 
 
@@ -88,7 +88,7 @@ module UserController
       end
     end
 
-    app.post '/admin/user/new' do
+    app.post '/admin/user/new/?' do
       restrictToAdmin!
       user = User.new
       user.from_params_admin params
@@ -104,7 +104,7 @@ module UserController
       end
     end
 
-    app.post '/admin/user/delete/:id' do
+    app.post '/admin/user/delete/:id/?' do
       restrictToAdmin!
       tmp_user = User.find(params[:id])
       User.destroy(tmp_user)
@@ -126,7 +126,7 @@ module UserController
       redirect "/", 303
     end
 
-    app.post '/admin/user/edit/:id' do
+    app.post '/admin/user/edit/:id/?' do
       restrictToAdmin!
       user = User.find(params[:id])
       user.from_params_admin params

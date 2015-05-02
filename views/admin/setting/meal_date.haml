@@ -5,72 +5,75 @@
   -errors = params["errors"]
 -else 
   -values = store['meal']
--p errors
--p values
-%form{:method => "POST"}
-  %legend Please select the date of the first and last meal
-  .form-group
-    
-    %label{:for => "first_day"} First day
+  %form{:method => "POST"}
+    .panel.panel.panel-default
+      .panel.panel-body
+        %legend Please select the date of the first and last meal
+        .form-group
+          
+          %label{:for => "first_day"} First day
 
-    /if error
-    -if !valid && !errors["first_day"].nil?
-      .alert.alert-danger 
-        =errors["first_day"]
-      
+          /if error
+          -if !valid && !errors["first_day"].nil?
+            .alert.alert-danger 
+              =errors["first_day"]
+            
 
-    %input.form-control{:placeholder => "Enter the day of the first meal", :type => "date", :title => "first_day", :name => "first_day", :value => values['first_day']}
-  .form-group
-    %label{:for => "meal"} First meal  
+          %input.form-control{:placeholder => "Enter the day of the first meal", :type => "date", :title => "first_day", :name => "first_day", :value => values['first_day']}
+        .form-group
+          %label{:for => "meal"} First meal  
 
-    /if error
-    -if !valid && !errors["first_meal"].nil?
-      .alert.alert-danger 
-        =errors["first_meal"]
+          /if error
+          -if !valid && !errors["first_meal"].nil?
+            .alert.alert-danger 
+              =errors["first_meal"]
 
-    
+          
 
-    %select.form-control{ :title => "first_meal", :name => "first_meal"}
-      %option{values['first_meal'] == meal["breackfast"] ? {:selected => ""}:{},value: "#{meal['breackfast']}"} Breakfast
-      %option{values['first_meal'] == meal["lunch"] ? {:selected => ""}:{},value: "#{meal['lunch']}"} Lunch
-      %option{values['first_meal'] == meal["dinner"] ? {:selected => ""}:{},:value => "#{meal['dinner']}"} Dinner
-  .form-group
-    %label{:for => "meal_begin"} Last day
+          %select.form-control{ :title => "first_meal", :name => "first_meal"}
+            %option{values['first_meal'] == meal["breackfast"] ? {:selected => ""}:{},value: "#{meal['breackfast']}"} Breakfast
+            %option{values['first_meal'] == meal["lunch"] ? {:selected => ""}:{},value: "#{meal['lunch']}"} Lunch
+            %option{values['first_meal'] == meal["dinner"] ? {:selected => ""}:{},:value => "#{meal['dinner']}"} Dinner
+        .form-group
+          %label{:for => "meal_begin"} Last day
 
-    /if error
-    -if !valid && !errors["last_day"].nil?
-      .alert.alert-danger 
-        =errors["last_day"]
-     
-    %input.form-control{:placeholder => "Enter the day of the last meal", :type => "date", :title => "last_day", :name => "last_day", :value => values['last_day']}
-  .form-group
-    %label{:for => "meal"} Last meal
-    /if error
-    -if !valid && !errors["last_meal"].nil?
-      .alert.alert-danger 
-        =errors["last_meal"]
-     
+          /if error
+          -if !valid && !errors["last_day"].nil?
+            .alert.alert-danger 
+              =errors["last_day"]
+           
+          %input.form-control{:placeholder => "Enter the day of the last meal", :type => "date", :title => "last_day", :name => "last_day", :value => values['last_day']}
+        .form-group
+          %label{:for => "meal"} Last meal
+          /if error
+          -if !valid && !errors["last_meal"].nil?
+            .alert.alert-danger 
+              =errors["last_meal"]
+           
 
-    %select.form-control{ :title => "last_meal", :name => "last_meal"}
-      %option{values['last_meal'] == meal["breackfast"] ? {:selected => ""}:{},value: "#{meal['breackfast']}"} Breakfast
-      %option{values['last_meal'] == meal["lunch"] ? {:selected => ""}:{},value: "#{meal['lunch']}"} Lunch
-      %option{values['last_meal'] == meal["dinner"] ? {:selected => ""}:{},:value => "#{meal['dinner']}"} Dinner
-  .form-group
-    %label
-      Select the meals you want to enable
-    %p
-      %small You will be able to select them more precisely on the next page
-    %label.checkbox-inline
-      %input#breackfast{values['breackfast']  ? {:checked => ""}:{},:type => "checkbox",:title => "breackfast", name: "breackfast",:value => "breackfast"}
-        Breackfast
-    %label.checkbox-inline
-      %input#lunch{values['lunch']  ? {:checked => ""}:{},:type => "checkbox",:title => "lunch", name: "lunch",:value => "lunch"}
-        Lunch
-    %label.checkbox-inline
-      %input#dinner{values['dinner']  ? {:checked => ""}:{},:type => "checkbox",:title => "dinner", name: "dinner",:value => "dinner"}
-        Dinner
-    
-  .form-group
-    %input.btn.btn-primary{:type => "submit", :value => "Next"}
+          %select.form-control{ :title => "last_meal", :name => "last_meal"}
+            %option{values['last_meal'] == meal["breackfast"] ? {:selected => ""}:{},value: "#{meal['breackfast']}"} Breakfast
+            %option{values['last_meal'] == meal["lunch"] ? {:selected => ""}:{},value: "#{meal['lunch']}"} Lunch
+            %option{values['last_meal'] == meal["dinner"] ? {:selected => ""}:{},:value => "#{meal['dinner']}"} Dinner
+        .form-group
+          %label
+            Select the meals you want to enable
+          %p
+            %small You will be able to select them more precisely on the next page
+          %label.checkbox-inline
+            %input#breackfast{values['breackfast']  ? {:checked => ""}:{},:type => "checkbox",:title => "breackfast", name: "breackfast",:value => "breackfast"}
+              Breackfast
+          %label.checkbox-inline
+            %input#lunch{values['lunch']  ? {:checked => ""}:{},:type => "checkbox",:title => "lunch", name: "lunch",:value => "lunch"}
+              Lunch
+          %label.checkbox-inline
+            %input#dinner{values['dinner']  ? {:checked => ""}:{},:type => "checkbox",:title => "dinner", name: "dinner",:value => "dinner"}
+              Dinner
+
+
+    .row
+      .col-md-6.col-md-offset-6
+        %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Next"}
+
 
 

@@ -2,37 +2,37 @@
 -if table.nil?
   %p An error occured, please try later
 -else   
-      
+        
   %form{:method => "POST"}
     .panel.panel.panel-default
       .panel.panel-body
         .form-group
           %legend  
-            Please checks the differents meals for which registration will be possible 
+            Please checks the differents meals you want to register
           %table.table.table-striped
             %tr
               -table.shift.each do |elt|
                 %th
                   =elt
+              
             -table.each do |line|
-              -date = line.shift
               %tr
                 %th
+                  -date = line.shift
                   =date
                 -line.each do |elt|
-                  - m,val = elt
+                  -m,value = elt
                   %td
-                    -unless val.nil?
+                    -unless value.nil?
                       .checkbox
                         %label
-                          %input{val ? {checked: ""} : {}, type:"checkbox",name: "[meals[#{date}][#{m}]]" ,id: [date,m],value: "true"}
-
+                          %input{value ? {checked: ""} : {}, type: "checkbox",name: "[meals[#{date}][#{m}]]",id: [date,m],value: "true"}
 
     .row
       .col-md-6
-        %a.btn.btn-default.btn-lg.btn-block{:href => "/admin/settings/meals/date"} Previous
+        %a.btn.btn-default.btn-lg.btn-block{:href => "/profile/account"} Previous
 
       .col-md-6
-        %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Submit"}
+        %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Next"}
 
 

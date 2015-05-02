@@ -13,12 +13,12 @@ module MainController
       haml :login
     end
 
-    app.get '/logout' do
+    app.get '/logout/?' do
       session[:user] = nil
       redirect to('/'),303
     end
 
-    app.post '/sign_in' do
+    app.post '/sign_in/?' do
       restrictToNotAuthenticated!
       if logUser(params['email'],params['password']) then 
         redirect to('/'), 303
@@ -27,7 +27,7 @@ module MainController
       end
     end
 
-    app.post '/sign_up' do
+    app.post '/sign_up/?' do
       restrictToNotAuthenticated!
       if params['password1'] != params['password2']
         redirect to('/login'), 303
@@ -42,7 +42,7 @@ module MainController
 
     end
 
-    app.get '/confirm/:email/:token' do
+    app.get '/confirm/:email/:token/?' do
       u = User.find_by email: params[:email]
       if u.instance_of? User and u.check_token params[:token] then
         u.role = 0

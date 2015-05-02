@@ -152,6 +152,32 @@ class User < ActiveRecord::Base
     end
   end
 
+  #Meal
+
+  def get_table_of_meals
+    return  meal = Meal.iterate_over_table  do |line, meal,meal_exists, store|
+
+      if(meal_exists)
+        m = meal.meal
+        line<< [m,meal.participants.include?(self)]
+      else 
+        line << [m,nil]
+      end
+      
+    end
+  end
+
+  def register_to_meal(meals)
+    self.meals.each do |meal|
+      day = meal.day.strftime("%d/%m/%Y")
+      m = meal.meal.to_s
+      unless meals.has_key?(day) && meals[day].has_key?(m)
+        self.meals.destroy(meal)
+      end
+    end
+  end
+
+
 
   #Review
 

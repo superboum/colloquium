@@ -1,7 +1,7 @@
 require 'sinatra/activerecord'
 
 class Meal < ActiveRecord::Base
-	has_many :users_meals
+	has_many :users_meals, dependent: :delete_all
 	has_many :participants, through: :users_meals, source: :user
 
 	@@MEAL={"breackfast" => 0,"lunch" => 1,"dinner" => 2}
@@ -29,9 +29,44 @@ class Meal < ActiveRecord::Base
 	end
 
 
-#GLOBAL METHODES
+	#GLOBAL METHODES
 	def self.MEAL
 		@@MEAL
+	end
+
+
+	def self.get_nb_of_days(*store)
+		store = get_info_from_store(store)
+		return  ((store["last_day"] - store["first_day"])).to_i
+
+	end
+
+	def self.create_or_find(day,m)
+		begin
+			meal = Meal.where(day: day,meal: m).first!
+			meal_exists = true
+		rescue
+			meal = Meal.new(day: day, meal: m)
+			meal_exists = false
+		end
+		return [meal,meal_exists]
+	end
+
+	def self.create_meals(first_day,last_day,meal_type)
+		for day in first_day..last_day
+			for m in 0..2
+				if(!meal_type[m].nil?)
+					if(!Meal.where(day: day,meal: m).exists?)
+						meal = Meal.new
+						meal.day=day
+						meal.meal= m
+						if(meal.in_range? )
+							meal.save
+						end
+					end
+				end
+			end
+		end
 	end
 
 	def self.convert_int_to_string(m)
@@ -48,7 +83,7 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.check_params(params)
-		errors ={}
+	errors ={}
 		#check params
 		begin
 			params["first_day"] = Date.parse(params["first_day"]).strftime("%d/%m/%Y")
@@ -65,10 +100,10 @@ class Meal < ActiveRecord::Base
 
 		if errors.empty?
 			if Date.parse(params["first_day"]) > Date.parse(params["last_day"])
-				errors["last_day"] = "can not be sooner than first date"
+				errors["last_day"] = "cannot be sooner than first date"
 			end
 			if  ( Date.parse(params["first_day"]) == Date.parse(params["last_day"]) )&& (params["first_meal"] > params["last_meal"])
-				errors["last_meal"] = "can not be sooner than first date"
+				errors["last_meal"] = "cannot be sooner than first date"
 			end
 		end
 		errors = errors
@@ -77,12 +112,6 @@ class Meal < ActiveRecord::Base
 		return params
 	end
 
-	def self.create_meal(d,m)
-		meal = Meal.new
-		meal.day = d
-		meal.meal = m
-		return meal
-	end
 
 	def self.get_info_from_store(*store)
 		if(store.all? &:blank?)
@@ -112,12 +141,6 @@ class Meal < ActiveRecord::Base
 
 
 
-	def self.get_nb_of_days(*store)
-		store = get_info_from_store(store)
-		return  ((store["last_day"] - store["first_day"])).to_i
-
-	end
-
 
 	def self.store(params,app)
 		
@@ -144,7 +167,9 @@ class Meal < ActiveRecord::Base
 
 			if(meal_exists)
 				m = meal.meal
-				line[m] = meal.participants.count
+				line<<[m,meal.participants.count]
+			else
+				line << [m,nil]
 			end
 			
 		end
@@ -155,40 +180,49 @@ class Meal < ActiveRecord::Base
 
 		return	meal = Meal.iterate_over_table 	do |line, meal,meal_exists, store|
 			m = meal.meal
-			line[m]=meal_exists && store[Meal.convert_int_to_string(m)]
+			line<<[m,meal_exists && store[Meal.convert_int_to_string(m)]]
 			
 		end
 	end
 
-	def self.create_or_find(day,m)
-		begin
-			meal = Meal.where(day: day,meal: m).first!
-			meal_exists = true
-		rescue
-			meal = Meal.new(day: day, meal: m)
-			meal_exists = false
+	def self.get_meals_type(*store)
+		store = get_info_from_store(store)
+		line = Array.new
+		line << ""
+		for i in 0..2
+			elt = Meal.convert_int_to_string(i)
+			if(store[elt])
+				line<<elt.capitalize
+			end
 		end
-		return [meal,meal_exists]
+		return line
+		
 	end
+
 
 	def self.iterate_over_table(*u)
 
 		store = get_info_from_store
 		table = Array.new
-
+		table << Meal.get_meals_type(store)
 		for day in store["first_day" ]..store["last_day"]
+
 			empty_line=true
-			line = Array.new(3)
+			line = Array.new
 
 			for m in 0..2
-				#From the database
-				meal,meal_exists = Meal.create_or_find(day,m)
+				elt = Meal.convert_int_to_string(m)
+				if(store[elt])
+					meal,meal_exists = Meal.create_or_find(day,m)
 
-				if meal.in_range?(store)
-					yield  line, meal,meal_exists , store
-				end
-				if(!line[m].nil?)
-					empty_line = false
+					if meal.in_range?(store)
+						yield  line, meal,meal_exists , store
+					else
+						line<<nil
+					end
+					unless(line.last.nil?)
+						empty_line = false
+					end
 				end
 			end
 			if(!empty_line)
@@ -200,20 +234,5 @@ class Meal < ActiveRecord::Base
 	end
 
 
-	def self.create_meals(first_day,last_day,meal_type)
-		for day in first_day..last_day
-			for m in 0..2
-				if(!meal_type[m].nil?)
-					if(!Meal.where(day: day,meal: m).exists?)
-						meal = Meal.new
-						meal.day=day
-						meal.meal= m
-						if(meal.in_range? )
-							meal.save
-						end
-					end
-				end
-			end
-		end
-	end
+	
 end

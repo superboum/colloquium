@@ -1,37 +1,38 @@
 module MealController
 
-  
 
-  
+
+
 
   def self.registered(app) # <-- a method yes, but really a hook
 
     # USER SIZE
 
-    app.get '/profile/meal' do
-     restrictToAuthenticated!
-
-     user.get_table_of_meals
-
-     haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
-        haml :'profile/meal'
+    app.get '/profile/meal/?' do
+      restrictToAuthenticated!
+      haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
+        haml :'profile/meal', :locals => { table: user.get_table_of_meals }
       end
-
-
     end 
 
+    app.post '/profile/meal/?' do
+      restrictToAuthenticated!
+      user.register_to_meal(params["meals"])
+      redirect '/profile/event', 303
+    end
 
     # BACKOFFICE
+    
+    app.get '/admin/settings/meals/?' do
+      restrictToAdmin!
+      redirect '/admin/settings/meals/date'
+    end
+   
     app.get '/admin/settings/meals/date/?' do
       restrictToAdmin!
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/setting/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: true, meal: Meal.MEAL}
       end
-    end
-    
-    app.get '/admin/settings/meals/?' do
-      restrictToAdmin!
-      redirect '/admin/settings/meals/date'
     end
 
     app.post '/admin/settings/meals/date/?' do
@@ -53,7 +54,7 @@ module MealController
         last_day = Date.parse(params["last_day"])
 
         Meal.create_meals(first_day,last_day,[params["breackfast"],params["lunch"],params["dinner"]])
-  
+
         redirect "/admin/settings/meals/selection"
       end
     end
@@ -84,12 +85,7 @@ module MealController
         end
       end
       redirect '/admin', 303
-    end
+   end
 
-
-    app.get '/admin/settings/meals/?' do
-      restrictToAdmin!
-      redirect '/admin/settings/meals/date'
-    end
   end 
 end

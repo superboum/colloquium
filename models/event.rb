@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
 
   has_many :form_answers, :class_name => 'FormAnswer', :foreign_key => 'event_id',:dependent => :delete_all
   has_many :form_elements, :class_name => 'FormElement', :foreign_key => 'event_id',:dependent => :delete_all
-  has_many :users_events
+  has_many :users_events,:dependent => :delete_all
   has_many :participants, through: :users_events, source: :user
   belongs_to :admin, :class_name => 'User', :foreign_key => 'admin_id'
 

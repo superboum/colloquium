@@ -66,7 +66,7 @@ module ReviewController
       end
     end
     
-    app.get '/admin/review/view/:id' do
+    app.get '/admin/review/view/:id/?' do
       restrictToAdmin!
       review = Review.find_by_id(params[:id])
       
@@ -80,13 +80,13 @@ module ReviewController
       end
     end
 
-    app.get '/moderation/review/document/:hash/:name' do
+    app.get '/moderation/review/document/:hash/:name/?' do
       restrictToModerator!
       content_type "application/pdf"
       send_file 'uploads/'+params[:hash]
     end
     
-    app.get '/admin/review/assignement/:id' do
+    app.get '/admin/review/assignement/:id/?' do
       restrictToAdmin!
       reviewProp = Reviewproposition.find_by_id(params[:id])
       review = Review.find_by_id(reviewProp.review_id)
@@ -96,7 +96,7 @@ module ReviewController
       end
     end
 
-    app.post '/admin/review/assignement/:id' do
+    app.post '/admin/review/assignement/:id/?' do
       restrictToAdmin!
       reviewProp = Reviewproposition.find(params[:id])
       review = Review.find(reviewProp.review_id)
@@ -114,7 +114,7 @@ module ReviewController
     end
 
 
-    app.get '/admin/review/validation/:id' do
+    app.get '/admin/review/validation/:id/?' do
       restrictToAdmin!
       reviewProp = Reviewproposition.find_by_id(params[:id])
       haml :'admin/layout', :layout => :'layout'  do
@@ -122,7 +122,7 @@ module ReviewController
       end
     end
     
-    app.post '/admin/review/validation/:id' do
+    app.post '/admin/review/validation/:id/?' do
       restrictToAdmin!
       validation_review params
       redirect "admin/review/", 303
@@ -137,7 +137,7 @@ module ReviewController
       end
     end
 
-    app.get '/moderation/view/:id' do
+    app.get '/moderation/view/:id/?' do
       restrictToModerator!
       review = Review.find_by_id(params[:id])
 
@@ -150,7 +150,7 @@ module ReviewController
       end
     end
 
-    app.get '/moderation/validation/:id' do
+    app.get '/moderation/validation/:id/?' do
       restrictToModerator!
       reviewProp = Reviewproposition.find_by_id(params[:id])
       haml :'moderation/layout', :layout => :'layout'  do
@@ -158,7 +158,7 @@ module ReviewController
       end
     end
     
-    app.post '/moderation/validation/:id' do
+    app.post '/moderation/validation/:id/?' do
       restrictToModerator!
       validation_review params
       redirect "moderation", 303

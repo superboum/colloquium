@@ -22,7 +22,7 @@ module ArticleController
       end
     end
 
-    app.post '/admin/article/new' do
+    app.post '/admin/article/new/?' do
       restrictToAdmin!
       article = Article.new
       article.from_params params
@@ -30,7 +30,7 @@ module ArticleController
       redirect "/admin/article", 303
     end
 
-    app.get '/admin/article/edit/:id' do
+    app.get '/admin/article/edit/:id/?' do
       restrictToAdmin!
       article = Article.find(params[:id])
       haml :'admin/layout', :layout => :'layout' do
@@ -39,7 +39,7 @@ module ArticleController
 
     end
 
-    app.post '/admin/article/edit/:id' do
+    app.post '/admin/article/edit/:id/?' do
       restrictToAdmin!
       article = Article.find(params[:id])
       article.from_params params
@@ -55,7 +55,7 @@ module ArticleController
       end
     end
 
-    app.post '/admin/article/delete/:id' do
+    app.post '/admin/article/delete/:id/?' do
       restrictToAdmin!
       Article.destroy(params[:id])
       redirect "/admin/article", 303

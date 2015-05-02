@@ -17,24 +17,19 @@
     %td Users
     %td= users.count
 
--if(!table_of_meals.nil?)  
+-unless table_of_meals.nil?
   %h2 Meals
-
+  _of_meals
   %table.table.table-striped
     %tr
-      %th
-        \
-      %th
-        Breackfast
-      %th
-        Lunch
-      %th
-        Dinner  
+      -table_of_meals.shift.each do |elt|
+        %th
+          =elt
     -table_of_meals.each do |line|
       %tr
         %th
-          =line[0]
-        -for m in 1..3
+          =line.shift
+        -line.each do |elt|
           %td
-            -if !line[m].nil?
-              =line[m]
+            -unless elt[1].nil?
+              =elt[1]

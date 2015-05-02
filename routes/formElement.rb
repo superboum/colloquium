@@ -10,7 +10,7 @@ module FormElementController
       end
     end
 
-    app.post '/admin/form_element/new' do
+    app.post '/admin/form_element/new/?' do
       restrictToAdmin!
       id=params[:id]
       redirect "/admin/form_element/new/#{id}"
@@ -26,7 +26,7 @@ module FormElementController
 
     end
 
-    app.post '/admin/form_element/new/:id' do 
+    app.post '/admin/form_element/new/:id/?' do 
       restrictToAdmin!
       if params[:id] != params["event"] then 
         puts "error" #@TODO 
@@ -59,7 +59,7 @@ module FormElementController
       end
     end
 
-    app.post '/admin/formElement/selectContent/:id' do
+    app.post '/admin/formElement/selectContent/:id/?' do
       restrictToAdmin!
       if(params[:id] != params["felt"]) 
         then puts "error"
@@ -70,7 +70,7 @@ module FormElementController
       felt.save
     end
 
-    app.get '/admin/form_element/delete/:id' do
+    app.get '/admin/form_element/delete/:id/?' do
       restrictToAdmin!
       felt = FormElement.find(params[:id])
       haml :'admin/layout', :layout => :'layout' do
@@ -80,7 +80,7 @@ module FormElementController
     end
 
 
-    app.post '/admin/form_element/delete/:id' do
+    app.post '/admin/form_element/delete/:id/?' do
       restrictToAdmin!
       FormElement.destroy(params[:id])
       redirect "/admin/event", 303

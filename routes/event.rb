@@ -134,7 +134,7 @@ module EventController
 
     end
 
-    app.post '/admin/event/edit/:id' do
+    app.post '/admin/event/edit/:id/?' do
       restrictToAdmin!
       event = Event.find(params[:id])
       event.set(params,user)

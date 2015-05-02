@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel.panel-body
-    %h2 You registered for 
+    %h2 You have registered for 
     -if events_registered.empty?
       %p.text-muted No event to display 
     -else					
@@ -52,7 +52,7 @@
 
 .row
   .col-md-6
-    %a.btn.btn-default.btn-lg.btn-block{:href => "/profile/account"} Previous
+    %a.btn.btn-default.btn-lg.btn-block{:href => "/profile/meal"} Previous
 
   .col-md-6
     %a.btn.btn-primary.btn-lg.btn-block{:href => "/profile/review"} Next
