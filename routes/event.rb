@@ -18,7 +18,7 @@ module EventController
       events_registered = user.get_event_registered
       other_events = Event.where(registration: true) - events_registered
 
-      haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
+      haml :'profile/layout', :locals => { :menu =>  2 }, :layout => :'layout'  do
         haml :'profile/event',:locals => { :events_registered => events_registered, other_events: other_events}
       end
     end

@@ -11,13 +11,16 @@
         %a.btn.btn-lg.btn-default{:href => "/profile/account", :class => ("active" unless menu != 0)} 
           %span.glyphicon.glyphicon-user
           About me
-        %a.btn.btn-lg.btn-default{:href => "/profile/event", :class => ("active" unless menu != 1)}
+        %a.btn.btn-lg.btn-default{:href => "/profile/meal", :class => ("active" unless menu != 1)}
+          %span.glyphicon.glyphicon-cultery
+          Meal selection
+        %a.btn.btn-lg.btn-default{:href => "/profile/event", :class => ("active" unless menu != 2)}
           %span.glyphicon.glyphicon-glass
           Events registration
-        %a.btn.btn-lg.btn-default{:href => "/profile/review", :class => ("active" unless menu != 2)}
+        %a.btn.btn-lg.btn-default{:href => "/profile/review", :class => ("active" unless menu != 3)}
           %span.glyphicon.glyphicon-inbox
           Resume submission
-        %a.btn.btn-lg.btn-default{:href => "/profile/pay", :class => ("active" unless menu != 3)} 
+        %a.btn.btn-lg.btn-default{:href => "/profile/pay", :class => ("active" unless menu != 4)} 
           %span.glyphicon.glyphicon-shopping-cart
           Payment
 

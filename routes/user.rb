@@ -10,7 +10,7 @@ module UserController
     
     app.get '/profile/pay/?' do
       restrictToAuthenticated!
-      haml :'profile/layout', :locals => { :menu => 3 }, :layout => :'layout'  do
+      haml :'profile/layout', :locals => { :menu => 4 }, :layout => :'layout'  do
         haml :'profile/pay'
       end
     end

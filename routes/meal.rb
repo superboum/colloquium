@@ -5,6 +5,20 @@ module MealController
   
 
   def self.registered(app) # <-- a method yes, but really a hook
+
+    # USER SIZE
+
+    app.get '/profile/meal' do
+     restrictToAuthenticated!
+
+     haml :'profile/layout', :locals => { :menu => 1 }, :layout => :'layout'  do
+        haml :'profile/meal'
+      end
+
+
+    end 
+
+
     # BACKOFFICE
     app.get '/admin/settings/meals/date/?' do
       restrictToAdmin!

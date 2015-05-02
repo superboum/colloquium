@@ -8,7 +8,7 @@ module ReviewController
         reviewProps = Reviewproposition.where(review_id: review.id)
       end
       
-      haml :'profile/layout', :locals => { :menu => 2 }, :layout => :'layout'  do
+      haml :'profile/layout', :locals => { :menu => 3 }, :layout => :'layout'  do
         haml :'profile/review', :locals => {:review => review, :reviewProps => reviewProps}
       end
     end
