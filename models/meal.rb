@@ -82,38 +82,39 @@ class Meal < ActiveRecord::Base
 		end
 	end
 
-	def self.check_params(params)
-	errors ={}
-		#check params
+	def self.check_date_format(params)
 		begin
 			params["first_day"] = Date.parse(params["first_day"]).strftime("%d/%m/%Y")
 		rescue
-			errors["first_day"]="Wrong date format"
+			params["errors"]["first_day"]="Wrong date format"
 		end  
 
 		begin
 			params["last_day"] = Date.parse(params["last_day"]).strftime("%d/%m/%Y")
 		rescue
-			errors["last_day"]="Wrong date format"
+			params["errors"]["last_day"]="Wrong date format"
 		end  
-
-
-		if errors.empty?
+	end
+	def self.check_logic_date(params)
+		if params["errors"].all? &:blank?
 			if Date.parse(params["first_day"]) > Date.parse(params["last_day"])
-				errors["last_day"] = "cannot be sooner than first date"
+				params["errors"]["last_day"] = "cannot be sooner than first date"
 			end
 			if  ( Date.parse(params["first_day"]) == Date.parse(params["last_day"]) )&& (params["first_meal"] > params["last_meal"])
-				errors["last_meal"] = "cannot be sooner than first date"
+				params["errors"]["last_meal"] = "cannot be sooner than first date"
 			end
 		end
-		errors = errors
-		params["errors"]= errors
+	end	
+	def self.check_params(params)
+		params["errors"] ={}
+		#check params
+		check_date_format(params)
+		check_logic_date(params)
 
 		return params
 	end
 
-
-	def self.get_info_from_store(*store)
+	def self.get_store(*store)
 		if(store.all? &:blank?)
 			store = YAML.load_file('config/general.yml')["meal"]
 			store["first_day"]=Date.parse(store["first_day"])
@@ -124,7 +125,13 @@ class Meal < ActiveRecord::Base
 			end
 		end
 
-		ret = {"first_day" => store["first_day"],
+		return store
+	end
+
+	def self.get_info_from_store(*store)
+		store = get_store
+
+		return {"first_day" => store["first_day"],
 			"last_day" => store["last_day"],
 			"first_meal" => store["first_meal"],
 			"last_meal" => store["last_meal"],
@@ -134,7 +141,6 @@ class Meal < ActiveRecord::Base
 
 		}
 
-		return ret
 
 	end
 
@@ -178,7 +184,7 @@ class Meal < ActiveRecord::Base
 
 	def self.get_table_of_meals
 
-		return	meal = Meal.iterate_over_table 	do |line, meal,meal_exists, store|
+		return	Meal.iterate_over_table 	do |line, meal,meal_exists, store|	
 			m = meal.meal
 			line<<[m,meal_exists && store[Meal.convert_int_to_string(m)]]
 			
@@ -199,36 +205,47 @@ class Meal < ActiveRecord::Base
 		
 	end
 
+	def self.fill_case_of_table(day,m,line,*store)
+		store = get_info_from_store(store)
+		elt = Meal.convert_int_to_string(m)
+		if(store[elt])
+			meal,meal_exists = Meal.create_or_find(day,m)
+			
+			if meal.in_range?(store)
+				yield line, meal,meal_exists , store
+			else
+				line<<nil
+			end
+			return !line.last.nil?
+		end
+	end
 
-	def self.iterate_over_table(*u)
+	def self.iterate_over_line(table,day,*store)
+		store = get_info_from_store(store)
+
+		empty_line=true
+		line = Array.new
+
+		for m in 0..2
+			if Meal.fill_case_of_table(day,m,line,store,&Proc.new)
+				empty_line = false
+			end
+		end
+		p line
+				
+		unless empty_line
+			table<<[day.strftime("%d/%m/%Y")].concat(line)
+		end
+	end
+
+
+	def self.iterate_over_table
 
 		store = get_info_from_store
 		table = Array.new
 		table << Meal.get_meals_type(store)
 		for day in store["first_day" ]..store["last_day"]
-
-			empty_line=true
-			line = Array.new
-
-			for m in 0..2
-				elt = Meal.convert_int_to_string(m)
-				if(store[elt])
-					meal,meal_exists = Meal.create_or_find(day,m)
-
-					if meal.in_range?(store)
-						yield  line, meal,meal_exists , store
-					else
-						line<<nil
-					end
-					unless(line.last.nil?)
-						empty_line = false
-					end
-				end
-			end
-			if(!empty_line)
-				table<<[day.strftime("%d/%m/%Y")].concat(line)
-			end
-
+			Meal.iterate_over_line(table,day,store,&Proc.new)
 		end
 		return table
 	end

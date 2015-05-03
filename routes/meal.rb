@@ -42,7 +42,7 @@ module MealController
       tmp=Meal.check_params(params)
       params = tmp
 
-      if(!params["errors"].nil? && !params["errors"].empty?)
+      unless (params["errors"].all? &:blank?)
         haml :'admin/layout', :layout => :'layout'  do
           haml :'admin/setting/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: false, params: params, meal: Meal.MEAL}
         end
