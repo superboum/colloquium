@@ -19,7 +19,7 @@
       
   .form-group
     %label{:for => "long_text"} Body (Markdown Syntax is allowed)
-    %textarea{:rows => "15", :'data-provide' => "markdown", :class => "form-control", :id => "long_text", :name => "long_text", :placeholder => "You article content.", :title => "long_text"}= article.long_text
+    %textarea{:rows => "15", :class => "form-control bmarkdown", :id => "long_text", :name => "long_text", :placeholder => "You article content.", :title => "long_text"}= article.long_text
 
   .form-group
     %input.pull-right.btn.btn-lg.btn-primary{:type => "submit", :value => "Publish"}

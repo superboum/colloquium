@@ -17,11 +17,14 @@ namespace :assets do
         `wget -O assets/tmp/300_bootstrap-markdown.js https://raw.githubusercontent.com/toopay/bootstrap-markdown/master/js/bootstrap-markdown.js`
         `wget -O assets/tmp/310_to-markdown.js http://toopay.github.io/bootstrap-markdown/js/to-markdown.js`
         `wget -O assets/tmp/320_markdown.js http://toopay.github.io/bootstrap-markdown/js/markdown.js`
+        `wget -O assets/tmp/400_fileinput.js https://raw.githubusercontent.com/kartik-v/bootstrap-fileinput/master/js/fileinput.min.js`
 
         #CSS
         `wget -O assets/tmp/100_bootstrap.css https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css`
 
         `wget -O assets/tmp/200_bootstrap-markdown.css https://raw.githubusercontent.com/toopay/bootstrap-markdown/master/css/bootstrap-markdown.min.css`
+        
+        `wget -O assets/tmp/400_fileinput.css https://raw.githubusercontent.com/kartik-v/bootstrap-fileinput/master/css/fileinput.min.css`
 
         #FONTS
         `wget -O assets/fonts/glyphicons-halflings-regular.eot https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot`
@@ -36,6 +39,7 @@ namespace :assets do
     task :generate do
         `rm -rf public`
         `mkdir -p public`
+        `ln -s ../public_uploads public/uploads`
 
         `cat assets/tmp/*.css > public/theme.css`
         `cat assets/tmp/*.js > public/script.js`

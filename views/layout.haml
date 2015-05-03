@@ -92,5 +92,15 @@
               and
               %a{:href => "http://quentin.dufour.tk"} Quentin.
 
-      
+    .modal.fade#imageUpload
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h4.modal-title Choose a picture
+          .modal-body
+            %input{:id => "input-700", :name => "kartik-input-700[]", :type => "file", :multiple => "", :class => "file-loading"}
+
+    %script= "window.baseUrl = \""+settings.parameters['base_url']+"\";"
     %script(src="/script.js")

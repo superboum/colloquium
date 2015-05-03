@@ -56,6 +56,16 @@ module MainController
       redirect to('/login'),303
     end
 
+    app.post '/upload' do
+      restrictToAdmin!
+      files = params['kartik-input-700']
+      ftmp = files[0][:tempfile]
+      file = ftmp.read
+      md5 = Digest::MD5.hexdigest(file + Time.now.to_s)
+      File.write("public_uploads/" + md5, file)
+      JSON.generate({:url => settings.parameters['base_url'] + '/uploads/' + md5 })
+    end
+
     # BACKOFFICE
     app.get '/admin/?' do
       restrictToAdmin!

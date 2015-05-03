@@ -13,6 +13,8 @@ config/general.yml
 config/database.yml
 uploads/*
 !uploads/placeholder
+public_uploads/*
+!public_uploads/placeholder
 
 # LaTeX files
 *.toc
