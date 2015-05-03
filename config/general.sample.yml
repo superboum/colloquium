@@ -32,10 +32,10 @@ mail:
   starttls: true
   from: 'your.account@gmail.com'
 meal:
-  first_day:
-  first_meal:
-  last_day:
-  last_meal:
-  breackfast:
-  lunch:
-  dinner:
+  first_day: 20/05/2016
+  first_meal: 2
+  last_day: 28/05/2016
+  last_meal: 0
+  breackfast: false
+  lunch: true
+  dinner: true
