@@ -155,7 +155,8 @@ class User < ActiveRecord::Base
   #Meal
 
   def get_table_of_meals
-    return  meal = Meal.iterate_over_table  do |line, meal,meal_exists, store|
+   tom = TableOfMeals.new 
+   tom.each do |line, meal,meal_exists, store|
 
       if(meal_exists)
         m = meal.meal
@@ -165,6 +166,7 @@ class User < ActiveRecord::Base
       end
       
     end
+    return tom.table
   end
 
   def register_to_meal(meals)

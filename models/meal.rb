@@ -129,7 +129,7 @@ class Meal < ActiveRecord::Base
 			end
 		end
 	end	
-	
+
 	def self.check_params(params)
 		params["errors"] ={}
 		#check params
@@ -169,10 +169,6 @@ class Meal < ActiveRecord::Base
 
 	end
 
-
-
-
-
 	def self.store(params,app)
 		
 		store = YAML::Store.new "config/general.yml"
@@ -194,7 +190,8 @@ class Meal < ActiveRecord::Base
 
 	def self.get_table_of_meal_number
 
-		return	meal = iterate_over_table 	do |line, meal,meal_exists, store|
+		tom = TableOfMeals.new
+		tom.each 	do |line, meal,meal_exists, store|
 
 			if(meal_exists)
 				m = meal.meal
@@ -204,76 +201,21 @@ class Meal < ActiveRecord::Base
 			end
 			
 		end
+		return tom.table
 
 	end
 
 	def self.get_table_of_meals
-
-		return	iterate_over_table 	do |line, meal,meal_exists, store|	
+		tom = TableOfMeals.new
+		tom.each 	do |line, meal,meal_exists, store|	
 			m = meal.meal
 			line<<[m,meal_exists && store[convert_int_to_string(m)]]
 			
 		end
+		return tom.table
 	end
 
-	def self.get_meals_type(*store)
-		store = get_info_from_store(store)
-		line = Array.new
-		line << ""
-		for i in 0..2
-			elt = convert_int_to_string(i)
-			if(store[elt])
-				line<<elt.capitalize
-			end
-		end
-		return line
-		
-	end
-
-	def self.fill_case_of_table(day,m,line,*store)
-		store = get_info_from_store(store)
-		elt = convert_int_to_string(m)
-		if(store[elt])
-			meal,meal_exists = create_or_find(day,m)
-			
-			if meal.in_range?(store)
-				yield line, meal,meal_exists , store
-			else
-				line<<nil
-			end
-			return !line.last.nil?
-		end
-	end
-
-	def self.iterate_over_line(table,day,*store)
-		store = get_info_from_store(store)
-
-		empty_line=true
-		line = Array.new
-
-		for m in 0..2
-			if fill_case_of_table(day,m,line,store,&Proc.new)
-				empty_line = false
-			end
-		end
-		p line
-				
-		unless empty_line
-			table<<[day.strftime("%d/%m/%Y")].concat(line)
-		end
-	end
-
-
-	def self.iterate_over_table
-
-		store = get_info_from_store
-		table = Array.new
-		table << get_meals_type(store)
-		for day in store["first_day" ]..store["last_day"]
-			iterate_over_line(table,day,store,&Proc.new)
-		end
-		return table
-	end
+	
 
 
 	
