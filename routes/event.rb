@@ -26,8 +26,13 @@ module EventController
     app.get '/profile/event/register/:id/?' do 
       restrictToAuthenticated!
       event = Event.find_by_id(params[:id])
+
+      if(event.form_elements.count == 0)
+        user.register_to_event(event,{})
+        redirect "/profile/event", 303
+      end
       if !(event.spots_number_limit ==0 || event.spots_number_limit > event.users_events.count)
-        redirect "/event/#{params[:id]}"
+        redirect "/profile/event"
       end
       felts = event.form_elements
 
