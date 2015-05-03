@@ -62,10 +62,10 @@ module MainController
       articles = Article.all
       events = Event.all
       users = User.all
-      table_of_meals = Meal.get_table_of_meal_number
+      
       
       haml :'admin/layout', :layout => :'layout' do
-        haml :'admin/home', :locals => { :articles => articles, :events => events, :users => users, table_of_meals: table_of_meals}
+        haml :'admin/home', :locals => { :articles => articles, :events => events, :users => users}
       end
     end
 

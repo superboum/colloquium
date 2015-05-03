@@ -16,20 +16,3 @@
   %tr
     %td Users
     %td= users.count
-
--unless table_of_meals.nil?
-  %h2 Meals
-  %table.table.table-striped
-    %tr
-      -table_of_meals.shift.each do |elt|
-        %th
-          =elt
-    -table_of_meals.each do |line|
-      %tr
-        %th
-          =line.shift
-        -line.each do |elt|
-          %td
-            -unless elt.blank?
-              -unless elt[1].nil?
-                =elt[1]

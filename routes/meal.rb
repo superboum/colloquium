@@ -23,19 +23,22 @@ module MealController
 
     # BACKOFFICE
     
-    app.get '/admin/settings/meals/?' do
+    app.get '/admin/meal/?' do
       restrictToAdmin!
-      redirect '/admin/settings/meals/date'
+      table_of_meals = Meal.get_table_of_meal_number
+      haml :'admin/layout', :layout => :'layout'  do
+        haml :'admin/meal/home', :locals => { table_of_meals: table_of_meals}
+      end
     end
    
-    app.get '/admin/settings/meals/date/?' do
+    app.get '/admin/meal/date/?' do
       restrictToAdmin!
       haml :'admin/layout', :layout => :'layout'  do
-        haml :'admin/setting/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: true, meal: Meal.MEAL}
+        haml :'admin/meal/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: true, meal: Meal.MEAL}
       end
     end
 
-    app.post '/admin/settings/meals/date/?' do
+    app.post '/admin/meal/date/?' do
       restrictToAdmin!
       
 
@@ -44,7 +47,7 @@ module MealController
 
       unless (params["errors"].all? &:blank?)
         haml :'admin/layout', :layout => :'layout'  do
-          haml :'admin/setting/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: false, params: params, meal: Meal.MEAL}
+          haml :'admin/meal/meal_date', :locals => { :store => YAML.load_file('config/general.yml') , valid: false, params: params, meal: Meal.MEAL}
         end
       else
 
@@ -55,23 +58,23 @@ module MealController
 
         Meal.create_meals(first_day,last_day,[params["breackfast"],params["lunch"],params["dinner"]])
 
-        redirect "/admin/settings/meals/selection"
+        redirect "/admin/meal/selection"
       end
     end
 
 
-    app.get '/admin/settings/meals/selection/?' do
+    app.get '/admin/meal/selection/?' do
       restrictToAdmin!
       
       store = YAML.load_file('config/general.yml')
       table =Meal.get_table_of_meals
 
       haml :'admin/layout', :layout => :'layout'  do
-        haml :'admin/setting/meal_select', :locals => { first_day: Date.parse(store["meal"]["first_day"]),last_day: Date.parse(store["meal"]["last_day"]),table: table}
+        haml :'admin/meal/meal_select', :locals => { first_day: Date.parse(store["meal"]["first_day"]),last_day: Date.parse(store["meal"]["last_day"]),table: table}
       end
     end
 
-    app.post '/admin/settings/meals/selection/?' do
+    app.post '/admin/meal/selection/?' do
       restrictToAdmin!
       Meal.all.each do |m|
         day = m.day.strftime("%d/%m/%Y")
@@ -84,7 +87,7 @@ module MealController
           end
         end
       end
-      redirect '/admin', 303
+      redirect '/admin/meal', 303
    end
 
   end 

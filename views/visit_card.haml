@@ -1,0 +1,98 @@
+.oi_visit
+  .oi_visit_title
+    %h1 IWSM
+  %p.oi_visit_slogan.ng-binding International Workshop on Statistical Modelling
+  .oi_visit_main
+    .name.ng-binding
+    .role.ng-binding
+  .oi_visit_contact
+    / <br>
+    %table
+      %tbody
+        %tr
+          %td.center
+            %span.oi_visit_highlight
+              %i.fa.fa-phone
+          %td.ng-binding (+33) (0)2 23 23 85 72
+        %tr
+          %td.center
+            %span.oi_visit_highlight
+              %i.fa.fa-mobile
+          %td.ng-binding
+        /
+          <tr>
+          <td class="center"><span class="oi_visit_highlight"><i class="fa fa-envelope"></i></span></td>
+          <td>{[identity.mailPerso]}</td>
+          </tr>
+    / <br>
+  .oi_visit_structure
+    %table
+      %tbody
+        %tr
+          %td.center
+            %span.oi_visit_highlight
+              %i.fa.fa-briefcase
+          %td
+            %strong.ng-binding Ouest INSA
+        %tr
+          %td.center
+            %span.oi_visit_highlight
+              %i.fa.fa-map-marker
+          %td.ng-binding
+            20 avenue des buttes de Coësmes
+            %br CS 70839, 35708 Rennes CEDEX 7
+        %tr
+          %td.center
+            %span.oi_visit_highlight
+              %i.fa.fa-laptop
+          %td.ng-binding
+            contact@ouest-insa.fr
+            %br www.ouest-insa.fr
+  / Creepy CSS
+  %link{:href => "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", :rel => "stylesheet"}
+    :css
+      .oi_visit_container {
+          font-family: Helvetica, Arial;
+          width: 207.987401575px; /* 5.5 cm */
+          height: 321.29763795px; /* 8.5 cm */
+          /*background-color: #89b;*/
+      }
+      
+      .oi_visit_logo {
+          padding: 10px 10px  0px 10px;
+          width: 188px;
+          
+      }
+      
+      .oi_visit_slogan {
+          font-style: italic;
+          font-size: 8px;
+          text-align: center;
+          color: #555;
+          margin-top: 0px;
+      }
+      
+      .oi_visit_highlight {
+          font-weight: bold;
+          color: #1E4093;
+      }
+      
+      .oi_visit_main {
+          font-size: 14px;
+          padding: 20px 0px 0px 10px;
+      }
+      .oi_visit_main .name {
+          font-weight: bold;
+      }
+      .oi_visit_contact {
+          margin: 15px 0px 0px 40px;
+          padding-left: 3px;
+          font-size: 10px;
+          border-left: 1px solid #555;
+      }
+      .oi_visit_structure {
+          margin: 50px 0px 0px 10px;
+          font-size: 10px;
+      }
+      
+      .center { text-align: center; }

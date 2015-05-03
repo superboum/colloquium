@@ -5,10 +5,19 @@
   -errors = params["errors"]
 -else 
   -values = store['meal']
+
 %form{:method => "POST"}
   .panel.panel.panel-default
     .panel.panel-body
+      .pull-right{style: "margin-right: 20px;transform: translate(15px,-20px);"}  
+        %h2.alert.alert-success 1/2
+  
+      %h2{style: "margin-left: 3px;margin-bottom: 10px"} Meals configuration
+      %br
       %legend Please select the date of the first and last meal
+      .row
+        .col-md-6.col-md-offset-6
+          %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Next"}
       .form-group
         
         %label{:for => "first_day"} First day
@@ -71,9 +80,9 @@
             Dinner
 
 
-  .row
-    .col-md-6.col-md-offset-6
-      %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Next"}
+      .row
+        .col-md-6.col-md-offset-6
+          %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Next"}
 
 
 

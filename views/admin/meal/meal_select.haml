@@ -1,0 +1,50 @@
+
+-if table.nil?
+  %p An error occured, please try later
+-else   
+      
+  %form{:method => "POST"}
+    .row
+      .panel.panel.panel-default
+        .panel.panel-body
+          .pull-right{style: "margin-right: 20px;transform: translate(15px,-20px);"}  
+            %h2.alert.alert-success 2/2
+        
+          %h2{style: "margin-left: 3px;margin-bottom: 10px"} Meals configuration
+          %br/
+          .form-group
+            %legend  
+              Please checks the differents meals for which registration will be possible
+            .row
+              .col-md-6
+                %a.btn.btn-default.btn-lg.btn-block{:href => "/admin/meal/date"} Previous
+              .col-md-6
+                %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Submit"}   
+                %br/
+            %table.table.table-striped
+              %tr
+                -table.shift.each do |elt|
+                  %th
+                    =elt
+              -table.each do |line|
+                -date = line.shift
+                %tr
+                  %th
+                    =date
+                  -line.each do |elt|
+                    - m,val = elt
+                    %td
+                      -unless val.nil?
+                        .checkbox
+                          %label
+                            %input{val ? {checked: ""} : {}, type:"checkbox",name: "[meals[#{date}][#{m}]]" ,id: [date,m],value: "true"}
+
+
+          .row
+            .col-md-6
+              %a.btn.btn-default.btn-lg.btn-block{:href => "/admin/meal/date"} Previous
+
+            .col-md-6
+              %input.btn.btn-primary.btn-lg.btn-block{:type => "submit", :value => "Submit"}
+
+

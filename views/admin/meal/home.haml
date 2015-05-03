@@ -1,0 +1,21 @@
+%h2.pull-left Meals
+-unless table_of_meals.nil?
+  %a.pull-right{:href => "/admin/meal/date", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+    Meals configuration 
+
+  %table.table.table-striped
+    %tr
+      -table_of_meals.shift.each do |elt|
+        %th
+          =elt
+    -table_of_meals.each do |line|
+      %tr
+        %th
+          =line.shift
+        -line.each do |elt|
+          %td
+            -unless elt.blank?
+              -unless elt[1].nil?
+                =elt[1]
+%a.pull-right{:href => "/admin/meal/date", :style => "margin-top: 20px", :class => "btn btn btn-primary"} 
+  Meals configuration 
