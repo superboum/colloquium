@@ -8,24 +8,47 @@ class Meal < ActiveRecord::Base
 
 #INSTANCE METHODES
 
-	def in_range?(*store)
-		store = Meal.get_info_from_store(store)
-		if(self.day >=(store["first_day" ]))
-			if(self.day==store["first_day" ]&&self.meal<store["first_meal" ])	
-				return false
-			end
-			if(self.day <  (store["last_day" ]))
-				return true
-			else 
-				if(self.day== (store["last_day" ]))
-					return self.meal <= (store["last_meal" ])
-				else 
-					return false
-				end
-			end
-
+	def get_day_and_meal(meal)
+		m = 0
+		day = Time.now
+		if(meal.is_a?(Meal))
+			m = meal.meal
+			day = meal.day
+		else
+			m = meal["meal"]
+			day = meal["day"]
 		end
 
+		return [day,m]
+	end	
+	def upper_or_equal_than(meal_to_compare)
+		day,m = get_day_and_meal(meal_to_compare)
+		if(self.day >=day)
+			if(self.day==day&&self.meal<m)	
+				p "in"
+			return false
+			end
+		end
+		return true
+	end
+
+	def lower_or_equal_than(meal_to_compare)
+		day,m = get_day_and_meal(meal_to_compare)
+
+		if(self.day <=day)
+			if(self.day==day&&self.meal>m)	
+				return false
+			end
+		end
+		return true
+	end
+
+	def in_range?(*store)
+		store = Meal.get_info_from_store(store)
+		ret =	upper_or_equal_than({"day" => store["first_day"],"meal" => store["first_meal"]}) &&
+				lower_or_equal_than({"day" => store["last_day"],"meal" => store["last_meal"]}) 
+
+		return ret
 	end
 
 
@@ -71,11 +94,11 @@ class Meal < ActiveRecord::Base
 
 	def self.convert_int_to_string(m)
 		case m
-		when Meal.MEAL["breackfast"]
+		when @@MEAL["breackfast"]
 			return "breackfast"
-		when Meal.MEAL["lunch"]
+		when @@MEAL["lunch"]
 			return "lunch"
-		when Meal.MEAL["dinner"]
+		when @@MEAL["dinner"]
 			return "dinner"
 		else
 			return "undefined"
@@ -95,6 +118,7 @@ class Meal < ActiveRecord::Base
 			params["errors"]["last_day"]="Wrong date format"
 		end  
 	end
+
 	def self.check_logic_date(params)
 		if params["errors"].all? &:blank?
 			if Date.parse(params["first_day"]) > Date.parse(params["last_day"])
@@ -105,6 +129,7 @@ class Meal < ActiveRecord::Base
 			end
 		end
 	end	
+	
 	def self.check_params(params)
 		params["errors"] ={}
 		#check params
@@ -169,7 +194,7 @@ class Meal < ActiveRecord::Base
 
 	def self.get_table_of_meal_number
 
-		return	meal = Meal.iterate_over_table 	do |line, meal,meal_exists, store|
+		return	meal = iterate_over_table 	do |line, meal,meal_exists, store|
 
 			if(meal_exists)
 				m = meal.meal
@@ -184,9 +209,9 @@ class Meal < ActiveRecord::Base
 
 	def self.get_table_of_meals
 
-		return	Meal.iterate_over_table 	do |line, meal,meal_exists, store|	
+		return	iterate_over_table 	do |line, meal,meal_exists, store|	
 			m = meal.meal
-			line<<[m,meal_exists && store[Meal.convert_int_to_string(m)]]
+			line<<[m,meal_exists && store[convert_int_to_string(m)]]
 			
 		end
 	end
@@ -196,7 +221,7 @@ class Meal < ActiveRecord::Base
 		line = Array.new
 		line << ""
 		for i in 0..2
-			elt = Meal.convert_int_to_string(i)
+			elt = convert_int_to_string(i)
 			if(store[elt])
 				line<<elt.capitalize
 			end
@@ -207,9 +232,9 @@ class Meal < ActiveRecord::Base
 
 	def self.fill_case_of_table(day,m,line,*store)
 		store = get_info_from_store(store)
-		elt = Meal.convert_int_to_string(m)
+		elt = convert_int_to_string(m)
 		if(store[elt])
-			meal,meal_exists = Meal.create_or_find(day,m)
+			meal,meal_exists = create_or_find(day,m)
 			
 			if meal.in_range?(store)
 				yield line, meal,meal_exists , store
@@ -227,7 +252,7 @@ class Meal < ActiveRecord::Base
 		line = Array.new
 
 		for m in 0..2
-			if Meal.fill_case_of_table(day,m,line,store,&Proc.new)
+			if fill_case_of_table(day,m,line,store,&Proc.new)
 				empty_line = false
 			end
 		end
@@ -243,9 +268,9 @@ class Meal < ActiveRecord::Base
 
 		store = get_info_from_store
 		table = Array.new
-		table << Meal.get_meals_type(store)
+		table << get_meals_type(store)
 		for day in store["first_day" ]..store["last_day"]
-			Meal.iterate_over_line(table,day,store,&Proc.new)
+			iterate_over_line(table,day,store,&Proc.new)
 		end
 		return table
 	end
