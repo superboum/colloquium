@@ -18,7 +18,6 @@
     %td= users.count
 
 -unless table_of_meals.nil?
-  -p table_of_meals
   %h2 Meals
   %table.table.table-striped
     %tr
@@ -26,7 +25,6 @@
         %th
           =elt
     -table_of_meals.each do |line|
-      -p line
       %tr
         %th
           =line.shift
