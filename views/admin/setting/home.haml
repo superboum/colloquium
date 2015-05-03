@@ -30,6 +30,17 @@
             Please save your changes before 
           %br
           %br
+        %fieldset
+          %legend Price
+
+          .form-group
+            %label{:for => "amount"} Amount
+            %input.form-control#amount{:placeholder => "42", :type => "number", :name => "amount", :value => store['payment']['price']['amount']}
+            
+          .form-group
+            %label{:for => "curency"} Currency
+            %input.form-control#currency{:placeholder => "€", :type => "text", :name => "currency", :value => store['payment']['price']['currency']}
+
                   
         %fieldset
           %legend Payment by bank transfer

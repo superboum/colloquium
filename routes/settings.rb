@@ -34,6 +34,10 @@ module SettingsController
           'cheque' => {
             'order' => params['order'],
             'address' => params['address']
+          },
+          'price' => {
+            'amount' => params['amount'],
+            'currency' => params['currency']
           }
         }
       end
