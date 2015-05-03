@@ -5,18 +5,25 @@ class TableOfMeals
 	@current_day
 	@current_m
 	@current_line
-
+	@store_empty
 	def table
 		return @table
 	end
 
 	def initialize
-		@store = Meal.get_info_from_store
-		@table = Array.new
-		@first_day = @store["first_day" ]
-		@last_day = @store["last_day" ]
-		@day = @first_day
-		@current_line = []
+		@store_empty = false
+		begin
+			@store = Meal.get_info_from_store
+		rescue
+			@store_empty=true
+		end
+		unless @store_empty
+			@table = Array.new
+			@first_day = @store["first_day" ]
+			@last_day = @store["last_day" ]
+			@day = @first_day
+			@current_line = []
+		end
 		
 	end
 
@@ -35,13 +42,14 @@ class TableOfMeals
 
 
 	def each
-		
+		unless @store_empty
 
-		push_meals_type
+			push_meals_type
 
 
-		for @current_day in @first_day..@last_day
-			iterate_over_line(&Proc.new)
+			for @current_day in @first_day..@last_day
+				iterate_over_line(&Proc.new)
+			end
 		end
 	end
 
@@ -49,7 +57,7 @@ class TableOfMeals
 
 
 
-  	def fill_case_of_table
+	def fill_case_of_table
 		elt = Meal.convert_int_to_string(@current_m)
 		if(@store[elt])
 			meal,meal_exists = Meal.create_or_find(@current_day,@current_m)
@@ -72,7 +80,7 @@ class TableOfMeals
 				empty_line = false
 			end
 		end
-				
+		
 		unless empty_line
 			@table<<[@current_day.strftime("%d/%m/%Y")].concat(@current_line)
 		end

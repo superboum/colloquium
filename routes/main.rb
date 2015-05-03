@@ -2,6 +2,9 @@ module MainController
   def self.registered(app)
     # FRONTOFFICE
 
+    app.get '/visit_card' do
+      haml :'visit_card'
+    end
     app.get '/?' do
       articles = Article.order(created_at: :desc)
       events = Event.order(start_date: :desc)
@@ -60,6 +63,7 @@ module MainController
       events = Event.all
       users = User.all
       table_of_meals = Meal.get_table_of_meal_number
+      
       haml :'admin/layout', :layout => :'layout' do
         haml :'admin/home', :locals => { :articles => articles, :events => events, :users => users, table_of_meals: table_of_meals}
       end

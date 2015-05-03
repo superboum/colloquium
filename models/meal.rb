@@ -203,6 +203,7 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.get_table_of_meal_number
+		
 
 		tom = TableOfMeals.new
 		tom.each 	do |line, meal,meal_exists, store|
