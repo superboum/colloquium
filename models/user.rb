@@ -131,18 +131,8 @@ class User < ActiveRecord::Base
 
       fa.participant = self
       fa.save
-
     end
-
   end
-
-  def get_event_registered
-    return self.events
-  end
-
-  def get_felt_registered
-    return self.events.felts
-  end 
 
   def get_form_answer_registered(*event)
     if(event.empty?)

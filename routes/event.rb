@@ -15,7 +15,7 @@ module EventController
     # USERSIDE
     app.get '/profile/event/?' do
       restrictToAuthenticated!
-      events_registered = user.get_event_registered
+      events_registered = user.events
       other_events = Event.where(registration: true) - events_registered
 
       haml :'profile/layout', :locals => { :menu =>  2 }, :layout => :'layout'  do
