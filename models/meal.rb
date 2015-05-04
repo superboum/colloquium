@@ -71,6 +71,23 @@ class Meal < ActiveRecord::Base
 		end
 	end
 
+	def get_day_and_meal_in_view_format
+		return [self.day.strftime("%d/%m/%Y"),self.meal.to_s]
+	end
+
+	def in_list_of_meal_in_view_format(list_of_meal_in_view_format)
+		day,meal_type =get_day_and_meal_in_view_format
+
+		unless list_of_meal_in_view_format.has_key?(day)
+			return true
+		else
+			unless list_of_meal_in_view_format[day].has_key?(meal_type)
+				return true
+			end
+		end
+		return false
+	end
+
 	#GLOBAL METHODES
 
 	def self.is_blank(hash_or_array)
@@ -127,15 +144,10 @@ class Meal < ActiveRecord::Base
 	def self.correct_meals(params)
 		ActiveRecord::Base.transaction do
 			Meal.all.each do |m|
-				day = m.day.strftime("%d/%m/%Y")
-				meal_type = m.meal.to_s
-				if(!params["meals"].has_key?(day))
+				if(m.in_list_of_meal_in_view_format(params["meals"]))
 					m.destroy
-				else
-					if(!params["meals"][day].has_key?(meal_type))
-						m.destroy
-					end
 				end
+				
 			end
 		end
 	end
