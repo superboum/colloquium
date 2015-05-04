@@ -5,7 +5,7 @@ class MealTest < AbstractTest
   def setup
 
     @store = YAML.load_file('config/general.yml')
-     
+    
     @config_blank = false
 
     if @store["meal"]["first_meal"].nil?
@@ -24,6 +24,7 @@ class MealTest < AbstractTest
       @store["meal"]["first_day"] = "02/05/1994"
       @config_blank = true
     end
+    
 
   
 
@@ -157,10 +158,11 @@ class MealTest < AbstractTest
   def test_get_store
     unless @config_blank
 
+      store = Meal.get_store
 
-      assert_equal @store,Meal.get_store(@store)
-      assert_equal @store["first_day"].is_a?(Date),true
-      assert_equal @store["last_day"].is_a?(Date),true
+      assert_equal store,Meal.get_store(store)
+      assert_equal store["first_day"].is_a?(Date),true
+      assert_equal store["last_day"].is_a?(Date),true
     end
   end
 
