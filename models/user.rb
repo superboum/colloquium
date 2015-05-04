@@ -94,43 +94,14 @@ class User < ActiveRecord::Base
 
   end
 
-  def register_to_event(event,params)
-    felts = event.get_felts
-
-
-    felts.each do |felt|
-      fa = FormAnswer.new
-      fa.form_element = felt
-      fa.event = event
-      fa.participant = self
-
-
-      fa.set_answer(params,felt)
-      fa.save
-
-    end
-
-    self.events << event
-    self.save
-  end
-
   def edit_register_to_event(event,params)
     felts = event.get_felts
 
+    ActiveRecord::Base.transaction do
 
-    felts.each do |felt|
-      fa=FormAnswer.where(form_element: felt, participant: self).first
-      newFormAnswer = (fa==nil)
-      if(newFormAnswer)
-        fa=FormAnswer.new
-        fa.form_element = felt
-        fa.event=event
-        fa.participant = self
+      felts.each do |felt|
+        felt.edit_answer(params,self)
       end
-        fa.set_answer(params,felt)
-
-      fa.participant = self
-      fa.save
     end
   end
 
@@ -159,13 +130,34 @@ class User < ActiveRecord::Base
     return tom.table
   end
 
-  def register_to_meal(meals)
+  def add_undef_meals(meals)
+    meals.each do |day,meal_types|
+      meal_types.each do |m|
+        meal = Meal.where(day: Date.parse(day),meal: m).first
+
+        unless(self.meals.include?(meal))
+          self.meals<<meal
+        end
+      end
+
+    end
+  end
+
+  def remove_former_meals(meals)
     self.meals.each do |meal|
       day = meal.day.strftime("%d/%m/%Y")
       m = meal.meal.to_s
       unless meals.has_key?(day) && meals[day].has_key?(m)
         self.meals.destroy(meal)
       end
+    end
+  end
+
+
+  def register_to_meal(meals)
+    ActiveRecord::Base.transaction do
+      add_undef_meals(meals)
+      remove_former_meals(meals)
     end
   end
 

@@ -105,7 +105,7 @@ class Meal < ActiveRecord::Base
 		end
 	end
 
-	def self.correct_leaks(params)
+	def self.correct_meals(params)
 		ActiveRecord::Base.transaction do
 			Meal.all.each do |m|
 				day = m.day.strftime("%d/%m/%Y")

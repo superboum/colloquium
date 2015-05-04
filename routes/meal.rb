@@ -76,7 +76,7 @@ module MealController
 
     app.post '/admin/meal/selection/?' do
       restrictToAdmin!
-      Meal.correct_leaks(params)
+      Meal.correct_meals(params)
       
       redirect '/admin/meal', 303
    end
