@@ -30,7 +30,13 @@ class Event < ActiveRecord::Base
 
   end
 
-  
+  def unregister(user)
+    ActiveRecord::Base.transaction do
+      self.form_answers.destroy(FormAnswer.where(event: self, participant: user))
+      self.save
+      user.events.destroy(self)
+    end
+  end
 
   def set_felts(params,user)
     
@@ -72,4 +78,26 @@ class Event < ActiveRecord::Base
     
     return stats.fil(self)
   end 
+
+
+
+  def register_user(user,params)
+    ActiveRecord::Base.transaction do
+      form_elements.each do |felt|
+        felt.answer(params,user)
+      end
+
+      user.events << self
+      user.save
+    end
+  end
+
+  def edit_registration(user,params)
+    ActiveRecord::Base.transaction do
+
+      form_elements.each do |felt|
+        felt.edit_answer(params,user)
+      end
+    end
+  end
 end

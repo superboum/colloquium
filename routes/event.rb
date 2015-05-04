@@ -28,7 +28,7 @@ module EventController
       event = Event.find_by_id(params[:id])
 
       if(event.form_elements.count == 0)
-        user.register_to_event(event,{})
+        event.register_user(user,{})
         redirect "/profile/event", 303
       end
       if !(event.spots_number_limit ==0 || event.spots_number_limit > event.users_events.count)
@@ -49,7 +49,7 @@ module EventController
       if !(event.spots_number_limit ==0 || event.spots_number_limit > event.users_events.count)
         redirect "/event/#{params[:id]}"
       end
-      user.register_to_event(event,params)
+      event.register_user(user,params)
 
       redirect "/profile/event", 303
 
@@ -69,24 +69,16 @@ module EventController
       end
       event = Event.find_by_id(params[:id])
 
-      user.edit_register_to_event(event,params)
+      event.edit_registration(user,params)
 
-      redirect "/event/#{params[:id]}", 303
+      redirect "/profile/event", 303
     end
 
     app.get '/profile/event/unregister/:id/?' do 
       restrictToAuthenticated!
       event = Event.find(params[:id])
-      haml :'profile/unregister', :locals => {event: event}
-    end
-
-    app.post '/profile/event/unregister/:id/?' do 
-      restrictToAuthenticated!
-      event = Event.find(params[:id])
-      event.form_answers.destroy(FormAnswer.where(event: event, participant: user))
-      event.save
-      user.events.destroy(event)
-      redirect "/event/#{params[:id]}", 303
+      event.unregister(user)
+      redirect "/profile/event", 303
     end
 
     #BACKOFFICE

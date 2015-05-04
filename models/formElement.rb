@@ -24,4 +24,31 @@ class FormElement < ActiveRecord::Base
 
     end
 
+    def edit_answer(params,user)
+    	fa=FormAnswer.where(form_element: self, participant: user).first
+    	newFormAnswer = (fa==nil)
+    	if(newFormAnswer)
+    		fa=FormAnswer.new
+    		fa.form_element = self
+    		fa.event=self.event
+    		fa.participant = user
+    	end
+    	fa.set_answer(params,self)
+
+    	fa.participant = user
+    	fa.save
+    end
+
+	def answer(params,user)
+		fa = FormAnswer.new
+		fa.form_element = self
+		fa.event = self.event
+		fa.participant = user
+
+
+		fa.set_answer(params,self)
+		fa.save
+
+	end
+
 end

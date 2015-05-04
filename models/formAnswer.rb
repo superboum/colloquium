@@ -13,7 +13,7 @@ class FormAnswer < ActiveRecord::Base
 			if(params[id]=="1")
 				self.answer="true"
 			else 
-				self.answer = "selflse"
+				self.answer = "false"
 			end
 		when FormElement.TYPES["select"]
 			self.answer =params[id]      
