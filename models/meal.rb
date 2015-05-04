@@ -95,10 +95,28 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.create_meals(first_day,last_day,meal_type)
-		for day in first_day..last_day
-			for m in 0..2
-				meal = Meal.new
-				meal.create_if_in_range({"meal_type" => m,"day" => day},meal_type)
+		ActiveRecord::Base.transaction do
+			for day in first_day..last_day
+				for m in 0..2
+					meal = Meal.new
+					meal.create_if_in_range({"meal_type" => m,"day" => day},meal_type)
+				end
+			end
+		end
+	end
+
+	def self.correct_leaks(params)
+		ActiveRecord::Base.transaction do
+			Meal.all.each do |m|
+				day = m.day.strftime("%d/%m/%Y")
+				meal_type = m.meal.to_s
+				if(!params["meals"].has_key?(day))
+					m.destroy
+				else
+					if(!params["meals"][day].has_key?(meal_type))
+						m.destroy
+					end
+				end
 			end
 		end
 	end

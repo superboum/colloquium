@@ -76,17 +76,8 @@ module MealController
 
     app.post '/admin/meal/selection/?' do
       restrictToAdmin!
-      Meal.all.each do |m|
-        day = m.day.strftime("%d/%m/%Y")
-        meal_type = m.meal.to_s
-        if(!params["meals"].has_key?(day))
-          m.destroy
-        else
-          if(!params["meals"][day].has_key?(meal_type))
-            m.destroy
-          end
-        end
-      end
+      Meal.correct_leaks(params)
+      
       redirect '/admin/meal', 303
    end
 
