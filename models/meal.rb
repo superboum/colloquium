@@ -9,29 +9,44 @@ class Meal < ActiveRecord::Base
 #INSTANCE METHODES
 
 
+	def day_upper_than(other_meal)
+		return self.day > other_meal.day
+	end
 
-	def upper_or_equal_than(meal_to_compare)
+	def upper_than_by_meal(other_meal)
+		return self.day == other_meal.day && self.meal > other_meal.meal
+	end
+
+
+	def upper_than(meal_to_compare)
 		day,m = Meal.get_day_and_meal(meal_to_compare)
-		if(self.day >=day)
-			if(self.day==day&&self.meal<m)	
+		if(self.day >day)
+			if(self.day==day&&self.meal<=m)	
 				return false
 			end
 		else return false
 		end
 		return true
+	end
+
+	def lower_than(meal_to_compare)
+		return !upper_than(meal_to_compare) && ! equal(meal_to_compare)
+	end
+
+	def equal(meal_to_compare)
+	day,m = Meal.get_day_and_meal(meal_to_compare)
+		return self.day == day && self.meal == m
 	end
 
 	def lower_or_equal_than(meal_to_compare)
-		day,m = Meal.get_day_and_meal(meal_to_compare)
-		
-		if(self.day <=day)
-			if(self.day==day&&self.meal>m)	
-				return false
-			end
-		else return false
-		end
-		return true
+		return !upper_than(meal_to_compare)
 	end
+
+
+	def upper_or_equal_than(meal_to_compare)
+		return upper_than(meal_to_compare) || equal(meal_to_compare)
+	end
+
 
 	def in_range?(*store)
 		store = Meal.get_info_from_store(store)
@@ -57,6 +72,10 @@ class Meal < ActiveRecord::Base
 	end
 
 	#GLOBAL METHODES
+
+	def self.is_blank(hash_or_array)
+		return hash_or_array.all? &:blank?
+	end
 
 	def self.MEAL
 		@@MEAL
@@ -150,15 +169,20 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.check_logic_date(params)
-		if params["errors"].all? &:blank?
-			if Date.parse(params["first_day"]) > Date.parse(params["last_day"])
-				params["errors"]["last_day"] = "cannot be sooner than first date"
-			end
+		first_meal = Meal.create(day: params["first_day"], meal: params["first_meal"])
+		last_meal = Meal.create(day: params["last_day"], meal: params["last_meal"])
+		if	first_meal.day_upper_than(last_meal)
+			params["errors"]["last_day"] = "cannot be sooner than first date"
+		end
 
-			if  ( Date.parse(params["first_day"]) == Date.parse(params["last_day"]) )&& (params["first_meal"] > params["last_meal"])
-				params["errors"]["last_meal"] = "cannot be sooner than first meal"
+		if  first_meal.upper_than_by_meal(last_meal)
+			params["errors"]["last_meal"] = "cannot be sooner than first meal"
+		end
+	end
 
-			end
+	def self.check_logic_date_if_no_error(params)
+		if Meal.is_blank(params["errors"])
+			check_logic_date(params)
 		end
 	end	
 
@@ -166,7 +190,7 @@ class Meal < ActiveRecord::Base
 		params["errors"] = {}
 		
 		check_date_format(params)
-		check_logic_date(params)
+		check_logic_date_if_no_error(params)
 
 		return params
 	end
