@@ -1,3 +1,4 @@
+/** Modal handle **/
 var $input = $("#input-700")
 $input.fileinput({
   uploadUrl: window.baseUrl + "/upload", // server upload action
@@ -12,11 +13,13 @@ $input.fileinput({
   $input.fileinput('clear');
   $('#imageUpload').modal('hide');
   $.event.trigger({
-			type: "fileUploaded",
-			url: data.response.url
+    type: "fileUploaded",
+    url: data.response.url
   });
 });
 
+
+/** Markdown Editor **/
 $(".bmarkdown").markdown({
   additionalButtons: [
     [{
@@ -29,7 +32,8 @@ $(".bmarkdown").markdown({
         callback: function(e){
           $('#imageUpload').modal('show');
           $(document).on("fileUploaded", function(ev) {
-            var chunk = '![Insert a description here]('+ev.url+')';
+            var chunk;
+            chunk = "![Insert a description here](" + ev.url + ")";
             e.replaceSelection(chunk);
             var selected = e.getSelection();
             cursor = selected.start;
@@ -51,5 +55,13 @@ $(".bmarkdown").markdown({
   ],
   reorderButtonGroups: ['groupFont', 'groupCustomLink', 'groupMisc', 'groupUtil'],
   disabledButtons: ['cmdImage']
+});
 
+/** Settings **/
+$("#changeCover").click(function(e) {
+  $('#imageUpload').modal('show');
+  $(document).on("fileUploaded", function(ev) {
+    $("#changeCoverForm").val(ev.url);
+    $(document).off("fileUploaded");
+  });
 });

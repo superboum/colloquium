@@ -1,5 +1,5 @@
 .wrapper
-.jumbotron.home.hidden-xs
+.jumbotron.home.hidden-xs{:style => "background-image: url('" + settings.parameters['cover'] + "');"}
   .container.text-center
     %h1= settings.parameters['title']
     %p= settings.parameters['slogan']

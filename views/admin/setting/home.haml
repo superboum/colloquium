@@ -20,7 +20,9 @@
             
           .form-group
             %label{:for => "cover"} Cover
-            %input.form-control{:placeholder => "Choose cover", :type => "text", :title => "cover", :name => "cover", :value => store['parameters']['cover']}
+            %br
+            %a.btn.btn-default#changeCover Change cover picture
+            %input.form-control#changeCoverForm{:placeholder => "Choose cover", :type => "hidden", :title => "cover", :name => "cover", :value => store['parameters']['cover']}
         %fieldset
           %legend Price
 
