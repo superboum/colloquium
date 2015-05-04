@@ -34,7 +34,7 @@ class Meal < ActiveRecord::Base
 	end
 
 	def equal(meal_to_compare)
-	day,m = Meal.get_day_and_meal(meal_to_compare)
+		day,m = Meal.get_day_and_meal(meal_to_compare)
 		return self.day == day && self.meal == m
 	end
 
@@ -49,7 +49,7 @@ class Meal < ActiveRecord::Base
 
 
 	def in_range?(*store)
-		store = Meal.get_info_from_store(store)
+		store = MealStore.get_info_from_store(store)
 		ret =	upper_or_equal_than({"day" => store["first_day"],"meal" => store["first_meal"]}) &&
 				lower_or_equal_than({"day" => store["last_day"],"meal" => store["last_meal"]}) 
 
@@ -90,9 +90,7 @@ class Meal < ActiveRecord::Base
 
 	#GLOBAL METHODES
 
-	def self.is_blank(hash_or_array)
-		return hash_or_array.all? &:blank?
-	end
+	
 
 	def self.MEAL
 		@@MEAL
@@ -114,9 +112,8 @@ class Meal < ActiveRecord::Base
 
 
 	def self.get_nb_of_days(*store)
-		store = get_info_from_store(store)
+		store = MealStore.get_info_from_store(store)
 		return  ((store["last_day"] - store["first_day"])).to_i
-
 	end
 
 	def self.create_or_find(day,m)
@@ -166,8 +163,8 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.check_date_format(params)
-		__check_date_format(params,"first_day")
-		__check_date_format(params,"last_day")
+		DateFunction.check_date_format(params,"first_day")
+		DateFunction.check_date_format(params,"last_day")
 	end
 
 	def self.check_logic_date(params)
@@ -183,7 +180,7 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.check_logic_date_if_no_error(params)
-		if Meal.is_blank(params["errors"])
+		if Stuff.is_blank(params["errors"])
 			check_logic_date(params)
 		end
 	end	
@@ -197,70 +194,4 @@ class Meal < ActiveRecord::Base
 		return params
 	end
 
-	def self.get_store(*store)
-		if(store.all? &:blank?)
-			store = YAML.load_file('config/general.yml')["meal"]
-			store["first_day"]=Date.parse(store["first_day"])
-			store["last_day"]=Date.parse(store["last_day"])
-		else 
-			while(store.is_a?(Array))
-				store = store[0]
-			end
-		end
-
-		return store
-	end
-
-	def self.get_info_from_store(*store)
-		store = get_store
-
-		return {"first_day" => store["first_day"],
-			"last_day" => store["last_day"],
-			"first_meal" => store["first_meal"],
-			"last_meal" => store["last_meal"],
-			"breackfast" => store["breackfast"],
-			"lunch" => store["lunch"],
-			"dinner" => store["dinner"],
-
-		}
-
-
-	end
-
-	def self.store(params,app)
-		
-		store = YAML::Store.new "config/general.yml"
-		
-		store.transaction do
-
-			store["meal"] = { 
-				"first_day" => params["first_day"],
-				"first_meal"  => params["first_meal"].to_i,
-				"last_day"  => params["last_day"],
-				"last_meal"  => params["last_meal"].to_i,
-				"breackfast" => !params["breackfast"].nil?,
-				"lunch" => !params["lunch"].nil?,
-				"dinner" => !params["dinner"].nil?,
-			}
-		end
-		app.config_file 'config/general.yml'
-	end
-
-	
-
-	
-
-
-	#private methode
-
-	def self.__check_date_format(params,d)
-		begin
-			params[d] = Date.parse(params[d]).strftime("%d/%m/%Y")
-		rescue
-			params["errors"][d]="Wrong date format"
-		end 
-	end
-
-
-	
 end

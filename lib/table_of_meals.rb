@@ -13,7 +13,7 @@ class TableOfMeals
 	def initialize
 		@store_empty = false
 		begin
-			@store = Meal.get_info_from_store
+			@store = MealStore.get_info_from_store
 		rescue
 			@store_empty=true
 		end

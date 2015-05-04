@@ -51,7 +51,7 @@ module MealController
         end
       else
 
-        Meal.store(params,app)
+        MealStore.store(params,app)
 
         first_day = Date.parse(params["first_day"])
         last_day = Date.parse(params["last_day"])

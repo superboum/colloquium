@@ -158,9 +158,9 @@ class MealTest < AbstractTest
   def test_get_store
     unless @config_blank
 
-      store = Meal.get_store
+      store = MealStore.get_store
 
-      assert_equal store,Meal.get_store(store)
+      assert_equal store,MealStore.get_store(store)
       assert_equal store["first_day"].is_a?(Date),true
       assert_equal store["last_day"].is_a?(Date),true
     end
@@ -168,7 +168,7 @@ class MealTest < AbstractTest
 
   def test_get_info_from_store
     unless @config_blank
-      assert_equal Meal.get_info_from_store.count,7
+      assert_equal MealStore.get_info_from_store.count,7
     end
   end
 
