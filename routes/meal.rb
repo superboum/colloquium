@@ -25,7 +25,7 @@ module MealController
     
     app.get '/admin/meal/?' do
       restrictToAdmin!
-      table_of_meals = Meal.get_table_of_meal_number
+      table_of_meals = TableOfMeals.get_table_of_meal_number
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/meal/home', :locals => { table_of_meals: table_of_meals}
       end
@@ -67,7 +67,7 @@ module MealController
       restrictToAdmin!
       
       store = YAML.load_file('config/general.yml')
-      table =Meal.get_table_of_meals
+      table =TableOfMeals.get_table_of_meals
 
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/meal/meal_select', :locals => { first_day: Date.parse(store["meal"]["first_day"]),last_day: Date.parse(store["meal"]["last_day"]),table: table}

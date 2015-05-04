@@ -86,7 +86,38 @@ class TableOfMeals
 		end
 	end
 
+	#================================
+	#================================
+	#===========  GETTERS  ==========
+	#================================
+	#================================
 
+	def self.get_table_of_meal_number
+		
 
+		tom = TableOfMeals.new
+		tom.each 	do |line, meal,meal_exists, store|
+
+			if(meal_exists)
+				m = meal.meal
+				line<<[m,meal.participants.count]
+			else
+				line << [m,nil]
+			end
+			
+		end
+		return tom.table
+
+	end
+
+	def self.get_table_of_meals
+		tom = TableOfMeals.new
+		tom.each 	do |line, meal,meal_exists, store|	
+			m = meal.meal
+			line<<[m,meal_exists && store[Meal.convert_int_to_string(m)]]
+			
+		end
+		return tom.table
+	end
 end
 

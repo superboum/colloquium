@@ -145,8 +145,7 @@ class User < ActiveRecord::Base
 
   def remove_former_meals(meals)
     self.meals.each do |meal|
-      day = meal.day.strftime("%d/%m/%Y")
-      m = meal.meal.to_s
+      day,m = meal.get_day_and_meal_in_view_format
       unless meals.has_key?(day) && meals[day].has_key?(m)
         self.meals.destroy(meal)
       end
