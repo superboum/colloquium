@@ -4,19 +4,40 @@ class MealTest < AbstractTest
 
   def setup
 
-    store = YAML.load_file('config/general.yml') 
-    
-    @first_meal = store["meal"]["first_meal"]
-    @first_day = Date.parse(store["meal"]["first_day"])
-    @last_meal = store["meal"]["last_meal"]
-    @last_day = Date.parse(store["meal"]["last_day"])
+    @store = YAML.load_file('config/general.yml')
+     
+    @config_blank = false
+
+    if @store["meal"]["first_meal"].nil?
+      @store["meal"]["first_meal"] = 0
+      @config_blank = true
+    end
+    if @store["meal"]["last_meal"].nil?
+      @store["meal"]["last_meal"] = 2
+      @config_blank = true
+    end
+    if @store["meal"]["last_day"].nil?
+      @store["meal"]["last_day"] = "10/05/1994"
+      @config_blank = true
+    end
+    if @store["meal"]["first_day"].nil?
+      @store["meal"]["first_day"] = "02/05/1994"
+      @config_blank = true
+    end
+
+  
+
+    @first_meal = @store["meal"]["first_meal"]
+    @first_day = Date.parse(@store["meal"]["first_day"])
+    @last_meal = @store["meal"]["last_meal"]
+    @last_day = Date.parse(@store["meal"]["last_day"])
 
     @m_first = Meal.create_or_find(@first_day,@first_meal).first
     @m_last = Meal.create_or_find(@last_day,@last_meal).first
 
-
   end
 
+  
   def test_create_or_find
     assert_equal @first_meal, @m_first.meal
     assert_equal @first_day,  @m_first.day
@@ -25,26 +46,28 @@ class MealTest < AbstractTest
   
 
   def test_comparaison
-    m_upper_by_day=Meal.create_or_find(@last_day + 1.day,@last_meal).first
-    m_upper_by_meal=Meal.create_or_find(@last_day,@last_meal+1).first
-    assert_equal m_upper_by_meal.upper_or_equal_than(@m_first),true
-    assert_equal m_upper_by_day.upper_or_equal_than(@m_first),true
 
-    m_lower_by_day=Meal.create_or_find(@first_day-1.day,@first_meal).first
-    m_lower_by_meal=Meal.create_or_find(@first_day,@first_meal-1).first
-    assert_equal m_lower_by_meal.lower_or_equal_than(@m_last),true
-    assert_equal m_lower_by_day.lower_or_equal_than(@m_last),true
+    unless (@m_first.lower_or_equal_than(@m_last))
+      m_upper_by_day=Meal.create_or_find(@last_day + 1.day,@last_meal).first
+      m_upper_by_meal=Meal.create_or_find(@last_day,@last_meal+1).first
+      assert_equal m_upper_by_meal.upper_or_equal_than(@m_first),true
+      assert_equal m_upper_by_day.upper_or_equal_than(@m_first),true
 
-    assert_equal @m_first.in_range?,true
-    assert_equal @m_last.in_range?,true
+      m_lower_by_day=Meal.create_or_find(@first_day-1.day,@first_meal).first
+      m_lower_by_meal=Meal.create_or_find(@first_day,@first_meal-1).first
+      assert_equal m_lower_by_meal.lower_or_equal_than(@m_last),true
+      assert_equal m_lower_by_day.lower_or_equal_than(@m_last),true
 
-
-    assert_equal m_upper_by_day.in_range?,false
-    assert_equal m_upper_by_meal.in_range?,false
-    assert_equal m_lower_by_day.in_range?,false
-    assert_equal m_lower_by_meal.in_range?,false
+      assert_equal @m_first.in_range?,true
+      assert_equal @m_last.in_range?,true
 
 
+      assert_equal m_upper_by_day.in_range?,false
+      assert_equal m_upper_by_meal.in_range?,false
+      assert_equal m_lower_by_day.in_range?,false
+      assert_equal m_lower_by_meal.in_range?,false
+
+    end
 
   end
 
@@ -77,11 +100,11 @@ class MealTest < AbstractTest
     assert_equal params["errors"].has_key?("last_day"),true
   end
 
-  def test_check_logic_date
+  def test_check_logic_date_if_no_error
 
     #TEST OKAY
     params={"first_day" => "20/05/2014","last_day" => "25/05/2014","first_meal"=>0,"last_meal"=>1,"errors" => {}}
-    Meal.check_logic_date(params)
+    Meal.check_logic_date_if_no_error(params)
     
     assert_equal params["errors"].has_key?("last_meal"),false
     assert_equal params["errors"].has_key?("last_day"),false
@@ -89,21 +112,21 @@ class MealTest < AbstractTest
 
     #TEST OKAY
     params={"first_day" => "20/05/2014","last_day" => "20/05/2014","first_meal"=>0,"last_meal"=>0,"errors" => {}}
-    Meal.check_logic_date(params)
+    Meal.check_logic_date_if_no_error(params)
     
     assert_equal params["errors"].has_key?("last_meal"),false
     assert_equal params["errors"].has_key?("last_day"),false
 
     #WRONG DAY
     params={"first_day" => "21/05/2014","last_day" => "20/05/2013","first_meal"=>0,"last_meal"=>1,"errors" => {}}
-    Meal.check_logic_date(params)
+    Meal.check_logic_date_if_no_error(params)
 
     assert_equal params["errors"].has_key?("last_meal"),false
     assert_equal params["errors"].has_key?("last_day"),true
 
     #WRONG MEAL
     params={"first_day" => "20/05/2014","last_day" => "20/05/2014","first_meal"=>1,"last_meal"=>0,"errors" => {}}
-    Meal.check_logic_date(params)
+    Meal.check_logic_date_if_no_error(params)
 
     assert_equal params["errors"].has_key?("last_meal"),true
     assert_equal params["errors"].has_key?("last_day"),false
@@ -113,7 +136,7 @@ class MealTest < AbstractTest
   def test_check_params
     #TEST OKAY
     params={"first_day" => "20/05/2014","last_day" => "25/05/2014","first_meal"=>0,"last_meal"=>1,"errors" => {}}
-    Meal.check_logic_date(params)
+    Meal.check_logic_date_if_no_error(params)
     
     assert_equal params["errors"].empty?,true
 
@@ -124,7 +147,7 @@ class MealTest < AbstractTest
 
     #WRONG MEAL
     params={"first_day" => "20/05/2014","last_day" => "20/05/2014","first_meal"=>1,"last_meal"=>0,"errors" => {}}
-    Meal.check_logic_date(params)
+    Meal.check_logic_date_if_no_error(params)
 
     assert_equal params["errors"].empty?,false
 
@@ -132,15 +155,19 @@ class MealTest < AbstractTest
 
 
   def test_get_store
-    store = Meal.get_store
+    unless @config_blank
 
-    assert_equal store,Meal.get_store(store)
-    assert_equal store["first_day"].is_a?(Date),true
-    assert_equal store["last_day"].is_a?(Date),true
+
+      assert_equal @store,Meal.get_store(@store)
+      assert_equal @store["first_day"].is_a?(Date),true
+      assert_equal @store["last_day"].is_a?(Date),true
+    end
   end
 
   def test_get_info_from_store
-    assert_equal Meal.get_info_from_store.count,7
+    unless @config_blank
+      assert_equal Meal.get_info_from_store.count,7
+    end
   end
 
 end
