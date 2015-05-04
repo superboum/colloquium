@@ -166,18 +166,8 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.check_date_format(params)
-
-		begin
-			params["first_day"] = Date.parse(params["first_day"]).strftime("%d/%m/%Y")
-		rescue
-			params["errors"]["first_day"]="Wrong date format"
-		end  
-
-		begin
-			params["last_day"] = Date.parse(params["last_day"]).strftime("%d/%m/%Y")
-		rescue
-			params["errors"]["last_day"]="Wrong date format"
-		end  
+		__check_date_format(params,"first_day")
+		__check_date_format(params,"last_day")
 	end
 
 	def self.check_logic_date(params)
@@ -284,7 +274,16 @@ class Meal < ActiveRecord::Base
 		return tom.table
 	end
 
-	
+
+	#private methode
+
+	def self.__check_date_format(params,d)
+		begin
+			params[d] = Date.parse(params[d]).strftime("%d/%m/%Y")
+		rescue
+			params["errors"][d]="Wrong date format"
+		end 
+	end
 
 
 	
