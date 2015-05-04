@@ -32,7 +32,7 @@
       -errors[:long_text].each do |msg|
         .alert.alert-danger 
           =msg.capitalize
-    %textarea{:rows => "15", :'data-provide' => "markdown", :class => "form-control", :id => "long_text", :name => "long_text", :placeholder => "You article content.", :title => "long_text"}= event.long_text
+    %textarea{:rows => "15", :class => "form-control bmarkdown", :id => "long_text", :name => "long_text", :placeholder => "You article content.", :title => "long_text"}= event.long_text
 
      
 
