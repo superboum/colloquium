@@ -40,7 +40,6 @@ module MealController
 
     app.post '/admin/meal/date/?' do
       restrictToAdmin!
-      
 
       tmp=Meal.check_params(params)
       params = tmp

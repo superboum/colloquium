@@ -20,13 +20,10 @@ class Meal < ActiveRecord::Base
 
 	def upper_than(meal_to_compare)
 		day,m = Meal.get_day_and_meal(meal_to_compare)
-		if(self.day >day)
-			if(self.day==day&&self.meal<=m)	
-				return false
-			end
-		else return false
+		if(self.day==day)
+			return upper_than_by_meal(meal_to_compare)
 		end
-		return true
+		return day_upper_than(meal_to_compare)
 	end
 
 	def lower_than(meal_to_compare)
@@ -49,13 +46,17 @@ class Meal < ActiveRecord::Base
 
 
 	def in_range?(*store)
+
 		store = MealStore.get_info_from_store(store)
-		ret =	upper_or_equal_than({"day" => store["first_day"],"meal" => store["first_meal"]}) &&
-				lower_or_equal_than({"day" => store["last_day"],"meal" => store["last_meal"]}) 
+	
+		ret =	upper_or_equal_than(Meal.new(day: store["first_day"],meal: store["first_meal"])) &&
+				lower_or_equal_than(Meal.new(day: store["last_day"],meal: store["last_meal"])) 
 
 		return ret
 	end
 
+
+	
 
 	def create_if_in_range(params,meal_type)
 		m = params["meal_type"]
@@ -77,15 +78,14 @@ class Meal < ActiveRecord::Base
 
 	def in_list_of_meal_in_view_format(list_of_meal_in_view_format)
 		day,meal_type =get_day_and_meal_in_view_format
-
 		unless list_of_meal_in_view_format.has_key?(day)
-			return true
+			return false
 		else
 			unless list_of_meal_in_view_format[day].has_key?(meal_type)
-				return true
+				return false
 			end
 		end
-		return false
+		return true
 	end
 
 	#GLOBAL METHODES
@@ -127,10 +127,20 @@ class Meal < ActiveRecord::Base
 		return [meal,meal_exists]
 	end
 
+	def self.get_meal_array(meal_type)
+		ret = []
+		for m in 0..2
+			unless meal_type[m].nil?
+				ret << m
+			end
+		end
+		return ret
+	end
+
 	def self.create_meals(first_day,last_day,meal_type)
 		ActiveRecord::Base.transaction do
 			for day in first_day..last_day
-				for m in 0..2
+				get_meal_array(meal_type).each do |m|
 					meal = Meal.new
 					meal.create_if_in_range({"meal_type" => m,"day" => day},meal_type)
 				end
@@ -139,14 +149,12 @@ class Meal < ActiveRecord::Base
 	end
 
 	def self.correct_meals(params)
-		ActiveRecord::Base.transaction do
 			Meal.all.each do |m|
-				if(m.in_list_of_meal_in_view_format(params["meals"]))
+				unless (m.in_list_of_meal_in_view_format(params["meals"]))
 					m.destroy
 				end
 				
 			end
-		end
 	end
 
 	def self.convert_int_to_string(m)

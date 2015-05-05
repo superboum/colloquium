@@ -43,11 +43,10 @@ class TableOfMeals
 
 	def each
 		unless @store_empty
-
 			push_meals_type
 
-
 			for @current_day in @first_day..@last_day
+
 				iterate_over_line(&Proc.new)
 			end
 		end
@@ -59,8 +58,12 @@ class TableOfMeals
 
 	def fill_case_of_table
 		elt = Meal.convert_int_to_string(@current_m)
+		
+
 		if(@store[elt])
 			meal,meal_exists = Meal.create_or_find(@current_day,@current_m)
+			
+
 			if meal.in_range?(@store)
 				yield @current_line, meal,meal_exists , @store
 			else
@@ -68,10 +71,10 @@ class TableOfMeals
 			end
 			return !@current_line.last.nil?
 		end
+		
 	end
 
 	def iterate_over_line
-		
 		empty_line=true
 		@current_line = Array.new
 
@@ -80,7 +83,7 @@ class TableOfMeals
 				empty_line = false
 			end
 		end
-		
+				
 		unless empty_line
 			@table<<[@current_day.strftime("%d/%m/%Y")].concat(@current_line)
 		end
