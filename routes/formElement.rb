@@ -34,12 +34,7 @@ module FormElementController
 
 
       felt = FormElement.new
-      felt.question = params["question"]
-      felt.form_type = params["form_type"]
-      felt.event_id = params["event"]
-      if felt.form_type == FormElement.TYPES["select"]
-        felt.data=params["dataSelect"]
-      end
+      felt.set_params(params)
       felt.save
 
       if(params['add_form_element']=='1')   

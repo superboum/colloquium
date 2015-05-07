@@ -84,7 +84,7 @@ module EventController
     #BACKOFFICE
     app.get '/admin/event/?' do
       restrictToAdmin!
-      events = Event.all
+      events = Event.order(:created_at)
 
       haml :'admin/layout', :layout => :'layout'  do
         haml :'admin/event/home', :locals => { :events => events }

@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def edit_register_to_event(event,params)
-    felts = event.get_felts
+    felts = event.form_elements
 
     ActiveRecord::Base.transaction do
 

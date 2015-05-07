@@ -50,7 +50,7 @@ class EventTest < AbstractTest
     assert page.has_content?("Event test")
   end
 
-  def test_007_edit_article
+  def test_007_edit_event
     click_on('admin')
     find('a[href="/admin/event"]').click
     all('a[href^="/admin/event/edit"]').last.click
@@ -58,17 +58,19 @@ class EventTest < AbstractTest
     fill_in 'short_text', :with => "Great man"
     fill_in 'long_text', :with => "> So amazing"
     click_on('Publish')
+    assert page.has_content?('Albert Einstein')
   end  
   
   def test_008_enable
     visit '/profile/event'
-    assert page.has_no_link?('Albert Einstein')
+    assert page.has_no_link?('Inpossible name to remember iuvriervbf lc')
     visit '/admin/event'
     all('a[href^="/admin/event/edit"]').last.click
+    fill_in 'name', :with => "Inpossible name to remember iuvriervbf lc"
     check('Enable registration')
     click_on('Publish')
     visit '/profile/event'
-    assert page.has_link?('Albert Einstein')
+    assert page.has_link?('Inpossible name to remember iuvriervbf lc')
     
 
   end
@@ -81,4 +83,5 @@ class EventTest < AbstractTest
     all('a[href^="/admin/event/delete"]').last.click
     click_on('Delete')
   end
+
 end

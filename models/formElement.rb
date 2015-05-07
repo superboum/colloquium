@@ -11,16 +11,26 @@ class FormElement < ActiveRecord::Base
 		@@TYPES
 	end
 	validates_inclusion_of :form_type, :in => 0..2
+    
+      
 
-
-	def set(params, event)
+	def set_params_with_id(params, event)
 		self.question= params['question::'+self.id.to_s]
         self.form_type = params["form_type::"+self.id.to_s]
         self.event = event
         if self.form_type == FormElement.TYPES["select"]
           self.data=params["dataSelect::"+self.id.to_s]
         end
-        self.save
+
+    end
+
+    def set_params(params)
+        self.question = params["question"]
+        self.form_type = params["form_type"]
+        self.event_id = params["event"]
+        if self.form_type == FormElement.TYPES["select"]
+            self.data=params["dataSelect"]
+        end
 
     end
 

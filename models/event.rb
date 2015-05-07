@@ -12,12 +12,7 @@ class Event < ActiveRecord::Base
   validates :name, length: {minimum: 1, message: "This field can't be blank"}
   validates :spots_number_limit, numericality: { only_integer: true,greater_than_or_equal_to: 0}
 
-  def get_felts
-    return self.form_elements
-  end
-
-
-
+ 
   def set(params,user)
     self.name = params['name']
     self.short_text = params['short_text']
@@ -44,7 +39,8 @@ class Event < ActiveRecord::Base
       if(params["delete::"+felt.id.to_s]=='1')
         felt.destroy 
       else  
-        felt.set(params,self)
+        felt.set_params_with_id(params,self)
+        felt.save
       end
     end
   end
