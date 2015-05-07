@@ -16,8 +16,6 @@ class EventTest < AbstractTest
 
   end
 
-
-
   def test_set
     e= Event.new
     e.set({"name"=>"Event", "short_text"=>"Event", "long_text"=>"Long text which fully describe the event", "start_date"=>"2015-05-05 18:00:00 +0200", "end_date"=>"2015-05-05 19:00:00 +0200", "spots_number_limit"=>"0"},@user)
